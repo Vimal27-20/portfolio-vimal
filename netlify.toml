@@ -1,0 +1,9 @@
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+# Single-page app: let React Router handle /work/... URLs on refresh / direct visits
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
