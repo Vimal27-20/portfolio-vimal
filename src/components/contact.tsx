@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const ACCENT = "#a7f13a";
 const DARK   = "#0f0f0f";
@@ -36,31 +36,44 @@ export default function Contact() {
     setPos(clamp(raw, 0, 1));
   };
 
+  // trigger: copy the address (only claim "copied" if it worked), then open mail
+  const complete = async () => {
+    if (done) return;
+    setPos(1);
+    setDone(true);
+    try {
+      await navigator.clipboard.writeText("vimal.v27k@gmail.com");
+      setCopied(true);
+    } catch { /* clipboard blocked: still open the mail app */ }
+    setTimeout(() => {
+      window.location.href = "mailto:vimal.v27k@gmail.com";
+    }, 600);
+  };
+
   const onUp = () => {
     if (!dragging) return;
     setDragging(false);
-    if (pos >= 0.88) {
-      // trigger
-      setPos(1);
-      setDone(true);
-      navigator.clipboard.writeText("vimal.v27k@gmail.com").catch(() => {});
-      setCopied(true);
-      setTimeout(() => {
-        window.location.href = "mailto:vimal.v27k@gmail.com";
-      }, 600);
-    } else {
-      // snap back
-      setPos(0);
-    }
+    if (pos >= 0.88) complete();
+    else setPos(0);   // snap back
   };
+
+  // re-render on resize so the thumb's travel distance stays correct
+  const [, setWidth] = useState(0);
+  useEffect(() => {
+    const track = trackRef.current;
+    if (!track) return;
+    const ro = new ResizeObserver(() => setWidth(track.clientWidth));
+    ro.observe(track);
+    return () => ro.disconnect();
+  }, []);
 
   const pct = pos * 100;
 
   return (
-    <section id="contact" style={{ padding: "80px 0" }}>
+    <section id="contact" className="sec">
 
       {/* label */}
-      <p style={{
+      <p data-reveal="1" style={{
         fontSize: 11, fontWeight: 800,
         letterSpacing: ".18em", textTransform: "uppercase",
         color: "#bbb", margin: "0 0 18px",
@@ -69,7 +82,7 @@ export default function Contact() {
       </p>
 
       {/* heading */}
-      <h2 style={{
+      <h2 data-reveal="2" style={{
         fontFamily:    `"Instrument Serif", Georgia, serif`,
         fontSize:      "clamp(40px, 5.5vw, 76px)",
         letterSpacing: "-.04em",
@@ -82,7 +95,7 @@ export default function Contact() {
       </h2>
 
       {/* sub copy — limited */}
-      <p style={{
+      <p data-reveal="3" style={{
         fontSize: 15, lineHeight: 1.65,
         color: "#888", maxWidth: "44ch",
         margin: "0 0 56px",
@@ -92,15 +105,10 @@ export default function Contact() {
       </p>
 
       {/* ── SWIPE SLIDER ── */}
-      <div style={{ maxWidth: 440 }}>
+      <div data-reveal="4" style={{ maxWidth: 440 }}>
 
         <div
           ref={trackRef}
-          onMouseMove={e  => onMove(e.clientX)}
-          onMouseUp={onUp}
-          onMouseLeave={onUp}
-          onTouchMove={e  => onMove(e.touches[0].clientX)}
-          onTouchEnd={onUp}
           style={{
             position:     "relative",
             height:       64,
@@ -144,7 +152,7 @@ export default function Contact() {
                   background: "#22c55e", display: "inline-block",
                   boxShadow: "0 0 0 3px rgba(34,197,94,.22)",
                 }} />
-                Email copied · Opening mail…
+                {copied ? "Email copied · Opening mail…" : "Opening mail…"}
               </>
             ) : (
               <>Swipe to say hello &nbsp; ✉</>
@@ -154,9 +162,26 @@ export default function Contact() {
           {/* thumb */}
           <div
             ref={thumbRef}
-            onMouseDown={e  => { e.preventDefault(); onDown(e.clientX); }}
-            onTouchStart={e => onDown(e.touches[0].clientX)}
+            role="button"
+            tabIndex={done ? -1 : 0}
+            aria-label="Slide to email vimal.v27k@gmail.com, or press Enter"
+            onPointerDown={e => {
+              if (done) return;
+              e.preventDefault();
+              e.currentTarget.setPointerCapture(e.pointerId);   // keep tracking outside the track
+              onDown(e.clientX);
+            }}
+            onPointerMove={e => onMove(e.clientX)}
+            onPointerUp={onUp}
+            onPointerCancel={onUp}
+            onKeyDown={e => {
+              if (e.key === "Enter" || e.key === " " || e.key === "ArrowRight") {
+                e.preventDefault();
+                complete();
+              }
+            }}
             style={{
+              touchAction:  "none",
               position:     "absolute",
               top:          3, bottom: 3,
               left:         3,
@@ -199,7 +224,7 @@ export default function Contact() {
       </div>
 
       {/* ── bottom strip ── */}
-      <div style={{
+      <div data-reveal="5" style={{
         marginTop:     64,
         paddingTop:    28,
         borderTop:     "1px solid #f0f0f0",
@@ -216,7 +241,7 @@ export default function Contact() {
             width: 8, height: 8, borderRadius: "50%",
             background: "#22c55e",
             boxShadow: "0 0 0 3px rgba(34,197,94,.22)",
-            animation: "pulse 2s infinite",
+            animation: "contactPulse 2s infinite",
           }} />
           <span style={{ fontSize: 13, fontWeight: 700, color: "#555" }}>
             Available · Based in Ireland
@@ -225,7 +250,7 @@ export default function Contact() {
 
         {/* LinkedIn — secondary quiet link */}
         <a
-          href="http://linkedin.com/in/vimal27k"
+          href="https://www.linkedin.com/in/vimal27k/"
           target="_blank"
           rel="noreferrer"
           style={{
@@ -242,7 +267,7 @@ export default function Contact() {
       </div>
 
       <style>{`
-        @keyframes pulse {
+        @keyframes contactPulse {
           0%, 100% { box-shadow: 0 0 0 3px rgba(34,197,94,.22); }
           50%       { box-shadow: 0 0 0 7px rgba(34,197,94,.07); }
         }

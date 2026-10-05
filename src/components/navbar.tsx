@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { HiDownload } from "react-icons/hi";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { scrollIfSamePage } from "./scrollmanager";
@@ -12,8 +12,41 @@ const NAV_LINKS = [
 export default function Navbar() {
   const [dlState, setDlState]   = useState<"idle" | "loading" | "done">("idle");
   const [logoPressed, setLogoPressed] = useState(false);
-  const { pathname } = useLocation();
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  // compact the bar once the top-of-page marker leaves the viewport
+  useEffect(() => {
+    const marker = document.getElementById("scroll-sentinel");
+    if (!marker) return;
+    const io = new IntersectionObserver(([e]) => setScrolled(!e.isIntersecting));
+    io.observe(marker);
+    return () => io.disconnect();
+  }, []);
+  const { pathname, hash } = useLocation();
   const navigate = useNavigate();
+  const navRef = useRef<HTMLElement>(null);
+
+  // close the mobile menu on navigation, Esc, or a click outside
+  useEffect(() => setMenuOpen(false), [pathname, hash]);
+  useEffect(() => {
+    if (!menuOpen) return;
+    const onKey = (e: KeyboardEvent) => e.key === "Escape" && setMenuOpen(false);
+    const onClick = (e: MouseEvent) => {
+      if (!navRef.current?.contains(e.target as Node)) setMenuOpen(false);
+    };
+    window.addEventListener("keydown", onKey);
+    document.addEventListener("mousedown", onClick);
+    return () => {
+      window.removeEventListener("keydown", onKey);
+      document.removeEventListener("mousedown", onClick);
+    };
+  }, [menuOpen]);
+
+  const onNav = (to: string) => {
+    setMenuOpen(false);
+    scrollIfSamePage(to, pathname);
+  };
 
   const handleDownload = () => {
     if (dlState !== "idle") return;
@@ -104,19 +137,17 @@ export default function Navbar() {
         }
       `}</style>
 
-      <nav style={{
-        padding:              "13px 0",
+      <nav ref={navRef} aria-label="Main" className={`site-nav${scrolled ? " is-scrolled" : ""}`} style={{
         position:             "sticky",
         top:                  0,
         zIndex:               100,
-        background:           "rgba(232,232,232,.88)",
-        backdropFilter:       "blur(18px)",
-        WebkitBackdropFilter: "blur(18px)",
-        borderBottom:         "1px solid var(--line, rgba(0,0,0,.10))",
+        backdropFilter:       "saturate(180%) blur(18px)",
+        WebkitBackdropFilter: "saturate(180%) blur(18px)",
       }}>
         <div
           className="wrap"
           style={{
+            position:       "relative",
             display:        "flex",
             alignItems:     "center",
             justifyContent: "space-between",
@@ -136,7 +167,8 @@ export default function Navbar() {
             <img
               src={`${import.meta.env.BASE_URL}img/LOGO-VK.png`}
               alt="VK"
-              style={{ height: 48, width: "auto", objectFit: "contain", display: "block", pointerEvents: "none" }}
+              className="nav-logo-img"
+              style={{ width: "auto", objectFit: "contain", display: "block", pointerEvents: "none" }}
             />
           </button>
 
@@ -146,15 +178,17 @@ export default function Navbar() {
             style={{ display: "flex", gap: 32, alignItems: "center" }}
           >
             {NAV_LINKS.map(({ label, to }) => (
-              <Link key={label} to={to} className="nav-link" onClick={() => scrollIfSamePage(to, pathname)}>
+              <Link key={label} to={to} className="nav-link" onClick={() => onNav(to)}>
                 {label}
               </Link>
             ))}
           </div>
 
-          {/* ── resume download ── */}
+          {/* ── resume download + mobile menu toggle ── */}
+          <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
           <button
             onClick={handleDownload}
+            aria-live="polite"
             className="nav-resume"
             style={{
               background: dlState === "done" ? "#a7f13a" : "#111",
@@ -183,6 +217,26 @@ export default function Navbar() {
               <><span style={{ fontSize: 14 }}>✓</span> Downloaded!</>
             )}
           </button>
+
+          <button
+            className="nav-burger"
+            aria-label={menuOpen ? "Close menu" : "Open menu"}
+            aria-expanded={menuOpen}
+            aria-controls="nav-menu"
+            onClick={() => setMenuOpen(o => !o)}
+          >
+            <span /><span />
+          </button>
+          </div>
+
+          {/* ── mobile menu ── */}
+          <div id="nav-menu" className={`nav-menu${menuOpen ? " is-open" : ""}`} aria-hidden={!menuOpen}>
+            {NAV_LINKS.map(({ label, to }) => (
+              <Link key={label} to={to} onClick={() => onNav(to)} tabIndex={menuOpen ? 0 : -1}>
+                {label}
+              </Link>
+            ))}
+          </div>
 
         </div>
       </nav>
