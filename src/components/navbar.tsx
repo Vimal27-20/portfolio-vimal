@@ -21,7 +21,7 @@ export default function Navbar() {
     setTimeout(() => {
       setDlState("done");
       const a = document.createElement("a");
-      a.href = "/img/Vimal-kumar-Resume.pdf";
+      a.href = `${import.meta.env.BASE_URL}img/Vimal-kumar-Resume.pdf`;
       a.download = "Vimal-kumar-Resume.pdf";
       a.click();
       setTimeout(() => setDlState("idle"), 2200);
@@ -134,7 +134,7 @@ export default function Navbar() {
             aria-label="Go to top"
           >
             <img
-              src="/img/LOGO-VK.png"
+              src={`${import.meta.env.BASE_URL}img/LOGO-VK.png`}
               alt="VK"
               style={{ height: 48, width: "auto", objectFit: "contain", display: "block", pointerEvents: "none" }}
             />

@@ -3,7 +3,7 @@ import CaseStudyLayout, { Figure, ScrollFrame, Section, type CsSection } from ".
 
 const FIGMA_URL =
   "https://www.figma.com/design/pCtrixcWvQBGKKOWfHAPEh/Vimal-Flex-Assignment?node-id=1-3";
-const IMG = "/img/flex";
+const IMG = `${import.meta.env.BASE_URL}img/flex`;
 
 const SECTIONS: CsSection[] = [
   { id: "overview",   label: "Overview" },

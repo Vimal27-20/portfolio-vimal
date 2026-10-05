@@ -2,7 +2,7 @@ import { projects } from "../../data/projects";
 import CaseStudyLayout, { Figure, Section, type CsSection } from "./layout";
 
 const FIGMA_URL = "https://www.figma.com/design/ykJApcdwM0KMk4cDloI0Ix/Untitled?node-id=2-3";
-const IMG = "/img/ride";
+const IMG = `${import.meta.env.BASE_URL}img/ride`;
 
 const SECTIONS: CsSection[] = [
   { id: "moment",    label: "The moment" },

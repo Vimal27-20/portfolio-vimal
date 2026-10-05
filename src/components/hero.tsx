@@ -234,7 +234,7 @@ export default function Hero() {
             overflow: "hidden", flexShrink: 0,
           }}>
             <img
-              src="/img/pro.png"
+              src={`${import.meta.env.BASE_URL}img/pro.png`}
               alt="Vimal Kumar"
               style={{
                 width: "100%", height: "100%",

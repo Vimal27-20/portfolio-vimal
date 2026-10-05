@@ -17,7 +17,7 @@ export interface Project {
 
 export const projects: Project[] = [
   {
-    img:       "/img/flex/cover.webp",
+    img:       `${import.meta.env.BASE_URL}img/flex/cover.webp`,
     alt:       "Flex Academy landing page",
     tag:       "Landing Page · Conversion UX",
     title:     "Flex Academy Landing Page",
@@ -30,7 +30,7 @@ export const projects: Project[] = [
     caseStudy: "/work/flex-academy",
   },
   {
-    img: "/img/hybrid.png",
+    img: `${import.meta.env.BASE_URL}img/hybrid.png`,
     alt:      "Hybrid Work Planner",
     tag:      "Enterprise UX",
     title:    "Hybrid Work Experience Planner",
@@ -43,7 +43,7 @@ export const projects: Project[] = [
     link:     "https://www.behance.net/gallery/245077007/Hybrid-Work-Experience-Planner",
   },
   {
-    img:      "/img/balanci.png",
+    img:      `${import.meta.env.BASE_URL}img/balanci.png`,
     alt:      "Balanci",
     tag:      "Student Wellbeing · Mobile",
     title:    "Balanci",
@@ -56,7 +56,7 @@ export const projects: Project[] = [
     link:     "https://www.behance.net/gallery/236688199/Balanci-From-User-Probes-to-Prototype-A-UX-Journey",
   },
   {
-    img:       "/img/ride/cover.webp",
+    img:       `${import.meta.env.BASE_URL}img/ride/cover.webp`,
     alt:       "Remembering what matters: ride-hailing concept",
     tag:       "Mobile UX · Story-led",
     title:     "Remembering What Matters",
@@ -70,7 +70,7 @@ export const projects: Project[] = [
     caseStudy: "/work/mindful-moments",
   },
   {
-    img:      "/img/gardern.png",
+    img:      `${import.meta.env.BASE_URL}img/gardern.png`,
     alt:      "IoT Smart Pot",
     tag:      "IoT · Physical UX",
     title:    "Enhancing Gardening with Smart Tech",
@@ -83,7 +83,7 @@ export const projects: Project[] = [
     link:     "https://www.behance.net/gallery/236589417/Enhancing-Gardening-with-Smart-Tech-and-Design",
   },
   {
-    img:      "/img/assist.png",
+    img:      `${import.meta.env.BASE_URL}img/assist.png`,
     alt:      "Assist Now",
     tag:      "UX Redesign",
     title:    "Assist Now",
