@@ -2,6 +2,7 @@ import type { ComponentType } from "react";
 import { Navigate, useParams } from "react-router-dom";
 import FlexAcademyCaseStudy from "./flexacademy";
 import MindfulMomentsCaseStudy from "./mindfulmoments";
+import ViseCaseStudy from "./vise";
 
 /**
  * Registry of in-site case studies. To add another:
@@ -12,6 +13,7 @@ import MindfulMomentsCaseStudy from "./mindfulmoments";
 const CASE_STUDIES: Record<string, ComponentType> = {
   "flex-academy": FlexAcademyCaseStudy,
   "mindful-moments": MindfulMomentsCaseStudy,
+  "vise": ViseCaseStudy,
 };
 
 export default function CaseStudyRoute() {

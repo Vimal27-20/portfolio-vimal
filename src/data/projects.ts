@@ -13,9 +13,25 @@ export interface Project {
   link?:      string;
   /** Internal case study route — opens inside the portfolio */
   caseStudy?: string;
+  /** Marks work that is still being designed/built */
+  status?:    "in-progress";
 }
 
 export const projects: Project[] = [
+  {
+    img:       `${import.meta.env.BASE_URL}img/vise/cover.webp`,
+    alt:       "VISE personal finance app screens",
+    tag:       "Fintech · Mobile App",
+    title:     "VISE: Personal Finance",
+    desc:      "Offline-first budgeting app: React Native UI on a tested Rust + SQLite core. V1 now in Android testing with real users.",
+    tags:      ["React Native + Expo", "Rust + SQLite", "CI & E2E Testing", "Design System"],
+    slug:      "vise",
+    year:      "2026",
+    role:      "UX Engineer",
+    duration:  "Ongoing · V1 testing",
+    caseStudy: "/work/vise",
+    status:    "in-progress",
+  },
   {
     img:       `${import.meta.env.BASE_URL}img/flex/cover.webp`,
     alt:       "Flex Academy landing page",
@@ -108,5 +124,6 @@ const CATEGORY_BY_SLUG: Record<string, Category> = {
   "mindful-moments":     "Mobile",
   "iot-smart-pot":       "IoT",
   "assist-now":          "Web",
+  "vise":                "Mobile",
 };
 export const categoryOf = (p: Project): Category => CATEGORY_BY_SLUG[p.slug] ?? "Web";

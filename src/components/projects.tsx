@@ -23,7 +23,7 @@ function ProjectCard({ p, index }: { p: Project; index: number }) {
       <div className="pcard-body">
         <p className="pcard-kicker">
           <span className="pcard-cat">{categoryOf(p)}</span>
-          <span>{p.year}</span>
+          {p.status === "in-progress" ? <span className="wip-badge">In progress</span> : <span>{p.year}</span>}
         </p>
 
         <h3 className="pcard-title">{p.title}</h3>
@@ -145,6 +145,19 @@ export default function Projects() {
         .pcard-cta.is-disabled { opacity: .4; }
         .pcard-cta.is-disabled::after { display: none; }
         .pcard-where { font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: #999; }
+
+        /* work still being designed/built (Project.status) */
+        .wip-badge {
+          display: inline-flex; align-items: center; gap: 6px;
+          font-size: 10px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase;
+          padding: 5px 11px; border-radius: 999px;
+          background: #fff4dc; color: #8a5300; border: 1.5px solid #f3c66b;
+        }
+        .wip-badge::before {
+          content: ""; width: 7px; height: 7px; border-radius: 50%; background: #e59a0c;
+          animation: wipPulse 1.6s ease-in-out infinite;
+        }
+        @keyframes wipPulse { 0%,100% { opacity: 1; } 50% { opacity: .3; } }
 
         @media (max-width: 1100px) { .pgrid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
         @media (max-width: 680px) {
