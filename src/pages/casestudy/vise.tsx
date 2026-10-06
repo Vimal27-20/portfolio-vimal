@@ -1,17 +1,27 @@
 import { projects } from "../../data/projects";
-import CaseStudyLayout, { Figure, Section, WipVeil, type CsSection } from "./layout";
+import CaseStudyLayout, { Figure, Section, type CsSection } from "./layout";
 
 const IMG = `${import.meta.env.BASE_URL}img/vise`;
+const REPO = "https://github.com/PassionChips/Vise";
 
 const SECTIONS: CsSection[] = [
-  { id: "overview",   label: "Overview" },
-  { id: "principles", label: "Principles" },
-  { id: "status",     label: "Where it's at" },
-  { id: "foundations",label: "Foundations" },
-  { id: "components", label: "Components" },
-  { id: "mobile",     label: "Mobile" },
-  { id: "desktop",    label: "Desktop · WIP" },
-  { id: "flows",      label: "User flows · WIP" },
+  { id: "overview",     label: "Overview" },
+  { id: "architecture", label: "Architecture" },
+  { id: "stack",        label: "Tech stack" },
+  { id: "quality",      label: "Testing & CI" },
+  { id: "release",      label: "Release · V1" },
+  { id: "design",       label: "Design system" },
+  { id: "screens",      label: "App screens" },
+];
+
+/* how one tap travels through the app, top to bottom (from the repo README) */
+const LAYERS = [
+  { name: "Screens",           tech: "React Native + Expo Router",  note: "Onboarding and 5 tabs: Dashboard, Transactions, Budgets, Reports, Settings." },
+  { name: "viseCore.ts",       tech: "TypeScript client",           note: "The only file in the app that talks to Rust. Typed mirrors of the Rust JSON types." },
+  { name: "Native bridge",     tech: "Expo module · Kotlin / Swift", note: "Passes JSON between JavaScript and the compiled Rust library." },
+  { name: "api → service",     tech: "Rust",                         note: "JSON in, JSON out. Every write is validated in Rust before it is saved." },
+  { name: "calculations",      tech: "Pure Rust",                    note: "Budget maths, analytics and a next-month spending prediction, with no database." },
+  { name: "repository → SQLite", tech: "Diesel + bundled SQLite",   note: "One query file per table; migrations run on connect. Data never leaves the device." },
 ];
 
 const PHONES = [
@@ -23,8 +33,17 @@ const PHONES = [
   { src: "dash-dark", cap: "Dark mode" },
 ];
 
-const DONE = ["Foundations, light + dark", "40+ component sets", "iOS screens + empty, loading and error states", "Android, tablet and desktop layouts", "User flows + clickable prototype"];
-const OPEN = ["Code Connect mappings", "Dark versions of onboarding and states", "Desktop Reports and Settings"];
+const DONE = [
+  "Rust core: schema, migrations, budget maths, analytics, predictions",
+  "JSON API + typed TypeScript client",
+  "Onboarding saved atomically through the core",
+  "Every screen reads and writes real SQLite data (no demo data)",
+  "Android build + launch checked in CI on every PR",
+];
+const OPEN = [
+  "V1 Android testing with real users",
+  "iOS bridge testing (needs macOS)",
+];
 
 export default function ViseCaseStudy() {
   const project = projects.find(p => p.slug === "vise")!;
@@ -35,19 +54,27 @@ export default function ViseCaseStudy() {
       <span className="cs-status">In progress</span>
       <h1 className="cs-title">
         VISE
-        <span className="cs-title-sub">Know where your money <em>goes.</em></span>
+        <span className="cs-title-sub">A budgeting app with <em>a Rust core.</em></span>
       </h1>
+      <p className="cs-lede">
+        An offline-first budgeting app for iOS and Android. React Native on the outside, all the logic
+        and storage in Rust underneath. I work on it as a UX Engineer, from the design system through
+        to the code.
+      </p>
       <dl className="cs-meta">
         <div><dt>Role</dt><dd>{project.role}</dd></div>
         <div><dt>Team</dt><dd>Me + a friend</dd></div>
-        <div><dt>Platforms</dt><dd>iOS · Android · Tablet · Web</dd></div>
-        <div><dt>Status</dt><dd>Design system v0.1</dd></div>
+        <div><dt>Stack</dt><dd>React Native · Expo · Rust</dd></div>
+        <div><dt>Status</dt><dd>V1 · Android testing</dd></div>
       </dl>
+      <div className="cs-actions">
+        <a href={REPO} target="_blank" rel="noopener noreferrer" className="cs-btn">View the code on GitHub ↗</a>
+      </div>
       <div className="cs-wip-note" role="note">
         <span className="cs-wip-note-icon" aria-hidden>🚧</span>
         <p>
-          <strong>Work in progress.</strong> VISE is a side project I'm building with a friend, aimed at a
-          production release. The screens below aren't final and will change.
+          <strong>V1 is in Android testing.</strong> We're running testing and production builds with real
+          users. Screens and details below may still change before release.
         </p>
       </div>
       <Figure src={`${IMG}/cover.webp`} alt="VISE budgets and dashboard screens in light and dark mode" className="cs-cover" />
@@ -57,44 +84,75 @@ export default function ViseCaseStudy() {
   return (
     <CaseStudyLayout project={project} name="VISE" sections={SECTIONS} header={header} accent="#18863c">
 
-      <Section id="overview" index={1} label="Overview" title={<>Budgeting in <em>a minute a day.</em></>}>
+      <Section id="overview" index={1} label="Overview" title={<>Your money, <em>on your phone only.</em></>}>
         <p className="cs-p">
-          Track spending, set budgets for what matters and see where the month is heading. No bank login,
-          and your data stays on the device.
+          Track income and spending, set monthly and per-category limits, import transactions from CSV and see
+          where the month is heading. There is no server, no account and no bank login: everything lives in
+          SQLite on the device.
         </p>
         <div className="cs-stats">
-          <div><strong>40+</strong><span>component sets</span></div>
-          <div><strong>4</strong><span>platforms from one system</span></div>
-          <div><strong>2</strong><span>themes: light + dark</span></div>
-          <div><strong>7</strong><span>token collections</span></div>
+          <div><strong>0</strong><span>servers: offline-first by design</span></div>
+          <div><strong>1</strong><span>TypeScript file calls Rust</span></div>
+          <div><strong>6</strong><span>CI workflows on every PR</span></div>
+          <div><strong>13</strong><span>end-to-end test flows</span></div>
         </div>
       </Section>
 
-      <Section id="principles" index={2} label="Principles" title="Built into the tokens, not added later.">
-        <div className="cs-principles">
-          <div className="cs-card"><h3>Spending isn't an error</h3><p>Spending is shown in a neutral colour. Red is kept for going over budget.</p></div>
-          <div className="cs-card"><h3>Estimates look like estimates</h3><p>Predictions use a dashed outline and an “Estimate” label.</p></div>
-          <div className="cs-card"><h3>Never colour alone</h3><p>Every status badge has a label: On track, Near limit, Over budget.</p></div>
-          <div className="cs-card"><h3>Private by default</h3><p>No bank connection needed to start. Demo data lets you explore first.</p></div>
+      <Section id="architecture" index={2} label="Architecture" title={<>Thin UI, <em>all logic in Rust.</em></>}>
+        <p className="cs-p">
+          Each layer only calls the one below it. The UI never does budget maths or touches the database,
+          so the same tested core runs on both platforms.
+        </p>
+        <ol className="cs-spine">
+          {LAYERS.map((l, i) => (
+            <li key={l.name}>
+              <span className="cs-spine-num">{String(i + 1).padStart(2, "0")}</span>
+              <div className="cs-spine-body">
+                <p className="cs-spine-q">{l.name}</p>
+                <p className="cs-spine-name">{l.tech}</p>
+                <p className="cs-spine-a">{l.note}</p>
+              </div>
+            </li>
+          ))}
+        </ol>
+      </Section>
+
+      <Section id="stack" index={3} label="Tech stack" title="What it's built with.">
+        <div className="cs-cards">
+          <div className="cs-card"><h3>App</h3><p>React Native, Expo, Expo Router, TypeScript, react-native-svg for charts.</p></div>
+          <div className="cs-card"><h3>Core</h3><p>Rust (2024 edition), Diesel ORM, bundled SQLite, exact money maths in cents.</p></div>
+          <div className="cs-card"><h3>Bridge & tooling</h3><p>Expo native module in Kotlin and Swift, shell scripts that cross-compile Rust for Android and iOS.</p></div>
         </div>
       </Section>
 
-      <Section id="status" index={3} label="Where it's at" title={<>Design system <em>v0.1.</em></>}>
+      <Section id="quality" index={4} label="Testing & CI" title="Tested from the maths to the tap.">
+        <ul className="cs-list">
+          <li><strong>Rust tests:</strong> unit tests for the calculations, a persistence test that reopens a real SQLite file, and a contract test against the JSON API shapes.</li>
+          <li><strong>App tests (Vitest):</strong> the bridge client, the onboarding payload, the API contract, and guards against demo data or silent fallbacks.</li>
+          <li><strong>End-to-end (Maestro):</strong> 13 flows drive the real app on an emulator, from onboarding and transactions to budgets, settings, CSV export and data surviving a restart.</li>
+          <li><strong>CI on every PR:</strong> Rust tests, clippy with zero warnings, rustfmt, TypeScript type-check, app tests, and a full Android build that launches on an emulator.</li>
+        </ul>
+      </Section>
+
+      <Section id="release" index={5} label="Release · V1" title={<>V1 in <em>Android testing.</em></>}>
+        <p className="cs-p">
+          V1 is being tested on Android with real users, across testing and production builds. iOS follows once
+          the native bridge is verified on a Mac.
+        </p>
         <ul className="cs-progress-list">
           {DONE.map(d => <li key={d} className="is-done">{d}</li>)}
           {OPEN.map(d => <li key={d} className="is-open">{d}</li>)}
         </ul>
       </Section>
 
-      <Section id="foundations" index={4} label="Foundations" title="Every colour is a semantic token.">
-        <Figure src={`${IMG}/colour.webp`} alt="VISE semantic colour tokens, light mode" />
+      <Section id="design" index={6} label="Design system" title="One token file, from Figma to code.">
+        <p className="cs-p">
+          Colours, spacing, radii and type are defined in Figma and mirrored in a single <code>tokens.ts</code>,
+          so the components in the app match the design system one-to-one, in light and dark.
+        </p>
       </Section>
 
-      <Section id="components" index={5} label="Components" title="Finance-first components.">
-        <Figure src={`${IMG}/components.webp`} alt="VISE finance components: stat cards, budget cards, transactions, charts, goals" />
-      </Section>
-
-      <Section id="mobile" index={6} label="Mobile" title="iOS, light and dark.">
+      <Section id="screens" index={7} label="App screens" title="The app today.">
         <div className="cs-stage">
           <span className="cs-wip-tag">UI not final</span>
           <ol className="cs-phones">
@@ -107,18 +165,6 @@ export default function ViseCaseStudy() {
           </ol>
         </div>
       </Section>
-
-      <WipVeil
-        title="More coming soon"
-        note="Desktop, tablet and the full user flows are still being designed. The complete case study will follow once VISE ships."
-      >
-        <Section id="desktop" index={7} label="Desktop" title="Same system, 1440 wide.">
-          <Figure src={`${IMG}/desktop.webp`} alt="VISE desktop dashboard (work in progress)" frame="browser" />
-        </Section>
-        <Section id="flows" index={8} label="User flows" title="Every flow mapped.">
-          <Figure src={`${IMG}/flows.webp`} alt="VISE user flows (work in progress)" />
-        </Section>
-      </WipVeil>
 
     </CaseStudyLayout>
   );
