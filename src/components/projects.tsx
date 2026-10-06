@@ -81,6 +81,17 @@ export default function Projects() {
           color: ${DARK}; flex: 1; min-width: 0;
         }
 
+        .wip-badge {
+          display: inline-flex; align-items: center; gap: 6px; flex-shrink: 0;
+          font-size: 10px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase;
+          padding: 5px 11px; border-radius: 999px;
+          background: #fff4dc; color: #8a5300; border: 1.5px solid #f3c66b;
+        }
+        .wip-badge::before {
+          content: ""; width: 7px; height: 7px; border-radius: 50%; background: #e59a0c;
+          animation: wipPulse 1.6s ease-in-out infinite;
+        }
+        @keyframes wipPulse { 0%,100% { opacity: 1; } 50% { opacity: .3; } }
         .prow-pill {
           font-size: 10px; font-weight: 800;
           letter-spacing: .12em; text-transform: uppercase;
@@ -215,6 +226,7 @@ export default function Projects() {
                 <div className="prow-bar" />
                 <div className="prow-title">{p.title}</div>
                 <div className="prow-meta" style={{ display: "flex", alignItems: "center", gap: 12 }}>
+                  {p.status === "in-progress" && <span className="wip-badge">In progress</span>}
                   <span className="prow-pill">{p.tag}</span>
                   <span className="prow-year">{p.year}</span>
                 </div>
@@ -236,6 +248,12 @@ export default function Projects() {
                     }}
                   >
                     <div className="panel-left">
+                      {p.status === "in-progress" && (
+                        <p style={{ display: "flex", alignItems: "center", gap: 10, flexWrap: "wrap", margin: "0 0 18px", fontSize: 13, color: "#8a5300", fontWeight: 600 }}>
+                          <span className="wip-badge">In progress</span>
+                          UI not final · heading to production
+                        </p>
+                      )}
                       {/* meta chips */}
                       <div style={{ display: "flex", gap: 10, flexWrap: "wrap", marginBottom: 28 }}>
                         {[

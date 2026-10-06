@@ -1,4 +1,4 @@
-import React, { createContext, useCallback, useContext, useEffect, useState, type ReactNode } from "react";
+import React, { createContext, useCallback, useContext, useEffect, useRef, useState, type ReactNode } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { projects, type Project } from "../../data/projects";
 import "./casestudy.css";
@@ -66,6 +66,43 @@ export function Section({
       <h2 className="cs-h2">{title}</h2>
       {children}
     </section>
+  );
+}
+
+/**
+ * Work-in-progress veil: everything inside gets blurrier the further you
+ * scroll into it, with a card explaining the work isn't final.
+ * Blurred content can't be clicked or opened in the lightbox.
+ */
+export function WipVeil({ title, children, note }: { title: string; note: ReactNode; children: ReactNode }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const [blur, setBlur] = useState(3);
+  useEffect(() => {
+    const onScroll = () => {
+      const el = ref.current; if (!el) return;
+      const top = el.getBoundingClientRect().top;
+      const vh = window.innerHeight;
+      const p = Math.min(1, Math.max(0, (vh - top) / (vh * 0.9)));
+      setBlur(3 + p * 13);
+    };
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    return () => { window.removeEventListener("scroll", onScroll); window.removeEventListener("resize", onScroll); };
+  }, []);
+  return (
+    <div ref={ref} className="cs-wip">
+      <div className="cs-wip-content" style={{ filter: `blur(${blur.toFixed(1)}px)` }} aria-hidden="true">
+        {children}
+      </div>
+      <div className="cs-wip-overlay">
+        <div className="cs-wip-card" role="note">
+          <span className="cs-status">In progress</span>
+          <h3>{title}</h3>
+          <p>{note}</p>
+        </div>
+      </div>
+    </div>
   );
 }
 
@@ -211,7 +248,7 @@ function ProjectLink({ p, dir }: { p: Project; dir: "prev" | "next" }) {
     <>
       <span className="cs-pager-label">{dir === "prev" ? "← Previous" : "Next project →"}</span>
       <span className="cs-pager-title">{p.title}</span>
-      <span className="cs-pager-tag">{p.tag}{!p.caseStudy && p.link ? " · Behance ↗" : ""}</span>
+      <span className="cs-pager-tag">{p.status === "in-progress" ? "In progress · " : ""}{p.tag}{!p.caseStudy && p.link ? " · Behance ↗" : ""}</span>
     </>
   );
   const cls = `cs-pager-item cs-pager-item--${dir}`;

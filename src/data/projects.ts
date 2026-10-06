@@ -13,9 +13,25 @@ export interface Project {
   link?:      string;
   /** Internal case study route — opens inside the portfolio */
   caseStudy?: string;
+  /** Marks work that is still being designed/built */
+  status?:    "in-progress";
 }
 
 export const projects: Project[] = [
+  {
+    img:       `${import.meta.env.BASE_URL}img/vise/cover.webp`,
+    alt:       "VISE personal finance app screens",
+    tag:       "Fintech · Design System",
+    title:     "VISE: Personal Finance",
+    desc:      "A budgeting app and its design system, built with a friend and heading to production.",
+    tags:      ["Design System", "iOS & Android", "Web", "Light + Dark"],
+    slug:      "vise",
+    year:      "2026",
+    role:      "Product Designer",
+    duration:  "Ongoing",
+    caseStudy: "/work/vise",
+    status:    "in-progress",
+  },
   {
     img:       `${import.meta.env.BASE_URL}img/flex/cover.webp`,
     alt:       "Flex Academy landing page",
