@@ -61,7 +61,7 @@ export function Section({
   id, index, label, title, children,
 }: { id: string; index: number; label: string; title: ReactNode; children: ReactNode }) {
   return (
-    <section id={id} className="cs-section">
+    <section id={id} className="cs-section" data-reveal="1">
       <p className="cs-eyebrow">{String(index).padStart(2, "0")} / {label}</p>
       <h2 className="cs-h2">{title}</h2>
       {children}
@@ -155,9 +155,12 @@ export default function CaseStudyLayout({
   }, [sections]);
 
   /* keep the active chip visible in the mobile nav */
+  // (scrolls only the chip strip sideways: scrollIntoView would also move the page)
   useEffect(() => {
-    document.querySelector(`.cs-toc a[data-id="${active}"]`)
-      ?.scrollIntoView({ block: "nearest", inline: "center", behavior: "smooth" });
+    const toc = document.querySelector<HTMLElement>(".cs-toc");
+    const chip = toc?.querySelector<HTMLElement>(`a[data-id="${active}"]`);
+    if (!toc || !chip || toc.scrollWidth <= toc.clientWidth) return;
+    toc.scrollTo({ left: chip.offsetLeft - (toc.clientWidth - chip.offsetWidth) / 2, behavior: "smooth" });
   }, [active]);
 
   /* close lightbox with Esc */
@@ -222,7 +225,7 @@ export default function CaseStudyLayout({
           </div>
 
           {/* prev / next */}
-          <nav className="cs-pager" aria-label="More projects">
+          <nav className="cs-pager" aria-label="More projects" data-reveal="1">
             <ProjectLink p={prev} dir="prev" />
             <ProjectLink p={next} dir="next" />
           </nav>

@@ -112,3 +112,18 @@ export const projects: Project[] = [
     link:     "https://www.behance.net/gallery/217274669/ASSIST-NOW",
   },
 ];
+
+/* ── categories for the project filters ── */
+export type Category = "Enterprise" | "Mobile" | "Web" | "IoT";
+export const CATEGORIES: Category[] = ["Enterprise", "Mobile", "Web", "IoT"];
+
+const CATEGORY_BY_SLUG: Record<string, Category> = {
+  "flex-academy":        "Web",
+  "hybrid-work-planner": "Enterprise",
+  "balanci":             "Mobile",
+  "mindful-moments":     "Mobile",
+  "iot-smart-pot":       "IoT",
+  "assist-now":          "Web",
+  "vise":                "Mobile",
+};
+export const categoryOf = (p: Project): Category => CATEGORY_BY_SLUG[p.slug] ?? "Web";

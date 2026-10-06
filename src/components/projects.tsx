@@ -1,88 +1,154 @@
-import { useRef, useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
-import { projects } from "../data/projects";
+import { projects, categoryOf, CATEGORIES, type Category, type Project } from "../data/projects";
 
 const ACCENT = "#a7f13a";
 const DARK   = "#111111";
 
-function AnimPanel({ open, children }: { open: boolean; children: React.ReactNode }) {
-  const innerRef = useRef<HTMLDivElement>(null);
+type Filter = "All" | Category;
+const count = (f: Filter) => (f === "All" ? projects.length : projects.filter(p => categoryOf(p) === f).length);
+
+/* One card, same structure every time so recruiters can compare at a glance:
+   image → category/year → title → summary → role/timeline → skills → link */
+function ProjectCard({ p, index }: { p: Project; index: number }) {
+  const hasLink = !!p.link && !p.link.includes("your-case-study-link");
+  const internal = !!p.caseStudy;
+
   return (
-    <div
-      style={{
-        overflow:   "hidden",
-        height:     open ? (innerRef.current?.scrollHeight ?? "auto") : 0,
-        opacity:    open ? 1 : 0,
-        transition: open
-          ? "height .55s cubic-bezier(.16,1,.3,1), opacity .4s ease"
-          : "height .4s cubic-bezier(.4,0,1,1), opacity .25s ease",
-        willChange: "height, opacity",
-      }}
-    >
-      <div ref={innerRef}>{children}</div>
-    </div>
+    <article className="pcard" style={{ "--i": index } as React.CSSProperties}>
+      <div className="pcard-media">
+        <img src={p.img} alt={p.alt} loading="lazy" />
+      </div>
+
+      <div className="pcard-body">
+        <p className="pcard-kicker">
+          <span className="pcard-cat">{categoryOf(p)}</span>
+          {p.status === "in-progress" ? <span className="wip-badge">In progress</span> : <span>{p.year}</span>}
+        </p>
+
+        <h3 className="pcard-title">{p.title}</h3>
+        <p className="pcard-desc">{p.desc}</p>
+
+        <dl className="pcard-facts">
+          <div><dt>Role</dt><dd>{p.role}</dd></div>
+          <div><dt>Timeline</dt><dd>{p.duration}</dd></div>
+        </dl>
+
+        <ul className="pcard-tags" aria-label="Skills">
+          {p.tags.slice(0, 3).map(t => <li key={t}>{t}</li>)}
+        </ul>
+
+        {/* the whole card is clickable through this link (see .pcard-cta::after) */}
+        <div className="pcard-foot">
+          {internal ? (
+            <Link to={p.caseStudy!} className="pcard-cta">
+              Read case study <span aria-hidden>→</span>
+            </Link>
+          ) : hasLink ? (
+            <a href={p.link} target="_blank" rel="noopener noreferrer" className="pcard-cta">
+              View on Behance <span aria-hidden>↗</span>
+              <span className="sr-only">(opens in a new tab)</span>
+            </a>
+          ) : (
+            <span className="pcard-cta is-disabled" aria-disabled="true">Coming soon</span>
+          )}
+          <span className="pcard-where">{internal ? "On this site" : hasLink ? "Behance" : ""}</span>
+        </div>
+      </div>
+    </article>
   );
 }
 
 export default function Projects() {
-  const [openIndex, setOpenIndex] = useState<number | null>(null);
-  const toggle = (i: number) => setOpenIndex(prev => (prev === i ? null : i));
+  const [filter, setFilter] = useState<Filter>("All");
+  const list = filter === "All" ? projects : projects.filter(p => categoryOf(p) === filter);
 
   return (
-    <section id="projects" style={{ padding: "80px 0" }}>
+    <section id="projects" className="sec">
       <style>{`
-        @keyframes lineGrow {
-          from { transform: scaleX(0); }
-          to   { transform: scaleX(1); }
+        /* ── filters ── */
+        .pfilters { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 32px; }
+        .pfilter {
+          display: inline-flex; align-items: center; gap: 8px;
+          padding: 10px 16px; border-radius: 999px; cursor: pointer;
+          font: 700 13px/1 Inter, system-ui, sans-serif; letter-spacing: .01em;
+          background: #fff; color: ${DARK}; border: 2px solid #222; box-shadow: 3px 3px 0 #222;
+          transition: transform .15s, box-shadow .15s, background .2s;
         }
-        @keyframes imgIn {
-          from { opacity: 0; transform: scale(.97) translateY(12px); }
-          to   { opacity: 1; transform: scale(1) translateY(0); }
-        }
-        @keyframes fadeUp {
-          from { opacity: 0; transform: translateY(10px); }
-          to   { opacity: 1; transform: translateY(0); }
-        }
-
-        .prow {
-          border-bottom: 1.5px solid #e4e4e4;
-          cursor: pointer;
-          transition: background .18s ease;
-        }
-        .prow:first-of-type { border-top: 1.5px solid #e4e4e4; }
-        .prow:hover { background: rgba(0,0,0,.012); }
-
-        .prow-head {
-          display: flex; align-items: center;
-          gap: 20px; padding: 26px 4px;
-          user-select: none;
+        .pfilter:hover { transform: translate(-1px, -1px); box-shadow: 4px 4px 0 #222; }
+        .pfilter:active { transform: translate(2px, 2px); box-shadow: 1px 1px 0 #222; }
+        .pfilter[aria-pressed="true"] { background: ${ACCENT}; }
+        .pfilter-n {
+          min-width: 20px; height: 20px; padding: 0 6px; border-radius: 999px;
+          display: inline-grid; place-items: center; font-size: 11px;
+          background: ${DARK}; color: #fff;
         }
 
-        .prow-num {
-          font-family: "Instrument Serif", Georgia, serif;
-          font-size: clamp(15px, 1.6vw, 20px);
-          color: #ccc; letter-spacing: -.06em;
-          min-width: 42px; flex-shrink: 0;
-          transition: color .3s ease;
+        /* ── grid ── */
+        .pgrid { list-style: none; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px; }
+        .pcard {
+          position: relative; display: flex; flex-direction: column; height: 100%;
+          background: #fff; border: 2px solid #222; border-radius: 24px; overflow: hidden;
+          box-shadow: 6px 6px 0 #222;
+          transition: transform .3s cubic-bezier(.16,1,.3,1), box-shadow .3s cubic-bezier(.16,1,.3,1);
+          animation: pcardIn .6s cubic-bezier(.16,1,.3,1) backwards;
+          animation-delay: calc(var(--i) * 60ms);
         }
-        .prow.is-open .prow-num { color: ${DARK}; }
+        @keyframes pcardIn { from { opacity: 0; transform: translateY(18px); } }
+        .pcard:hover { transform: translate(-4px, -4px); box-shadow: 10px 10px 0 #222; }
+        .pcard:has(.pcard-cta:focus-visible) { outline: 3px solid ${ACCENT}; outline-offset: 4px; }
 
-        .prow-bar {
-          width: 3px; border-radius: 3px;
-          background: #e0e0e0; flex-shrink: 0; height: 38px;
-          transition: background .3s ease, height .42s cubic-bezier(.16,1,.3,1);
+        .pcard-media { aspect-ratio: 16 / 10; overflow: hidden; border-bottom: 2px solid #222; background: #f2f2f2; }
+        .pcard-media img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .7s cubic-bezier(.16,1,.3,1); }
+        .pcard:hover .pcard-media img { transform: scale(1.05); }
+
+        .pcard-body { flex: 1; display: flex; flex-direction: column; padding: 20px 22px 22px; }
+        .pcard-kicker {
+          display: flex; align-items: center; justify-content: space-between; gap: 10px;
+          font-size: 11px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; color: #777;
         }
-        .prow.is-open .prow-bar { background: ${ACCENT}; height: 50px; }
-
-        .prow-title {
-          font-family: "Instrument Serif", Georgia, serif;
-          font-size: clamp(22px, 3.2vw, 42px);
-          letter-spacing: -.05em; line-height: 1;
-          color: ${DARK}; flex: 1; min-width: 0;
+        .pcard-cat {
+          padding: 5px 11px; border-radius: 999px; color: var(--accent-text);
+          background: ${ACCENT}; border: 1.5px solid #222;
+        }
+        .pcard-title {
+          margin: 14px 0 8px;
+          font-family: "Instrument Serif", Georgia, serif; font-weight: 400;
+          font-size: clamp(26px, 2.3vw, 32px); line-height: 1; letter-spacing: -.04em; color: ${DARK};
+        }
+        .pcard-desc {
+          font-size: 14.5px; line-height: 1.6; color: #555;
+          display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
         }
 
+        .pcard-facts { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 16px 0 14px; }
+        .pcard-facts div { background: #f5f5f3; border-radius: 12px; padding: 9px 12px; }
+        .pcard-facts dt { font-size: 9px; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; color: #999; margin-bottom: 3px; }
+        .pcard-facts dd { font-size: 13px; font-weight: 700; color: ${DARK}; line-height: 1.3; }
+
+        .pcard-tags { list-style: none; display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 20px; }
+        .pcard-tags li {
+          font-size: 11px; font-weight: 700; padding: 5px 11px; border-radius: 999px;
+          background: ${ACCENT}22; border: 1px solid ${ACCENT}66; color: #2a5000;
+        }
+
+        /* footer pinned to the bottom so every card's button lines up */
+        .pcard-foot { margin-top: auto; display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+        .pcard-cta {
+          display: inline-flex; align-items: center; gap: 8px;
+          padding: 12px 20px; border-radius: 14px;
+          background: ${DARK}; color: #fff; font-size: 14px; font-weight: 800; letter-spacing: .01em;
+          transition: background .2s, color .2s;
+        }
+        .pcard-cta::after { content: ""; position: absolute; inset: 0; border-radius: 24px; }   /* whole card is the hit area */
+        .pcard:hover .pcard-cta { background: ${ACCENT}; color: ${DARK}; }
+        .pcard-cta.is-disabled { opacity: .4; }
+        .pcard-cta.is-disabled::after { display: none; }
+        .pcard-where { font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: #999; }
+
+        /* work still being designed/built (Project.status) */
         .wip-badge {
-          display: inline-flex; align-items: center; gap: 6px; flex-shrink: 0;
+          display: inline-flex; align-items: center; gap: 6px;
           font-size: 10px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase;
           padding: 5px 11px; border-radius: 999px;
           background: #fff4dc; color: #8a5300; border: 1.5px solid #f3c66b;
@@ -92,109 +158,28 @@ export default function Projects() {
           animation: wipPulse 1.6s ease-in-out infinite;
         }
         @keyframes wipPulse { 0%,100% { opacity: 1; } 50% { opacity: .3; } }
-        .prow-pill {
-          font-size: 10px; font-weight: 800;
-          letter-spacing: .12em; text-transform: uppercase;
-          padding: 5px 13px; border-radius: 999px; flex-shrink: 0;
-          background: #f2f2f2; color: #999; border: 1.5px solid transparent;
-          transition: background .3s ease, color .3s ease, border-color .3s ease;
-        }
-        .prow.is-open .prow-pill {
-          background: ${ACCENT}; color: ${DARK}; border-color: ${ACCENT};
-        }
 
-        .prow-year {
-          font-size: 12px; font-weight: 700;
-          color: #ccc; letter-spacing: .06em; flex-shrink: 0;
-          transition: color .25s ease;
+        @media (max-width: 1100px) { .pgrid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+        @media (max-width: 680px) {
+          .pgrid { grid-template-columns: 1fr; gap: 22px; }
+          .pcard { box-shadow: 5px 5px 0 #222; border-radius: 20px; }
+          .pcard:hover { transform: none; box-shadow: 5px 5px 0 #222; }
+          .pfilters { flex-wrap: nowrap; overflow-x: auto; margin: 0 -16px 24px; padding: 4px 16px 8px; scrollbar-width: none; }
+          .pfilters::-webkit-scrollbar { display: none; }
+          .pfilter { flex-shrink: 0; }
         }
-        .prow.is-open .prow-year { color: #888; }
-
-        .prow-arrow {
-          font-size: 20px; color: #ccc;
-          flex-shrink: 0; display: inline-block;
-          transition: transform .42s cubic-bezier(.16,1,.3,1), color .25s ease;
-        }
-        .prow.is-open .prow-arrow { transform: rotate(45deg); color: ${DARK}; }
-
-        .prow-line {
-          height: 2px; background: ${ACCENT}; border-radius: 2px;
-          transform-origin: left;
-          animation: lineGrow .5s .05s ease both;
-          margin-bottom: 36px;
-        }
-
-        .panel-left { animation: fadeUp .4s .08s ease both; }
-
-        .meta-chip {
-          background: #fff; border: 1.5px solid #eee;
-          border-radius: 14px; padding: 11px 16px;
-          box-shadow: 0 2px 10px rgba(0,0,0,.04);
-        }
-        .meta-chip-label {
-          font-size: 9px; text-transform: uppercase;
-          letter-spacing: .16em; color: #bbb;
-          font-weight: 800; margin-bottom: 4px;
-        }
-        .meta-chip-value { font-size: 13px; font-weight: 800; color: ${DARK}; }
-
-        .skill-tag {
-          font-size: 11px; font-weight: 700;
-          padding: 5px 13px; border-radius: 999px;
-          background: ${ACCENT}22; border: 1px solid ${ACCENT}66;
-          color: #2a5000;
-        }
-
-        .proj-img-wrap {
-          border-radius: 20px; overflow: hidden;
-          animation: imgIn .45s .1s ease both;
-          box-shadow: 0 24px 56px rgba(0,0,0,.13), 0 0 0 1.5px ${ACCENT}44;
-          aspect-ratio: 16/10;
-        }
-        .proj-img-wrap img {
-          width: 100%; height: 100%;
-          object-fit: cover; display: block;
-          transition: transform .6s cubic-bezier(.16,1,.3,1);
-        }
-        .proj-img-wrap:hover img { transform: scale(1.03); }
-
-        /* CTA — now an <a> tag */
-        .proj-cta {
-          display: inline-flex; align-items: center; gap: 9px;
-          background: ${DARK}; color: #fff;
-          border: none; border-radius: 14px;
-          padding: 14px 26px; font-size: 14px;
-          font-weight: 800; cursor: pointer;
-          letter-spacing: .01em; text-decoration: none;
-          transition: background .2s ease, color .2s ease,
-                      transform .2s cubic-bezier(.16,1,.3,1),
-                      box-shadow .2s ease;
-          box-shadow: 0 6px 20px rgba(0,0,0,.15);
-        }
-        .proj-cta:hover {
-          background: ${ACCENT}; color: ${DARK};
-          transform: translateY(-2px);
-          box-shadow: 0 10px 28px ${ACCENT}44;
-        }
-        .proj-cta:active { transform: scale(.97); }
-
-        /* disabled state — no link yet */
-        .proj-cta.no-link {
-          opacity: .4; cursor: not-allowed; pointer-events: none;
-        }
-
-        @media (max-width: 760px) {
-          .prow-meta     { display: none !important; }
-          .proj-exp-grid { grid-template-columns: 1fr !important; }
+        @media (prefers-reduced-motion: reduce) {
+          .pcard { animation: none; }
+          .pcard:hover, .pcard:hover .pcard-media img { transform: none; }
         }
       `}</style>
 
       {/* ── heading ── */}
-      <div style={{ marginBottom: 64 }}>
+      <div data-reveal="1" style={{ marginBottom: 32 }}>
         <p style={{
           fontSize: 11, fontWeight: 800,
           letterSpacing: ".18em", textTransform: "uppercase",
-          color: "#bbb", margin: "0 0 14px",
+          color: "#999", margin: "0 0 14px",
         }}>Selected Work</p>
 
         <h2 style={{
@@ -204,112 +189,28 @@ export default function Projects() {
           color: DARK, margin: "0 0 18px", fontWeight: 400,
         }}>Case Studies</h2>
 
-        <p style={{ fontSize: 15, lineHeight: 1.6, color: "#999", margin: 0 }}>
+        <p style={{ fontSize: 15, lineHeight: 1.6, color: "#777", margin: 0 }}>
           {projects.length} projects · 2023 – 2026
         </p>
       </div>
 
-      {/* ── rows ── */}
-      <div>
-        {projects.map((p, i) => {
-          const isOpen = openIndex === i;
-          const hasLink = !!p.link && !p.link.includes("your-case-study-link");
-
-          return (
-            <div
-              key={p.slug}
-              className={`prow${isOpen ? " is-open" : ""}`}
-              onClick={() => toggle(i)}
-            >
-              <div className="prow-head">
-                <span className="prow-num">{String(i + 1).padStart(2, "0")}</span>
-                <div className="prow-bar" />
-                <div className="prow-title">{p.title}</div>
-                <div className="prow-meta" style={{ display: "flex", alignItems: "center", gap: 12 }}>
-                  {p.status === "in-progress" && <span className="wip-badge">In progress</span>}
-                  <span className="prow-pill">{p.tag}</span>
-                  <span className="prow-year">{p.year}</span>
-                </div>
-                <span className="prow-arrow">↗</span>
-              </div>
-
-              <AnimPanel open={isOpen}>
-                <div
-                  style={{ padding: "0 4px 44px" }}
-                  onClick={e => e.stopPropagation()}
-                >
-                  <div className="prow-line" />
-                  <div
-                    className="proj-exp-grid"
-                    style={{
-                      display: "grid",
-                      gridTemplateColumns: "1fr 1.6fr",
-                      gap: 44, alignItems: "start",
-                    }}
-                  >
-                    <div className="panel-left">
-                      {p.status === "in-progress" && (
-                        <p style={{ display: "flex", alignItems: "center", gap: 10, flexWrap: "wrap", margin: "0 0 18px", fontSize: 13, color: "#8a5300", fontWeight: 600 }}>
-                          <span className="wip-badge">In progress</span>
-                          UI not final · heading to production
-                        </p>
-                      )}
-                      {/* meta chips */}
-                      <div style={{ display: "flex", gap: 10, flexWrap: "wrap", marginBottom: 28 }}>
-                        {[
-                          { label: "Role",     value: p.role },
-                          { label: "Duration", value: p.duration },
-                          { label: "Year",     value: p.year },
-                        ].map(m => (
-                          <div key={m.label} className="meta-chip">
-                            <div className="meta-chip-label">{m.label}</div>
-                            <div className="meta-chip-value">{m.value}</div>
-                          </div>
-                        ))}
-                      </div>
-
-                      <p style={{ fontSize: 15, lineHeight: 1.8, color: "#555", marginBottom: 24 }}>
-                        {p.desc}
-                      </p>
-
-                      <div style={{ display: "flex", gap: 8, flexWrap: "wrap", marginBottom: 32 }}>
-                        {p.tags.map(t => (
-                          <span key={t} className="skill-tag">{t}</span>
-                        ))}
-                      </div>
-
-                      {/* ── CTA — internal case study route, external link, or disabled ── */}
-                      {p.caseStudy ? (
-                        <Link to={p.caseStudy} className="proj-cta" title="Open case study">
-                          View Full Case Study
-                          <span style={{ fontSize: 18 }}>→</span>
-                        </Link>
-                      ) : (
-                        <a
-                          href={hasLink ? p.link : undefined}
-                          target={hasLink ? "_blank" : undefined}
-                          rel="noopener noreferrer"
-                          className={`proj-cta${hasLink ? "" : " no-link"}`}
-                          title={hasLink ? "Open case study" : "Coming soon"}
-                        >
-                          {hasLink ? "View Full Case Study" : "Coming Soon"}
-                          <span style={{ fontSize: 18 }}>
-                            {hasLink ? "↗" : "⏳"}
-                          </span>
-                        </a>
-                      )}
-                    </div>
-
-                    <div className="proj-img-wrap">
-                      <img src={p.img} alt={p.alt} loading="lazy" />
-                    </div>
-                  </div>
-                </div>
-              </AnimPanel>
-            </div>
-          );
-        })}
+      {/* ── filters ── */}
+      <div className="pfilters" role="group" aria-label="Filter projects" data-reveal="2">
+        {(["All", ...CATEGORIES] as Filter[]).map(f => (
+          <button key={f} className="pfilter" aria-pressed={filter === f} onClick={() => setFilter(f)}>
+            {f === "All" ? "All work" : f}
+            <span className="pfilter-n">{count(f)}</span>
+          </button>
+        ))}
       </div>
+
+      {/* ── grid (re-keyed per filter so the cards animate back in) ── */}
+      <p className="sr-only" aria-live="polite">Showing {list.length} {list.length === 1 ? "project" : "projects"}</p>
+      <ul key={filter} className="pgrid">
+        {list.map((p, i) => (
+          <li key={p.slug}><ProjectCard p={p} index={i} /></li>
+        ))}
+      </ul>
 
       {/* footer */}
       <div style={{
@@ -317,10 +218,10 @@ export default function Projects() {
         display: "flex", justifyContent: "space-between",
         flexWrap: "wrap", gap: 10,
       }}>
-        <span style={{ fontSize: 11, color: "#ddd", fontWeight: 700, letterSpacing: ".14em", textTransform: "uppercase" }}>
+        <span style={{ fontSize: 11, color: "#999", fontWeight: 700, letterSpacing: ".14em", textTransform: "uppercase" }}>
           UX · UI · Research
         </span>
-        <span style={{ fontSize: 11, color: "#ddd", fontWeight: 700, letterSpacing: ".14em", textTransform: "uppercase" }}>
+        <span style={{ fontSize: 11, color: "#999", fontWeight: 700, letterSpacing: ".14em", textTransform: "uppercase" }}>
           {projects.length} Projects
         </span>
       </div>

@@ -18,7 +18,7 @@ function SocialBtn({ s }: { s: (typeof socials)[0] }) {
   const Icon = s.icon;
   return (
     <a
-      href={s.href} title={s.label} target="_blank" rel="noopener noreferrer"
+      href={s.href} title={s.label} aria-label={s.label} target={s.href.startsWith("http") ? "_blank" : undefined} rel="noopener noreferrer"
       onMouseEnter={() => setHov(true)} onMouseLeave={() => setHov(false)}
       style={{
         width: 54, height: 54, borderRadius: "50%",
@@ -30,7 +30,7 @@ function SocialBtn({ s }: { s: (typeof socials)[0] }) {
         transition: "all .2s", textDecoration: "none", flexShrink: 0,
       }}
     >
-      <Icon size={22} color="#fff" />
+      <Icon size={22} color="#fff" aria-hidden />
     </a>
   );
 }
@@ -64,11 +64,11 @@ export default function Hero() {
     <>
       <style>{`
         /* pulse dot */
-        @keyframes pulse {
+        @keyframes heroPulse {
           0%,100% { box-shadow: 0 0 0 0   rgba(31,220,60,.65); }
           50%      { box-shadow: 0 0 0 9px rgba(31,220,60,0);   }
         }
-        .avail-dot { animation: pulse 1.8s ease-in-out infinite; }
+        .avail-dot { animation: heroPulse 1.8s ease-in-out infinite; }
 
         /* cursor blink */
         @keyframes blink {
@@ -114,7 +114,7 @@ export default function Hero() {
         <div>
 
           {/* animated available pill */}
-          <div style={{
+          <div data-reveal="1" style={{
             display: "inline-flex", alignItems: "center", gap: 12,
             padding: "12px 20px", border: "2px solid #222",
             background: "rgba(255,255,255,.6)", borderRadius: "var(--r-pill)",
@@ -132,7 +132,7 @@ export default function Hero() {
           </div>
 
           {/* headline */}
-          <h1 className="hero-h1" style={{
+          <h1 className="hero-h1" data-reveal="2" style={{
             fontFamily: `"Instrument Serif",Georgia,serif`,
             fontSize: "clamp(54px,8vw,108px)",
             lineHeight: 0.9, letterSpacing: "-.06em", marginBottom: 22,
@@ -141,7 +141,7 @@ export default function Hero() {
           </h1>
 
           {/* bio */}
-          <p style={{
+          <p data-reveal="3" style={{
             fontSize: "clamp(16px,1.8vw,20px)", lineHeight: 1.6,
             color: "#2d2d2d", maxWidth: 580, marginBottom: 32,
           }}>
@@ -150,7 +150,7 @@ export default function Hero() {
           </p>
 
           {/* expertise */}
-          <div style={{ marginTop: 8, marginBottom: 32 }}>
+          <div data-reveal="4" style={{ marginTop: 8, marginBottom: 32 }}>
             <span style={{
               display: "block", fontWeight: 700, fontSize: 10,
               letterSpacing: ".18em", textTransform: "uppercase",
@@ -168,9 +168,9 @@ export default function Hero() {
                   boxShadow: "3px 3px 0 #222",
                   fontSize: 13, fontWeight: 700,
                   color: "var(--accent-text)",
-                  whiteSpace: "nowrap",
+                  whiteSpace: "normal",          /* wraps instead of overflowing on narrow phones */
                   letterSpacing: ".01em",
-                  lineHeight: 1,
+                  lineHeight: 1.2,
                   display: "inline-flex",
                   alignItems: "center",
                 }}>
@@ -181,7 +181,7 @@ export default function Hero() {
           </div>
 
           {/* client pill */}
-          <div style={{
+          <div data-reveal="5" style={{
             display: "inline-flex", alignItems: "center", gap: 10,
             border: "1.5px solid #e4e4e4", borderRadius: 999,
             background: "#fafafa", padding: "8px 16px 8px 14px",
@@ -221,7 +221,7 @@ export default function Hero() {
         </div>
 
         {/* ── RIGHT ── */}
-        <div className="hero-right" style={{
+        <div className="hero-right" data-reveal="2" data-reveal-scale style={{
           display: "flex", flexDirection: "column",
           alignItems: "center", gap: 24,
         }}>

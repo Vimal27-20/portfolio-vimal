@@ -11,7 +11,9 @@ export default function ScrollManager() {
 
   useEffect(() => {
     if (!hash) {
-      window.scrollTo({ top: 0, behavior: "auto" });
+      // "instant" bypasses `html { scroll-behavior: smooth }`, which would
+      // otherwise animate all the way up from the previous page's position
+      window.scrollTo({ top: 0, behavior: "instant" as ScrollBehavior });
       return;
     }
     const id = decodeURIComponent(hash.slice(1));

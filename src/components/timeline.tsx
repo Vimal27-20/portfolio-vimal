@@ -274,10 +274,10 @@ export default function Timeline() {
   }, []);
 
   return (
-    <section id="timeline" ref={sectionRef} style={{ padding: "80px 0", overflowX: "hidden" }}>
+    <section id="timeline" ref={sectionRef} className="sec" style={{ overflowX: "hidden" }}>
 
       {/* heading */}
-      <div style={{
+      <div data-reveal="1" style={{
         display: "flex", justifyContent: "space-between",
         alignItems: "flex-end", marginBottom: 56,
         flexWrap: "wrap", gap: 16,
@@ -347,11 +347,11 @@ export default function Timeline() {
 
       {/* ── mobile vertical ── */}
       <style>{`
-        @media (min-width: 680px) { .tl-mob { display: none !important; } }
-        @media (max-width: 679px) { .tl-desk { display: none !important; } }
+        @media (min-width: 1001px) { .tl-mob { display: none !important; } }
+        @media (max-width: 1000px) { .tl-desk { display: none !important; } }
       `}</style>
 
-      <div className="tl-mob" style={{ maxWidth: 420, margin: "0 auto" }}>
+      <div className="tl-mob" style={{ maxWidth: 560, margin: "0 auto" }}>
         {items.map((item, i) => {
           const isWork = item.type === "work";
           const isLast = i === items.length - 1;
@@ -380,20 +380,20 @@ export default function Timeline() {
                 )}
               </div>
               <div style={{ marginLeft: 16, paddingBottom: isLast ? 0 : 36, paddingTop: 13, flex: 1 }}>
-                <p style={{ fontSize: 9, fontWeight: 800, letterSpacing: ".14em", textTransform: "uppercase", color: "#bbb", margin: "0 0 4px" }}>
+                <p style={{ fontSize: 11, fontWeight: 800, letterSpacing: ".14em", textTransform: "uppercase", color: "#bbb", margin: "0 0 4px" }}>
                   {item.date}
                 </p>
                 <h3 style={{ fontFamily: `"Instrument Serif", Georgia, serif`, fontSize: "clamp(20px, 4.5vw, 24px)", letterSpacing: "-.025em", lineHeight: 1.1, color: DARK, margin: "0 0 3px" }}>
                   {item.role}
                 </h3>
-                <p style={{ fontSize: 10, fontWeight: 700, color: "#aaa", letterSpacing: ".04em", textTransform: "uppercase", margin: "0 0 7px", lineHeight: 1.4 }}>
+                <p style={{ fontSize: 11.5, fontWeight: 700, color: "#aaa", letterSpacing: ".04em", textTransform: "uppercase", margin: "0 0 7px", lineHeight: 1.4 }}>
                   {item.company}
                 </p>
-                <p style={{ fontSize: 12.5, lineHeight: 1.65, color: "#666", margin: "0 0 7px" }}>
+                <p style={{ fontSize: 14, lineHeight: 1.65, color: "#666", margin: "0 0 7px" }}>
                   {item.description}
                 </p>
                 <span style={{
-                  fontSize: 8, fontWeight: 900, letterSpacing: ".12em", textTransform: "uppercase",
+                  fontSize: 10, fontWeight: 900, letterSpacing: ".12em", textTransform: "uppercase",
                   padding: "3px 10px", borderRadius: 999,
                   background: isWork ? ACCENT + "28" : "rgba(0,0,0,.05)",
                   color: isWork ? "#1a4500" : "#555",
@@ -404,7 +404,7 @@ export default function Timeline() {
                 {item.date.includes("Present") && (
                   <span style={{ display: "inline-flex", alignItems: "center", gap: 5, marginLeft: 6, padding: "3px 10px", borderRadius: 999, background: "#edfff0", border: "1.5px solid #5ae27044" }}>
                     <span style={{ width: 6, height: 6, borderRadius: "50%", background: "#22c55e", display: "inline-block" }} />
-                    <span style={{ fontSize: 8, fontWeight: 900, letterSpacing: ".12em", textTransform: "uppercase", color: "#166534" }}>Now</span>
+                    <span style={{ fontSize: 10, fontWeight: 900, letterSpacing: ".12em", textTransform: "uppercase", color: "#166534" }}>Now</span>
                   </span>
                 )}
               </div>

@@ -1,7 +1,7 @@
 import { Routes, Route, Link, Navigate, useLocation } from "react-router-dom";
 import Navbar from "./components/navbar";
-import CursorFollower from "./components/cursorfollower";
 import ScrollManager, { scrollIfSamePage } from "./components/scrollmanager";
+import useReveal from "./components/reveal";
 import Hero from "./components/hero";
 import Projects from "./components/projects";
 import Timeline from "./components/timeline";
@@ -27,17 +27,23 @@ function Home() {
 
 export default function App() {
   const { pathname } = useLocation();
+  useReveal(pathname);
+
   return (
     <>
+      {/* 1px marker at the very top: the nav watches it to know when the page has scrolled */}
+      <div id="scroll-sentinel" aria-hidden style={{ position: "absolute", top: 0, height: 1, width: 1 }} />
       <ScrollManager />
-      <CursorFollower />
       <Navbar />
 
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/work/:slug" element={<CaseStudyRoute />} />
-        <Route path="*" element={<Navigate to="/" replace />} />
-      </Routes>
+      {/* keyed by path so every page change plays the enter transition */}
+      <main id="main" key={pathname} className="route-enter" tabIndex={-1} style={{ outline: "none" }}>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/work/:slug" element={<CaseStudyRoute />} />
+          <Route path="*" element={<Navigate to="/" replace />} />
+        </Routes>
+      </main>
 
       <footer style={{ padding: "28px 0 52px" }}>
         <div
