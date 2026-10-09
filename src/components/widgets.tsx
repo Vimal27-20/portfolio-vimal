@@ -1,9 +1,9 @@
 import { useState } from "react";
-import { PiArrowLeft, PiArrowRight, PiDownloadSimple, PiCaretRight } from "react-icons/pi";
+import { PiArrowLeft, PiArrowRight, PiCaretRight } from "react-icons/pi";
 import Glyph from "./glyph";
 import { useDublinTime } from "./clock";
 import { useQuickView } from "./quickview";
-import { RESUME } from "./links";
+import ResumeLink from "./resume";
 
 /* Right now: a showcase of widgets, the way a Nothing home screen would
    show them. Each one is live or does something. */
@@ -59,7 +59,7 @@ export default function Widgets() {
 
           <div className="wg wg--open">
             <p className="wg-big"><span className="live" aria-hidden /> Open to UX Engineer roles in Ireland.</p>
-            <a href={RESUME} download="Vimal-kumar-Resume.pdf" className="btn">Résumé <PiDownloadSimple size={15} aria-hidden /></a>
+            <ResumeLink className="btn" />
           </div>
 
           <div className="wg wg--role">

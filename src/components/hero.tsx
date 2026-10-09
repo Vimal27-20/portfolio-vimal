@@ -1,12 +1,12 @@
 import { PiCaretRight } from "react-icons/pi";
 import DotField from "./dotfield";
 
-/* The stage: black, a field of dots with the name lit in it, and one
+/* The stage: black, a field of dots with a dot-matrix portrait in it, and one
    statement in the serif voice. */
 export default function Hero() {
   return (
     <section className="hero" aria-labelledby="hero-title">
-      <DotField word="VIMAL" />
+      <DotField src={`${import.meta.env.BASE_URL}img/vimal-portrait.webp`} word="VIMAL" label="Vimal Kumar, drawn in dots" />
       <div className="hero-in">
         <h1 id="hero-title">
           <span className="sr-only">Vimal Kumar, </span>UX Engineer who designs and builds.
