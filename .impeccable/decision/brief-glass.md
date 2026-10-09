@@ -1,10 +1,3 @@
----
-version: 1
-slug: "src-app-tsx"
-primary_target: "src/app.tsx"
-related_targets: ["src/components/glassnet.tsx","src/pages/casestudy/layout.tsx"]
----
-
 # Portfolio home + case studies (Glass Network version)
 
 Scope: whole site on branch design/glass-network (home `/`, case studies `/work/:slug`). Visitor mode: Experience (the work leads).

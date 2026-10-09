@@ -1,8 +1,27 @@
-import { useState } from "react";
+import { lazy, Suspense, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { PiArrowRight, PiArrowUpRight, PiArrowLeft } from "react-icons/pi";
 import { HUB, LINES, STATIONS, destination, type Station } from "../data/network";
 import type { Category } from "../data/projects";
+
+// three.js only loads when the glass network is actually shown
+const GlassNet = lazy(() => import("./glassnet"));
+
+/** 3D on wide screens with WebGL; phones and no-WebGL get the crisp 2D map. */
+function useGlass() {
+  const query = "(min-width: 1001px)";
+  const webgl = () => {
+    try { return !!document.createElement("canvas").getContext("webgl2"); } catch { return false; }
+  };
+  const [on, setOn] = useState(() => typeof window !== "undefined" && window.matchMedia(query).matches && webgl());
+  useEffect(() => {
+    const mq = window.matchMedia(query);
+    const update = () => setOn(mq.matches && webgl());
+    mq.addEventListener("change", update);
+    return () => mq.removeEventListener("change", update);
+  }, []);
+  return on;
+}
 
 /* The opening: the whole body of work as one network. Picking a station
    moves the "you are here" marker there and steps the platform sign. */
@@ -110,13 +129,42 @@ export default function Network() {
     if (next && current.line.id !== next) setCurrent(STATIONS.find(s => s.line.id === next) ?? current);
   };
 
-  return (
-    <section id="work" className="net" aria-labelledby="net-title">
-      <header className="net-intro">
-        <h1 id="net-title">UX Engineer who designs and builds.</h1>
-        <p>Seven projects on four lines. Pick a station to open it.</p>
-      </header>
+  const use3D = useGlass();
+  const key = (
+    <div className="net-key" role="group" aria-label="Filter by line">
+      {LINES.map(l => (
+        <button key={l.id} className="net-keybtn" aria-pressed={filter === l.id} onClick={() => toggle(l.id)}>
+          <i style={{ background: l.color }} aria-hidden />
+          {l.id}
+          <span>{STATIONS.filter(s => s.line.id === l.id).length}</span>
+        </button>
+      ))}
+    </div>
+  );
+  const intro = (
+    <header className="net-intro">
+      <h1 id="net-title">UX Engineer who designs and builds.</h1>
+      <p>Seven projects on four lines. {use3D ? "Drag to turn the network, pick a station to open it." : "Pick a station to open it."}</p>
+    </header>
+  );
 
+  return (
+    <section id="work" className={`net${use3D ? " is-3d" : ""}`} aria-labelledby="net-title">
+      {use3D ? (
+        /* desktop: the glass network is the first viewport; its parts float over it */
+        <div className="net-stage">
+          <Suspense fallback={<div className="gn gn-wait" aria-hidden />}>
+            <GlassNet current={current} filter={filter} onPick={setCurrent} />
+          </Suspense>
+          <div className="net-overlay">
+            {intro}
+            {key}
+            <PlatformSign s={current} onStep={step} />
+          </div>
+        </div>
+      ) : (
+      <>
+      {intro}
       <div className="net-grid">
         <div className="net-mapcol">
           <Map current={current} filter={filter} onPick={setCurrent} />
@@ -133,19 +181,13 @@ export default function Network() {
             ))}
           </ul>
 
-          <div className="net-key" role="group" aria-label="Filter by line">
-            {LINES.map(l => (
-              <button key={l.id} className="net-keybtn" aria-pressed={filter === l.id} onClick={() => toggle(l.id)}>
-                <i style={{ background: l.color }} aria-hidden />
-                {l.id}
-                <span>{STATIONS.filter(s => s.line.id === l.id).length}</span>
-              </button>
-            ))}
-          </div>
+          {key}
         </div>
 
         <PlatformSign s={current} onStep={step} />
       </div>
+      </>
+      )}
 
       {/* departures: every project in one scannable table */}
       <div className="board" role="region" aria-labelledby="board-title">

@@ -21,7 +21,7 @@ const PLACES: Record<string, { short: string; x: number; y: number; label: "abov
   "flex-academy":        { short: "Flex Academy",         x: 380, y: 290, label: "above" },
   "assist-now":          { short: "Assist Now",           x: 200, y: 290, label: "above" },
   "hybrid-work-planner": { short: "Hybrid Work Planner",  x: 820, y: 90, label: "above" },
-  "iot-smart-pot":       { short: "Smart Gardening",      x: 180, y: 490, label: "below" },
+  "iot-smart-pot":       { short: "Smart Gardening",      x: 180, y: 490, label: "above" },
 };
 
 export interface Station {

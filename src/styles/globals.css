@@ -1,134 +1,118 @@
-
-/* ───────── The Line: a wayfinding system ─────────
-   Pale enamel ground, black enamel sign panels, four line colours that
-   always mean a project category. Barlow (highway-sign lettering) for
-   display, Atkinson Hyperlegible for reading. */
+/* ───────── Glass Network ─────────
+   Daylight studio ground, frosted-white glass panels with a hairline
+   edge, near-black Geist type. Line colours come in two strengths: the
+   deeper ones below carry text and badges (AA on white), the bright ones
+   live only inside the 3D glass tubes. */
 :root {
-  --ground: #eceeea;        /* station concrete, washed */
-  --panel: #fbfbf9;         /* enamel sign, light */
-  --ink: #121417;           /* sign black */
-  --ink-2: #3b4046;
-  --ink-3: #5f666d;         /* secondary text, ≥4.5:1 on ground */
-  --rule: #c9cdc8;
-  --rule-strong: #121417;
+  --ground: #eef0f3;          /* matches the 3D scene, so the glass refracts the page */
+  --panel: #ffffff;
+  --ink: #1d1d1f;
+  --ink-2: #3a3a3d;
+  --ink-3: #5e5e63;           /* secondary text, ≥4.5:1 on ground and glass */
+  --hair: rgba(0, 0, 0, .09);
 
-  --line-enterprise: #0a5fb4;
-  --line-mobile: #c8241c;
-  --line-web: #0d7d48;
-  --line-iot: #e39a00;      /* fills and strokes only, never text on light */
-  --now: #f2b705;           /* "you are here" amber on black */
+  --glass: rgba(255, 255, 255, .68);
+  --glass-strong: rgba(255, 255, 255, .84);
+  --glass-dark: rgba(29, 29, 31, .86);
+  --glass-blur: saturate(180%) blur(22px);
+  --glass-edge: inset 0 1px 0 rgba(255, 255, 255, .85), 0 0 0 1px rgba(0, 0, 0, .06);
+  --lift: 0 1px 2px rgba(16, 24, 40, .05), 0 14px 36px -12px rgba(16, 24, 40, .2);
 
-  --display: "Barlow Semi Condensed", "Barlow", "Arial Narrow", sans-serif;
-  --text-face: "Atkinson Hyperlegible", "Segoe UI", system-ui, sans-serif;
+  --line-mobile: #d70015;
+  --line-web: #1d7a35;
+  --line-enterprise: #0060df;
+  --line-iot: #a84f00;
+  --now: #ffcc00;
+  --action: #0071e3;          /* the one action colour: primary buttons and links */
+  --action-hover: #0077ed;
 
-  --r-sign: 6px;            /* enamel signs have small radii */
-  --r-badge: 4px;
-  --stroke: 6px;            /* the one line weight of the network */
-  --ease-step: cubic-bezier(.34, 1.56, .64, 1);   /* snap, overshoot, settle */
-  --ease-out: cubic-bezier(.16, 1, .3, 1);
+  --display: "Geist Variable", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --text-face: "Geist Variable", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+
+  --r-card: 22px;
+  --r-control: 999px;
+  --r-badge: 7px;
+  --ease: cubic-bezier(.22, 1, .36, 1);
 
   /* tokens the case-study stylesheet reads */
-  --bg: var(--ground);
-  --surface: var(--panel);
-  --text: var(--ink);
-  --muted: var(--ink-3);
-  --line: var(--rule);
-  --accent: var(--now);
-  --accent-dark: #8a6400;
-  --accent-text: var(--ink);
-  --r-xl: 10px;
-  --r-lg: 8px;
-  --r-md: 6px;
-  --r-pill: 999px;
+  --bg: var(--ground); --surface: var(--panel); --text: var(--ink); --muted: var(--ink-3);
+  --line: var(--hair); --accent: var(--now); --accent-dark: #8a6d00; --accent-text: var(--ink);
+  --rule: var(--hair); --r-sign: var(--r-card); --stroke: 4px;
+  --r-xl: 22px; --r-lg: 18px; --r-md: 14px; --r-pill: 999px;
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; scrollbar-color: #b9bcc2 var(--ground); }
 body {
-  font-family: var(--text-face);
-  font-size: 17px; line-height: 1.6;
+  font-family: var(--text-face); font-size: 17px; line-height: 1.55; letter-spacing: -.005em;
   background: var(--ground); color: var(--ink);
-  -webkit-font-smoothing: antialiased;
-  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased; overflow-x: hidden;
 }
 a { color: inherit; text-decoration: none; }
 button { font: inherit; color: inherit; }
 img { display: block; max-width: 100%; height: auto; }
-h1, h2, h3 { font-family: var(--display); font-weight: 700; line-height: 1.05; letter-spacing: -.01em; text-wrap: balance; }
+h1, h2, h3 { font-family: var(--display); font-weight: 650; line-height: 1.08; letter-spacing: -.028em; text-wrap: balance; }
 p { text-wrap: pretty; }
-
-/* browser surfaces belong to the system too */
-::selection { background: var(--now); color: var(--ink); }
-:focus-visible { outline: 3px solid var(--line-enterprise); outline-offset: 3px; border-radius: 2px; }
-html { scrollbar-color: var(--ink-3) var(--ground); }
-.prose a, .cs-p a { text-decoration: underline; text-underline-offset: .2em; text-decoration-thickness: 1.5px; }
+::selection { background: rgba(0, 113, 227, .2); }
+:focus-visible { outline: 3px solid var(--action); outline-offset: 3px; border-radius: 8px; }
+.prose a, .cs-p a { color: var(--action); text-decoration: underline; text-underline-offset: .2em; }
 
 .wrap { max-width: 1240px; margin: 0 auto; padding: 0 32px; }
-[id] { scroll-margin-top: 84px; }
-.sr-only {
-  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
-  overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
-}
+[id] { scroll-margin-top: 92px; }
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
 .skip-link {
-  position: fixed; top: 12px; left: 12px; z-index: 300;
-  padding: 10px 16px; border-radius: var(--r-sign);
-  background: var(--now); color: var(--ink); font: 700 15px/1 var(--display);
-  transform: translateY(-200%); transition: transform .2s var(--ease-out);
+  position: fixed; top: 12px; left: 12px; z-index: 300; padding: 10px 16px; border-radius: var(--r-control);
+  background: var(--ink); color: #fff; font: 600 15px/1 var(--text-face);
+  transform: translateY(-200%); transition: transform .2s var(--ease);
 }
 .skip-link:focus { transform: none; }
 
 /* ───────── shared parts ───────── */
-
-/* black enamel sign: the system's heading and action surface */
-.sign {
-  background: var(--ink); color: #fff; border-radius: var(--r-sign);
-  font-family: var(--display); font-weight: 700;
+.glass {
+  background: var(--glass); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur);
+  box-shadow: var(--glass-edge), var(--lift);
 }
+/* dark glass: headers of signs and the contact card */
+.sign { background: var(--glass-dark); color: #fff; backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur); }
 
-/* route badge: a line colour carrying a station code or line name */
 .badge {
-  display: inline-flex; align-items: center; justify-content: center; gap: 6px;
-  min-width: 34px; height: 26px; padding: 0 8px; border-radius: var(--r-badge);
-  font: 700 14px/1 var(--display); letter-spacing: .02em; color: #fff;
-  background: var(--badge, var(--ink));
-  font-variant-numeric: tabular-nums;
+  display: inline-flex; align-items: center; justify-content: center; min-width: 32px; height: 24px; padding: 0 7px;
+  border-radius: var(--r-badge); background: var(--badge, var(--ink)); color: #fff;
+  font: 650 13px/1 var(--text-face); font-variant-numeric: tabular-nums; letter-spacing: 0;
 }
-.badge[data-line="IoT"] { color: var(--ink); }
 
-/* buttons, in the sign vocabulary */
 .btn {
-  display: inline-flex; align-items: center; gap: 10px;
-  height: 48px; padding: 0 20px; border-radius: var(--r-sign);
-  font: 700 17px/1 var(--display); letter-spacing: .01em; white-space: nowrap;
-  border: 2px solid var(--ink); background: var(--ink); color: #fff; cursor: pointer;
-  transition: background .2s var(--ease-out), color .2s var(--ease-out), transform .25s var(--ease-step);
+  display: inline-flex; align-items: center; gap: 8px; height: 46px; padding: 0 22px; border-radius: var(--r-control);
+  font: 600 16px/1 var(--text-face); letter-spacing: -.01em; white-space: nowrap; cursor: pointer;
+  border: 0; background: var(--action); color: #fff;
+  transition: background .2s var(--ease), transform .2s var(--ease), box-shadow .2s var(--ease);
 }
-.btn:hover { background: #2a2f35; border-color: #2a2f35; }
-.btn:active { transform: translateY(1px); }
-.btn svg { flex-shrink: 0; transition: transform .3s var(--ease-step); }
-.btn:hover svg { transform: translateX(3px); }
-.btn--ghost { background: transparent; color: var(--ink); }
-.btn--ghost:hover { background: var(--ink); color: #fff; }
-.btn--now { background: var(--now); border-color: var(--now); color: var(--ink); }
-.btn--now:hover { background: #ffc81f; border-color: #ffc81f; }
+.btn:hover { background: var(--action-hover); box-shadow: 0 8px 22px -8px rgba(0, 113, 227, .55); }
+.btn:active { transform: scale(.98); }
+.btn svg { flex-shrink: 0; transition: transform .3s var(--ease); }
+.btn:hover svg { transform: translateX(2px); }
+.btn--ghost { background: var(--glass-strong); color: var(--ink); box-shadow: var(--glass-edge); }
+.btn--ghost:hover { background: #fff; box-shadow: var(--glass-edge), var(--lift); }
+.btn--now { background: var(--action); color: #fff; }
+.btn--light { background: rgba(255, 255, 255, .14); color: #fff; box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .35); }
+.btn--light:hover { background: rgba(255, 255, 255, .24); box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .5); }
 .btn[aria-disabled="true"] { opacity: .45; pointer-events: none; }
 
-/* section heading: big sign lettering on a full-width ink rule */
-.sec { padding: 104px 0 0; }
-.sec-title {
-  display: flex; align-items: baseline; gap: 16px; flex-wrap: wrap;
-  padding-bottom: 14px; margin-bottom: 36px; border-bottom: var(--stroke) solid var(--ink);
-  font-size: clamp(40px, 5.4vw, 72px); letter-spacing: -.02em;
-}
-.sec-title small { font: 400 17px/1.4 var(--text-face); color: var(--ink-3); letter-spacing: 0; }
+.sec { padding: 112px 0 0; }
+.sec-title { display: flex; align-items: baseline; flex-wrap: wrap; gap: 12px 16px; margin-bottom: 32px; font-size: clamp(36px, 4.6vw, 60px); }
+.sec-title small { font: 400 18px/1.4 var(--text-face); letter-spacing: -.005em; color: var(--ink-3); }
 
 @media (max-width: 760px) {
   body { font-size: 16px; }
   .wrap { padding: 0 18px; }
-  .sec { padding-top: 72px; }
-  .sec-title { margin-bottom: 26px; border-bottom-width: 4px; }
+  .sec { padding-top: 80px; }
+  .sec-title { margin-bottom: 24px; }
 }
-
+@media (prefers-reduced-transparency: reduce) {
+  .glass, .sign { backdrop-filter: none; -webkit-backdrop-filter: none; }
+  .glass { background: var(--panel); }
+  .sign { background: var(--ink); }
+}
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }

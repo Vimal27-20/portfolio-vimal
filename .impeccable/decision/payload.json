@@ -1,0 +1,126 @@
+{
+  "title": "Choose the visual world for your portfolio",
+  "question": "The roll assigned a transit-wayfinding world. Keep it, take an alternate, or re-roll.",
+  "options": [
+    {
+      "id": "assigned",
+      "label": "The Line: a wayfinding system",
+      "kicker": "THE ROLL",
+      "lineage": "Luas / Dublin Bus route maps and enamel station signage",
+      "thesis": "Your work as a route network: projects are stations, categories are lines, your career is the journey.",
+      "palette": ["#F2F3F1", "#15181B", "#D7261E", "#0A66B2", "#0E8A4F", "#F2A900"],
+      "materials": ["enamel signage panels", "route-map line work", "departure-board rows"],
+      "viewport": "The network map leads: four coloured lines (Enterprise, Mobile, Web, IoT) carry all 7 projects as stations; VISE sits at the interchange marked Now; selecting any station opens its platform sign with image, role, timeline and link. Name, UX Engineer and résumé sit in the station-name bar above.",
+      "risk": "Becomes a costume if the map is decorative; every station must be a real, readable link.",
+      "raised": [
+        { "from": "challenger-depot-blind", "raise": "Motion snaps a whole step and settles, never glides; the featured station is ranked by inversion (dark panel), not by colour." },
+        { "from": "challenger-nixie", "raise": "Every project gets a fixed station code (M1, W2…) in a fixed position, so numbering is the index." },
+        { "from": "challenger-neon", "raise": "One continuous line runs the whole page, from network to journey to terminus." },
+        { "from": "challenger-quilt", "raise": "Every station carries its provenance label: role, year, and where it opens." },
+        { "from": "challenger-massin", "raise": "Hierarchy is carried by scale, never by colour alone." },
+        { "from": "challenger-hoarding", "raise": "Amid the dense map, one calm panel is the only luxury: the open station sign." }
+      ]
+    },
+    {
+      "id": "model-pick",
+      "label": "Swiss Grid Poster",
+      "kicker": "IMPECCABLE’S PICK",
+      "lineage": "Müller-Brockmann / International Typographic Style",
+      "thesis": "A strict modular grid where each project is set like a concert poster: big numerals, one red, absolute order.",
+      "palette": ["#FFFFFF", "#111111", "#E30613"],
+      "materials": ["modular grid", "flush-left grotesque", "flat colour fields"],
+      "viewport": "A 12-column poster: huge project numerals and titles stepped across the grid, VISE as the largest block, name and role set small in the top margin.",
+      "risk": "The most familiar 'designer portfolio' language; strong but where many portfolios land."
+    },
+    {
+      "id": "challenger-depot-blind",
+      "label": "Depot Destination Blind",
+      "verdict": "declined",
+      "lineage": "bus destination blinds",
+      "thesis": "Projects roll past one fixed window like a bus blind.",
+      "palette": ["#1F4D35", "#F2C230", "#EDE7D6"],
+      "materials": ["dyed duck cloth", "stitched legends"],
+      "viewport": "One project visible at a time in a fixed window.",
+      "case": "Fuses poorly: shows one project at a time, which hides the work from a skimming recruiter.",
+      "risk": "Too slow to scan.",
+      "kept": "Discrete stepping motion and rank-by-inversion."
+    },
+    {
+      "id": "challenger-nixie",
+      "label": "Nixie Laboratory Counter",
+      "verdict": "declined",
+      "lineage": "nixie-tube counters",
+      "thesis": "Quantities as glowing digits.",
+      "palette": ["#121212", "#FF7A1A", "#8A8F94"],
+      "materials": ["glass tubes", "steel chassis"],
+      "viewport": "Banks of counters for projects and years.",
+      "case": "Fuses poorly: the portfolio has few real metrics, and inventing numbers breaks product truth.",
+      "risk": "Would push toward fake stats.",
+      "kept": "Fixed index positions: numbering as navigation."
+    },
+    {
+      "id": "challenger-neon",
+      "label": "Hand-bent Neon Circuit",
+      "verdict": "declined",
+      "lineage": "neon sign fabrication",
+      "thesis": "Your name as one continuous glass stroke.",
+      "palette": ["#0B0D12", "#3A6BFF", "#C2341F"],
+      "materials": ["bent glass", "electrodes"],
+      "viewport": "A dark room with one glowing script.",
+      "case": "Fuses poorly: dramatic, but the work disappears behind the sign.",
+      "risk": "Style over substance for recruiters.",
+      "kept": "One continuous stroke through the whole page."
+    },
+    {
+      "id": "challenger-quilt",
+      "label": "Memory Quilt Atlas",
+      "verdict": "declined",
+      "lineage": "pieced quilts",
+      "thesis": "Each project a stitched block with its history.",
+      "palette": ["#5D7FA3", "#1E1E1E", "#C8322B"],
+      "materials": ["chambray", "stitch rules"],
+      "viewport": "A quilt of unequal project blocks.",
+      "case": "Fuses partly: human and warm, but reads craft-hobby rather than senior UX Engineer.",
+      "risk": "Undercuts the engineering positioning.",
+      "kept": "Every item seamed to its provenance label."
+    },
+    {
+      "id": "challenger-massin",
+      "label": "Massin Stage Page",
+      "verdict": "declined",
+      "lineage": "Massin's typographic theatre",
+      "thesis": "Designer and engineer as two typeset voices.",
+      "palette": ["#FFFFFF", "#000000", "#D0021B"],
+      "materials": ["ink stamps", "colliding type"],
+      "viewport": "Two voices arguing across the spread.",
+      "case": "Fuses poorly: clever, but makes facts hard to find.",
+      "risk": "Hurts scanability.",
+      "kept": "Scale carries emphasis, never colour alone."
+    },
+    {
+      "id": "challenger-hoarding",
+      "label": "Fly-posted Festival Hoarding",
+      "verdict": "declined",
+      "lineage": "screenprinted street flyers",
+      "thesis": "A loud collage with one calm panel.",
+      "palette": ["#F3EDE0", "#111111", "#FF6A00", "#7B57F0"],
+      "materials": ["riso grain", "torn paper"],
+      "viewport": "Full-bleed collage with a floating white card.",
+      "case": "Fuses poorly: energetic but reads playful, not senior.",
+      "risk": "Too loud for the audience.",
+      "kept": "One calm panel as the only luxury amid density."
+    }
+  ],
+  "reroll": { "registers": ["safer", "bolder"] },
+  "buildPath": { "value": "code" },
+  "canon": true,
+  "canonCard": {
+    "label": "The category standard",
+    "thesis": "A clean modern portfolio: intro, project grid, experience, contact, executed impeccably.",
+    "palette": ["#FFFFFF", "#111111", "#2F6FEB"],
+    "materials": ["clean grid", "project thumbnails"],
+    "viewport": "Short intro, then a tidy grid of project cards.",
+    "risk": "Indistinguishable from most portfolios by design."
+  },
+  "steer": true
+}

@@ -7,7 +7,7 @@ import Notices from "./components/notices";
 import Toolkit from "./components/toolkit";
 import Terminus from "./components/terminus";
 import CaseStudyRoute from "./pages/casestudy";
-import "./styles/line.css";
+import "./styles/glass.css";
 
 const FOOT_LINKS = [
   { label: "Work",    to: "/#work" },

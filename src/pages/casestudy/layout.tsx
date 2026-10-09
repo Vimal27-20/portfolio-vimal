@@ -1,6 +1,6 @@
 import React, { createContext, useCallback, useContext, useEffect, useRef, useState, type ReactNode } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { PiArrowLeft, PiArrowRight, PiArrowUpRight, PiX } from "react-icons/pi";
+import { PiArrowLeft, PiArrowRight, PiArrowUpRight, PiArrowsOut, PiArrowsDownUp, PiX } from "react-icons/pi";
 import { projects, type Project } from "../../data/projects";
 import { STATIONS } from "../../data/network";
 import "./casestudy.css";
@@ -37,7 +37,7 @@ export function Figure({
       )}
       <button className="cs-fig-btn" onClick={() => open({ src, alt })} aria-label={`Enlarge: ${alt}`}>
         <img src={src} alt={alt} loading="lazy" />
-        <span className="cs-fig-zoom" aria-hidden>⤢</span>
+        <span className="cs-fig-zoom" aria-hidden><PiArrowsOut size={16} /></span>
       </button>
       {caption && <figcaption>{caption}</figcaption>}
     </figure>
@@ -62,7 +62,7 @@ export function ScrollFrame({
            aria-label={`${alt} — scroll to explore`}>
         <img src={src} alt={alt} decoding="async" />
       </div>
-      <div className="cs-scrollframe-hint" aria-hidden>Scroll inside ↕</div>
+      <div className="cs-scrollframe-hint" aria-hidden><PiArrowsDownUp size={13} /> Scroll inside</div>
     </div>
   );
 }
