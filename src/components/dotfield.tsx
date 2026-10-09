@@ -44,10 +44,16 @@ export default function DotField({ src, word, label }: { src: string; word: stri
       delay = new Float32Array(cols * rows);
 
       if (img) {
-        // the portrait sits centred in the upper part of the stage, above the headline
-        const ph = Math.round(rows * (small ? 0.5 : 0.56));
+        // the portrait fills the space between the nav pill and the headline,
+        // measured, so it never runs under the text at any screen size
+        const text = canvas.parentElement?.querySelector(".hero-in")?.getBoundingClientRect();
+        const top = (small ? 64 : 76) / gap;
+        const bottom = text ? (text.top - r.top - (small ? 16 : 24)) / gap : rows * 0.6;
+        const room = Math.max(8, bottom - top);
+        // the top ~10% of the photo is faded out anyway, so it may tuck up under the pill
+        const ph = Math.round(Math.min(room / 0.9, rows * 0.66, (cols * 0.9) * (img.height / img.width)));
         const pw = Math.round(ph * (img.width / img.height));
-        const px0 = Math.round((cols - pw) / 2), py0 = Math.round(rows * (small ? 0.09 : 0.045));
+        const px0 = Math.round((cols - pw) / 2), py0 = Math.round(top + (room - ph * 0.9) / 2 - ph * 0.1);
         o.imageSmoothingQuality = "high";
         o.drawImage(img, px0, py0, pw, ph);
         const d = o.getImageData(0, 0, cols, rows).data;
@@ -131,7 +137,13 @@ export default function DotField({ src, word, label }: { src: string; word: stri
     io.observe(canvas);
     host.addEventListener("pointermove", move);
     host.addEventListener("pointerleave", leave);
-    const start = () => { if (!alive) return; layout(); ro.observe(canvas); born = performance.now(); };
+    const start = () => {
+      if (!alive) return;
+      layout(); born = performance.now();
+      ro.observe(canvas);
+      // the headline can change height (fonts load, text wraps): re-fit the portrait
+      const text = host.querySelector(".hero-in"); if (text) ro.observe(text);
+    };
     const photo = new Image();
     photo.src = src;
     photo.decode().then(() => { img = photo; start(); }, () => document.fonts.ready.then(start));
