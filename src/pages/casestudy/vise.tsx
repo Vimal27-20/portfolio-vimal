@@ -1,3 +1,4 @@
+import { PiTrafficCone, PiArrowUpRight } from "react-icons/pi";
 import { projects } from "../../data/projects";
 import CaseStudyLayout, { Figure, Section, type CsSection } from "./layout";
 
@@ -50,8 +51,6 @@ export default function ViseCaseStudy() {
 
   const header = (
     <header className="cs-header">
-      <span className="cs-pill">{project.tag}</span>
-      <span className="cs-status">In progress</span>
       <h1 className="cs-title">
         VISE
         <span className="cs-title-sub">A budgeting app with <em>a Rust core.</em></span>
@@ -68,10 +67,10 @@ export default function ViseCaseStudy() {
         <div><dt>Status</dt><dd>V1 · Android testing</dd></div>
       </dl>
       <div className="cs-actions">
-        <a href={REPO} target="_blank" rel="noopener noreferrer" className="cs-btn">View the code on GitHub ↗</a>
+        <a href={REPO} target="_blank" rel="noopener noreferrer" className="cs-btn">View the code on GitHub <PiArrowUpRight size={17} aria-hidden /></a>
       </div>
       <div className="cs-wip-note" role="note">
-        <span className="cs-wip-note-icon" aria-hidden>🚧</span>
+        <span className="cs-wip-note-icon" aria-hidden><PiTrafficCone size={22} /></span>
         <p>
           <strong>V1 is in Android testing.</strong> We're running testing and production builds with real
           users. Screens and details below may still change before release.
@@ -82,7 +81,7 @@ export default function ViseCaseStudy() {
   );
 
   return (
-    <CaseStudyLayout project={project} name="VISE" sections={SECTIONS} header={header} accent="#18863c">
+    <CaseStudyLayout project={project} name="VISE" sections={SECTIONS} header={header}>
 
       <Section id="overview" index={1} label="Overview" title={<>Your money, <em>on your phone only.</em></>}>
         <p className="cs-p">

@@ -1,186 +1,135 @@
-@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700;800&family=Manrope:wght@600;800&family=IBM+Plex+Mono:wght@500&display=swap');
 
+/* ───────── The Line: a wayfinding system ─────────
+   Pale enamel ground, black enamel sign panels, four line colours that
+   always mean a project category. Barlow (highway-sign lettering) for
+   display, Atkinson Hyperlegible for reading. */
 :root {
-  --bg: #e8e8e8;
-  --surface: #fff;
-  --text: #111;
-  --muted: #555;
-  --line: rgba(0,0,0,.1);
-  --accent: #a7f13a;
-  --accent-dark: #5fa800;
-  --accent-text: #1a3300;
-  --shadow: 0 8px 28px rgba(0,0,0,.08);
-  --r-xl: 32px;
-  --r-lg: 24px;
-  --r-md: 16px;
+  --ground: #eceeea;        /* station concrete, washed */
+  --panel: #fbfbf9;         /* enamel sign, light */
+  --ink: #121417;           /* sign black */
+  --ink-2: #3b4046;
+  --ink-3: #5f666d;         /* secondary text, ≥4.5:1 on ground */
+  --rule: #c9cdc8;
+  --rule-strong: #121417;
+
+  --line-enterprise: #0a5fb4;
+  --line-mobile: #c8241c;
+  --line-web: #0d7d48;
+  --line-iot: #e39a00;      /* fills and strokes only, never text on light */
+  --now: #f2b705;           /* "you are here" amber on black */
+
+  --display: "Barlow Semi Condensed", "Barlow", "Arial Narrow", sans-serif;
+  --text-face: "Atkinson Hyperlegible", "Segoe UI", system-ui, sans-serif;
+
+  --r-sign: 6px;            /* enamel signs have small radii */
+  --r-badge: 4px;
+  --stroke: 6px;            /* the one line weight of the network */
+  --ease-step: cubic-bezier(.34, 1.56, .64, 1);   /* snap, overshoot, settle */
+  --ease-out: cubic-bezier(.16, 1, .3, 1);
+
+  /* tokens the case-study stylesheet reads */
+  --bg: var(--ground);
+  --surface: var(--panel);
+  --text: var(--ink);
+  --muted: var(--ink-3);
+  --line: var(--rule);
+  --accent: var(--now);
+  --accent-dark: #8a6400;
+  --accent-text: var(--ink);
+  --r-xl: 10px;
+  --r-lg: 8px;
+  --r-md: 6px;
   --r-pill: 999px;
 }
+
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
 body {
-  font-family: Inter, system-ui, sans-serif;
-  background: var(--bg);
-  color: var(--text);
+  font-family: var(--text-face);
+  font-size: 17px; line-height: 1.6;
+  background: var(--ground); color: var(--ink);
   -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
 }
-a { text-decoration: none; color: inherit; }
+a { color: inherit; text-decoration: none; }
+button { font: inherit; color: inherit; }
 img { display: block; max-width: 100%; height: auto; }
-.wrap { max-width: 1180px; margin: 0 auto; padding: 0 28px; }
-section { padding: 56px 0; }
-.sec-head { margin-bottom: 32px; }
-.sec-head h2 {
-  font-family: "Instrument Serif", Georgia, serif;
-  font-size: clamp(40px, 5.5vw, 70px);
-  line-height: 1;
-  letter-spacing: -.04em;
-  margin-bottom: 6px;
-}
-.sec-head p { color: var(--muted); font-size: 15px; }
+h1, h2, h3 { font-family: var(--display); font-weight: 700; line-height: 1.05; letter-spacing: -.01em; text-wrap: balance; }
+p { text-wrap: pretty; }
 
-@media (max-width: 1100px) {
-  .skills-grid { grid-template-columns: repeat(3,1fr) !important; }
-  .bento article { grid-column: span 6 !important; }
-}
-@media (max-width: 900px) {
-  .hero-grid { grid-template-columns: 1fr !important; min-height: auto !important; }
-  .hero-right { order: -1; }
-  .tl-grid { grid-template-columns: 1fr !important; }
-  .testi-grid { grid-template-columns: 1fr 1fr !important; }
-  .contact-strip { flex-direction: column !important; align-items: flex-start !important; }
-  .contact-actions { flex-direction: row !important; }
-  .skills-grid { grid-template-columns: 1fr 1fr !important; }
-  .nav-links { display: none !important; }
-}
-@media (max-width: 640px) {
-  .wrap { padding: 0 16px; }
-  section { padding: 40px 0; }
-  .bento article { grid-column: span 12 !important; }
-  .skills-grid, .testi-grid { grid-template-columns: 1fr !important; }
-  .exp-block { font-size: 13px !important; padding: 9px 14px !important; }
-  .hero-h1 { font-size: clamp(44px, 13vw, 78px) !important; }
-  .profile-ring { width: min(260px, 80vw) !important; }
-  .contact-strip { padding: 28px 22px !important; }
-  .contact-actions { flex-direction: column !important; }
-}
-@media (max-width: 420px) {
-  .social-btn { width: 46px !important; height: 46px !important; }
-  .resume-btn { padding: 10px 14px !important; font-size: 13px !important; }
-}
+/* browser surfaces belong to the system too */
+::selection { background: var(--now); color: var(--ink); }
+:focus-visible { outline: 3px solid var(--line-enterprise); outline-offset: 3px; border-radius: 2px; }
+html { scrollbar-color: var(--ink-3) var(--ground); }
+.prose a, .cs-p a { text-decoration: underline; text-underline-offset: .2em; text-decoration-thickness: 1.5px; }
 
-/* ───────── fixes & responsive additions ───────── */
-:focus-visible { outline: 3px solid var(--accent-dark); outline-offset: 3px; border-radius: 6px; }
-[id] { scroll-margin-top: 92px; }   /* clear the sticky nav on anchor jumps */
+.wrap { max-width: 1240px; margin: 0 auto; padding: 0 32px; }
+[id] { scroll-margin-top: 84px; }
 .sr-only {
   position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
   overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
 }
 .skip-link {
   position: fixed; top: 12px; left: 12px; z-index: 300;
-  padding: 10px 16px; border-radius: 999px; border: 2px solid #222;
-  background: var(--accent); color: #111; font-weight: 800; font-size: 14px;
-  transform: translateY(-200%); transition: transform .2s;
+  padding: 10px 16px; border-radius: var(--r-sign);
+  background: var(--now); color: var(--ink); font: 700 15px/1 var(--display);
+  transform: translateY(-200%); transition: transform .2s var(--ease-out);
 }
 .skip-link:focus { transform: none; }
 
-/* mobile menu (nav links hide below 900px) */
-.nav-burger {
-  display: none; position: relative; width: 46px; height: 46px; flex-shrink: 0;
-  border-radius: 50%; border: 2px solid #222; background: #fff; cursor: pointer;
-  box-shadow: 3px 3px 0 rgba(0,0,0,.55); transition: transform .15s, box-shadow .15s;
+/* ───────── shared parts ───────── */
+
+/* black enamel sign: the system's heading and action surface */
+.sign {
+  background: var(--ink); color: #fff; border-radius: var(--r-sign);
+  font-family: var(--display); font-weight: 700;
 }
-.nav-burger:active { transform: translate(2px,2px); box-shadow: 1px 1px 0 rgba(0,0,0,.55); }
-.nav-burger span {
-  position: absolute; left: 12px; width: 18px; height: 2px; border-radius: 2px; background: #111;
-  transition: transform .3s, top .3s;
+
+/* route badge: a line colour carrying a station code or line name */
+.badge {
+  display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+  min-width: 34px; height: 26px; padding: 0 8px; border-radius: var(--r-badge);
+  font: 700 14px/1 var(--display); letter-spacing: .02em; color: #fff;
+  background: var(--badge, var(--ink));
+  font-variant-numeric: tabular-nums;
 }
-.nav-burger span:nth-child(1) { top: 16px; }
-.nav-burger span:nth-child(2) { top: 24px; }
-.nav-burger[aria-expanded="true"] span:nth-child(1) { top: 20px; transform: rotate(45deg); }
-.nav-burger[aria-expanded="true"] span:nth-child(2) { top: 20px; transform: rotate(-45deg); }
-.nav-menu {
-  position: absolute; left: 28px; right: 28px; top: calc(100% + 10px);
-  display: flex; flex-direction: column; gap: 4px; padding: 10px;
-  background: #fff; border: 2px solid #222; border-radius: var(--r-lg);
-  box-shadow: 6px 6px 0 rgba(0,0,0,.7);
-  opacity: 0; transform: translateY(-8px); visibility: hidden; pointer-events: none;
-  transition: opacity .2s, transform .25s, visibility 0s .25s;
+.badge[data-line="IoT"] { color: var(--ink); }
+
+/* buttons, in the sign vocabulary */
+.btn {
+  display: inline-flex; align-items: center; gap: 10px;
+  height: 48px; padding: 0 20px; border-radius: var(--r-sign);
+  font: 700 17px/1 var(--display); letter-spacing: .01em; white-space: nowrap;
+  border: 2px solid var(--ink); background: var(--ink); color: #fff; cursor: pointer;
+  transition: background .2s var(--ease-out), color .2s var(--ease-out), transform .25s var(--ease-step);
 }
-.nav-menu.is-open { opacity: 1; transform: none; visibility: visible; pointer-events: auto; transition: opacity .2s, transform .25s; }
-.nav-menu a {
-  padding: 14px 16px; border-radius: var(--r-md);
-  font-family: "Instrument Serif", Georgia, serif; font-size: 30px; letter-spacing: -.03em; color: #111;
-  transition: background .2s;
+.btn:hover { background: #2a2f35; border-color: #2a2f35; }
+.btn:active { transform: translateY(1px); }
+.btn svg { flex-shrink: 0; transition: transform .3s var(--ease-step); }
+.btn:hover svg { transform: translateX(3px); }
+.btn--ghost { background: transparent; color: var(--ink); }
+.btn--ghost:hover { background: var(--ink); color: #fff; }
+.btn--now { background: var(--now); border-color: var(--now); color: var(--ink); }
+.btn--now:hover { background: #ffc81f; border-color: #ffc81f; }
+.btn[aria-disabled="true"] { opacity: .45; pointer-events: none; }
+
+/* section heading: big sign lettering on a full-width ink rule */
+.sec { padding: 104px 0 0; }
+.sec-title {
+  display: flex; align-items: baseline; gap: 16px; flex-wrap: wrap;
+  padding-bottom: 14px; margin-bottom: 36px; border-bottom: var(--stroke) solid var(--ink);
+  font-size: clamp(40px, 5.4vw, 72px); letter-spacing: -.02em;
 }
-.nav-menu a:hover { background: var(--accent); }
-@media (max-width: 900px) { .nav-burger { display: block; } }
-@media (max-width: 640px) { .nav-menu { left: 16px; right: 16px; } }
+.sec-title small { font: 400 17px/1.4 var(--text-face); color: var(--ink-3); letter-spacing: 0; }
+
+@media (max-width: 760px) {
+  body { font-size: 16px; }
+  .wrap { padding: 0 18px; }
+  .sec { padding-top: 72px; }
+  .sec-title { margin-bottom: 26px; border-bottom-width: 4px; }
+}
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  *, *::before, *::after {
-    animation-duration: .01ms !important; animation-iteration-count: 1 !important;
-    transition-duration: .01ms !important;
-  }
-}
-
-/* section rhythm, shared by projects / timeline / contact */
-.sec { padding: 120px 0 24px; }
-@media (max-width: 900px) { .sec { padding-top: 96px; } }
-@media (max-width: 640px) { .sec { padding: 72px 0 8px; } }
-
-/* ───────── Motion: Apple-style flow ─────────
-   One easing curve everywhere (soft start, long settle), transform +
-   opacity only, and everything turns off under reduced motion. */
-:root {
-  --ease-apple: cubic-bezier(.25, .1, .25, 1);
-  --ease-out: cubic-bezier(.16, 1, .3, 1);
-}
-
-/* scroll reveal: [data-reveal="n"] staggers by n (set up in reveal.tsx) */
-.reveal-ready [data-reveal] {
-  opacity: 0; transform: translateY(36px);
-  transition: opacity .9s var(--ease-out), transform 1.1s var(--ease-out);
-  transition-delay: calc((var(--reveal-n, 1) - 1) * 90ms);
-}
-.reveal-ready [data-reveal-scale] { transform: translateY(24px) scale(.94); }
-.reveal-ready [data-reveal].is-in { opacity: 1; transform: none; }
-[data-reveal="1"] { --reveal-n: 1; }
-[data-reveal="2"] { --reveal-n: 2; }
-[data-reveal="3"] { --reveal-n: 3; }
-[data-reveal="4"] { --reveal-n: 4; }
-[data-reveal="5"] { --reveal-n: 5; }
-
-/* every page change fades the new page in */
-.route-enter { animation: routeIn .7s var(--ease-out) backwards; }   /* nothing lingers after: fixed/sticky children keep working */
-@keyframes routeIn { from { opacity: 0; transform: translateY(14px); } }
-
-/* hero recedes softly as you scroll past it (where scroll-driven animations exist) */
-@supports (animation-timeline: view()) {
-  .hero-grid {
-    animation: heroAway linear both;
-    animation-timeline: view();
-    animation-range: exit 0% exit 90%;
-  }
-  @keyframes heroAway { to { opacity: .15; transform: scale(.94) translateY(-24px); } }
-}
-
-/* nav compacts once the page scrolls */
-.site-nav {
-  padding: 13px 0;
-  background: rgba(232,232,232,.88);
-  border-bottom: 1px solid var(--line);
-  transition: padding .45s var(--ease-apple), background .45s var(--ease-apple), box-shadow .45s var(--ease-apple);
-}
-.site-nav.is-scrolled { padding: 9px 0; background: rgba(240,240,240,.82); box-shadow: 0 8px 30px rgba(0,0,0,.06); }
-.site-nav .nav-logo { height: auto; }
-.nav-logo-img { height: 48px; transition: height .45s var(--ease-apple); }
-.site-nav.is-scrolled .nav-logo-img { height: 42px; }
-html:has(.site-nav.is-scrolled) .cs { --cs-nav-h: 61px; }   /* keep case-study sticky bars flush */
-
-/* smoother hover settles on interactive bits */
-a, button { transition-timing-function: var(--ease-apple); }
-
-@media (prefers-reduced-motion: reduce) {
-  .reveal-ready [data-reveal] { opacity: 1; transform: none; }
-  .route-enter, .hero-grid { animation: none; }
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
 }

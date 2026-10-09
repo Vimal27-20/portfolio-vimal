@@ -1,3 +1,5 @@
+import { useEffect } from "react";
+import { PiArrowDown, PiArrowUpRight } from "react-icons/pi";
 import { projects } from "../../data/projects";
 import CaseStudyLayout, { Figure, ScrollFrame, Section, type CsSection } from "./layout";
 
@@ -53,12 +55,20 @@ const TYPE = [
 
 const COMPONENTS = ["Button / Primary", "Link / Secondary", "Ticker item", "Row / Pillar", "Card / Founder", "Layer row", "Testimonial card", "Fit list item", "FAQ item"];
 
+// this page shows Flex Academy's own type specimens, so only it loads those faces
+const SPECIMEN_FONTS = "https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;600&family=Manrope:wght@600;800&family=IBM+Plex+Mono:wght@500&display=swap";
+
 export default function FlexAcademyCaseStudy() {
+  useEffect(() => {
+    if (document.querySelector(`link[href="${SPECIMEN_FONTS}"]`)) return;
+    const link = Object.assign(document.createElement("link"), { rel: "stylesheet", href: SPECIMEN_FONTS });
+    document.head.appendChild(link);
+  }, []);
+
   const project = projects.find(p => p.slug === "flex-academy")!;
 
   const header = (
     <header className="cs-header">
-      <span className="cs-pill">{project.tag}</span>
       <h1 className="cs-title">
         Flex Academy
         <span className="cs-title-sub">Scale your STR without scaling the <em>chaos</em>.</span>
@@ -76,10 +86,10 @@ export default function FlexAcademyCaseStudy() {
 
       <div className="cs-actions">
         <a href="#final" className="cs-btn" onClick={e => { e.preventDefault(); document.getElementById("final")?.scrollIntoView({ behavior: "smooth" }); }}>
-          See the final design ↓
+          See the final design <PiArrowDown size={17} aria-hidden />
         </a>
         <a href={FIGMA_URL} target="_blank" rel="noopener noreferrer" className="cs-btn cs-btn--ghost">
-          Open in Figma ↗
+          Open in Figma <PiArrowUpRight size={17} aria-hidden />
         </a>
       </div>
 
@@ -311,7 +321,7 @@ export default function FlexAcademyCaseStudy() {
         <p className="cs-p">Scroll inside the frame to see the whole page.</p>
         <ScrollFrame src={`${IMG}/desktop-full.webp`} alt="Flex Academy full desktop landing page" device="desktop" />
         <div className="cs-actions" style={{ marginTop: 20 }}>
-          <a href={FIGMA_URL} target="_blank" rel="noopener noreferrer" className="cs-btn">Open in Figma ↗</a>
+          <a href={FIGMA_URL} target="_blank" rel="noopener noreferrer" className="cs-btn">Open in Figma <PiArrowUpRight size={17} aria-hidden /></a>
         </div>
       </Section>
 

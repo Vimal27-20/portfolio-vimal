@@ -1,7 +1,18 @@
 import React, { createContext, useCallback, useContext, useEffect, useRef, useState, type ReactNode } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import { PiArrowLeft, PiArrowRight, PiArrowUpRight, PiX } from "react-icons/pi";
 import { projects, type Project } from "../../data/projects";
+import { STATIONS } from "../../data/network";
 import "./casestudy.css";
+
+const stationOf = (p: Project) => STATIONS.find(s => s.project.slug === p.slug);
+
+/** A project's route badge: its station code in its line colour. */
+function Badge({ p }: { p: Project }) {
+  const s = stationOf(p);
+  if (!s) return null;
+  return <span className="badge" data-line={s.line.id} style={{ "--badge": s.line.color } as React.CSSProperties}>{s.code}</span>;
+}
 
 /* ───────────────────────── lightbox ───────────────────────── */
 
@@ -56,13 +67,13 @@ export function ScrollFrame({
   );
 }
 
-/** One numbered case-study section; `id` is what the side nav links to */
+/** One case-study section; `id` is what the side nav links to (the nav carries
+    the numbering and label, so the section opens straight on its heading) */
 export function Section({
-  id, index, label, title, children,
+  id, title, children,
 }: { id: string; index: number; label: string; title: ReactNode; children: ReactNode }) {
   return (
-    <section id={id} className="cs-section" data-reveal="1">
-      <p className="cs-eyebrow">{String(index).padStart(2, "0")} / {label}</p>
+    <section id={id} className="cs-section">
       <h2 className="cs-h2">{title}</h2>
       {children}
     </section>
@@ -180,25 +191,36 @@ export default function CaseStudyLayout({
   const idx  = projects.findIndex(p => p.slug === project.slug);
   const next = projects[(idx + 1) % projects.length];
   const prev = projects[(idx - 1 + projects.length) % projects.length];
+  const station = stationOf(project);
+  // colour only ever means a line, so the page accent is the station's line colour
+  const lineColor = station?.line.color ?? accent;
 
   return (
     <LightboxCtx.Provider value={setLightbox}>
-      <div className="cs" style={accent ? ({ "--cs-accent": accent } as React.CSSProperties) : undefined}>
+      <div className="cs" style={lineColor ? ({ "--cs-accent": lineColor } as React.CSSProperties) : undefined}>
         <div className="cs-progress" style={{ transform: `scaleX(${progress})` }} aria-hidden />
 
         <div className="wrap">
           {/* breadcrumb / back */}
           <div className="cs-crumbs">
-            <Link to="/#projects" className="cs-back">← All work</Link>
+            <Link to="/#work" className="cs-back"><PiArrowLeft size={16} aria-hidden /> All work</Link>
             <nav aria-label="Breadcrumb" className="cs-crumb-path">
               <Link to="/">Home</Link><span>/</span>
-              <Link to="/#projects">Work</Link><span>/</span>
+              <Link to="/#work">Work</Link><span>/</span>
               <span aria-current="page">{name}</span>
             </nav>
-            <span className="cs-count">
-              {String(idx + 1).padStart(2, "0")} / {String(projects.length).padStart(2, "0")}
-            </span>
           </div>
+
+          {/* the station's own sign: code, line, status */}
+          {station && (
+            <div className="cs-station sign">
+              <Badge p={project} />
+              <span className="cs-station-line">{station.line.name}</span>
+              {project.status === "in-progress"
+                ? <span className="cs-station-now">Now · in progress</span>
+                : <span className="cs-station-year">{project.year}</span>}
+            </div>
+          )}
 
           {header}
 
@@ -225,19 +247,19 @@ export default function CaseStudyLayout({
           </div>
 
           {/* prev / next */}
-          <nav className="cs-pager" aria-label="More projects" data-reveal="1">
+          <nav className="cs-pager" aria-label="More projects">
             <ProjectLink p={prev} dir="prev" />
             <ProjectLink p={next} dir="next" />
           </nav>
           <div style={{ textAlign: "center", margin: "8px 0 24px" }}>
-            <Link to="/#projects" className="cs-btn cs-btn--ghost">Back to all work</Link>
+            <Link to="/#work" className="cs-btn cs-btn--ghost">Back to all work</Link>
           </div>
         </div>
 
         {lightbox && (
           <div className="cs-lightbox" role="dialog" aria-modal="true" aria-label={lightbox.alt}
                onClick={() => setLightbox(null)}>
-            <button className="cs-lightbox-close" aria-label="Close">✕</button>
+            <button className="cs-lightbox-close" aria-label="Close"><PiX size={18} /></button>
             <img src={lightbox.src} alt={lightbox.alt} onClick={e => e.stopPropagation()} />
           </div>
         )}
@@ -249,9 +271,14 @@ export default function CaseStudyLayout({
 function ProjectLink({ p, dir }: { p: Project; dir: "prev" | "next" }) {
   const inner = (
     <>
-      <span className="cs-pager-label">{dir === "prev" ? "← Previous" : "Next project →"}</span>
-      <span className="cs-pager-title">{p.title}</span>
-      <span className="cs-pager-tag">{p.status === "in-progress" ? "In progress · " : ""}{p.tag}{!p.caseStudy && p.link ? " · Behance ↗" : ""}</span>
+      <span className="cs-pager-label">
+        {dir === "prev" ? <><PiArrowLeft size={14} aria-hidden /> Previous</> : <>Next project <PiArrowRight size={14} aria-hidden /></>}
+      </span>
+      <span className="cs-pager-title"><Badge p={p} /> {p.title}</span>
+      <span className="cs-pager-tag">
+        {p.status === "in-progress" ? "In progress · " : ""}{p.tag}
+        {!p.caseStudy && p.link && <> · Behance <PiArrowUpRight size={12} aria-hidden /></>}
+      </span>
     </>
   );
   const cls = `cs-pager-item cs-pager-item--${dir}`;
