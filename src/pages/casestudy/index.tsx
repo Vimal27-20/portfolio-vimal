@@ -19,6 +19,6 @@ const CASE_STUDIES: Record<string, ComponentType> = {
 export default function CaseStudyRoute() {
   const { slug = "" } = useParams();
   const Page = CASE_STUDIES[slug];
-  if (!Page) return <Navigate to="/#projects" replace />;
+  if (!Page) return <Navigate to="/#work" replace />;
   return <Page />;
 }

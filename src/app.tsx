@@ -1,43 +1,50 @@
-import { Routes, Route, Link, Navigate, useLocation } from "react-router-dom";
-import Navbar from "./components/navbar";
-import ScrollManager, { scrollIfSamePage } from "./components/scrollmanager";
-import useReveal from "./components/reveal";
+import { Routes, Route, Navigate } from "react-router-dom";
+import ScrollManager from "./components/scrollmanager";
+import TopSign from "./components/topsign";
 import Hero from "./components/hero";
-import Projects from "./components/projects";
-import Timeline from "./components/timeline";
-import Contact from "./components/contact";
+import Work from "./components/work";
+import Widgets from "./components/widgets";
+import Journey from "./components/journey";
+import Terminus from "./components/terminus";
+import { QuickViewProvider } from "./components/quickview";
+import { BigLinks } from "./components/links";
+import { useDublinTime } from "./components/clock";
 import CaseStudyRoute from "./pages/casestudy";
-
-const FOOTER_LINKS = [
-  { label: "Home",     to: "/"          },
-  { label: "Projects", to: "/#projects" },
-  { label: "Contact",  to: "/#contact"  },
-];
+import "./styles/nothing.css";
 
 function Home() {
   return (
-    <div className="wrap">
+    <QuickViewProvider>
       <Hero />
-      <Projects />
-      <Timeline />
-      <Contact />
-    </div>
+      <Work />
+      <Widgets />
+      <Journey />
+      <Terminus />
+    </QuickViewProvider>
+  );
+}
+
+/** Nothing's footer: the whole site as one big dot-matrix menu. */
+function Footer() {
+  const time = useDublinTime();
+  return (
+    <footer className="foot">
+      <nav aria-label="Footer" className="wrap"><BigLinks /></nav>
+      <div className="wrap foot-in mono">
+        <span>© 2026 Vimal Kumar</span>
+        <span>Dublin {time}</span>
+      </div>
+    </footer>
   );
 }
 
 export default function App() {
-  const { pathname } = useLocation();
-  useReveal(pathname);
-
   return (
     <>
-      {/* 1px marker at the very top: the nav watches it to know when the page has scrolled */}
-      <div id="scroll-sentinel" aria-hidden style={{ position: "absolute", top: 0, height: 1, width: 1 }} />
       <ScrollManager />
-      <Navbar />
+      <TopSign />
 
-      {/* keyed by path so every page change plays the enter transition */}
-      <main id="main" key={pathname} className="route-enter" tabIndex={-1} style={{ outline: "none" }}>
+      <main id="main" tabIndex={-1} style={{ outline: "none" }}>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/work/:slug" element={<CaseStudyRoute />} />
@@ -45,46 +52,7 @@ export default function App() {
         </Routes>
       </main>
 
-      <footer style={{ padding: "28px 0 52px" }}>
-        <div
-          className="wrap"
-          style={{
-            borderTop:      "1px solid var(--line)",
-            paddingTop:     "22px",
-            display:        "flex",
-            justifyContent: "space-between",
-            alignItems:     "center",
-            flexWrap:       "wrap",
-            gap:            "12px",
-            fontSize:       "13px",
-            color:          "var(--muted)",
-          }}
-        >
-          {/* left — copyright */}
-          <span style={{ fontWeight: 500 }}>© 2026 Vimal Kumar</span>
-
-          {/* centre/right — 3 links only */}
-          <div style={{ display: "flex", gap: "24px" }}>
-            {FOOTER_LINKS.map(({ label, to }) => (
-              <Link
-                key={label}
-                to={to}
-                onClick={() => scrollIfSamePage(to, pathname)}
-                style={{
-                  fontWeight:     600,
-                  color:          "var(--muted)",
-                  textDecoration: "none",
-                  transition:     "color .2s",
-                }}
-                onMouseEnter={e => (e.currentTarget.style.color = "var(--text)")}
-                onMouseLeave={e => (e.currentTarget.style.color = "var(--muted)")}
-              >
-                {label}
-              </Link>
-            ))}
-          </div>
-        </div>
-      </footer>
+      <Footer />
     </>
   );
 }

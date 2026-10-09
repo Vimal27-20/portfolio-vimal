@@ -1,5 +1,6 @@
 import React, { createContext, useCallback, useContext, useEffect, useRef, useState, type ReactNode } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import { PiArrowLeft, PiArrowRight, PiArrowUpRight, PiArrowsOut, PiArrowsDownUp, PiX } from "react-icons/pi";
 import { projects, type Project } from "../../data/projects";
 import "./casestudy.css";
 
@@ -26,7 +27,7 @@ export function Figure({
       )}
       <button className="cs-fig-btn" onClick={() => open({ src, alt })} aria-label={`Enlarge: ${alt}`}>
         <img src={src} alt={alt} loading="lazy" />
-        <span className="cs-fig-zoom" aria-hidden>⤢</span>
+        <span className="cs-fig-zoom" aria-hidden><PiArrowsOut size={16} /></span>
       </button>
       {caption && <figcaption>{caption}</figcaption>}
     </figure>
@@ -51,18 +52,18 @@ export function ScrollFrame({
            aria-label={`${alt} — scroll to explore`}>
         <img src={src} alt={alt} decoding="async" />
       </div>
-      <div className="cs-scrollframe-hint" aria-hidden>Scroll inside ↕</div>
+      <div className="cs-scrollframe-hint" aria-hidden><PiArrowsDownUp size={13} /> Scroll inside</div>
     </div>
   );
 }
 
-/** One numbered case-study section; `id` is what the side nav links to */
+/** One case-study section; `id` is what the side nav links to (the nav carries
+    the numbering and label, so the section opens straight on its heading) */
 export function Section({
-  id, index, label, title, children,
+  id, title, children,
 }: { id: string; index: number; label: string; title: ReactNode; children: ReactNode }) {
   return (
-    <section id={id} className="cs-section" data-reveal="1">
-      <p className="cs-eyebrow">{String(index).padStart(2, "0")} / {label}</p>
+    <section id={id} className="cs-section">
       <h2 className="cs-h2">{title}</h2>
       {children}
     </section>
@@ -127,6 +128,7 @@ export default function CaseStudyLayout({
   const [active, setActive]     = useState(sections[0]?.id);
   const [progress, setProgress] = useState(0);
   const [lightbox, setLightbox] = useState<LightboxImg>(null);
+  const [docked, setDocked]     = useState(false);
 
   /* reading-progress bar */
   useEffect(() => {
@@ -137,6 +139,15 @@ export default function CaseStudyLayout({
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  /* the dock shows once the chapters are on screen */
+  useEffect(() => {
+    const art = document.querySelector(".cs-article");
+    if (!art) return;
+    const io = new IntersectionObserver(([e]) => setDocked(e.isIntersecting), { rootMargin: "0px 0px -40% 0px" });
+    io.observe(art);
+    return () => io.disconnect();
   }, []);
 
   /* scroll-spy: highlight the section currently in view */
@@ -154,15 +165,6 @@ export default function CaseStudyLayout({
     return () => io.disconnect();
   }, [sections]);
 
-  /* keep the active chip visible in the mobile nav */
-  // (scrolls only the chip strip sideways: scrollIntoView would also move the page)
-  useEffect(() => {
-    const toc = document.querySelector<HTMLElement>(".cs-toc");
-    const chip = toc?.querySelector<HTMLElement>(`a[data-id="${active}"]`);
-    if (!toc || !chip || toc.scrollWidth <= toc.clientWidth) return;
-    toc.scrollTo({ left: chip.offsetLeft - (toc.clientWidth - chip.offsetWidth) / 2, behavior: "smooth" });
-  }, [active]);
-
   /* close lightbox with Esc */
   useEffect(() => {
     if (!lightbox) return;
@@ -177,6 +179,24 @@ export default function CaseStudyLayout({
     navigate(`${pathname}#${id}`, { replace: true });
   }, [navigate, pathname]);
 
+  /* chapter by chapter: ← → step through the sections */
+  const at = Math.max(0, sections.findIndex(s => s.id === active));
+  const stepChapter = useCallback((dir: 1 | -1) => {
+    const t = sections[at + dir];
+    if (t) { setActive(t.id); goTo(t.id); }
+  }, [sections, at, goTo]);
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (lightbox || e.altKey || e.ctrlKey || e.metaKey) return;
+      const el = e.target as HTMLElement;
+      if (el.closest("input, textarea, [contenteditable], .cs-scrollframe-view, .cs-phones")) return;
+      if (e.key === "ArrowRight") { e.preventDefault(); stepChapter(1); }
+      if (e.key === "ArrowLeft") { e.preventDefault(); stepChapter(-1); }
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [stepChapter, lightbox]);
+
   const idx  = projects.findIndex(p => p.slug === project.slug);
   const next = projects[(idx + 1) % projects.length];
   const prev = projects[(idx - 1 + projects.length) % projects.length];
@@ -189,55 +209,53 @@ export default function CaseStudyLayout({
         <div className="wrap">
           {/* breadcrumb / back */}
           <div className="cs-crumbs">
-            <Link to="/#projects" className="cs-back">← All work</Link>
+            <Link to="/#work" className="cs-back"><PiArrowLeft size={16} aria-hidden /> All work</Link>
             <nav aria-label="Breadcrumb" className="cs-crumb-path">
               <Link to="/">Home</Link><span>/</span>
-              <Link to="/#projects">Work</Link><span>/</span>
+              <Link to="/#work">Work</Link><span>/</span>
               <span aria-current="page">{name}</span>
             </nav>
-            <span className="cs-count">
-              {String(idx + 1).padStart(2, "0")} / {String(projects.length).padStart(2, "0")}
-            </span>
           </div>
 
           {header}
 
-          <div className="cs-body">
-            <aside className="cs-aside">
-              <nav className="cs-toc" aria-label="Case study sections">
-                <p className="cs-toc-title">On this page</p>
-                {sections.map((s, i) => (
-                  <a
-                    key={s.id}
-                    href={`#${s.id}`}
-                    data-id={s.id}
-                    className={active === s.id ? "is-active" : ""}
-                    onClick={e => { e.preventDefault(); goTo(s.id); }}
-                  >
-                    <span className="cs-toc-num">{String(i + 1).padStart(2, "0")}</span>
-                    {s.label}
-                  </a>
-                ))}
-              </nav>
-            </aside>
+          <article className="cs-article">{children}</article>
 
-            <article className="cs-article">{children}</article>
-          </div>
+          {/* the chapter dock: where you are, one press to the next chapter */}
+          <nav className={`cs-dock${docked ? " is-on" : ""}`} aria-label="Chapters">
+            <button className="cs-dock-btn" onClick={() => stepChapter(-1)} disabled={at === 0} aria-label="Previous chapter">
+              <PiArrowLeft size={16} aria-hidden />
+            </button>
+            <ol className="cs-dock-dots">
+              {sections.map((s, i) => (
+                <li key={s.id}>
+                  <a href={`#${s.id}`} className={i === at ? "is-on" : ""} aria-current={i === at ? "location" : undefined}
+                     onClick={e => { e.preventDefault(); setActive(s.id); goTo(s.id); }}>
+                    <span className="sr-only">{i + 1}. {s.label}</span>
+                  </a>
+                </li>
+              ))}
+            </ol>
+            <p className="cs-dock-label" aria-hidden><span>{String(at + 1).padStart(2, "0")}</span> {sections[at]?.label}</p>
+            <button className="cs-dock-btn" onClick={() => stepChapter(1)} disabled={at === sections.length - 1} aria-label="Next chapter">
+              <PiArrowRight size={16} aria-hidden />
+            </button>
+          </nav>
 
           {/* prev / next */}
-          <nav className="cs-pager" aria-label="More projects" data-reveal="1">
+          <nav className="cs-pager" aria-label="More projects">
             <ProjectLink p={prev} dir="prev" />
             <ProjectLink p={next} dir="next" />
           </nav>
           <div style={{ textAlign: "center", margin: "8px 0 24px" }}>
-            <Link to="/#projects" className="cs-btn cs-btn--ghost">Back to all work</Link>
+            <Link to="/#work" className="cs-btn cs-btn--ghost">Back to all work</Link>
           </div>
         </div>
 
         {lightbox && (
           <div className="cs-lightbox" role="dialog" aria-modal="true" aria-label={lightbox.alt}
                onClick={() => setLightbox(null)}>
-            <button className="cs-lightbox-close" aria-label="Close">✕</button>
+            <button className="cs-lightbox-close" aria-label="Close"><PiX size={18} /></button>
             <img src={lightbox.src} alt={lightbox.alt} onClick={e => e.stopPropagation()} />
           </div>
         )}
@@ -249,9 +267,15 @@ export default function CaseStudyLayout({
 function ProjectLink({ p, dir }: { p: Project; dir: "prev" | "next" }) {
   const inner = (
     <>
-      <span className="cs-pager-label">{dir === "prev" ? "← Previous" : "Next project →"}</span>
-      <span className="cs-pager-title">{p.title}</span>
-      <span className="cs-pager-tag">{p.status === "in-progress" ? "In progress · " : ""}{p.tag}{!p.caseStudy && p.link ? " · Behance ↗" : ""}</span>
+      <span className="cs-pager-title">
+        {dir === "prev" && <PiArrowLeft size={20} aria-hidden />}
+        <span className="sr-only">{dir === "prev" ? "Previous project: " : "Next project: "}</span>{p.title}
+        {dir === "next" && <PiArrowRight size={20} aria-hidden />}
+      </span>
+      <span className="cs-pager-tag">
+        {p.status === "in-progress" ? "In progress · " : ""}{p.tag}
+        {!p.caseStudy && p.link && <> · Behance <PiArrowUpRight size={12} aria-hidden /></>}
+      </span>
     </>
   );
   const cls = `cs-pager-item cs-pager-item--${dir}`;

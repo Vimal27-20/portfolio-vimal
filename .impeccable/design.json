@@ -1,0 +1,159 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-09T00:00:00Z",
+  "title": "Design System: Vimal Kumar Portfolio",
+  "extensions": {
+    "colorMeta": {
+      "live-red": { "role": "primary", "displayName": "Live Red", "canonical": "#d71921", "tonalRamp": ["#3d0709", "#640b0f", "#8c1015", "#b3121a", "#d71921", "#e5555b", "#f0999c", "#fadcdd"] },
+      "red-ink": { "role": "primary", "displayName": "Red Ink", "canonical": "#b3121a", "tonalRamp": ["#33050a", "#560a0f", "#7a0d13", "#b3121a", "#cf3a41", "#e07a7f", "#eeb3b6", "#f9e3e4"] },
+      "stage": { "role": "neutral", "displayName": "Stage Black", "canonical": "#000000", "tonalRamp": ["#000000", "#1d1d1d", "#333333", "#555555", "#8a8a8a", "#a8a8a8", "#dcdcdc", "#f2f2f2"] },
+      "floor": { "role": "neutral", "displayName": "Shop Floor", "canonical": "#f2f2f2", "tonalRamp": ["#262626", "#404040", "#5c5c5c", "#8a8a8a", "#c8c8c8", "#dcdcdc", "#e9e9e9", "#f2f2f2"] },
+      "white": { "role": "neutral", "displayName": "Product White", "canonical": "#ffffff", "tonalRamp": ["#262626", "#4d4d4d", "#737373", "#999999", "#bfbfbf", "#e2e2e2", "#f2f2f2", "#ffffff"] },
+      "pill-grey": { "role": "neutral", "displayName": "Pill Grey", "canonical": "#c8c8c8", "tonalRamp": ["#262626", "#404040", "#5c5c5c", "#8a8a8a", "#a8a8a8", "#c8c8c8", "#dcdcdc", "#f2f2f2"] },
+      "graphite": { "role": "neutral", "displayName": "Graphite", "canonical": "#1d1d1d", "tonalRamp": ["#0d0d0d", "#1d1d1d", "#333333", "#555555", "#8a8a8a", "#a8a8a8", "#dcdcdc", "#f2f2f2"] },
+      "ink": { "role": "neutral", "displayName": "Ink", "canonical": "#000000", "tonalRamp": ["#000000", "#2b2b2b", "#5c5c5c", "#8a8a8a", "#a8a8a8", "#c8c8c8", "#dcdcdc", "#f2f2f2"] },
+      "ink-2": { "role": "neutral", "displayName": "Ink 2", "canonical": "#2b2b2b", "tonalRamp": ["#141414", "#2b2b2b", "#404040", "#5c5c5c", "#8a8a8a", "#a8a8a8", "#dcdcdc", "#f2f2f2"] },
+      "ink-3": { "role": "neutral", "displayName": "Ink 3", "canonical": "#5c5c5c", "tonalRamp": ["#1d1d1d", "#333333", "#474747", "#5c5c5c", "#8a8a8a", "#a8a8a8", "#dcdcdc", "#f2f2f2"] },
+      "hair": { "role": "neutral", "displayName": "Hairline", "canonical": "#dcdcdc", "tonalRamp": ["#262626", "#404040", "#5c5c5c", "#8a8a8a", "#a8a8a8", "#c8c8c8", "#dcdcdc", "#f2f2f2"] },
+      "hover-grey": { "role": "neutral", "displayName": "Hover Grey", "canonical": "#e2e2e2", "tonalRamp": ["#262626", "#404040", "#5c5c5c", "#8a8a8a", "#a8a8a8", "#c8c8c8", "#e2e2e2", "#f2f2f2"] },
+      "on-stage": { "role": "neutral", "displayName": "On Stage", "canonical": "#ffffff", "tonalRamp": ["#262626", "#4d4d4d", "#737373", "#999999", "#bfbfbf", "#e2e2e2", "#f2f2f2", "#ffffff"] },
+      "on-stage-2": { "role": "neutral", "displayName": "On Stage 2", "canonical": "#a8a8a8", "tonalRamp": ["#1d1d1d", "#333333", "#555555", "#8a8a8a", "#a8a8a8", "#c8c8c8", "#dcdcdc", "#f2f2f2"] }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display Dots", "purpose": "Project name on the case-study stage. Doto with ROND 100, uppercase (Ndot stand-in)." },
+      "dot-menu": { "displayName": "Dot Menu", "purpose": "Full-screen menu and footer link list; the dot voice also sets the nav name, journey years, the clock and stat numerals." },
+      "headline": { "displayName": "Headline", "purpose": "The hero statement and the contact title. Newsreader at 450 (NType82 stand-in)." },
+      "section-title": { "displayName": "Section Title", "purpose": "Centred home section heads with a muted line below." },
+      "title": { "displayName": "Title", "purpose": "Card titles, widget statements, reader sub-heads and chapter headings, at 400." },
+      "body": { "displayName": "Body", "purpose": "Interface copy; 16px under 760px." },
+      "body-reading": { "displayName": "Body Reading", "purpose": "Case-study paragraphs, capped at 66ch; 17px on mobile." },
+      "label": { "displayName": "Label", "purpose": "Buttons, chips, text links and meta, uppercase." },
+      "label-sm": { "displayName": "Label Small", "purpose": "Card meta, fact terms, widget labels, crumbs, the dock, uppercase." }
+    },
+    "shadows": [
+      { "name": "dock-lift", "value": "0 10px 30px -10px rgba(0, 0, 0, .45)", "purpose": "The chapter dock only; the one shadow in the system." }
+    ],
+    "motion": [
+      { "name": "ease", "value": "cubic-bezier(.2, .7, 0, 1)", "purpose": "The single easing curve for every transition and keyframe." },
+      { "name": "state", "value": ".2s", "purpose": "Hover and pressed fills, colour and opacity changes." },
+      { "name": "sheet-in", "value": ".45s translateY(24px) + fade", "purpose": "Quick-view sheet opening; on mobile it rises from translateY(40%)." },
+      { "name": "menu-in", "value": ".35s fade", "purpose": "Full-screen menu opening." },
+      { "name": "step-fade", "value": ".35s fade", "purpose": "Quick-view project step, journey row opening, quote change (.4s)." },
+      { "name": "cover-morph", "value": ".5s view-transition (cover)", "purpose": "Quick-view image morphs into the case-study cover." },
+      { "name": "image-lift", "value": ".7s scale(1.04)", "purpose": "Product card image on hover or focus." },
+      { "name": "live-blink", "value": "1.4s steps(2, jump-none) infinite", "purpose": "The live red dot; stepped, never smooth." },
+      { "name": "display-step", "value": "90ms", "purpose": "Glyph-matrix scroll steps; the display steps, it does not glide." }
+    ],
+    "breakpoints": [
+      { "name": "mobile", "value": "760px" },
+      { "name": "reader", "value": "980px" },
+      { "name": "tablet", "value": "1080px" },
+      { "name": "container", "value": "1320px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Solid ink, mono caps, chevron that nudges on hover. The default action on light grounds.",
+      "html": "<a class=\"ds-btn\" href=\"#\">See the work <svg width=\"14\" height=\"14\" viewBox=\"0 0 256 256\" fill=\"currentColor\" aria-hidden=\"true\"><path d=\"M181.66 133.66l-80 80a8 8 0 0 1-11.32-11.32L164.69 128 90.34 53.66a8 8 0 0 1 11.32-11.32l80 80a8 8 0 0 1 0 11.32z\"/></svg></a>",
+      "css": ".ds-btn { display: inline-flex; align-items: center; gap: 10px; height: 42px; padding: 0 16px; border: 0; border-radius: 4px; background: #000; color: #fff; font: 500 13px/1 var(--mono, 'Geist Mono Variable', ui-monospace, monospace); letter-spacing: .04em; text-transform: uppercase; text-decoration: none; cursor: pointer; transition: background .2s cubic-bezier(.2,.7,0,1); } .ds-btn svg { transition: transform .25s cubic-bezier(.2,.7,0,1); } .ds-btn:hover { background: #2b2b2b; } .ds-btn:hover svg { transform: translateX(3px); } .ds-btn:focus-visible { outline: 2px solid #000; outline-offset: 3px; }"
+    },
+    {
+      "name": "White Button on Stage",
+      "kind": "button",
+      "refersTo": "button-white",
+      "description": "The button on black grounds: hero call to action, contact Copy.",
+      "html": "<div class=\"ds-stage\"><a class=\"ds-btn-white\" href=\"#\">See the work <svg width=\"14\" height=\"14\" viewBox=\"0 0 256 256\" fill=\"currentColor\" aria-hidden=\"true\"><path d=\"M181.66 133.66l-80 80a8 8 0 0 1-11.32-11.32L164.69 128 90.34 53.66a8 8 0 0 1 11.32-11.32l80 80a8 8 0 0 1 0 11.32z\"/></svg></a></div>",
+      "css": ".ds-stage { background: #000; padding: 32px; } .ds-btn-white { display: inline-flex; align-items: center; gap: 10px; height: 42px; padding: 0 16px; border-radius: 4px; background: #fff; color: #000; font: 500 13px/1 'Geist Mono Variable', ui-monospace, monospace; letter-spacing: .04em; text-transform: uppercase; text-decoration: none; transition: background .2s cubic-bezier(.2,.7,0,1); } .ds-btn-white:hover { background: #e2e2e2; } .ds-btn-white:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }"
+    },
+    {
+      "name": "Filter Chips",
+      "kind": "chip",
+      "refersTo": "filter-chip",
+      "description": "Work filters with counts; pressed is solid ink.",
+      "html": "<div class=\"ds-filters\"><button class=\"ds-filter\" aria-pressed=\"true\">All <span>7</span></button><button class=\"ds-filter\" aria-pressed=\"false\">Mobile <span>3</span></button><button class=\"ds-filter\" aria-pressed=\"false\">Web <span>2</span></button></div>",
+      "css": ".ds-filters { display: flex; gap: 6px; background: #f2f2f2; padding: 16px; } .ds-filter { display: inline-flex; align-items: center; gap: 8px; height: 36px; padding: 0 14px; border: 0; border-radius: 4px; background: #fff; color: #000; font: 500 13px/1 'Geist Mono Variable', ui-monospace, monospace; letter-spacing: .04em; text-transform: uppercase; cursor: pointer; transition: background .2s cubic-bezier(.2,.7,0,1), color .2s cubic-bezier(.2,.7,0,1); } .ds-filter span { color: #5c5c5c; } .ds-filter:hover { background: #e2e2e2; } .ds-filter[aria-pressed=\"true\"] { background: #000; color: #fff; } .ds-filter[aria-pressed=\"true\"] span { color: #a8a8a8; } .ds-filter:focus-visible { outline: 2px solid #000; outline-offset: 3px; }"
+    },
+    {
+      "name": "Nav Pill",
+      "kind": "nav",
+      "refersTo": "nav-pill",
+      "description": "Floating grey pill: menu, name in dots, résumé download.",
+      "html": "<nav class=\"ds-pill\"><button class=\"ds-pill-btn\" aria-label=\"Open menu\"><svg width=\"20\" height=\"20\" viewBox=\"0 0 256 256\" fill=\"currentColor\"><path d=\"M224 128a8 8 0 0 1-8 8H40a8 8 0 0 1 0-16h176a8 8 0 0 1 8 8zM40 72h176a8 8 0 0 0 0-16H40a8 8 0 0 0 0 16zm176 112H40a8 8 0 0 0 0 16h176a8 8 0 0 0 0-16z\"/></svg></button><a class=\"ds-pill-id\" href=\"#\">Vimal Kumar</a><a class=\"ds-pill-btn\" href=\"#\" aria-label=\"Download résumé\"><svg width=\"20\" height=\"20\" viewBox=\"0 0 256 256\" fill=\"currentColor\"><path d=\"M224 144v64a8 8 0 0 1-8 8H40a8 8 0 0 1-8-8v-64a8 8 0 0 1 16 0v56h160v-56a8 8 0 0 1 16 0zm-101.66 5.66a8 8 0 0 0 11.32 0l40-40a8 8 0 0 0-11.32-11.32L136 124.69V32a8 8 0 0 0-16 0v92.69L93.66 98.34a8 8 0 0 0-11.32 11.32z\"/></svg></a></nav>",
+      "css": ".ds-pill { display: flex; align-items: center; justify-content: space-between; width: min(576px, 100%); height: 48px; padding: 0 6px; border-radius: 6px; background: #c8c8c8; color: #000; } .ds-pill-btn { display: grid; place-items: center; width: 40px; height: 36px; border: 0; border-radius: 4px; background: none; color: inherit; cursor: pointer; transition: background .2s cubic-bezier(.2,.7,0,1); } .ds-pill-btn:hover { background: rgba(0,0,0,.08); } .ds-pill-btn:focus-visible, .ds-pill-id:focus-visible { outline: 2px solid #000; outline-offset: 3px; } .ds-pill-id { font: 700 21px/.95 'Doto Variable', 'Geist Mono Variable', monospace; font-variation-settings: 'ROND' 100; text-transform: uppercase; letter-spacing: .02em; color: inherit; text-decoration: none; }"
+    },
+    {
+      "name": "Product Card",
+      "kind": "card",
+      "refersTo": "product-card-image",
+      "description": "A project as a product: whole image on a white field, serif title, role, mono meta, quick-view link. Meta sits below the title.",
+      "html": "<button class=\"ds-card\"><span class=\"ds-card-img\"><span class=\"ds-card-shot\"></span></span><span class=\"ds-card-title\">VISE <span class=\"ds-live\"></span></span><span class=\"ds-card-role\">UX Engineer</span><span class=\"ds-card-meta\">Mobile · 2026</span><span class=\"ds-tlink\">Quick view +</span></button>",
+      "css": ".ds-card { display: flex; flex-direction: column; width: 320px; padding: 0; border: 0; background: none; text-align: left; cursor: pointer; color: #000; } .ds-card-img { display: block; aspect-ratio: 4/3; padding: 16px; border-radius: 16px; background: #fff; overflow: hidden; } .ds-card-shot { display: block; width: 100%; height: 100%; border-radius: 6px; background: #dcdcdc; transition: transform .7s cubic-bezier(.2,.7,0,1); } .ds-card:hover .ds-card-shot, .ds-card:focus-visible .ds-card-shot { transform: scale(1.04); } .ds-card:focus-visible { outline: 2px solid #000; outline-offset: 3px; border-radius: 4px; } .ds-card-title { margin-top: 16px; font: 400 24px/1.12 'Newsreader Variable', Georgia, serif; letter-spacing: -.015em; } .ds-live { display: inline-block; width: 8px; height: 8px; margin-left: 10px; border-radius: 50%; background: #d71921; vertical-align: middle; animation: ds-blink 1.4s steps(2, jump-none) infinite; } @keyframes ds-blink { 50% { opacity: .2; } } .ds-card-role { margin-top: 4px; font: 400 15px/1.55 'Geist Variable', system-ui, sans-serif; color: #5c5c5c; } .ds-card-meta { margin-top: 8px; font: 500 12px/1.2 'Geist Mono Variable', monospace; letter-spacing: .04em; text-transform: uppercase; color: #5c5c5c; } .ds-tlink { margin-top: 14px; font: 500 13px/1.2 'Geist Mono Variable', monospace; letter-spacing: .04em; text-transform: uppercase; text-decoration: underline; text-underline-offset: .3em; } .ds-card:hover .ds-tlink { text-decoration-thickness: 2px; }"
+    },
+    {
+      "name": "Widget Pair",
+      "kind": "custom",
+      "refersTo": "widget",
+      "description": "Home-screen widgets: white and black, 24px radius, mono label, dot-matrix clock.",
+      "html": "<div class=\"ds-widgets\"><div class=\"ds-wg\"><p class=\"ds-wg-time\">14:32</p><p class=\"ds-wg-note\">Local time in Dublin, where I work.</p></div><div class=\"ds-wg ds-wg--black\"><p class=\"ds-wg-label\">Now building</p><p class=\"ds-wg-big\"><span class=\"ds-live\"></span> VISE, V1 in testing.</p></div></div>",
+      "css": ".ds-widgets { display: grid; grid-template-columns: repeat(2, 240px); gap: 16px; background: #f2f2f2; padding: 16px; } .ds-wg { display: flex; flex-direction: column; min-height: 240px; padding: 22px; border-radius: 24px; background: #fff; color: #000; } .ds-wg--black { background: #000; color: #fff; } .ds-wg-label { font: 500 12px/1.2 'Geist Mono Variable', monospace; letter-spacing: .04em; text-transform: uppercase; color: #a8a8a8; } .ds-wg-time { font: 700 72px/.9 'Doto Variable', monospace; font-variation-settings: 'ROND' 100; } .ds-wg-note { margin-top: auto; font: 400 15px/1.55 'Geist Variable', sans-serif; color: #5c5c5c; } .ds-wg-big { margin-top: auto; font: 400 26px/1.15 'Newsreader Variable', Georgia, serif; letter-spacing: -.015em; } .ds-live { display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: #d71921; vertical-align: .2em; animation: ds-blink 1.4s steps(2, jump-none) infinite; } @keyframes ds-blink { 50% { opacity: .2; } }"
+    },
+    {
+      "name": "Contact Field",
+      "kind": "input",
+      "refersTo": "contact-field",
+      "description": "The address in a graphite field with a one-press Copy button, on the black contact block.",
+      "html": "<div class=\"ds-contact\"><div class=\"ds-field\"><a class=\"ds-field-value\" href=\"#\">vimal.v27k@gmail.com</a><button class=\"ds-field-btn\">Copy</button></div></div>",
+      "css": ".ds-contact { background: #000; padding: 32px; } .ds-field { display: flex; align-items: center; gap: 8px; width: min(560px, 100%); padding: 6px 6px 6px 18px; border-radius: 6px; background: #1d1d1d; color: #fff; } .ds-field-value { flex: 1; font: 400 17px/1.3 'Geist Mono Variable', monospace; color: inherit; text-decoration: none; } .ds-field-value:hover { text-decoration: underline; text-underline-offset: .25em; } .ds-field-btn { height: 40px; padding: 0 16px; border: 0; border-radius: 4px; background: #fff; color: #000; font: 500 13px/1 'Geist Mono Variable', monospace; letter-spacing: .04em; text-transform: uppercase; cursor: pointer; transition: background .2s cubic-bezier(.2,.7,0,1); } .ds-field-btn:hover { background: #e2e2e2; } .ds-field-value:focus-visible, .ds-field-btn:focus-visible { outline: 2px solid #fff; outline-offset: 3px; border-radius: 4px; }"
+    },
+    {
+      "name": "Chapter Dock",
+      "kind": "nav",
+      "refersTo": "chapter-dock",
+      "description": "The case-study reader's floating chapter control; carries the system's only shadow.",
+      "html": "<nav class=\"ds-dock\" aria-label=\"Chapters\"><button class=\"ds-dock-btn\" aria-label=\"Previous chapter\"><svg width=\"16\" height=\"16\" viewBox=\"0 0 256 256\" fill=\"currentColor\"><path d=\"M224 128a8 8 0 0 1-8 8H59.31l58.35 58.34a8 8 0 0 1-11.32 11.32l-72-72a8 8 0 0 1 0-11.32l72-72a8 8 0 0 1 11.32 11.32L59.31 120H216a8 8 0 0 1 8 8z\"/></svg></button><span class=\"ds-dock-dots\"><i></i><i class=\"is-on\"></i><i></i><i></i></span><span class=\"ds-dock-label\"><span>02</span> The problem</span><button class=\"ds-dock-btn\" aria-label=\"Next chapter\"><svg width=\"16\" height=\"16\" viewBox=\"0 0 256 256\" fill=\"currentColor\"><path d=\"M221.66 133.66l-72 72a8 8 0 0 1-11.32-11.32L196.69 136H40a8 8 0 0 1 0-16h156.69l-58.35-58.34a8 8 0 0 1 11.32-11.32l72 72a8 8 0 0 1 0 11.32z\"/></svg></button></nav>",
+      "css": ".ds-dock { display: inline-flex; align-items: center; gap: 12px; padding: 6px; border-radius: 8px; background: #000; color: #fff; box-shadow: 0 10px 30px -10px rgba(0,0,0,.45); } .ds-dock-btn { display: grid; place-items: center; width: 38px; height: 38px; border: 0; border-radius: 4px; background: #1d1d1d; color: #fff; cursor: pointer; transition: background .2s cubic-bezier(.2,.7,0,1); } .ds-dock-btn:hover { background: #333; } .ds-dock-btn:focus-visible { outline: 2px solid #fff; outline-offset: 3px; } .ds-dock-dots { display: flex; align-items: center; gap: 10px; } .ds-dock-dots i { width: 6px; height: 6px; border-radius: 50%; background: #555; } .ds-dock-dots i.is-on { height: 16px; border-radius: 3px; background: #fff; } .ds-dock-label { font: 500 12px/1 'Geist Mono Variable', monospace; letter-spacing: .04em; text-transform: uppercase; } .ds-dock-label span { color: #a8a8a8; margin-right: 6px; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Product Stage",
+    "overview": "The work is shown the way Nothing shows a phone: lit on a black stage, set down on light grey shop floors, held on white product surfaces you can pick up and inspect. Projects are products, not tiles in a portfolio grid. Each one is an image shown whole on a white field, opened into a quick-view sheet, then read chapter by chapter as a product page.\n\nThe voice has three registers that never trade places. A warm editorial serif (Newsreader, standing in for NType82) makes the statements. Geist Mono in small uppercase names, labels and buttons (\"SEE THE WORK >\"). Round dot-matrix type (Doto with ROND 100, standing in for Ndot) lights names, numerals and the big menu. Geist carries the reading. Colour is refused: everything is black, white and grey, and one red dot blinks only where something is live.\n\nMotion is quick and exact. Dots respond to the pointer, sheets slide up, the quick-view image morphs into the case-study cover, displays step rather than glide. Under reduced motion every animation collapses to its end state and the dot word is simply on.",
+    "keyCharacteristics": [
+      "Black stage (hero, contact, footer, menu, case-study header) alternating with light grey floor sections.",
+      "White product surfaces with soft radii: 16px cards, 24px widgets, 20px sheets; 4px square-shouldered controls.",
+      "Serif statements, mono uppercase labels, dot-matrix names and numerals.",
+      "A sparse stage dot grid with a dense lit word in it.",
+      "One red light, for live things only.",
+      "Flat: no shadows anywhere except the chapter dock's lift; no glass."
+    ],
+    "rules": [
+      { "name": "The One Red Light Rule", "body": "Red appears only as the live indicator and its ink. Never as an accent, link, hover, border, focus ring or decoration. If nothing is live, the screen has no red.", "section": "colors" },
+      { "name": "The Achromatic Rule", "body": "Interface colour is black, white and grey. Colour enters only through project screenshots and the VK logo, which is an existing identity asset and is exempt.", "section": "colors" },
+      { "name": "The Three Voices Rule", "body": "Serif for statements, mono uppercase for labels, buttons and data, dots for names and numerals. A role never borrows another voice.", "section": "typography" },
+      { "name": "The Meta Below Rule", "body": "Nothing sits above a heading. Category, year, role and counts go below the title in mono; a section opens straight on its heading.", "section": "typography" },
+      { "name": "The One Lift Rule", "body": "No shadows except the dock's lift. Cards, widgets, sheets, figures and buttons sit flat on their ground.", "section": "elevation" },
+      { "name": "The No Glass Rule", "body": "No backdrop blur, frosted panels or translucent surfaces. Surfaces are opaque.", "section": "elevation" }
+    ],
+    "dos": [
+      "Do keep red to the live indicator and its ink (#d71921 dot, #b3121a text).",
+      "Do set every label, button, chip, count and data point in Geist Mono uppercase at 12 to 13px with 0.04em tracking.",
+      "Do put meta (category, year, role, status) below the title it describes.",
+      "Do show project images whole, contained on white fields with padding.",
+      "Do keep the stage grid sparse and the lit word dense.",
+      "Do build dialogs (menu, quick view) on native <dialog> with a black scrim and Escape to dismiss.",
+      "Do turn the focus ring white on black grounds and keep it ink everywhere else.",
+      "Do honour reduced motion: end states only, the dot word simply on, the glyph display holding still."
+    ],
+    "donts": [
+      "Don't put an eyebrow, kicker or label above a heading.",
+      "Don't use glass, backdrop blur or translucent panels.",
+      "Don't add shadows; the dock's lift is the only one.",
+      "Don't introduce interface colour, gradients or a second accent.",
+      "Don't crop project screenshots with object-fit: cover or tight frames.",
+      "Don't set display text in a system face; the dots are Doto with ROND 100, statements are Newsreader.",
+      "Don't lay the work out as a card grid; it is a row of products."
+    ]
+  }
+}

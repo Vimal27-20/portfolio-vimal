@@ -1,3 +1,4 @@
+import { PiArrowUpRight } from "react-icons/pi";
 import { projects } from "../../data/projects";
 import CaseStudyLayout, { Figure, Section, type CsSection } from "./layout";
 
@@ -48,7 +49,6 @@ export default function MindfulMomentsCaseStudy() {
 
   const header = (
     <header className="cs-header">
-      <span className="cs-pill">{project.tag}</span>
       <h1 className="cs-title">
         Remembering what matters
         <span className="cs-title-sub">The last 10 seconds of a ride, <em>redesigned.</em></span>
@@ -60,7 +60,7 @@ export default function MindfulMomentsCaseStudy() {
         <div><dt>Tools</dt><dd>Figma</dd></div>
       </dl>
       <div className="cs-actions">
-        <a href={FIGMA_URL} target="_blank" rel="noopener noreferrer" className="cs-btn">Open prototype in Figma ↗</a>
+        <a href={FIGMA_URL} target="_blank" rel="noopener noreferrer" className="cs-btn">Open prototype in Figma <PiArrowUpRight size={17} aria-hidden /></a>
       </div>
       <Figure src={`${IMG}/cover.webp`} alt="Mindful ride closure screens" className="cs-cover" />
       <p className="cs-disclaimer">Independent concept. Not affiliated with Uber or any ride-hailing company.</p>
@@ -68,7 +68,7 @@ export default function MindfulMomentsCaseStudy() {
   );
 
   return (
-    <CaseStudyLayout project={project} name="Remembering what matters" sections={SECTIONS} header={header} accent="#16a34a">
+    <CaseStudyLayout project={project} name="Remembering what matters" sections={SECTIONS} header={header}>
 
       <Section id="moment" index={1} label="The moment" title={<>A few taps to get there. <em>One second</em> to forget.</>}>
         <ol className="cs-beats">
