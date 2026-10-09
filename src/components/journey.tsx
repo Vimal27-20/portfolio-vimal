@@ -1,5 +1,5 @@
-/* The career as one route: work stops are filled, study stops are open
-   rings, the current stop is marked Now. Oldest at the start of the line. */
+/* The career along a dotted track: each stop opens on its start year in dots;
+   the current stop is the black widget with the red light. Oldest first. */
 
 const STOPS = [
   { role: "BSc Computer Science",    date: "2017 – 2021",        place: "SRM Institute of Technology, India",       type: "edu",  note: "Built the logic foundation that drives every design decision." },
@@ -12,15 +12,18 @@ const STOPS = [
 export default function Journey() {
   return (
     <section id="journey" className="sec" aria-labelledby="journey-title">
-      <h2 id="journey-title" className="sec-title">The journey <small>From computer science to UX engineering.</small></h2>
+      <div className="sec-head">
+        <h2 id="journey-title" className="sec-title">The journey</h2>
+        <p>From computer science to UX engineering.</p>
+      </div>
 
       <ol className="route">
         {STOPS.map(s => {
           const now = s.date.includes("Present");
           return (
-            <li key={s.role} className={`route-stop is-${s.type}${now ? " is-now" : ""}`}>
-              <span className="route-dot" aria-hidden />
-              <p className="route-date">{now ? <><span className="route-nowtag">Now</span> {s.date}</> : s.date}</p>
+            <li key={s.role} className={`route-stop${now ? " w w--black is-now" : " w"}`}>
+              <p className="route-year dot" aria-hidden>{s.date.match(/\d{4}/)?.[0]}</p>
+              <p className="route-date data">{now ? <span className="live">{s.date}</span> : s.date} <span className="route-type">{s.type === "edu" ? "Study" : "Work"}</span></p>
               <h3 className="route-role">{s.role}</h3>
               <p className="route-place">{s.place}</p>
               <p className="route-note">{s.note}</p>
@@ -28,10 +31,6 @@ export default function Journey() {
           );
         })}
       </ol>
-      <p className="route-key">
-        <span><i className="k-work" aria-hidden /> Work</span>
-        <span><i className="k-edu" aria-hidden /> Study</span>
-      </p>
     </section>
   );
 }

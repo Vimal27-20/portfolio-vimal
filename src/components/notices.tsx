@@ -8,10 +8,10 @@ const NOTES = [
 export default function Notices() {
   return (
     <section id="notices" className="sec" aria-labelledby="notices-title">
-      <h2 id="notices-title" className="sec-title">What clients say</h2>
+      <div className="sec-head"><h2 id="notices-title" className="sec-title">What clients say</h2></div>
       <ul className="notices">
         {NOTES.map(n => (
-          <li key={n.where} className="notice">
+          <li key={n.where} className="w notice">
             <blockquote>
               <p>“{n.text}”</p>
             </blockquote>

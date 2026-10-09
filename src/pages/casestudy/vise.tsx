@@ -64,7 +64,7 @@ export default function ViseCaseStudy() {
         <div><dt>Role</dt><dd>{project.role}</dd></div>
         <div><dt>Team</dt><dd>Me + a friend</dd></div>
         <div><dt>Stack</dt><dd>React Native · Expo · Rust</dd></div>
-        <div><dt>Status</dt><dd>V1 · Android testing</dd></div>
+        <div><dt>Status</dt><dd className="live">V1 · Android testing</dd></div>
       </dl>
       <div className="cs-actions">
         <a href={REPO} target="_blank" rel="noopener noreferrer" className="cs-btn">View the code on GitHub <PiArrowUpRight size={17} aria-hidden /></a>

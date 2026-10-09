@@ -1,505 +1,153 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-10-09T12:14:19.222Z",
+  "generatedAt": "2026-10-09T00:00:00Z",
   "title": "Design System: Vimal Kumar Portfolio",
   "extensions": {
     "colorMeta": {
-      "enterprise-blue": {
-        "role": "secondary",
-        "displayName": "Enterprise Blue",
-        "canonical": "#0a5fb4",
-        "oklch": "oklch(49.0% 0.153 254.5)",
-        "tonalRamp": [
-          "#000049",
-          "#00196b",
-          "#003b8d",
-          "#045cb1",
-          "#327ed5",
-          "#56a0fb",
-          "#94c8ff",
-          "#d7f1ff"
-        ]
-      },
-      "mobile-red": {
-        "role": "secondary",
-        "displayName": "Mobile Red",
-        "canonical": "#c8241c",
-        "oklch": "oklch(53.8% 0.199 28.8)",
-        "tonalRamp": [
-          "#3f0000",
-          "#660000",
-          "#8c0000",
-          "#b30000",
-          "#db3a2e",
-          "#ff6151",
-          "#ff9f8f",
-          "#ffded4"
-        ]
-      },
-      "web-green": {
-        "role": "secondary",
-        "displayName": "Web Green",
-        "canonical": "#0d7d48",
-        "oklch": "oklch(52.0% 0.124 155.2)",
-        "tonalRamp": [
-          "#001600",
-          "#003302",
-          "#00511f",
-          "#00713d",
-          "#2f925c",
-          "#56b57c",
-          "#96d5ac",
-          "#d9f8e2"
-        ]
-      },
-      "iot-amber": {
-        "role": "secondary",
-        "displayName": "IoT Amber",
-        "canonical": "#e39a00",
-        "oklch": "oklch(74.0% 0.156 75.1)",
-        "tonalRamp": [
-          "#2a0000",
-          "#4b0500",
-          "#6c2a00",
-          "#8e4b00",
-          "#b16c00",
-          "#d68d00",
-          "#eeba70",
-          "#ffeac7"
-        ]
-      },
-      "now-amber": {
-        "role": "tertiary",
-        "displayName": "Now Amber",
-        "canonical": "#f2b705",
-        "oklch": "oklch(81.1% 0.166 85.0)",
-        "tonalRamp": [
-          "#260000",
-          "#461000",
-          "#663000",
-          "#875000",
-          "#aa7100",
-          "#cd9300",
-          "#e7be67",
-          "#ffecc3"
-        ]
-      },
-      "now-amber-hover": {
-        "role": "tertiary",
-        "displayName": "Now Amber, Hover",
-        "canonical": "#ffc81f",
-        "oklch": "oklch(85.8% 0.170 87.7)",
-        "tonalRamp": [
-          "#250000",
-          "#451200",
-          "#643200",
-          "#855200",
-          "#a77300",
-          "#cb9500",
-          "#e5bf63",
-          "#ffedc2"
-        ]
-      },
-      "sign-black": {
-        "role": "primary",
-        "displayName": "Sign Black",
-        "canonical": "#121417",
-        "oklch": "oklch(19.0% 0.007 258.4)",
-        "tonalRamp": [
-          "#090b0e",
-          "#222427",
-          "#3d4043",
-          "#5b5e62",
-          "#7b7d81",
-          "#9c9fa3",
-          "#c2c4c7",
-          "#edeef0"
-        ]
-      },
-      "sign-black-hover": {
-        "role": "primary",
-        "displayName": "Sign Black, Hover",
-        "canonical": "#2a2f35",
-        "oklch": "oklch(30.3% 0.013 253.0)",
-        "tonalRamp": [
-          "#070c11",
-          "#20242a",
-          "#3b4047",
-          "#595e65",
-          "#787e85",
-          "#999fa6",
-          "#c0c5ca",
-          "#eceff1"
-        ]
-      },
-      "board-row-active": {
-        "role": "neutral",
-        "displayName": "Board Row Active",
-        "canonical": "#1e2227",
-        "oklch": "oklch(25.0% 0.011 254.0)",
-        "tonalRamp": [
-          "#080b10",
-          "#202429",
-          "#3c4046",
-          "#595e64",
-          "#797e84",
-          "#9a9fa5",
-          "#c1c4c9",
-          "#edeff1"
-        ]
-      },
-      "board-rule": {
-        "role": "neutral",
-        "displayName": "Board Rule",
-        "canonical": "#2c3137",
-        "oklch": "oklch(31.1% 0.013 253.0)",
-        "tonalRamp": [
-          "#080c11",
-          "#20242a",
-          "#3b4047",
-          "#595e65",
-          "#787e85",
-          "#999fa6",
-          "#c0c5ca",
-          "#eceff1"
-        ]
-      },
-      "board-label": {
-        "role": "neutral",
-        "displayName": "Board Label",
-        "canonical": "#9aa3ab",
-        "oklch": "oklch(71.1% 0.016 244.8)",
-        "tonalRamp": [
-          "#060c11",
-          "#1e252b",
-          "#394148",
-          "#575f66",
-          "#767e86",
-          "#97a0a8",
-          "#bec5cb",
-          "#ebeff2"
-        ]
-      },
-      "on-sign-muted": {
-        "role": "neutral",
-        "displayName": "On-Sign Muted",
-        "canonical": "#c9cdc8",
-        "oklch": "oklch(84.4% 0.008 139.4)",
-        "tonalRamp": [
-          "#090c09",
-          "#222521",
-          "#3e413d",
-          "#5b5f5a",
-          "#7b7e7a",
-          "#9ca09b",
-          "#c2c5c1",
-          "#edefed"
-        ]
-      },
-      "station-ground": {
-        "role": "neutral",
-        "displayName": "Station Ground",
-        "canonical": "#eceeea",
-        "oklch": "oklch(94.7% 0.006 128.5)",
-        "tonalRamp": [
-          "#0a0c09",
-          "#232522",
-          "#3f403d",
-          "#5d5e5b",
-          "#7c7e7a",
-          "#9d9f9b",
-          "#c3c4c2",
-          "#eeefed"
-        ]
-      },
-      "enamel-panel": {
-        "role": "neutral",
-        "displayName": "Enamel Panel",
-        "canonical": "#fbfbf9",
-        "oklch": "oklch(98.8% 0.003 106.4)",
-        "tonalRamp": [
-          "#0b0b0a",
-          "#242423",
-          "#40403e",
-          "#5e5e5c",
-          "#7d7d7b",
-          "#9e9e9d",
-          "#c4c4c3",
-          "#eeeeee"
-        ]
-      },
-      "ink-secondary": {
-        "role": "neutral",
-        "displayName": "Ink Secondary",
-        "canonical": "#3b4046",
-        "oklch": "oklch(36.9% 0.012 253.0)",
-        "tonalRamp": [
-          "#080c10",
-          "#20242a",
-          "#3b4046",
-          "#595e65",
-          "#787e85",
-          "#999fa6",
-          "#c0c4ca",
-          "#eceff1"
-        ]
-      },
-      "ink-tertiary": {
-        "role": "neutral",
-        "displayName": "Ink Tertiary",
-        "canonical": "#5f666d",
-        "oklch": "oklch(50.7% 0.014 248.1)",
-        "tonalRamp": [
-          "#070c11",
-          "#1f252b",
-          "#3a4147",
-          "#585e65",
-          "#777e85",
-          "#989fa7",
-          "#bfc5ca",
-          "#eceff2"
-        ]
-      },
-      "hairline": {
-        "role": "neutral",
-        "displayName": "Hairline",
-        "canonical": "#c9cdc8",
-        "oklch": "oklch(84.4% 0.008 139.4)",
-        "tonalRamp": [
-          "#090c09",
-          "#222521",
-          "#3e413d",
-          "#5b5f5a",
-          "#7b7e7a",
-          "#9ca09b",
-          "#c2c5c1",
-          "#edefed"
-        ]
-      }
+      "nothing-red": { "role": "primary", "displayName": "Nothing Red", "canonical": "#d71921", "tonalRamp": ["#3d0709", "#640b0f", "#8c1015", "#b3121a", "#d71921", "#e5555b", "#f0999c", "#fadcdd"] },
+      "red-ink": { "role": "primary", "displayName": "Red Ink", "canonical": "#b3121a", "tonalRamp": ["#33050a", "#560a0f", "#7a0d13", "#b3121a", "#cf3a41", "#e07a7f", "#eeb3b6", "#f9e3e4"] },
+      "paper": { "role": "neutral", "displayName": "Paper", "canonical": "#ebebe9", "tonalRamp": ["#262625", "#40403f", "#5c5c5b", "#8a8a88", "#b3b3b1", "#d6d6d3", "#ebebe9", "#f7f7f6"] },
+      "widget-white": { "role": "neutral", "displayName": "Widget White", "canonical": "#ffffff", "tonalRamp": ["#262626", "#404040", "#5c5c5c", "#8a8a8a", "#b3b3b3", "#d9d9d9", "#f2f2f2", "#ffffff"] },
+      "widget-black": { "role": "neutral", "displayName": "Widget Black", "canonical": "#000000", "tonalRamp": ["#000000", "#1a1a1a", "#2b2b2b", "#333333", "#555555", "#8a8a8a", "#c9c9c9", "#e6e6e6"] },
+      "ink": { "role": "neutral", "displayName": "Ink", "canonical": "#000000", "tonalRamp": ["#000000", "#1a1a1a", "#2b2b2b", "#404040", "#5c5c5c", "#8a8a8a", "#b3b3b3", "#e6e6e6"] },
+      "ink-2": { "role": "neutral", "displayName": "Ink 2", "canonical": "#2b2b2b", "tonalRamp": ["#0d0d0d", "#1a1a1a", "#2b2b2b", "#404040", "#5c5c5c", "#8a8a8a", "#b3b3b3", "#e6e6e6"] },
+      "ink-3": { "role": "neutral", "displayName": "Ink 3", "canonical": "#5c5c5c", "tonalRamp": ["#1a1a1a", "#2b2b2b", "#404040", "#5c5c5c", "#757575", "#8a8a8a", "#b3b3b3", "#e6e6e6"] },
+      "dim": { "role": "neutral", "displayName": "Dim", "canonical": "#8a8a8a", "tonalRamp": ["#262626", "#404040", "#5c5c5c", "#757575", "#8a8a8a", "#a3a3a3", "#c4c4c4", "#e6e6e6"] },
+      "hair": { "role": "neutral", "displayName": "Hair", "canonical": "#d6d6d3", "tonalRamp": ["#2b2b2a", "#474746", "#666665", "#8a8a88", "#b3b3b0", "#d6d6d3", "#e6e6e4", "#f5f5f4"] },
+      "on-black-muted": { "role": "neutral", "displayName": "On-Black Muted", "canonical": "#c9c9c9", "tonalRamp": ["#262626", "#404040", "#5c5c5c", "#8a8a8a", "#b0b0b0", "#c9c9c9", "#e0e0e0", "#f5f5f5"] }
     },
     "typographyMeta": {
-      "display": {
-        "displayName": "Display",
-        "purpose": "Terminus title only."
-      },
-      "headline": {
-        "displayName": "Headline",
-        "purpose": "Section titles on a full-width 6px ink rule."
-      },
-      "title": {
-        "displayName": "Title",
-        "purpose": "Platform-sign project name; journey roles and timetable rows sit just below."
-      },
-      "body": {
-        "displayName": "Body",
-        "purpose": "All running text in Atkinson Hyperlegible; 16px under 760px."
-      },
-      "label": {
-        "displayName": "Label",
-        "purpose": "Uppercase column heads on the departure board and platform-sign fact labels. Never above a heading."
-      },
-      "wayfinding": {
-        "displayName": "Wayfinding",
-        "purpose": "Nav, buttons, badges, station codes, board names, filter keys; tabular figures."
-      }
+      "display": { "displayName": "Display (dot matrix)", "purpose": "Short display words and figures only: hero word, case-study title, contact title, project name, clock, journey years, fact figures. Doto with ROND 100, uppercase." },
+      "headline": { "displayName": "Headline", "purpose": "Section titles; case-study section headings at clamp(34px, 4.4vw, 60px)." },
+      "title": { "displayName": "Title", "purpose": "Tile titles, journey roles, the hero second line." },
+      "body": { "displayName": "Body", "purpose": "Page text; 16px under 760px." },
+      "body-read": { "displayName": "Reading", "purpose": "Case-study reading column, 66ch." },
+      "label": { "displayName": "Data label", "purpose": "Dates, years, counts and codes only. Uppercase." }
     },
-    "shadows": [
-      {
-        "name": "figure-lift",
-        "value": "0 10px 28px rgba(18, 20, 23, .10), 0 0 0 1px var(--rule)",
-        "purpose": "Case-study screenshots and scroll frames only."
-      },
-      {
-        "name": "pager-hover",
-        "value": "0 12px 28px rgba(18, 20, 23, .10)",
-        "purpose": "Case-study next/previous cards on hover only."
-      }
-    ],
+    "shadows": [],
     "motion": [
-      {
-        "name": "ease-step",
-        "value": "cubic-bezier(.34, 1.56, .64, 1)",
-        "purpose": "Snap, overshoot, settle: platform-sign change (.5s), you-are-here marker (.6s), button icon nudge (.3s), press (.25s)."
-      },
-      {
-        "name": "ease-out",
-        "value": "cubic-bezier(.16, 1, .3, 1)",
-        "purpose": "Colour and opacity transitions (.2s; line dimming .3s)."
-      },
-      {
-        "name": "reduced-motion",
-        "value": "prefers-reduced-motion: reduce; durations .01ms, smooth scroll off",
-        "purpose": "All motion collapses to instant."
-      }
+      { "name": "step", "value": "steps(6, end)", "purpose": "Digital motion: widgets switch on, the live light blinks. Dots switch, they don't glide." },
+      { "name": "ease", "value": "cubic-bezier(.2, .7, 0, 1)", "purpose": "Colour and background transitions on controls (0.2s) and the tile image scale (0.6s)." },
+      { "name": "blink", "value": "1.4s steps(6, end) infinite, to 25% opacity at 50%", "purpose": "The live light." },
+      { "name": "power", "value": "0.5s steps(6, end), from opacity 0; staggered 0.12s / 0.24s / 0.32s", "purpose": "The one authored entrance: home-screen widgets switch on." },
+      { "name": "glyph-tick", "value": "90ms per column", "purpose": "Glyph Matrix scroll; holds still on VK under reduced motion." }
     ],
     "breakpoints": [
-      {
-        "name": "stack",
-        "value": "1000px"
-      },
-      {
-        "name": "mobile",
-        "value": "760px"
-      },
-      {
-        "name": "narrow",
-        "value": "460px"
-      }
-    ],
-    "strokes": [
-      {
-        "name": "stroke",
-        "value": "6px",
-        "purpose": "The one line weight for every route mark; 4px under 760px."
-      },
-      {
-        "name": "hairline",
-        "value": "1px",
-        "purpose": "Content dividers and resting borders; never a route."
-      },
-      {
-        "name": "focus",
-        "value": "3px solid var(--line-enterprise), offset 3px",
-        "purpose": "Focus ring."
-      }
+      { "name": "phone", "value": "760px" },
+      { "name": "case-study-stack", "value": "980px" },
+      { "name": "tablet", "value": "1080px" },
+      { "name": "container", "value": "1320px" }
     ]
   },
   "components": [
     {
-      "name": "Sign Button",
+      "name": "Primary Button",
       "kind": "button",
-      "refersTo": "button-sign",
-      "description": "Primary action in the sign vocabulary: black enamel, white Barlow lettering, Phosphor arrow that nudges on hover.",
-      "html": "<a class=\"ds-btn\" href=\"#\">Read case study <svg width=\"18\" height=\"18\" viewBox=\"0 0 256 256\" fill=\"currentColor\" aria-hidden=\"true\"><path d=\"M221.66 133.66l-72 72a8 8 0 0 1-11.32-11.32L196.69 136H40a8 8 0 0 1 0-16h156.69l-58.35-58.34a8 8 0 0 1 11.32-11.32l72 72a8 8 0 0 1 0 11.32Z\"/></svg></a>",
-      "css": ".ds-btn{display:inline-flex;align-items:center;gap:10px;height:48px;padding:0 20px;border-radius:var(--r-sign,6px);font-family:var(--display,\"Barlow Semi Condensed\",\"Arial Narrow\",sans-serif);font-weight:700;font-size:17px;line-height:1;letter-spacing:.01em;white-space:nowrap;text-decoration:none;cursor:pointer;transition:background .2s cubic-bezier(.16,1,.3,1),color .2s cubic-bezier(.16,1,.3,1),transform .25s cubic-bezier(.34,1.56,.64,1);border:2px solid var(--ink,#121417);background:var(--ink,#121417);color:#fff}.ds-btn svg{transition:transform .3s cubic-bezier(.34,1.56,.64,1)}.ds-btn:hover{background:#2a2f35;border-color:#2a2f35}.ds-btn:hover svg{transform:translateX(3px)}.ds-btn:active{transform:translateY(1px)}.ds-btn:focus-visible{outline:3px solid var(--line-enterprise,#0a5fb4);outline-offset:3px}"
+      "refersTo": "button-primary",
+      "description": "Black pill for the main action; lightens to ink-2 on hover.",
+      "html": "<a class=\"ds-btn\" href=\"#\">See the work <svg width=\"18\" height=\"18\" viewBox=\"0 0 256 256\" fill=\"currentColor\" aria-hidden=\"true\"><path d=\"M205.66,149.66l-72,72a8,8,0,0,1-11.32,0l-72-72a8,8,0,0,1,11.32-11.32L120,196.69V40a8,8,0,0,1,16,0V196.69l58.34-58.35a8,8,0,0,1,11.32,11.32Z\"/></svg></a>",
+      "css": ".ds-btn { display: inline-flex; align-items: center; gap: 10px; height: 48px; padding: 0 22px; border-radius: 999px; border: 0; background: #000; color: #fff; font: 500 16px/1 var(--text-face, 'Space Grotesk Variable', system-ui, sans-serif); text-decoration: none; cursor: pointer; transition: background .2s cubic-bezier(.2,.7,0,1); } .ds-btn:hover { background: #2b2b2b; } .ds-btn:focus-visible { outline: 2px solid #d71921; outline-offset: 3px; }"
     },
     {
-      "name": "Now Button",
+      "name": "Outline Button",
       "kind": "button",
-      "refersTo": "button-now",
-      "description": "The single primary action in a context (résumé, copy email): Now Amber fill, black text.",
-      "html": "<a class=\"ds-btn-now\" href=\"#\"><svg width=\"18\" height=\"18\" viewBox=\"0 0 256 256\" fill=\"currentColor\" aria-hidden=\"true\"><path d=\"M224 144v64a16 16 0 0 1-16 16H48a16 16 0 0 1-16-16v-64a8 8 0 0 1 16 0v64h160v-64a8 8 0 0 1 16 0Zm-101.66 5.66a8 8 0 0 0 11.32 0l40-40a8 8 0 0 0-11.32-11.32L136 124.69V32a8 8 0 0 0-16 0v92.69L93.66 98.34a8 8 0 0 0-11.32 11.32Z\"/></svg> Résumé</a>",
-      "css": ".ds-btn-now{display:inline-flex;align-items:center;gap:10px;height:48px;padding:0 20px;border-radius:var(--r-sign,6px);font-family:var(--display,\"Barlow Semi Condensed\",\"Arial Narrow\",sans-serif);font-weight:700;font-size:17px;line-height:1;letter-spacing:.01em;white-space:nowrap;text-decoration:none;cursor:pointer;transition:background .2s cubic-bezier(.16,1,.3,1),color .2s cubic-bezier(.16,1,.3,1),transform .25s cubic-bezier(.34,1.56,.64,1);border:2px solid var(--now,#f2b705);background:var(--now,#f2b705);color:var(--ink,#121417)}.ds-btn-now:hover{background:#ffc81f;border-color:#ffc81f}.ds-btn-now:active{transform:translateY(1px)}.ds-btn-now:focus-visible{outline:3px solid var(--line-enterprise,#0a5fb4);outline-offset:3px}"
+      "refersTo": "button-line",
+      "description": "Secondary action: a 1.5px inset black stroke that fills black on hover.",
+      "html": "<a class=\"ds-btn-line\" href=\"#\">Email me</a>",
+      "css": ".ds-btn-line { display: inline-flex; align-items: center; gap: 10px; height: 48px; padding: 0 22px; border-radius: 999px; background: transparent; color: #000; box-shadow: inset 0 0 0 1.5px #000; font: 500 16px/1 var(--text-face, 'Space Grotesk Variable', system-ui, sans-serif); text-decoration: none; transition: background .2s cubic-bezier(.2,.7,0,1), color .2s cubic-bezier(.2,.7,0,1); } .ds-btn-line:hover { background: #000; color: #fff; } .ds-btn-line:focus-visible { outline: 2px solid #d71921; outline-offset: 3px; }"
     },
     {
-      "name": "Ghost Button",
-      "kind": "button",
-      "refersTo": "button-ghost",
-      "description": "Secondary action on the pale ground; fills black on hover.",
-      "html": "<a class=\"ds-btn-ghost\" href=\"#\">View on Behance</a>",
-      "css": ".ds-btn-ghost{display:inline-flex;align-items:center;gap:10px;height:48px;padding:0 20px;border-radius:var(--r-sign,6px);font-family:var(--display,\"Barlow Semi Condensed\",\"Arial Narrow\",sans-serif);font-weight:700;font-size:17px;line-height:1;letter-spacing:.01em;white-space:nowrap;text-decoration:none;cursor:pointer;transition:background .2s cubic-bezier(.16,1,.3,1),color .2s cubic-bezier(.16,1,.3,1),transform .25s cubic-bezier(.34,1.56,.64,1);border:2px solid var(--ink,#121417);background:transparent;color:var(--ink,#121417)}.ds-btn-ghost:hover{background:var(--ink,#121417);color:#fff}.ds-btn-ghost:focus-visible{outline:3px solid var(--line-enterprise,#0a5fb4);outline-offset:3px}"
-    },
-    {
-      "name": "Route Badges",
+      "name": "Filter Chips",
       "kind": "chip",
-      "refersTo": "route-badge",
-      "description": "Line-colour badges carrying a station code; the IoT line takes black text.",
-      "html": "<div class=\"ds-badges\"><span class=\"ds-badge\" style=\"--b:#0a5fb4\">E1</span><span class=\"ds-badge\" style=\"--b:#c8241c\">M1</span><span class=\"ds-badge\" style=\"--b:#0d7d48\">W2</span><span class=\"ds-badge ds-badge-iot\" style=\"--b:#e39a00\">I1</span></div>",
-      "css": ".ds-badges{display:flex;gap:8px}.ds-badge{display:inline-flex;align-items:center;justify-content:center;min-width:34px;height:26px;padding:0 8px;border-radius:var(--r-badge,4px);font-family:var(--display,\"Barlow Semi Condensed\",\"Arial Narrow\",sans-serif);font-weight:700;font-size:14px;line-height:1;letter-spacing:.02em;font-variant-numeric:tabular-nums;color:#fff;background:var(--b,#121417)}.ds-badge-iot{color:var(--ink,#121417)}"
+      "refersTo": "filter-chip",
+      "description": "White pills with a mono count; the selected chip is black.",
+      "html": "<div class=\"ds-filters\"><button class=\"ds-filter\" aria-pressed=\"true\">All <span>6</span></button><button class=\"ds-filter\" aria-pressed=\"false\">Mobile <span>2</span></button><button class=\"ds-filter\" aria-pressed=\"false\">Web <span>2</span></button></div>",
+      "css": ".ds-filters { display: flex; flex-wrap: wrap; gap: 8px; padding: 16px; background: #ebebe9; } .ds-filter { display: inline-flex; align-items: center; gap: 10px; height: 42px; padding: 0 18px; border: 0; border-radius: 999px; background: #fff; color: #000; font: 500 15px/1 var(--text-face, 'Space Grotesk Variable', system-ui, sans-serif); cursor: pointer; transition: background .2s cubic-bezier(.2,.7,0,1), color .2s cubic-bezier(.2,.7,0,1); } .ds-filter span { font: 12px/1 var(--mono, 'Space Mono', monospace); letter-spacing: .06em; color: #5c5c5c; } .ds-filter:hover { background: #dcdcd9; } .ds-filter[aria-pressed=\"true\"] { background: #000; color: #fff; } .ds-filter[aria-pressed=\"true\"] span { color: #c9c9c9; } .ds-filter:focus-visible { outline: 2px solid #d71921; outline-offset: 3px; }"
     },
     {
-      "name": "Line Key Filter",
-      "kind": "chip",
-      "refersTo": "line-key-filter",
-      "description": "The map legend doubles as filters; the pressed state is a black sign.",
-      "html": "<div class=\"ds-keys\"><button class=\"ds-key\" aria-pressed=\"true\"><i style=\"background:#c8241c\"></i>Mobile <span>3</span></button><button class=\"ds-key\" aria-pressed=\"false\"><i style=\"background:#0d7d48\"></i>Web <span>2</span></button></div>",
-      "css": ".ds-keys{display:flex;gap:8px;flex-wrap:wrap}.ds-key{display:inline-flex;align-items:center;gap:9px;height:38px;padding:0 12px;border:1.5px solid var(--rule,#c9cdc8);border-radius:var(--r-badge,4px);background:transparent;cursor:pointer;font-family:var(--display,\"Barlow Semi Condensed\",\"Arial Narrow\",sans-serif);font-weight:600;font-size:17px;line-height:1;color:var(--ink,#121417);transition:background .2s,border-color .2s,color .2s}.ds-key i{width:24px;height:7px;border-radius:4px}.ds-key span{color:var(--ink-3,#5f666d);font-variant-numeric:tabular-nums}.ds-key:hover{border-color:var(--ink,#121417)}.ds-key[aria-pressed=\"true\"]{background:var(--ink,#121417);border-color:var(--ink,#121417);color:#fff}.ds-key[aria-pressed=\"true\"] span{color:#c9cdc8}.ds-key:focus-visible{outline:3px solid var(--line-enterprise,#0a5fb4);outline-offset:3px}"
-    },
-    {
-      "name": "Station-Name Bar",
+      "name": "Status Bar",
       "kind": "nav",
-      "refersTo": "station-bar",
-      "description": "Sticky black top bar: identity, nav, amber résumé.",
-      "html": "<header class=\"ds-top\"><span class=\"ds-top-name\">Vimal Kumar<small>UX Engineer · Ireland</small></span><nav class=\"ds-top-nav\"><a href=\"#\">Work</a><a href=\"#\">Journey</a><a href=\"#\">Contact</a></nav><a class=\"ds-top-cv\" href=\"#\">Résumé</a></header>",
-      "css": ".ds-top{display:flex;align-items:center;gap:24px;height:64px;padding:0 24px;background:var(--ink,#121417);color:#fff}.ds-top-name{display:grid;font-family:var(--display,\"Barlow Semi Condensed\",\"Arial Narrow\",sans-serif);font-weight:700;font-size:21px;line-height:1.05}.ds-top-name small{font:400 13px/1.3 \"Atkinson Hyperlegible\",system-ui,sans-serif;color:#b4bbc2}.ds-top-nav{margin-left:auto;display:flex;gap:2px}.ds-top-nav a{padding:8px 12px;border-radius:4px;font-family:var(--display,\"Barlow Semi Condensed\",\"Arial Narrow\",sans-serif);font-weight:600;font-size:18px;line-height:1;color:#dde1e5;text-decoration:none;transition:background .2s,color .2s}.ds-top-nav a:hover{background:#2a2f35;color:#fff}.ds-top-nav a:focus-visible,.ds-top-cv:focus-visible{outline:3px solid var(--line-enterprise,#0a5fb4);outline-offset:3px}.ds-top-cv{display:inline-flex;align-items:center;height:40px;padding:0 14px;border-radius:6px;background:var(--now,#f2b705);color:#121417;font-family:var(--display,\"Barlow Semi Condensed\",\"Arial Narrow\",sans-serif);font-weight:700;font-size:16px;text-decoration:none}.ds-top-cv:hover{background:#ffc81f}"
+      "refersTo": "nav-link",
+      "description": "Sticky phone status bar: name, pill links, Dublin time in dots, résumé.",
+      "html": "<header class=\"ds-top\"><span class=\"ds-top-name\">Vimal Kumar</span><nav class=\"ds-top-nav\"><a href=\"#\">Work</a><a href=\"#\">Journey</a><a href=\"#\">Contact</a></nav><span class=\"ds-top-time\">17:55</span><a class=\"ds-top-cv\" href=\"#\">Résumé</a></header>",
+      "css": ".ds-top { display: flex; align-items: center; gap: 28px; height: 72px; padding: 0 24px; background: #ebebe9; } .ds-top-name { font: 500 17px/1 var(--text-face, 'Space Grotesk Variable', system-ui, sans-serif); } .ds-top-nav { display: flex; gap: 4px; margin-left: auto; } .ds-top-nav a { padding: 8px 14px; border-radius: 999px; color: #000; text-decoration: none; font: 400 15px/1.2 var(--text-face, 'Space Grotesk Variable', system-ui, sans-serif); transition: background .2s cubic-bezier(.2,.7,0,1); } .ds-top-nav a:hover { background: #fff; } .ds-top-nav a:focus-visible, .ds-top-cv:focus-visible { outline: 2px solid #d71921; outline-offset: 3px; } .ds-top-time { font-family: var(--dot-face, 'Doto Variable', monospace); font-variation-settings: 'ROND' 100; font-weight: 700; font-size: 22px; } .ds-top-cv { display: inline-flex; align-items: center; height: 44px; padding: 0 18px; border-radius: 999px; background: #000; color: #fff; text-decoration: none; font: 500 15px/1 var(--text-face, 'Space Grotesk Variable', system-ui, sans-serif); } .ds-top-cv:hover { background: #2b2b2b; }"
     },
     {
-      "name": "Departure Board",
-      "kind": "custom",
-      "refersTo": "departure-board",
-      "description": "Projects and facts as black board rows with amber values; never big-number tiles.",
-      "html": "<div class=\"ds-board\"><table><thead><tr><th>Code</th><th>Station</th><th>Year</th><th></th></tr></thead><tbody><tr><td><span class=\"ds-board-code\">M1</span></td><th>VISE <span class=\"ds-board-now\">You are here</span></th><td>2025</td><td><a class=\"ds-board-go\" href=\"#\">Case study</a></td></tr><tr><td><span class=\"ds-board-code\" style=\"background:#0d7d48\">W1</span></td><th>Flex Academy</th><td>2024</td><td><a class=\"ds-board-go\" href=\"#\">Case study</a></td></tr></tbody></table></div>",
-      "css": ".ds-board{padding:20px 22px 6px;border-radius:6px;background:var(--ink,#121417);color:#fff}.ds-board table{width:100%;border-collapse:collapse;font-size:16px}.ds-board thead th{padding:8px 10px;text-align:left;font-family:var(--display,\"Barlow Semi Condensed\",\"Arial Narrow\",sans-serif);font-weight:600;font-size:13px;line-height:1;letter-spacing:.08em;text-transform:uppercase;color:#9aa3ab;border-bottom:2px solid #3a4047}.ds-board tbody td,.ds-board tbody th{padding:13px 10px;text-align:left;border-bottom:1px solid #2c3137;font-weight:400}.ds-board tbody th{font-family:var(--display,\"Barlow Semi Condensed\",\"Arial Narrow\",sans-serif);font-weight:700;font-size:20px}.ds-board tbody tr:last-child>*{border-bottom:0}.ds-board tbody tr{transition:background .2s}.ds-board tbody tr:hover{background:#1e2227}.ds-board-code{display:inline-flex;align-items:center;justify-content:center;min-width:34px;height:26px;padding:0 8px;border-radius:4px;background:#c8241c;font-family:var(--display,\"Barlow Semi Condensed\",\"Arial Narrow\",sans-serif);font-weight:700;font-size:14px;font-variant-numeric:tabular-nums}.ds-board-now{margin-left:10px;color:var(--now,#f2b705);font-size:14px}.ds-board-go{color:var(--now,#f2b705);font-family:var(--display,\"Barlow Semi Condensed\",\"Arial Narrow\",sans-serif);font-weight:700;font-size:17px;text-decoration:none}.ds-board-go:hover{text-decoration:underline;text-underline-offset:.2em}.ds-board-go:focus-visible{outline:3px solid var(--line-enterprise,#0a5fb4);outline-offset:3px}"
+      "name": "Project Tile",
+      "kind": "card",
+      "refersTo": "widget",
+      "description": "White widget with an inner image frame, title, mono category and year, and a dotted-underline link.",
+      "html": "<article class=\"ds-tile\"><div class=\"ds-tile-img\"></div><h3>Flex Academy</h3><p class=\"ds-tile-meta\">MOBILE · 2024</p><p class=\"ds-tile-role\">UX Designer · 12 weeks</p><a class=\"ds-tile-go\" href=\"#\">Read case study</a></article>",
+      "css": ".ds-tile { display: flex; flex-direction: column; max-width: 320px; padding: 14px 14px 20px; border-radius: 28px; background: #fff; color: #000; } .ds-tile-img { aspect-ratio: 4 / 3; border-radius: 18px; background: #ebebe9; } .ds-tile h3 { margin: 16px 6px 0; font: 500 22px/1.08 var(--text-face, 'Space Grotesk Variable', system-ui, sans-serif); letter-spacing: -.025em; } .ds-tile-meta { margin: 8px 6px 0; font: 12px/1.4 var(--mono, 'Space Mono', monospace); letter-spacing: .06em; color: #5c5c5c; } .ds-tile-role { margin: 8px 6px 0; font-size: 15px; color: #5c5c5c; } .ds-tile-go { align-self: flex-start; margin: 18px 6px 0; color: #000; font-weight: 500; text-decoration: underline dotted 2px; text-underline-offset: .3em; } .ds-tile-go:hover { text-decoration-style: solid; } .ds-tile-go:focus-visible { outline: 2px solid #d71921; outline-offset: 3px; }"
     },
     {
-      "name": "Case-Study Station Sign",
+      "name": "Live Indicator",
       "kind": "custom",
-      "refersTo": "platform-sign",
-      "description": "Opens every case study in place of any label above the title: code badge, line name, status, line colour along the foot.",
-      "html": "<div class=\"ds-station\" style=\"--acc:#c8241c\"><span class=\"ds-station-code\">M1</span><span class=\"ds-station-line\">Mobile line</span><span class=\"ds-station-now\">Now · in progress</span></div>",
-      "css": ".ds-station{display:flex;align-items:center;gap:12px;padding:12px 16px;background:var(--ink,#121417);color:#fff;border-radius:6px 6px 0 0;border-bottom:6px solid var(--acc);font-family:var(--display,\"Barlow Semi Condensed\",\"Arial Narrow\",sans-serif);font-weight:700}.ds-station-code{display:inline-flex;align-items:center;justify-content:center;min-width:34px;height:26px;padding:0 8px;border-radius:4px;background:var(--acc);font-size:14px;font-variant-numeric:tabular-nums}.ds-station-line{font-size:20px}.ds-station-now{margin-left:auto;color:var(--now,#f2b705);font-size:16px}"
+      "refersTo": "nothing-red",
+      "description": "The red light: a 9px dot that blinks in steps before a mono label. Live and now only.",
+      "html": "<span class=\"ds-live\">Building now</span>",
+      "css": ".ds-live { display: inline-flex; align-items: center; gap: 8px; color: #b3121a; font: 13px/1 var(--mono, 'Space Mono', monospace); letter-spacing: .06em; text-transform: uppercase; } .ds-live::before { content: ''; width: 9px; height: 9px; border-radius: 50%; background: #d71921; animation: ds-blink 1.4s steps(6, end) infinite; } @keyframes ds-blink { 50% { opacity: .25; } } @media (prefers-reduced-motion: reduce) { .ds-live::before { animation: none; } }"
     },
     {
-      "name": "Journey Route",
-      "kind": "custom",
-      "refersTo": "journey-route",
-      "description": "One 6px ink route; work stops filled, education stops open, the present ringed in amber.",
-      "html": "<ol class=\"ds-route\"><li><span class=\"ds-dot\"></span><b>2019</b>Infosys</li><li class=\"edu\"><span class=\"ds-dot\"></span><b>2022</b>University of Limerick</li><li class=\"now\"><span class=\"ds-dot\"></span><b>Now</b>VISE</li></ol>",
-      "css": ".ds-route{list-style:none;position:relative;display:grid;grid-template-columns:repeat(3,1fr);gap:28px;padding:50px 0 0;margin:0}.ds-route::before{content:\"\";position:absolute;left:0;right:0;top:18px;height:6px;border-radius:3px;background:#121417}.ds-route li{position:relative;display:grid;font-family:var(--display,\"Barlow Semi Condensed\",\"Arial Narrow\",sans-serif);font-weight:600;font-size:18px}.ds-route b{color:#5f666d;font-size:15px;font-variant-numeric:tabular-nums}.ds-dot{position:absolute;top:-45px;left:0;width:28px;height:28px;border-radius:50%;background:#121417;border:6px solid #121417;box-sizing:border-box}.ds-route .edu .ds-dot{background:#fbfbf9}.ds-route .now .ds-dot{border-color:#f2b705}"
+      "name": "Journey Stop (now)",
+      "kind": "card",
+      "refersTo": "widget-black",
+      "description": "The current stop: a black widget with a red dot on the dotted track and the live light on its date.",
+      "html": "<div class=\"ds-route\"><div class=\"ds-stop\"><p class=\"ds-stop-year\">2025</p><p class=\"ds-stop-date\"><span class=\"ds-stop-live\">SEP 2025 – PRESENT</span> WORK</p><h3>Freelance UX Consultant</h3><p class=\"ds-stop-note\">Human-centred design for real businesses.</p></div></div>",
+      "css": ".ds-route { position: relative; padding: 28px 0 0; background: radial-gradient(circle, #000 1.6px, transparent 2px) 0 0 / 12px 4px repeat-x; } .ds-stop { position: relative; max-width: 300px; padding: 22px 20px; border-radius: 28px; background: #000; color: #fff; } .ds-stop::before { content: ''; position: absolute; left: 22px; top: -34px; width: 12px; height: 12px; border-radius: 50%; background: #d71921; box-shadow: 0 0 0 4px #ebebe9; } .ds-stop-year { font-family: var(--dot-face, 'Doto Variable', monospace); font-variation-settings: 'ROND' 100; font-weight: 700; font-size: 52px; line-height: .9; } .ds-stop-date { display: flex; justify-content: space-between; gap: 6px; margin-top: 14px; font: 12px/1.3 var(--mono, 'Space Mono', monospace); letter-spacing: .06em; color: #c9c9c9; } .ds-stop-live { display: inline-flex; align-items: center; gap: 8px; } .ds-stop-live::before { content: ''; width: 9px; height: 9px; border-radius: 50%; background: #d71921; } .ds-stop h3 { margin-top: 18px; font: 500 21px/1.08 var(--text-face, 'Space Grotesk Variable', system-ui, sans-serif); letter-spacing: -.02em; } .ds-stop-note { margin-top: 10px; font-size: 15px; color: #c9c9c9; }"
+    },
+    {
+      "name": "Dotted Rule List",
+      "kind": "card",
+      "refersTo": "widget",
+      "description": "Rows inside a white widget separated by dotted rules; skill chips on paper.",
+      "html": "<dl class=\"ds-tt\"><div><dt>Front-End</dt><dd><span>React.js</span><span>TypeScript</span><span>React Native</span></dd></div><div><dt>Design Tools</dt><dd><span>Figma</span><span>Framer</span></dd></div></dl>",
+      "css": ".ds-tt { max-width: 640px; padding: 6px 28px; border-radius: 28px; background: #fff; } .ds-tt > div { display: grid; grid-template-columns: 160px 1fr; gap: 24px; padding: 20px 0; } .ds-tt > div + div { background: radial-gradient(circle, #8a8a8a 1px, transparent 1.4px) 0 0 / 8px 2px repeat-x; } .ds-tt dt { font: 500 18px/1.3 var(--text-face, 'Space Grotesk Variable', system-ui, sans-serif); } .ds-tt dd { display: flex; flex-wrap: wrap; gap: 8px; margin: 0; } .ds-tt span { padding: 6px 14px; border-radius: 999px; background: #ebebe9; font-size: 15px; }"
+    },
+    {
+      "name": "Case-Study Contents",
+      "kind": "nav",
+      "refersTo": "widget",
+      "description": "Section list on a white widget; the current section's dot is red.",
+      "html": "<nav class=\"ds-toc\"><p>On this page</p><a href=\"#\" class=\"is-active\"><i></i>The problem</a><a href=\"#\"><i></i>Research</a><a href=\"#\"><i></i>Building it</a></nav>",
+      "css": ".ds-toc { display: flex; flex-direction: column; width: 220px; padding: 8px; border-radius: 28px; background: #fff; } .ds-toc p { padding: 10px 12px 8px; margin: 0; font: 500 13px/1 var(--text-face, 'Space Grotesk Variable', system-ui, sans-serif); color: #5c5c5c; } .ds-toc a { display: flex; align-items: center; gap: 10px; padding: 10px 12px; border-radius: 14px; color: #5c5c5c; text-decoration: none; font: 500 15px/1.25 var(--text-face, 'Space Grotesk Variable', system-ui, sans-serif); } .ds-toc a:hover { color: #000; background: #ebebe9; } .ds-toc a:focus-visible { outline: 2px solid #d71921; outline-offset: 3px; } .ds-toc a.is-active { color: #000; } .ds-toc i { width: 8px; height: 8px; border-radius: 50%; background: #d6d6d3; flex-shrink: 0; } .ds-toc a.is-active i { background: #d71921; }"
     }
   ],
   "narrative": {
-    "northStar": "The Line",
-    "overview": "The site is a wayfinding system. Work is drawn as a transit network: each category is a coloured line, each project a station with a fixed code, the career a single route that ends at a terminus. Everything a visitor reads is borrowed from transport signage: black enamel sign panels with white condensed lettering, route badges, circular station roundels, a departure board. The ground is pale washed concrete, so the black signs and the four line colours carry all the structure.\n\nThe system is dense where a map should be dense and calm where a sign should be calm. Hierarchy comes from scale and from the black-sign / pale-ground contrast, never from colour alone. One continuous line weight draws the network, the journey route and the rail that runs down the home page from the map to the amber buffer stop at the terminus. Motion snaps in whole steps with a slight overshoot, the way a split-flap or a sign panel changes, and collapses to instant under reduced motion.\n\nThe world refuses the portfolio default of an intro hero over a grid of equal project cards: work is located on a map, not tiled.",
+    "northStar": "The Home Screen",
+    "overview": "The site is a Nothing phone home screen. A light grey screen (the paper) holds widgets of exactly two materials, pure white and true black, with large rounded corners and no shadow. Display words and numerals are set in a dot-matrix face, reading text in a clean grotesk, and data in a monospace. One red light means something is live right now; nothing else is coloured.\n\nDensity is calm and widget-sized: everything that is not running text sits on a widget, widgets tile on a 16px gap, and sections breathe with 120px between them. Ornament is limited to what a dot display can make: dotted rules, dotted tracks, dot grids, and the round Glyph Matrix that scrolls what is being built now. Motion is digital: dots and widgets switch on in steps rather than gliding, floating or springing.\n\nThe world rejects colour-coded systems (every project category reads in the same black ink), glass and backdrop blur, drop shadows, and decoration that is not a dot or a hairline.",
     "keyCharacteristics": [
-      "Pale enamel ground, black enamel sign panels, white Barlow Semi Condensed lettering.",
-      "Four functional line colours, each meaning exactly one project category.",
-      "Amber is reserved for \"you are here\", now and in-progress states, always on or beside black.",
-      "One continuous stroke weight (6px) for every line, rail and rule that means \"route\".",
-      "Facts render as departure-board rows; icons are Phosphor line icons.",
-      "Small enamel radii; flat signs; motion in whole snapping steps."
+      "Light grey paper, white widgets, black widgets for emphasis, black ink.",
+      "Doto dot-matrix (round dots) for display words and figures; Space Grotesk for reading; Space Mono uppercase for data.",
+      "One red, reserved for live and now.",
+      "Flat surfaces, large radii (28px widgets, 18px inner frames, pill controls).",
+      "Dotted rules and dot grids as the only ornament.",
+      "Stepped motion; full stillness under reduced motion."
     ],
     "rules": [
-      {
-        "name": "The One Meaning Rule",
-        "body": "A line colour only ever means its line. A case study's accent is its station's line colour, set once on the page and used for the station sign's foot stripe. No colour is used for decoration, emphasis or variety.",
-        "section": "colors"
-      },
-      {
-        "name": "The Amber Is Now Rule",
-        "body": "Now Amber marks the present and the primary action, nothing else. It sits on black or as a fill with black text, never as text on the pale ground.",
-        "section": "colors"
-      },
-      {
-        "name": "The Sign Face Rule",
-        "body": "Anything that names, labels or directs is set in Barlow Semi Condensed; anything read as a sentence is Atkinson Hyperlegible. Headings are always 700 with balanced wrapping.",
-        "section": "typography"
-      },
-      {
-        "name": "The Tabular Code Rule",
-        "body": "Station codes, years, counts and board values use tabular numerals so they align like a timetable.",
-        "section": "typography"
-      },
-      {
-        "name": "The Enamel Rule",
-        "body": "Signs are flat enamel. No shadow on any sign, panel, badge or button; the only soft shadow belongs to product screenshots.",
-        "section": "elevation"
-      },
-      {
-        "name": "The One Stroke Rule",
-        "body": "Every mark that means a route (network lines, journey route, page rail, section-title rules, station ring borders, case-study spine, note top borders) uses the single line weight (6px; 4px on mobile). Hairlines (1px) are for dividing content, never for drawing routes.",
-        "section": "shapes"
-      }
+      { "name": "The One Light Rule", "body": "Red marks only what is live or current: the live light, the current journey stop, in-progress status, the progress bar, the focus ring. It is never a hover colour, a category colour, a highlight or decoration.", "section": "colors" },
+      { "name": "The One Ink Rule", "body": "Project categories (Mobile, Web, Enterprise, IoT) all read in the same black ink. Colour carries no category meaning.", "section": "colors" },
+      { "name": "The Dots Are Display Rule", "body": "Doto is for short words and numerals at display size. Never set sentences, body or controls in it.", "section": "typography" },
+      { "name": "The Data-Only Mono Rule", "body": "Space Mono marks data: dates, years, counts, codes. It is not a voice for headings, buttons or prose.", "section": "typography" },
+      { "name": "The No Eyebrow Rule", "body": "Headings stand alone. No small label line sits above a heading to introduce it.", "section": "typography" },
+      { "name": "The Flat Widget Rule", "body": "Widgets are flat white or flat black. Depth comes from tone against the paper, never from shadow or blur.", "section": "elevation" },
+      { "name": "The Dot Or Hairline Rule", "body": "The only ornament is a dot or a hairline. No gradients, textures, icons-as-decoration or colour blocks.", "section": "shapes" }
     ],
     "dos": [
-      "Do give every project a station: a line, a fixed code and a place on the route.",
-      "Do use line colours only to mean their line; a case study's accent is its station's line colour.",
-      "Do keep Now Amber for the present and the primary action, on black or as a fill with black text.",
-      "Do draw every route mark at the single stroke weight (6px, 4px on mobile).",
-      "Do render facts and metrics as departure-board rows with tabular figures.",
-      "Do open case studies on the station sign.",
-      "Do use Phosphor line icons (react-icons/pi) at 16-18px beside sign lettering.",
-      "Do animate in whole steps with the step easing (cubic-bezier(.34, 1.56, .64, 1)) and honour reduced motion."
+      "Do put everything that is not running text on a white widget (28px radius), and use a black widget for the one emphasised item in a group.",
+      "Do keep red for live and now: the live light, the current stop, in-progress status, the progress bar and the focus ring.",
+      "Do set short display words and figures in Doto with `ROND` 100; read in Space Grotesk; mark dates, years, counts and codes in Space Mono uppercase.",
+      "Do separate rows with dotted rules and underline links with a 2px dotted line that turns solid on hover.",
+      "Do animate in steps (`steps(6, end)`): widgets switch on, the live light blinks, the Glyph Matrix steps; stop all motion under `prefers-reduced-motion`."
     ],
     "donts": [
-      "Don't set IoT Amber or Now Amber as text on the pale ground.",
-      "Don't use colour alone for hierarchy; scale and the black sign carry it.",
-      "Don't put a kicker or eyebrow label above a heading.",
-      "Don't use coloured side-tab borders to mark state or emphasis.",
-      "Don't use text glyphs as icons.",
-      "Don't render statistics as big-number tiles.",
-      "Don't add shadows to signs, panels, badges or buttons.",
-      "Don't lay work out as an intro hero over a grid of equal project cards."
+      "Don't use red for hover, emphasis, categories or decoration.",
+      "Don't use glass, backdrop blur or translucent panels.",
+      "Don't add drop shadows to widgets, buttons or images.",
+      "Don't colour-code project categories; every category reads in black ink.",
+      "Don't set prose, headings or button labels in Space Mono.",
+      "Don't place an eyebrow or kicker label above a heading.",
+      "Don't add ornament that is not a dot or a hairline, and don't make anything float, glide in or spring."
     ]
   }
 }

@@ -1,282 +1,274 @@
 ---
 name: Vimal Kumar Portfolio
-description: The portfolio as a transit network. Lines are categories, projects are stations, the career is a route.
+description: The portfolio as a Nothing phone home screen. Monochrome widgets, dot-matrix type, one red light for what is live.
 colors:
-  enterprise-blue: "#0a5fb4"
-  mobile-red: "#c8241c"
-  web-green: "#0d7d48"
-  iot-amber: "#e39a00"
-  now-amber: "#f2b705"
-  now-amber-hover: "#ffc81f"
-  sign-black: "#121417"
-  sign-black-hover: "#2a2f35"
-  board-row-active: "#1e2227"
-  board-rule: "#2c3137"
-  board-label: "#9aa3ab"
-  on-sign-muted: "#c9cdc8"
-  station-ground: "#eceeea"
-  enamel-panel: "#fbfbf9"
-  ink-secondary: "#3b4046"
-  ink-tertiary: "#5f666d"
-  hairline: "#c9cdc8"
+  nothing-red: "#d71921"
+  red-ink: "#b3121a"
+  paper: "#ebebe9"
+  widget-white: "#ffffff"
+  widget-black: "#000000"
+  ink: "#000000"
+  ink-2: "#2b2b2b"
+  ink-3: "#5c5c5c"
+  dim: "#8a8a8a"
+  hair: "#d6d6d3"
+  on-black-muted: "#c9c9c9"
 typography:
   display:
-    fontFamily: "Barlow Semi Condensed, Barlow, Arial Narrow, sans-serif"
-    fontSize: "clamp(46px, 7vw, 96px)"
+    fontFamily: "Doto Variable, Space Mono, monospace"
+    fontSize: "clamp(56px, 7.4vw, 112px)"
     fontWeight: 700
-    lineHeight: 1.05
-    letterSpacing: "-0.02em"
+    lineHeight: 0.9
+    letterSpacing: "0"
+    fontVariation: "\"ROND\" 100"
   headline:
-    fontFamily: "Barlow Semi Condensed, Barlow, Arial Narrow, sans-serif"
-    fontSize: "clamp(40px, 5.4vw, 72px)"
-    fontWeight: 700
-    lineHeight: 1.05
-    letterSpacing: "-0.02em"
+    fontFamily: "Space Grotesk Variable, system-ui, sans-serif"
+    fontSize: "clamp(44px, 6vw, 84px)"
+    fontWeight: 500
+    lineHeight: 1.08
+    letterSpacing: "-0.025em"
   title:
-    fontFamily: "Barlow Semi Condensed, Barlow, Arial Narrow, sans-serif"
-    fontSize: "clamp(27px, 2.4vw, 34px)"
-    fontWeight: 700
-    lineHeight: 1.05
-    letterSpacing: "-0.01em"
+    fontFamily: "Space Grotesk Variable, system-ui, sans-serif"
+    fontSize: "22px"
+    fontWeight: 500
+    lineHeight: 1.08
+    letterSpacing: "-0.025em"
   body:
-    fontFamily: "Atkinson Hyperlegible, Segoe UI, system-ui, sans-serif"
+    fontFamily: "Space Grotesk Variable, system-ui, sans-serif"
     fontSize: "17px"
     fontWeight: 400
-    lineHeight: 1.6
+    lineHeight: 1.55
+  body-read:
+    fontFamily: "Space Grotesk Variable, system-ui, sans-serif"
+    fontSize: "18px"
+    fontWeight: 400
+    lineHeight: 1.7
   label:
-    fontFamily: "Barlow Semi Condensed, Barlow, Arial Narrow, sans-serif"
+    fontFamily: "Space Mono, ui-monospace, monospace"
     fontSize: "13px"
-    fontWeight: 600
-    lineHeight: 1
-    letterSpacing: "0.08em"
-  wayfinding:
-    fontFamily: "Barlow Semi Condensed, Barlow, Arial Narrow, sans-serif"
-    fontSize: "17px"
-    fontWeight: 700
-    lineHeight: 1
-    letterSpacing: "0.01em"
-    fontFeature: "tnum"
+    fontWeight: 400
+    letterSpacing: "0.06em"
 rounded:
-  edge: "2px"
-  badge: "4px"
-  sign: "6px"
-  round: "50%"
+  badge: "6px"
+  inner: "18px"
+  widget: "28px"
+  pill: "999px"
 spacing:
-  xs: "8px"
-  sm: "12px"
-  md: "24px"
-  lg: "36px"
-  section: "104px"
-  section-mobile: "72px"
-  gutter: "32px"
-  gutter-mobile: "18px"
+  gap: "16px"
+  gutter: "24px"
+  gutter-mobile: "14px"
+  widget-pad: "28px"
+  section: "120px"
+  section-mobile: "88px"
 components:
-  button-sign:
-    backgroundColor: "{colors.sign-black}"
-    textColor: "{colors.enamel-panel}"
-    typography: "{typography.wayfinding}"
-    rounded: "{rounded.sign}"
-    padding: "0 20px"
+  button-primary:
+    backgroundColor: "{colors.widget-black}"
+    textColor: "{colors.widget-white}"
+    rounded: "{rounded.pill}"
+    padding: "0 22px"
     height: "48px"
-  button-sign-hover:
-    backgroundColor: "{colors.sign-black-hover}"
-  button-now:
-    backgroundColor: "{colors.now-amber}"
-    textColor: "{colors.sign-black}"
-    typography: "{typography.wayfinding}"
-    rounded: "{rounded.sign}"
-    padding: "0 20px"
+  button-primary-hover:
+    backgroundColor: "{colors.ink-2}"
+    textColor: "{colors.widget-white}"
+  button-line:
+    backgroundColor: "transparent"
+    textColor: "{colors.ink}"
+    rounded: "{rounded.pill}"
+    padding: "0 22px"
     height: "48px"
-  button-now-hover:
-    backgroundColor: "{colors.now-amber-hover}"
-  button-ghost:
-    textColor: "{colors.sign-black}"
-    typography: "{typography.wayfinding}"
-    rounded: "{rounded.sign}"
-    padding: "0 20px"
+  button-line-hover:
+    backgroundColor: "{colors.widget-black}"
+    textColor: "{colors.widget-white}"
+  button-white:
+    backgroundColor: "{colors.widget-white}"
+    textColor: "{colors.ink}"
+    rounded: "{rounded.pill}"
+    padding: "0 22px"
     height: "48px"
-  route-badge:
-    backgroundColor: "{colors.sign-black}"
-    textColor: "{colors.enamel-panel}"
+  filter-chip:
+    backgroundColor: "{colors.widget-white}"
+    textColor: "{colors.ink}"
+    rounded: "{rounded.pill}"
+    padding: "0 18px"
+    height: "42px"
+  filter-chip-selected:
+    backgroundColor: "{colors.widget-black}"
+    textColor: "{colors.widget-white}"
+  widget:
+    backgroundColor: "{colors.widget-white}"
+    textColor: "{colors.ink}"
+    rounded: "{rounded.widget}"
+    padding: "28px"
+  widget-black:
+    backgroundColor: "{colors.widget-black}"
+    textColor: "{colors.widget-white}"
+    rounded: "{rounded.widget}"
+    padding: "28px"
+  skill-chip:
+    backgroundColor: "{colors.paper}"
+    textColor: "{colors.ink}"
+    rounded: "{rounded.pill}"
+    padding: "6px 14px"
+  badge:
+    backgroundColor: "{colors.widget-black}"
+    textColor: "{colors.widget-white}"
+    typography: "{typography.label}"
     rounded: "{rounded.badge}"
-    padding: "0 8px"
-    height: "26px"
-  line-key-filter:
-    textColor: "{colors.sign-black}"
-    rounded: "{rounded.badge}"
-    padding: "0 12px"
-    height: "38px"
-  line-key-filter-active:
-    backgroundColor: "{colors.sign-black}"
-    textColor: "{colors.enamel-panel}"
-  station-bar:
-    backgroundColor: "{colors.sign-black}"
-    textColor: "{colors.enamel-panel}"
-    height: "64px"
-  departure-board:
-    backgroundColor: "{colors.sign-black}"
-    textColor: "{colors.enamel-panel}"
-    rounded: "{rounded.sign}"
-    padding: "20px 22px 6px"
-  platform-sign:
-    backgroundColor: "{colors.enamel-panel}"
-    textColor: "{colors.sign-black}"
-    rounded: "{rounded.sign}"
+    height: "22px"
+    padding: "0 6px"
+  nav-link:
+    textColor: "{colors.ink}"
+    rounded: "{rounded.pill}"
+    padding: "8px 14px"
+  nav-link-hover:
+    backgroundColor: "{colors.widget-white}"
 ---
 
 # Design System: Vimal Kumar Portfolio
 
 ## Overview
 
-**Creative North Star: "The Line"**
+**Creative North Star: "The Home Screen"**
 
-The site is a wayfinding system. Work is drawn as a transit network: each category is a coloured line, each project a station with a fixed code, the career a single route that ends at a terminus. Everything a visitor reads is borrowed from transport signage: black enamel sign panels with white condensed lettering, route badges, circular station roundels, a departure board. The ground is pale washed concrete, so the black signs and the four line colours carry all the structure.
+The site is a Nothing phone home screen. A light grey screen (the paper) holds widgets of exactly two materials, pure white and true black, with large rounded corners and no shadow. Display words and numerals are set in a dot-matrix face, reading text in a clean grotesk, and data in a monospace. One red light means something is live right now; nothing else is coloured.
 
-The system is dense where a map should be dense and calm where a sign should be calm. Hierarchy comes from scale and from the black-sign / pale-ground contrast, never from colour alone. One continuous line weight draws the network, the journey route and the rail that runs down the home page from the map to the amber buffer stop at the terminus. Motion snaps in whole steps with a slight overshoot, the way a split-flap or a sign panel changes, and collapses to instant under reduced motion.
+Density is calm and widget-sized: everything that is not running text sits on a widget, widgets tile on a 16px gap, and sections breathe with 120px between them. Ornament is limited to what a dot display can make: dotted rules, dotted tracks, dot grids, and the round Glyph Matrix that scrolls what is being built now. Motion is digital: dots and widgets switch on in steps rather than gliding, floating or springing.
 
-The world refuses the portfolio default of an intro hero over a grid of equal project cards: work is located on a map, not tiled.
+The world rejects colour-coded systems (every project category reads in the same black ink), glass and backdrop blur, drop shadows, and decoration that is not a dot or a hairline.
 
 **Key Characteristics:**
-- Pale enamel ground, black enamel sign panels, white Barlow Semi Condensed lettering.
-- Four functional line colours, each meaning exactly one project category.
-- Amber is reserved for "you are here", now and in-progress states, always on or beside black.
-- One continuous stroke weight (6px) for every line, rail and rule that means "route".
-- Facts render as departure-board rows; icons are Phosphor line icons.
-- Small enamel radii; flat signs; motion in whole snapping steps.
+- Light grey paper, white widgets, black widgets for emphasis, black ink.
+- Doto dot-matrix (round dots) for display words and figures; Space Grotesk for reading; Space Mono uppercase for data.
+- One red, reserved for live and now.
+- Flat surfaces, large radii (28px widgets, 18px inner frames, pill controls).
+- Dotted rules and dot grids as the only ornament.
+- Stepped motion; full stillness under reduced motion.
 
 ## Colors
 
-A neutral concrete-and-enamel base with four saturated transit line colours and one signal amber; colour is functional, never decorative.
+A monochrome screen with a single signal colour.
 
 ### Primary
-- **Sign Black** (sign-black): the system's heading and action surface. Station-name bar, departure board, terminus, case-study station sign, primary buttons, active filters, active stations, the page rail. Also the primary text colour.
-
-### Secondary (the four lines)
-- **Enterprise Blue** (enterprise-blue): the Enterprise line. Also the focus-ring colour (3px outline, 3px offset), the one place it appears outside its line; focus is a browser state, not decoration.
-- **Mobile Red** (mobile-red): the Mobile line.
-- **Web Green** (web-green): the Web line.
-- **IoT Amber** (iot-amber): the IoT line. Fills and strokes only; never text on a light ground. Badges on this line take sign-black text.
-
-### Tertiary
-- **Now Amber** (now-amber): "you are here". The map's current-station ring, the résumé and copy-email buttons, selection highlight, current-role dot on the journey, case-study progress bar, in-progress status, the terminus buffer stop, values on the departure board. Hover deepens to now-amber-hover.
+- **Nothing Red** (`nothing-red`): the light that says live or now. The blinking `.live` dot, the current stop on the journey, in-progress status on case studies, the open item in progress lists, the active section dot in the case-study contents, the reading-progress bar, the focus ring, and the text caret.
+- **Red Ink** (`red-ink`): the darker red that carries small live text on white (the "Building now" label, the case-study data line, the "In progress" status) so it holds contrast.
 
 ### Neutral
-- **Station Ground** (station-ground): page background.
-- **Enamel Panel** (enamel-panel): light sign surfaces such as the map panel, platform sign, case-study meta cells, notes; also the white of lettering on black.
-- **Ink Secondary** (ink-secondary): descriptions and lede text.
-- **Ink Tertiary** (ink-tertiary): secondary text, dates, counts, labels on light ground (at least 4.5:1 on ground).
-- **Hairline** (hairline): 1px rules and resting borders on light surfaces; doubles as muted text on black (on-sign-muted).
-- **Board tones** (board-row-active, board-rule, board-label): row hover, row dividers and column labels inside black panels.
+- **Paper** (`paper`): the screen behind the widgets; also the inner frame behind images and the fill of skill chips.
+- **Widget White** (`widget-white`): the default widget material, filter chips, the white button on black.
+- **Widget Black** (`widget-black`): the emphasis widget material (Glyph Matrix, current journey stop, first client note, contact widget, next-case pager) and the primary button.
+- **Ink** (`ink`): headings and primary text.
+- **Ink 2** (`ink-2`): body copy and descriptions; the hover state of black buttons.
+- **Ink 3** (`ink-3`): secondary text, metadata and section intros (at least 5.6:1 on white and paper).
+- **Dim** (`dim`): dotted rule dots and decorative marks only; never small text.
+- **Hair** (`hair`): thin solid dividers inside widgets and inactive contents dots.
+- **On-Black Muted** (`on-black-muted`): secondary text on black widgets.
 
 ### Named Rules
-**The One Meaning Rule.** A line colour only ever means its line. A case study's accent is its station's line colour, set once on the page and used for the station sign's foot stripe. No colour is used for decoration, emphasis or variety.
+**The One Light Rule.** Red marks only what is live or current: the live light, the current journey stop, in-progress status, the progress bar, the focus ring. It is never a hover colour, a category colour, a highlight or decoration.
 
-**The Amber Is Now Rule.** Now Amber marks the present and the primary action, nothing else. It sits on black or as a fill with black text, never as text on the pale ground.
+**The One Ink Rule.** Project categories (Mobile, Web, Enterprise, IoT) all read in the same black ink. Colour carries no category meaning.
 
 ## Typography
 
-**Display Font:** Barlow Semi Condensed (with Barlow, Arial Narrow, sans-serif), weights 600 and 700, self-hosted.
-**Body Font:** Atkinson Hyperlegible (with Segoe UI, system-ui, sans-serif), weights 400 and 700, self-hosted.
+**Display Font:** Doto Variable, full axes with `ROND` 100 for round dots (stand-in for NDot), falling back to Space Mono
+**Body Font:** Space Grotesk Variable (stand-in for Ntype), falling back to system-ui
+**Label/Mono Font:** Space Mono 400/700
 
-**Character:** Highway-sign lettering for anything that names, labels or directs; a legibility face built for low-vision readers for anything that is read at length.
+**Character:** A dot-matrix display face shouting short words and numbers over a quiet geometric grotesk; the mono is a small, tracked, uppercase readout.
 
 ### Hierarchy
-- **Display** (700, clamp(46px, 7vw, 96px), 1.05, -0.02em): the terminus title only.
-- **Headline** (700, clamp(40px, 5.4vw, 72px), 1.05, -0.02em): section titles, set on a full-width 6px ink rule (4px on mobile), with an optional 17px body-face aside.
-- **Page opener** (700, clamp(32px, 3.6vw, 50px)): the network introduction line above the map.
-- **Title** (700, clamp(27px, 2.4vw, 34px)): platform-sign project name; journey roles (25px) and timetable rows (23px) sit just below.
-- **Quote** (600, clamp(21px, 2.1vw, 27px), 1.32, max 46ch): client notices.
-- **Body** (400, 17px / 16px under 760px, 1.6): all running text; descriptions at 15-16px in ink-secondary.
-- **Wayfinding** (600-700, 14-21px, line-height 1): nav, buttons, badges, station codes, board names, filter keys. Codes and numbers use tabular figures.
-- **Label** (600, 13px, 0.06-0.08em, uppercase): column heads on the departure board and fact labels on the platform sign. Labels name a column of data; they never sit above a heading.
+- **Display** (Doto 700, uppercase, ROND 100, line-height 0.9): short display words and figures only. Hero word at `clamp(56px, 7.4vw, 112px)`; case-study title at `clamp(72px, 12vw, 176px)` and line-height 0.86; contact "Say hello" at `clamp(64px, 11vw, 168px)`; project name, Dublin clock, journey start years (52px) and case-study fact figures (44px) in the same face.
+- **Headline** (Space Grotesk 500, `clamp(44px, 6vw, 84px)`, line-height 1.08, -0.025em): section titles. Case-study section headings run `clamp(34px, 4.4vw, 60px)` at line-height 1.02 and -0.04em, max 20ch.
+- **Title** (Space Grotesk 500, 22px, -0.025em): tile titles (30px on case-study tiles), journey roles (21px), the hero second line at `clamp(30px, 3.4vw, 48px)`.
+- **Body** (Space Grotesk 400, 17px / 1.55; 16px under 760px): page text. Case-study reading text is 18px / 1.7 in a 66ch column; ledes run 19-20px.
+- **Label** (Space Mono 400, 13px, 0.06em, uppercase): dates, years, counts, codes and other data readouts. Badges use Space Mono 700 12px.
 
 ### Named Rules
-**The Sign Face Rule.** Anything that names, labels or directs is set in Barlow Semi Condensed; anything read as a sentence is Atkinson Hyperlegible. Headings are always 700 with balanced wrapping.
+**The Dots Are Display Rule.** Doto is for short words and numerals at display size. Never set sentences, body or controls in it.
 
-**The Tabular Code Rule.** Station codes, years, counts and board values use tabular numerals so they align like a timetable.
+**The Data-Only Mono Rule.** Space Mono marks data: dates, years, counts, codes. It is not a voice for headings, buttons or prose.
+
+**The No Eyebrow Rule.** Headings stand alone. No small label line sits above a heading to introduce it.
 
 ## Layout
 
-A single 1240px column with 32px gutters (18px under 760px). Sections stack at 104px top padding (72px on mobile), each opening on its ruled headline. The opening is a two-column grid: the network map (about 1.6fr) beside a sticky platform sign (min 330px, sticky 84px from the top under the 64px station bar). The departure board spans full width beneath.
+A 1320px container with 24px gutters (14px under 760px). Widgets tile on a 16px gap (10-12px on phones). Sections sit 120px apart (88px under 760px), each opened by a header row: a large title on the left and a short ink-3 intro (max 42ch) aligned to its baseline on the right.
 
-A continuous 6px ink rail (4px on mobile) runs in the left gutter from the map's line key, down past the board, through every section, and stops at the terminus on an amber buffer stop. The journey route branches off this rail rather than running beside it.
+The first viewport is a two-column home screen (1 : 1.08): headline, lede, actions and two square widgets (Glyph Matrix and Dublin time) on the left, the featured project widget on the right. It stacks to one column at 1080px.
 
-Rhythm uses 8 / 12 / 24 / 36px steps for gaps inside components. Lists of facts (toolkit timetable, client notices) are ruled rows with fixed label columns (220px for the timetable, 260px for notice attribution) that collapse to one column under 760px.
+The work grid is four columns on desktop, with case studies spanning two; it drops to two columns at 1080px and stays two-up on phones. The journey is five widgets along a horizontal dotted track that turns vertical at 1080px. Client notes are a 1.25 : 1 : 1 row that stacks at 1080px.
 
-Breakpoints: 1000px (map and platform sign stack; journey goes to three columns; rail re-routes), 760px (map becomes a horizontal strip of station chips; board rows become grid cards; journey goes vertical with the route as a left spine), 460px (station bar drops the name and the résumé label).
+Case studies use a 220px contents list beside the reading column (64px gap, article max 980px). At 980px the contents list becomes a sticky horizontal row of pill links on paper. The status bar is 72px (60px on phones) and sticky; anchored targets carry an 88px scroll margin.
 
 ## Elevation & Depth
 
-Flat. Depth comes from the black-sign / pale-ground contrast and 1px hairline borders, not from shadows. Signs, panels, the board and buttons carry no shadow at rest or on hover.
-
-### Shadow Vocabulary
-- **Figure lift** (`box-shadow: 0 10px 28px rgba(18, 20, 23, .10), 0 0 0 1px var(--rule)`): case-study screenshots and scroll frames only, so product imagery reads as a mounted print.
-- **Pager hover** (`box-shadow: 0 12px 28px rgba(18, 20, 23, .10)`): case-study next/previous cards on hover only.
+The system is flat. No widget, button, image frame or panel carries a drop shadow, and nothing uses glass or backdrop blur. Depth is the contrast between the paper and the two widget materials: white lifts off grey by tone, black widgets mark emphasis. Inset 1.5px strokes on outline buttons and the paper-coloured ring that knocks journey dots out of the track are strokes, not shadows.
 
 ### Named Rules
-**The Enamel Rule.** Signs are flat enamel. No shadow on any sign, panel, badge or button; the only soft shadow belongs to product screenshots.
+**The Flat Widget Rule.** Widgets are flat white or flat black. Depth comes from tone against the paper, never from shadow or blur.
 
 ## Shapes
 
-Small enamel radii: 6px for signs, panels, buttons and cards; 4px for badges, filter keys, nav hits and images inside panels; 2px for focus rings and the buffer stop. Stations, journey stops, toolkit bullets and progress dots are rings: a 50% circle with a thick ink or line-colour stroke and a panel or ink fill. Line ends and joins are rounded.
+Generous, phone-like rounding. Widgets use a 28px radius (22px on phone tiles); frames inside widgets (images, notes) use 18px (14px on phones); every control is a full pill (999px); badges are 6px. Dots are perfect circles: the live light (9px), journey stops (12px), contents markers (8px), list bullets (6px).
 
-**The One Stroke Rule.** Every mark that means a route (network lines, journey route, page rail, section-title rules, station ring borders, case-study spine, note top borders) uses the single line weight (6px; 4px on mobile). Hairlines (1px) are for dividing content, never for drawing routes.
+Ornament is dotted: rules are built from radial-gradient dots (1.2px dots on a 10px pitch at 35% ink for the standalone rule; 1px dim dots on an 8px pitch between rows inside widgets), the journey and case-study spine run on dotted tracks, and links are underlined with a 2px dotted line that turns solid on hover. Thin solid 1px hairlines appear only as dividers inside a widget, above a fact row or an attribution.
+
+### Named Rules
+**The Dot Or Hairline Rule.** The only ornament is a dot or a hairline. No gradients, textures, icons-as-decoration or colour blocks.
 
 ## Components
 
 ### Buttons
-Sign-panel buttons: decisive and blocky.
-- **Shape:** 6px radius, 48px tall, 2px border matching the fill.
-- **Primary (sign):** Sign Black with white Barlow 700 17px; hover to sign-black-hover.
-- **Now:** Now Amber with black text; used for the single primary action in a context (résumé, copy email).
-- **Ghost:** transparent with black border and text; hover fills black. On black panels a light variant uses a white border and fills white on hover.
-- **States:** icon nudges 3px right on hover with the step easing; active presses 1px down; disabled at 45% opacity.
+Solid, pill-shaped, quiet.
+- **Shape:** full pill (999px), 48px tall (44px in the status bar), Space Grotesk 500 16px, icon gap 10px.
+- **Primary:** black with white text, 0 22px padding.
+- **Hover / Focus:** black lightens to ink-2; colour transitions at 0.2s. Focus is the global 2px red outline at 3px offset.
+- **Outline:** transparent with a 1.5px inset black stroke; fills black with white text on hover.
+- **On black widgets:** a white button (hover #d9d9d9) and a ghost button with a 1.5px 50% white inset stroke that fills white on hover.
+- **Disabled:** 45% opacity, no pointer events.
 
-### Route Badges
-Line-colour chips carrying a station code or line name: 26px tall, min 34px wide, 4px radius, Barlow 700 14px, tabular figures, white text (black on the IoT line).
+### Chips
+- **Filter chips:** white pill, 42px tall, 15px Space Grotesk 500, with the item count in Space Mono 12px ink-3. Hover goes to #dcdcd9; selected (`aria-pressed`) is black with white text and the count in on-black-muted.
+- **Skill chips:** paper-filled pills, 6px 14px, 15px, wrapped in rows inside a white widget.
 
-### Line Key Filters
-The map's legend doubles as filters: 38px tall, 1.5px hairline border, 4px radius, a 24 x 7px swatch of the line colour, the line name and a station count. Hover darkens the border; pressed fills black with white text. Filtering dims non-matching lines and stations to 14% opacity.
+### Cards / Containers
+- **Corner Style:** 28px widget radius; 18px for inner image frames.
+- **Background:** white by default, black for the single emphasised item in a group.
+- **Shadow Strategy:** none (see Elevation & Depth).
+- **Border:** none; rows inside a widget are separated by dotted rules.
+- **Internal Padding:** 28px for text widgets; 14-16px for image widgets so the inner frame sits close to the edge.
+- **Project tile:** image frame (4:3, 16:10 on case-study tiles) on paper, title, a mono category and year line, role and duration, and a dotted-underline link at the bottom. Hover scales the image to 1.03.
 
-### Navigation (Station-Name Bar)
-A sticky black bar, 64px (58px mobile): logo, name and "UX Engineer" sub-line, Barlow 600 18px nav links on a 4px-radius hit area that fills sign-black-hover on hover, and the amber résumé button.
+### Navigation
+- **Status bar:** sticky on paper, 72px. VK logo and name on the left; pill links (15px, white fill on hover) on the right, then the Dublin time in Doto 22px and the black résumé button. Under 760px the name and clock hide and the résumé button collapses to a 44px icon.
+- **Case-study contents:** a white widget listing sections; each link has an 8px dot that turns red for the current section. Becomes a horizontal pill row under 980px, with the active pill black.
 
-### Network Map
-SVG in a 1000 x 600 viewBox on the enamel panel. Lines are 11-unit rounded strokes leaving one central interchange ring; stations are panel-filled rings in their line colour with the code centred. Hover fills pale amber; active station fills black with a white code; the "you are here" ring is a 7-unit Now Amber circle that steps between stations. Under 760px the map is replaced by a scrollable strip of 44px station chips.
+### Live Indicator
+A 9px red circle before a short mono label, blinking to 25% opacity on a 1.4s stepped loop. Used for "Building now", the current journey stop, availability on the contact widget, and in-progress status.
 
-### Platform Sign
-The calm panel beside the map: a black sign header (line badge, line name, year or "You are here"), a 2:1 contained image of whole devices (never cropped), title, description, a two-column fact list with uppercase labels, the primary link and previous/next 44px arrow buttons. Each change steps in as a new panel (16px rise, step easing).
+### Glyph Matrix
+The signature widget: a black square widget holding a round 25 x 25 dot display that scrolls a 5 x 7 pixel-font message one column every 90ms. Off dots sit at 16% white; dots near the pointer warm toward 76%. Under reduced motion it holds still on "VK".
 
-### Departure Board
-A black panel table: uppercase grey column heads, 13px-padded rows divided by board-rule, Barlow 700 20px station names, amber "go" links. Hover or active row tints board-row-active. On mobile, rows become two-column grid cards. Case-study facts use the same board (amber tabular value, label beside it), never big-number tiles.
+### Journey Track
+Five widgets on a dotted track, oldest first, each opening on its start year in Doto. A 12px ink dot marks each stop on the track; the current stop is a black widget with a red dot and the live light on its date.
 
-### Journey Route
-A horizontal 6px ink route with 28px stops: work stops filled ink, education stops panel-filled, the current role ringed in Now Amber with a "Now" tag. Collapses to three columns, then a vertical spine.
-
-### Case-Study Station Sign
-Every case study opens on a black sign showing the station code badge, line name and year (or "Now · in progress" in amber), with the station's line colour run along its foot as a 6px stripe. This sign replaces any label above the title. The table of contents marks the active section as a small black sign with an amber number, never a coloured edge.
-
-### Terminus
-The end of the line: a large black sign with the display title, the email as an amber underlined link, availability status with an amber dot, the Now and light buttons, and social links that turn amber on hover. The page rail stops at it on an amber buffer stop.
+### Contact Widget
+A full-width black widget: "Say hello" in Doto, the email address as a 3px dotted-underline link, availability with the live light, white and ghost buttons, and social links above a #333 hairline.
 
 ## Do's and Don'ts
 
 ### Do:
-- **Do** give every project a station: a line, a fixed code and a place on the route.
-- **Do** use line colours only to mean their line; a case study's accent is its station's line colour.
-- **Do** keep Now Amber for the present and the primary action, on black or as a fill with black text.
-- **Do** draw every route mark at the single stroke weight (6px, 4px on mobile).
-- **Do** render facts and metrics as departure-board rows with tabular figures.
-- **Do** open case studies on the station sign.
-- **Do** use Phosphor line icons (react-icons/pi) at 16-18px beside sign lettering.
-- **Do** animate in whole steps with the step easing (cubic-bezier(.34, 1.56, .64, 1)) and honour reduced motion.
+- **Do** put everything that is not running text on a white widget (28px radius), and use a black widget for the one emphasised item in a group.
+- **Do** keep red for live and now: the live light, the current stop, in-progress status, the progress bar and the focus ring.
+- **Do** set short display words and figures in Doto with `ROND` 100; read in Space Grotesk; mark dates, years, counts and codes in Space Mono uppercase.
+- **Do** separate rows with dotted rules and underline links with a 2px dotted line that turns solid on hover.
+- **Do** animate in steps (`steps(6, end)`): widgets switch on, the live light blinks, the Glyph Matrix steps; stop all motion under `prefers-reduced-motion`.
 
 ### Don't:
-- **Don't** set IoT Amber or Now Amber as text on the pale ground.
-- **Don't** use colour alone for hierarchy; scale and the black sign carry it.
-- **Don't** put a kicker or eyebrow label above a heading.
-- **Don't** use coloured side-tab borders to mark state or emphasis.
-- **Don't** use text glyphs as icons.
-- **Don't** render statistics as big-number tiles.
-- **Don't** add shadows to signs, panels, badges or buttons.
-- **Don't** lay work out as an intro hero over a grid of equal project cards.
+- **Don't** use red for hover, emphasis, categories or decoration.
+- **Don't** use glass, backdrop blur or translucent panels.
+- **Don't** add drop shadows to widgets, buttons or images.
+- **Don't** colour-code project categories; every category reads in black ink.
+- **Don't** set prose, headings or button labels in Space Mono.
+- **Don't** place an eyebrow or kicker label above a heading.
+- **Don't** add ornament that is not a dot or a hairline, and don't make anything float, glide in or spring.

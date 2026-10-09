@@ -1,4 +1,4 @@
-/* Skills as a timetable: each row a service, its stops listed in order. */
+/* Skills grouped by craft, one row per group. */
 const ROWS = [
   { title: "UX/UI Design",    items: ["User Research", "Interaction Design", "Wireframing", "Prototyping", "Usability Testing", "A/B Testing", "Heuristic Evaluation", "Accessibility (WCAG)", "Design Systems", "Service Design"] },
   { title: "Front-End",       items: ["HTML", "CSS", "JavaScript", "TypeScript", "React.js", "React Native"] },
@@ -10,8 +10,8 @@ const ROWS = [
 export default function Toolkit() {
   return (
     <section id="toolkit" className="sec" aria-labelledby="toolkit-title">
-      <h2 id="toolkit-title" className="sec-title">Toolkit</h2>
-      <dl className="timetable">
+      <div className="sec-head"><h2 id="toolkit-title" className="sec-title">Toolkit</h2></div>
+      <dl className="w timetable">
         {ROWS.map(r => (
           <div key={r.title} className="tt-row">
             <dt>{r.title}</dt>

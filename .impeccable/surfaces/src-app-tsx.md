@@ -2,27 +2,27 @@
 version: 1
 slug: "src-app-tsx"
 primary_target: "src/app.tsx"
-related_targets: ["src/components/glassnet.tsx","src/pages/casestudy/layout.tsx"]
+related_targets: ["src/components/hero.tsx","src/components/glyph.tsx","src/components/work.tsx","src/pages/casestudy/layout.tsx"]
 ---
 
-# Portfolio home + case studies (Glass Network version)
+# Portfolio home + case studies (Nothing version)
 
-Scope: whole site on branch design/glass-network (home `/`, case studies `/work/:slug`). Visitor mode: Experience (the work leads).
-Audience and job: recruiters and hiring managers in Ireland skimming for a UX Engineer; success is a résumé download or contact. Constraints: facts from PRODUCT.md; VK logo kept; no invented metrics; 3D must stay crisp and fast with a non-3D fallback; accessible glass (contrast holds, reduced transparency and reduced motion respected).
-Pinned by the user: Three.js, glassmorphism, Apple-style, crisp, case-study template easy and accessible; the 3D carries the transit-network idea.
-Memorable moment: dragging the glass network turns it in space; choosing a station glides the camera to it and the glass sign changes to that project.
+Scope: whole site on branch design/nothing (home `/`, case studies `/work/:slug`). Visitor mode: Experience (the work leads).
+Audience and job: recruiters and hiring managers in Ireland skimming for a UX Engineer; success is a résumé download or contact. Constraints: facts from PRODUCT.md; VK logo kept; no invented metrics; crisp and clear; accessible (contrast, focus, reduced motion).
+Pinned by the user: Nothing OS feel, Nothing-style fonts, crisp and clear, must feel very different from the previous versions.
+Memorable moment: the round Glyph Matrix widget, a dot display that scrolls what Vimal is building now and lights up under the pointer.
 Unresolved: none.
 
 ## Direction contract
 
-THESIS: The work is one glass object: the transit network built from clear glass tubes with coloured cores, floating in light, that the visitor turns and travels. It refuses the split hero over a grid of equal cards.
+THESIS: The portfolio is a Nothing phone home screen: monochrome widgets, dot-matrix type, one red light for what is live. It refuses colour-coded systems, glass, and decoration that is not a dot or a hairline.
 
-OWN-WORLD: Daylight studio ground, clear refractive glass tubes and bead stations with Apple system-colour cores (Mobile red, Web green, Enterprise blue, IoT orange), frosted-white glass panels with a hairline edge, near-black Geist type, generous radii, soft offset shadows. Motion glides with spring easing; nothing bounces.
+OWN-WORLD: Light grey paper ground, pure white widgets with large radii and no shadow, true black widgets for emphasis, black ink. Doto dot-matrix for display words and numerals (stand-in for NDot), Space Grotesk for reading (stand-in for Ntype), Space Mono uppercase for data only (dates, years, codes). Nothing red #d71921 only for live and now. Dotted rules and dot grids as the only ornament. Motion is digital: dots switch on in steps; nothing floats or springs.
 
-STORY: The visitor sees all seven projects as one glass network, turns it, picks a station to read role, timeline and link on the glass sign, scans the glass list of all work, follows the journey, reads client notes, and ends at contact to email or download the résumé.
+STORY: The visitor meets the headline and VISE as a live widget, sees the Glyph Matrix scrolling the current build, scans every project as a home-screen widget grid with filters, follows the journey along a dotted track, reads client notes, and ends at a black contact widget to email or download the résumé.
 
-FIRST VIEWPORT: Floating glass nav pill (name, UX Engineer, links, résumé). Full-bleed 3D glass network across the viewport with crisp DOM station labels as buttons; headline top-left; glass project sign bottom-right showing VISE; line-key glass pills bottom-left. 2D SVG network replaces WebGL on phones or without WebGL.
+FIRST VIEWPORT: Status-bar nav (logo, links, Dublin time in dots, résumé). Left: dot-matrix headline, line, actions, then the Glyph Matrix and availability widgets. Right: the VISE widget with its screens, live red indicator, role, timeline and case-study link.
 
-FORM: Glass Network, user-pinned (Three.js + glass + Apple style), no roll (pinned direction beats the roll).
+FORM: Nothing home screen, user-pinned, no roll.
 
 FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, DESIGN.md, and every shipping raster carrying its provenance

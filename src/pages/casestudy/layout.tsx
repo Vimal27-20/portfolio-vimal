@@ -2,17 +2,7 @@ import React, { createContext, useCallback, useContext, useEffect, useRef, useSt
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { PiArrowLeft, PiArrowRight, PiArrowUpRight, PiArrowsOut, PiArrowsDownUp, PiX } from "react-icons/pi";
 import { projects, type Project } from "../../data/projects";
-import { STATIONS } from "../../data/network";
 import "./casestudy.css";
-
-const stationOf = (p: Project) => STATIONS.find(s => s.project.slug === p.slug);
-
-/** A project's route badge: its station code in its line colour. */
-function Badge({ p }: { p: Project }) {
-  const s = stationOf(p);
-  if (!s) return null;
-  return <span className="badge" data-line={s.line.id} style={{ "--badge": s.line.color } as React.CSSProperties}>{s.code}</span>;
-}
 
 /* ───────────────────────── lightbox ───────────────────────── */
 
@@ -191,13 +181,10 @@ export default function CaseStudyLayout({
   const idx  = projects.findIndex(p => p.slug === project.slug);
   const next = projects[(idx + 1) % projects.length];
   const prev = projects[(idx - 1 + projects.length) % projects.length];
-  const station = stationOf(project);
-  // colour only ever means a line, so the page accent is the station's line colour
-  const lineColor = station?.line.color ?? accent;
 
   return (
     <LightboxCtx.Provider value={setLightbox}>
-      <div className="cs" style={lineColor ? ({ "--cs-accent": lineColor } as React.CSSProperties) : undefined}>
+      <div className="cs" style={accent ? ({ "--cs-accent": accent } as React.CSSProperties) : undefined}>
         <div className="cs-progress" style={{ transform: `scaleX(${progress})` }} aria-hidden />
 
         <div className="wrap">
@@ -210,17 +197,6 @@ export default function CaseStudyLayout({
               <span aria-current="page">{name}</span>
             </nav>
           </div>
-
-          {/* the station's own sign: code, line, status */}
-          {station && (
-            <div className="cs-station sign">
-              <Badge p={project} />
-              <span className="cs-station-line">{station.line.name}</span>
-              {project.status === "in-progress"
-                ? <span className="cs-station-now">Now · in progress</span>
-                : <span className="cs-station-year">{project.year}</span>}
-            </div>
-          )}
 
           {header}
 
@@ -274,7 +250,7 @@ function ProjectLink({ p, dir }: { p: Project; dir: "prev" | "next" }) {
       <span className="cs-pager-label">
         {dir === "prev" ? <><PiArrowLeft size={14} aria-hidden /> Previous</> : <>Next project <PiArrowRight size={14} aria-hidden /></>}
       </span>
-      <span className="cs-pager-title"><Badge p={p} /> {p.title}</span>
+      <span className="cs-pager-title">{p.title}</span>
       <span className="cs-pager-tag">
         {p.status === "in-progress" ? "In progress · " : ""}{p.tag}
         {!p.caseStudy && p.link && <> · Behance <PiArrowUpRight size={12} aria-hidden /></>}

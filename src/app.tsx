@@ -1,13 +1,14 @@
 import { Routes, Route, Link, Navigate, useLocation } from "react-router-dom";
 import ScrollManager, { scrollIfSamePage } from "./components/scrollmanager";
 import TopSign from "./components/topsign";
-import Network from "./components/network";
+import Hero from "./components/hero";
+import Work from "./components/work";
 import Journey from "./components/journey";
 import Notices from "./components/notices";
 import Toolkit from "./components/toolkit";
 import Terminus from "./components/terminus";
 import CaseStudyRoute from "./pages/casestudy";
-import "./styles/glass.css";
+import "./styles/nothing.css";
 
 const FOOT_LINKS = [
   { label: "Work",    to: "/#work" },
@@ -18,7 +19,8 @@ const FOOT_LINKS = [
 function Home() {
   return (
     <div className="wrap home">
-      <Network />
+      <Hero />
+      <Work />
       <Journey />
       <Notices />
       <Toolkit />
