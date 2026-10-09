@@ -1,0 +1,10 @@
+import { chromium } from "file:///C:/Users/VIMAL/AppData/Local/Temp/claude/c--Users-VIMAL-Desktop-VIMAL-PORTFOLIO-vvport/47177ecf-5b6b-43fb-9054-0d7e44a743d6/scratchpad/node_modules/playwright-core/index.mjs";
+const b = await chromium.launch({ executablePath: "C:/Program Files/Google/Chrome/Application/chrome.exe" });
+const p = await b.newPage({ viewport: { width: 390, height: 844 }, deviceScaleFactor: 2 });
+await p.goto("http://localhost:4173/portfolio-vimal/", { waitUntil: "networkidle" });
+await p.waitForTimeout(600);
+await p.screenshot({ path: ".impeccable/review/mobile-first.png" });
+await p.goto("http://localhost:4173/portfolio-vimal/work/vise", { waitUntil: "networkidle" });
+await p.evaluate(() => scrollTo(0, 1400)); await p.waitForTimeout(600);
+await p.screenshot({ path: ".impeccable/review/case-mobile-mid.png" });
+await b.close();
