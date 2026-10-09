@@ -1,274 +1,321 @@
 ---
 name: Vimal Kumar Portfolio
-description: The portfolio as a Nothing phone home screen. Monochrome widgets, dot-matrix type, one red light for what is live.
+description: The work presented the way Nothing presents a product. A black stage with a dot grid, grey shop floors, white product surfaces, a serif voice, mono labels, one red light for what is live.
 colors:
-  nothing-red: "#d71921"
+  live-red: "#d71921"
   red-ink: "#b3121a"
-  paper: "#ebebe9"
-  widget-white: "#ffffff"
-  widget-black: "#000000"
+  stage: "#000000"
+  floor: "#f2f2f2"
+  white: "#ffffff"
+  pill-grey: "#c8c8c8"
+  graphite: "#1d1d1d"
   ink: "#000000"
   ink-2: "#2b2b2b"
   ink-3: "#5c5c5c"
-  dim: "#8a8a8a"
-  hair: "#d6d6d3"
-  on-black-muted: "#c9c9c9"
+  hair: "#dcdcdc"
+  hover-grey: "#e2e2e2"
+  on-stage: "#ffffff"
+  on-stage-2: "#a8a8a8"
 typography:
   display:
-    fontFamily: "Doto Variable, Space Mono, monospace"
-    fontSize: "clamp(56px, 7.4vw, 112px)"
+    fontFamily: "Doto Variable, Geist Mono Variable, monospace"
+    fontSize: "clamp(64px, 11vw, 168px)"
     fontWeight: 700
     lineHeight: 0.9
-    letterSpacing: "0"
+    letterSpacing: "0.02em"
+    fontVariation: "\"ROND\" 100"
+  dot-menu:
+    fontFamily: "Doto Variable, Geist Mono Variable, monospace"
+    fontSize: "clamp(30px, 4.4vw, 56px)"
+    fontWeight: 700
+    lineHeight: 0.95
+    letterSpacing: "0.02em"
     fontVariation: "\"ROND\" 100"
   headline:
-    fontFamily: "Space Grotesk Variable, system-ui, sans-serif"
-    fontSize: "clamp(44px, 6vw, 84px)"
-    fontWeight: 500
-    lineHeight: 1.08
-    letterSpacing: "-0.025em"
+    fontFamily: "Newsreader Variable, Georgia, serif"
+    fontSize: "clamp(40px, 5.2vw, 76px)"
+    fontWeight: 450
+    lineHeight: 1.02
+    letterSpacing: "-0.02em"
+  section-title:
+    fontFamily: "Newsreader Variable, Georgia, serif"
+    fontSize: "clamp(36px, 4.4vw, 60px)"
+    fontWeight: 450
+    lineHeight: 1.05
+    letterSpacing: "-0.02em"
   title:
-    fontFamily: "Space Grotesk Variable, system-ui, sans-serif"
-    fontSize: "22px"
-    fontWeight: 500
-    lineHeight: 1.08
-    letterSpacing: "-0.025em"
+    fontFamily: "Newsreader Variable, Georgia, serif"
+    fontSize: "24px"
+    fontWeight: 400
+    lineHeight: 1.12
+    letterSpacing: "-0.015em"
   body:
-    fontFamily: "Space Grotesk Variable, system-ui, sans-serif"
+    fontFamily: "Geist Variable, system-ui, sans-serif"
     fontSize: "17px"
     fontWeight: 400
     lineHeight: 1.55
-  body-read:
-    fontFamily: "Space Grotesk Variable, system-ui, sans-serif"
+  body-reading:
+    fontFamily: "Geist Variable, system-ui, sans-serif"
     fontSize: "18px"
     fontWeight: 400
     lineHeight: 1.7
   label:
-    fontFamily: "Space Mono, ui-monospace, monospace"
+    fontFamily: "Geist Mono Variable, ui-monospace, monospace"
     fontSize: "13px"
-    fontWeight: 400
-    letterSpacing: "0.06em"
+    fontWeight: 500
+    lineHeight: 1
+    letterSpacing: "0.04em"
+  label-sm:
+    fontFamily: "Geist Mono Variable, ui-monospace, monospace"
+    fontSize: "12px"
+    fontWeight: 500
+    lineHeight: 1.2
+    letterSpacing: "0.04em"
 rounded:
-  badge: "6px"
-  inner: "18px"
-  widget: "28px"
-  pill: "999px"
+  btn: "4px"
+  pill: "6px"
+  dock: "8px"
+  card: "16px"
+  sheet: "20px"
+  widget: "24px"
 spacing:
-  gap: "16px"
-  gutter: "24px"
-  gutter-mobile: "14px"
-  widget-pad: "28px"
-  section: "120px"
+  xs: "6px"
+  sm: "16px"
+  md: "32px"
+  lg: "44px"
+  section: "128px"
   section-mobile: "88px"
 components:
   button-primary:
-    backgroundColor: "{colors.widget-black}"
-    textColor: "{colors.widget-white}"
-    rounded: "{rounded.pill}"
-    padding: "0 22px"
-    height: "48px"
+    backgroundColor: "{colors.ink}"
+    textColor: "{colors.white}"
+    typography: "{typography.label}"
+    rounded: "{rounded.btn}"
+    padding: "0 16px"
+    height: "42px"
   button-primary-hover:
     backgroundColor: "{colors.ink-2}"
-    textColor: "{colors.widget-white}"
-  button-line:
-    backgroundColor: "transparent"
-    textColor: "{colors.ink}"
-    rounded: "{rounded.pill}"
-    padding: "0 22px"
-    height: "48px"
-  button-line-hover:
-    backgroundColor: "{colors.widget-black}"
-    textColor: "{colors.widget-white}"
   button-white:
-    backgroundColor: "{colors.widget-white}"
+    backgroundColor: "{colors.white}"
     textColor: "{colors.ink}"
-    rounded: "{rounded.pill}"
-    padding: "0 22px"
-    height: "48px"
-  filter-chip:
-    backgroundColor: "{colors.widget-white}"
-    textColor: "{colors.ink}"
-    rounded: "{rounded.pill}"
-    padding: "0 18px"
-    height: "42px"
-  filter-chip-selected:
-    backgroundColor: "{colors.widget-black}"
-    textColor: "{colors.widget-white}"
-  widget:
-    backgroundColor: "{colors.widget-white}"
-    textColor: "{colors.ink}"
-    rounded: "{rounded.widget}"
-    padding: "28px"
-  widget-black:
-    backgroundColor: "{colors.widget-black}"
-    textColor: "{colors.widget-white}"
-    rounded: "{rounded.widget}"
-    padding: "28px"
-  skill-chip:
-    backgroundColor: "{colors.paper}"
-    textColor: "{colors.ink}"
-    rounded: "{rounded.pill}"
-    padding: "6px 14px"
-  badge:
-    backgroundColor: "{colors.widget-black}"
-    textColor: "{colors.widget-white}"
     typography: "{typography.label}"
-    rounded: "{rounded.badge}"
-    height: "22px"
-    padding: "0 6px"
-  nav-link:
+    rounded: "{rounded.btn}"
+    padding: "0 16px"
+    height: "42px"
+  button-white-hover:
+    backgroundColor: "{colors.hover-grey}"
+  icon-button:
+    backgroundColor: "{colors.white}"
+    textColor: "{colors.ink}"
+    rounded: "{rounded.btn}"
+    size: "40px"
+  filter-chip:
+    backgroundColor: "{colors.white}"
+    textColor: "{colors.ink}"
+    typography: "{typography.label}"
+    rounded: "{rounded.btn}"
+    padding: "0 14px"
+    height: "36px"
+  filter-chip-active:
+    backgroundColor: "{colors.ink}"
+    textColor: "{colors.white}"
+  tag:
+    backgroundColor: "{colors.floor}"
+    textColor: "{colors.ink}"
+    rounded: "{rounded.btn}"
+    padding: "5px 10px"
+  nav-pill:
+    backgroundColor: "{colors.pill-grey}"
     textColor: "{colors.ink}"
     rounded: "{rounded.pill}"
-    padding: "8px 14px"
-  nav-link-hover:
-    backgroundColor: "{colors.widget-white}"
+    padding: "0 6px"
+    height: "48px"
+    width: "576px"
+  product-card-image:
+    backgroundColor: "{colors.white}"
+    rounded: "{rounded.card}"
+    padding: "16px"
+  widget:
+    backgroundColor: "{colors.white}"
+    textColor: "{colors.ink}"
+    rounded: "{rounded.widget}"
+    padding: "22px"
+  widget-black:
+    backgroundColor: "{colors.stage}"
+    textColor: "{colors.on-stage}"
+    rounded: "{rounded.widget}"
+    padding: "22px"
+  quick-view-sheet:
+    backgroundColor: "{colors.white}"
+    textColor: "{colors.ink}"
+    rounded: "{rounded.sheet}"
+    width: "1080px"
+  contact-field:
+    backgroundColor: "{colors.graphite}"
+    textColor: "{colors.on-stage}"
+    rounded: "{rounded.pill}"
+    padding: "6px 6px 6px 18px"
+  chapter-dock:
+    backgroundColor: "{colors.stage}"
+    textColor: "{colors.on-stage}"
+    rounded: "{rounded.dock}"
+    padding: "6px"
+  chapter-dock-button:
+    backgroundColor: "{colors.graphite}"
+    textColor: "{colors.on-stage}"
+    rounded: "{rounded.btn}"
+    size: "38px"
 ---
 
 # Design System: Vimal Kumar Portfolio
 
 ## Overview
 
-**Creative North Star: "The Home Screen"**
+**Creative North Star: "The Product Stage"**
 
-The site is a Nothing phone home screen. A light grey screen (the paper) holds widgets of exactly two materials, pure white and true black, with large rounded corners and no shadow. Display words and numerals are set in a dot-matrix face, reading text in a clean grotesk, and data in a monospace. One red light means something is live right now; nothing else is coloured.
+The work is shown the way Nothing shows a phone: lit on a black stage, set down on light grey shop floors, held on white product surfaces you can pick up and inspect. Projects are products, not tiles in a portfolio grid. Each one is an image shown whole on a white field, opened into a quick-view sheet, then read chapter by chapter as a product page.
 
-Density is calm and widget-sized: everything that is not running text sits on a widget, widgets tile on a 16px gap, and sections breathe with 120px between them. Ornament is limited to what a dot display can make: dotted rules, dotted tracks, dot grids, and the round Glyph Matrix that scrolls what is being built now. Motion is digital: dots and widgets switch on in steps rather than gliding, floating or springing.
+The voice has three registers that never trade places. A warm editorial serif (Newsreader, standing in for NType82) makes the statements. Geist Mono in small uppercase names, labels and buttons ("SEE THE WORK >"). Round dot-matrix type (Doto with ROND 100, standing in for Ndot) lights names, numerals and the big menu. Geist carries the reading. Colour is refused: everything is black, white and grey, and one red dot blinks only where something is live.
 
-The world rejects colour-coded systems (every project category reads in the same black ink), glass and backdrop blur, drop shadows, and decoration that is not a dot or a hairline.
+Motion is quick and exact. Dots respond to the pointer, sheets slide up, the quick-view image morphs into the case-study cover, displays step rather than glide. Under reduced motion every animation collapses to its end state and the dot word is simply on.
 
 **Key Characteristics:**
-- Light grey paper, white widgets, black widgets for emphasis, black ink.
-- Doto dot-matrix (round dots) for display words and figures; Space Grotesk for reading; Space Mono uppercase for data.
-- One red, reserved for live and now.
-- Flat surfaces, large radii (28px widgets, 18px inner frames, pill controls).
-- Dotted rules and dot grids as the only ornament.
-- Stepped motion; full stillness under reduced motion.
+- Black stage (hero, contact, footer, menu, case-study header) alternating with light grey floor sections.
+- White product surfaces with soft radii: 16px cards, 24px widgets, 20px sheets; 4px square-shouldered controls.
+- Serif statements, mono uppercase labels, dot-matrix names and numerals.
+- A sparse stage dot grid with a dense lit word in it.
+- One red light, for live things only.
+- Flat: no shadows anywhere except the chapter dock's lift; no glass.
 
 ## Colors
 
-A monochrome screen with a single signal colour.
+A strictly achromatic product palette, black stage to white surface, with a single red signal lamp.
 
 ### Primary
-- **Nothing Red** (`nothing-red`): the light that says live or now. The blinking `.live` dot, the current stop on the journey, in-progress status on case studies, the open item in progress lists, the active section dot in the case-study contents, the reading-progress bar, the focus ring, and the text caret.
-- **Red Ink** (`red-ink`): the darker red that carries small live text on white (the "Building now" label, the case-study data line, the "In progress" status) so it holds contrast.
+- **Live Red** (live-red): the blinking 8px dot of the live indicator, in project cards, the journey's current row, the availability line, the "now building" widget and case-study status. Nothing else is red.
+- **Red Ink** (red-ink): the text form of the live signal on white or floor ("NOW" in the journey, a status chip's label), where Live Red would be too light for small type.
 
 ### Neutral
-- **Paper** (`paper`): the screen behind the widgets; also the inner frame behind images and the fill of skill chips.
-- **Widget White** (`widget-white`): the default widget material, filter chips, the white button on black.
-- **Widget Black** (`widget-black`): the emphasis widget material (Glyph Matrix, current journey stop, first client note, contact widget, next-case pager) and the primary button.
-- **Ink** (`ink`): headings and primary text.
-- **Ink 2** (`ink-2`): body copy and descriptions; the hover state of black buttons.
-- **Ink 3** (`ink-3`): secondary text, metadata and section intros (at least 5.6:1 on white and paper).
-- **Dim** (`dim`): dotted rule dots and decorative marks only; never small text.
-- **Hair** (`hair`): thin solid dividers inside widgets and inactive contents dots.
-- **On-Black Muted** (`on-black-muted`): secondary text on black widgets.
+- **Stage Black** (stage): hero, menu, contact block, footer, black widgets, case-study header, the chapter dock and the next-project pager.
+- **Shop Floor** (floor): the page ground for every light section; also the quick view's image well and tag fills.
+- **Product White** (white): cards, widgets, the quick-view sheet, filter chips, icon buttons, reader panels and figures.
+- **Pill Grey** (pill-grey): the floating nav pill only.
+- **Graphite** (graphite): raised controls on black: the contact field, the reader's back button, dock buttons, quote-pager buttons, the in-progress note.
+- **Ink / Ink 2 / Ink 3** (ink, ink-2, ink-3): primary text and solid buttons; reading text and the button hover; secondary text, meta and counts (at least 5.6:1 on white and floor).
+- **Hairline** (hair): 1px dividers in spec lists, the quick-view bar, the work rail track.
+- **Hover Grey** (hover-grey): hover fill for white chips and icon buttons.
+- **On Stage / On Stage 2** (on-stage, on-stage-2): text on black; secondary text on black (at least 8:1).
 
 ### Named Rules
-**The One Light Rule.** Red marks only what is live or current: the live light, the current journey stop, in-progress status, the progress bar, the focus ring. It is never a hover colour, a category colour, a highlight or decoration.
+**The One Red Light Rule.** Red appears only as the live indicator and its ink. Never as an accent, link, hover, border, focus ring or decoration. If nothing is live, the screen has no red.
 
-**The One Ink Rule.** Project categories (Mobile, Web, Enterprise, IoT) all read in the same black ink. Colour carries no category meaning.
+**The Achromatic Rule.** Interface colour is black, white and grey. Colour enters only through project screenshots and the VK logo, which is an existing identity asset and is exempt.
 
 ## Typography
 
-**Display Font:** Doto Variable, full axes with `ROND` 100 for round dots (stand-in for NDot), falling back to Space Mono
-**Body Font:** Space Grotesk Variable (stand-in for Ntype), falling back to system-ui
-**Label/Mono Font:** Space Mono 400/700
+**Display Font:** Doto (round dot-matrix, `"ROND" 100`, weight 700, uppercase), falling back to Geist Mono
+**Headline Font:** Newsreader (optical sizing on), falling back to Georgia
+**Body Font:** Geist, falling back to system-ui
+**Label/Mono Font:** Geist Mono, falling back to ui-monospace
 
-**Character:** A dot-matrix display face shouting short words and numbers over a quiet geometric grotesk; the mono is a small, tracked, uppercase readout.
+**Character:** A soft editorial serif against an engineered mono and lit dots: the serif speaks, the mono labels, the dots name. Geist stays neutral underneath so the reading never competes.
 
 ### Hierarchy
-- **Display** (Doto 700, uppercase, ROND 100, line-height 0.9): short display words and figures only. Hero word at `clamp(56px, 7.4vw, 112px)`; case-study title at `clamp(72px, 12vw, 176px)` and line-height 0.86; contact "Say hello" at `clamp(64px, 11vw, 168px)`; project name, Dublin clock, journey start years (52px) and case-study fact figures (44px) in the same face.
-- **Headline** (Space Grotesk 500, `clamp(44px, 6vw, 84px)`, line-height 1.08, -0.025em): section titles. Case-study section headings run `clamp(34px, 4.4vw, 60px)` at line-height 1.02 and -0.04em, max 20ch.
-- **Title** (Space Grotesk 500, 22px, -0.025em): tile titles (30px on case-study tiles), journey roles (21px), the hero second line at `clamp(30px, 3.4vw, 48px)`.
-- **Body** (Space Grotesk 400, 17px / 1.55; 16px under 760px): page text. Case-study reading text is 18px / 1.7 in a 66ch column; ledes run 19-20px.
-- **Label** (Space Mono 400, 13px, 0.06em, uppercase): dates, years, counts, codes and other data readouts. Badges use Space Mono 700 12px.
+- **Display** (dots, 700, clamp(64px, 11vw, 168px), 0.9): the project name on the case-study stage.
+- **Dot Menu** (dots, 700, clamp(30px, 4.4vw, 56px), 0.95): the full-screen menu and footer link list. Dots also set the nav name, journey years (30px), the Dublin clock (clamp(56px, 6vw, 92px)) and reader stat numerals (44px).
+- **Headline** (serif, 450, clamp(40px, 5.2vw, 76px), 1.02): the hero statement; the contact title runs larger (clamp(48px, 7vw, 104px)).
+- **Section Title** (serif, 450, clamp(36px, 4.4vw, 60px), 1.05): home section heads, centred, with a muted line of copy below.
+- **Title** (serif, 400, 24px, 1.12): card titles, widget statements (26px), reader sub-heads; chapter headings run clamp(30px, 3vw, 44px) at 1.08; quotes clamp(24px, 2.4vw, 34px) at 1.25.
+- **Body** (Geist, 400, 17px / 16px under 760px, 1.55): all interface copy; ledes cap at 44 to 48ch.
+- **Body Reading** (Geist, 400, 18px / 17px mobile, 1.7): case-study paragraphs, capped at 66ch.
+- **Label** (Geist Mono, 500, 13px, 0.04em, uppercase): buttons, chips, text links, meta. **Label Small** (12px) for card meta, fact terms, widget labels, crumbs, the dock.
 
 ### Named Rules
-**The Dots Are Display Rule.** Doto is for short words and numerals at display size. Never set sentences, body or controls in it.
+**The Three Voices Rule.** Serif for statements, mono uppercase for labels, buttons and data, dots for names and numerals. A role never borrows another voice.
 
-**The Data-Only Mono Rule.** Space Mono marks data: dates, years, counts, codes. It is not a voice for headings, buttons or prose.
-
-**The No Eyebrow Rule.** Headings stand alone. No small label line sits above a heading to introduce it.
+**The Meta Below Rule.** Nothing sits above a heading. Category, year, role and counts go below the title in mono; a section opens straight on its heading.
 
 ## Layout
 
-A 1320px container with 24px gutters (14px under 760px). Widgets tile on a 16px gap (10-12px on phones). Sections sit 120px apart (88px under 760px), each opened by a header row: a large title on the left and a short ink-3 intro (max 42ch) aligned to its baseline on the right.
+A centred container of 1320px with 32px side padding (16px under 760px). Home sections stack at 128px intervals (88px on mobile) with centred heads 44px above their content. The hero is a full-bleed black stage at least `calc(100svh - 64px)` tall with its copy anchored to the bottom, leaving the top of the work peeking.
 
-The first viewport is a two-column home screen (1 : 1.08): headline, lede, actions and two square widgets (Glyph Matrix and Dublin time) on the left, the featured project widget on the right. It stacks to one column at 1080px.
+The work is a horizontal product row, not a grid: snap-scrolling columns of clamp(280px, 26vw, 380px) (74vw on mobile) at 16px gaps, aligned to the container's edge, draggable, with a 2px progress rail below. Widgets sit in a four-column bento (two columns under 1080px) with 240px minimum rows; the quote widget spans 2 by 2. The journey is a two-column split with a sticky head, collapsing under 1080px.
 
-The work grid is four columns on desktop, with case studies spanning two; it drops to two columns at 1080px and stays two-up on phones. The journey is five widgets along a horizontal dotted track that turns vertical at 1080px. Client notes are a 1.25 : 1 : 1 row that stacks at 1080px.
-
-Case studies use a 220px contents list beside the reading column (64px gap, article max 980px). At 980px the contents list becomes a sticky horizontal row of pill links on paper. The status bar is 72px (60px on phones) and sticky; anchored targets carry an 88px scroll margin.
+The case-study reader bleeds a black stage across the top, with the cover standing on the line where black meets floor. Chapters run as a 300px sticky heading column beside a reading column, collapsing to one column under 980px. Breakpoints: 760px, 980px (reader), 1080px.
 
 ## Elevation & Depth
 
-The system is flat. No widget, button, image frame or panel carries a drop shadow, and nothing uses glass or backdrop blur. Depth is the contrast between the paper and the two widget materials: white lifts off grey by tone, black widgets mark emphasis. Inset 1.5px strokes on outline buttons and the paper-coloured ring that knocks journey dots out of the track are strokes, not shadows.
+Flat. Depth comes from ground changes (black stage, grey floor, white surface) and from scrims behind modal sheets (black at 72% for the quick view, 92% for the lightbox). Outline buttons draw their 1px edge as an inset stroke, which is a border, not elevation.
+
+### Shadow Vocabulary
+- **Dock lift** (`box-shadow: 0 10px 30px -10px rgba(0, 0, 0, .45)`): the chapter dock only, because it floats over reading content.
 
 ### Named Rules
-**The Flat Widget Rule.** Widgets are flat white or flat black. Depth comes from tone against the paper, never from shadow or blur.
+**The One Lift Rule.** No shadows except the dock's lift. Cards, widgets, sheets, figures and buttons sit flat on their ground.
+
+**The No Glass Rule.** No backdrop blur, frosted panels or translucent surfaces. Surfaces are opaque.
 
 ## Shapes
 
-Generous, phone-like rounding. Widgets use a 28px radius (22px on phone tiles); frames inside widgets (images, notes) use 18px (14px on phones); every control is a full pill (999px); badges are 6px. Dots are perfect circles: the live light (9px), journey stops (12px), contents markers (8px), list bullets (6px).
+Two families of corner. Controls are square-shouldered: buttons, chips, tags and icon buttons at 4px, the nav pill and contact field at 6px, the dock at 8px. Product surfaces are soft: cards and reader panels at 16px, the quick-view sheet at 20px (18px top corners as a bottom sheet on mobile), widgets at 24px (20px on mobile). Dots are true circles everywhere: the live lamp, pager dots, list bullets, the dot field and the round glyph display. Active pager and dock dots stretch into a 3px-radius bar.
 
-Ornament is dotted: rules are built from radial-gradient dots (1.2px dots on a 10px pitch at 35% ink for the standalone rule; 1px dim dots on an 8px pitch between rows inside widgets), the journey and case-study spine run on dotted tracks, and links are underlined with a 2px dotted line that turns solid on hover. Thin solid 1px hairlines appear only as dividers inside a widget, above a fact row or an attribution.
-
-### Named Rules
-**The Dot Or Hairline Rule.** The only ornament is a dot or a hairline. No gradients, textures, icons-as-decoration or colour blocks.
+Project images are never cropped: `object-fit: contain` inside a padded white field.
 
 ## Components
 
 ### Buttons
-Solid, pill-shaped, quiet.
-- **Shape:** full pill (999px), 48px tall (44px in the status bar), Space Grotesk 500 16px, icon gap 10px.
-- **Primary:** black with white text, 0 22px padding.
-- **Hover / Focus:** black lightens to ink-2; colour transitions at 0.2s. Focus is the global 2px red outline at 3px offset.
-- **Outline:** transparent with a 1.5px inset black stroke; fills black with white text on hover.
-- **On black widgets:** a white button (hover #d9d9d9) and a ghost button with a 1.5px 50% white inset stroke that fills white on hover.
-- **Disabled:** 45% opacity, no pointer events.
+Small, square-shouldered, mono caps with a trailing chevron or arrow that nudges 3px on hover.
+- **Shape:** gently squared (4px), 42px tall, 16px side padding.
+- **Primary:** ink fill, white label; hover to ink-2.
+- **White:** on black grounds (hero, contact field); hover to a light grey.
+- **Line / Line Dark:** transparent with a 1px inset stroke (ink, or white at 50% on black); hover fills solid.
+- **Text link:** mono caps, underlined with a 0.3em offset, thickening to 2px on hover ("QUICK VIEW +").
+- **Disabled:** 45% opacity, inert.
 
 ### Chips
-- **Filter chips:** white pill, 42px tall, 15px Space Grotesk 500, with the item count in Space Mono 12px ink-3. Hover goes to #dcdcd9; selected (`aria-pressed`) is black with white text and the count in on-black-muted.
-- **Skill chips:** paper-filled pills, 6px 14px, 15px, wrapped in rows inside a white widget.
+- **Filter:** white, 36px, mono caps with a muted count; pressed state is solid ink with white text.
+- **Tag:** floor-grey fill, 4px, 13px Geist, in the quick view.
 
 ### Cards / Containers
-- **Corner Style:** 28px widget radius; 18px for inner image frames.
-- **Background:** white by default, black for the single emphasised item in a group.
-- **Shadow Strategy:** none (see Elevation & Depth).
-- **Border:** none; rows inside a widget are separated by dotted rules.
-- **Internal Padding:** 28px for text widgets; 14-16px for image widgets so the inner frame sits close to the edge.
-- **Project tile:** image frame (4:3, 16:10 on case-study tiles) on paper, title, a mono category and year line, role and duration, and a dotted-underline link at the bottom. Hover scales the image to 1.03.
+- **Product card:** an unboxed column: a 4:3 white image field (16px radius, 16px padding, image contained, 1.04 scale on hover over 0.7s), then serif title, muted role, mono meta and a text link. The whole column is one button that opens the quick view.
+- **Widget:** white or black, 24px radius, 22px padding, mono label, content pushed to the foot. Signatures: a round 25 by 25 glyph-matrix display scrolling a 5 by 7 font in 90ms steps; the Dublin clock in dots; a quote carousel with pager dots.
+- **Spec list:** facts as rows between a top ink rule and hairline dividers (quick-view facts, journey stops, reader stats with dot numerals).
+
+### Inputs / Fields
+- **Contact field:** a graphite bar (6px) holding the address in 17px Geist Mono and a white Copy button; stacks vertically on mobile. Copy feedback is announced politely.
+- **Focus (global):** a 2px ink outline at 3px offset, turning white on every black ground.
 
 ### Navigation
-- **Status bar:** sticky on paper, 72px. VK logo and name on the left; pill links (15px, white fill on hover) on the right, then the Dublin time in Doto 22px and the black résumé button. Under 760px the name and clock hide and the résumé button collapses to a 44px icon.
-- **Case-study contents:** a white widget listing sections; each link has an 8px dot that turns red for the current section. Becomes a horizontal pill row under 980px, with the active pill black.
+- **Nav pill:** a floating pill-grey bar (576px max, 48px, 44px on mobile) 8px from the top: menu button, logo with the name in dots, résumé download.
+- **Menu:** a native `<dialog>` filling the screen in black, the dot-matrix link list centred; hovering one link dims the rest to 35%.
+- **Footer:** the same dot-matrix list on black, then a mono line with copyright and Dublin time.
 
-### Live Indicator
-A 9px red circle before a short mono label, blinking to 25% opacity on a 1.4s stepped loop. Used for "Building now", the current journey stop, availability on the contact widget, and in-progress status.
+### Quick View
+A native `<dialog>` sheet in white (1080px max, 20px radius) that rises 24px on open; a bottom sheet on mobile with its call to action pinned. A bar carries a mono "01 / 07" count and previous, next and close icon buttons. The image sits contained in a floor well and carries the shared `cover` view-transition name, so opening the case study morphs it into the cover (0.5s).
 
-### Glyph Matrix
-The signature widget: a black square widget holding a round 25 x 25 dot display that scrolls a 5 x 7 pixel-font message one column every 90ms. Off dots sit at 16% white; dots near the pointer warm toward 76%. Under reduced motion it holds still on "VK".
+### Chapter Dock
+The reader's floating black control, hidden until chapters are on screen: previous and next graphite buttons, a row of chapter dots (the current one a 16px bar) and a mono chapter label. The arrow keys step chapters too.
 
-### Journey Track
-Five widgets on a dotted track, oldest first, each opening on its start year in Doto. A 12px ink dot marks each stop on the track; the current stop is a black widget with a red dot and the live light on its date.
-
-### Contact Widget
-A full-width black widget: "Say hello" in Doto, the email address as a 3px dotted-underline link, availability with the live light, white and ghost buttons, and social links above a #333 hairline.
+### Dot Field
+The hero canvas: a sparse grid of faint dots (one in every seven by seven) across black, with VIMAL rasterised into dense white dots that switch on in a stepped scatter over the first second. A lens follows the pointer, swelling dots and revealing the fine grid beneath.
 
 ## Do's and Don'ts
 
 ### Do:
-- **Do** put everything that is not running text on a white widget (28px radius), and use a black widget for the one emphasised item in a group.
-- **Do** keep red for live and now: the live light, the current stop, in-progress status, the progress bar and the focus ring.
-- **Do** set short display words and figures in Doto with `ROND` 100; read in Space Grotesk; mark dates, years, counts and codes in Space Mono uppercase.
-- **Do** separate rows with dotted rules and underline links with a 2px dotted line that turns solid on hover.
-- **Do** animate in steps (`steps(6, end)`): widgets switch on, the live light blinks, the Glyph Matrix steps; stop all motion under `prefers-reduced-motion`.
+- **Do** keep red to the live indicator and its ink (#d71921 dot, #b3121a text).
+- **Do** set every label, button, chip, count and data point in Geist Mono uppercase at 12 to 13px with 0.04em tracking.
+- **Do** put meta (category, year, role, status) below the title it describes.
+- **Do** show project images whole, contained on white fields with padding.
+- **Do** keep the stage grid sparse and the lit word dense.
+- **Do** build dialogs (menu, quick view) on native `<dialog>` with a black scrim and Escape to dismiss.
+- **Do** turn the focus ring white on black grounds and keep it ink everywhere else.
+- **Do** honour reduced motion: end states only, the dot word simply on, the glyph display holding still.
 
 ### Don't:
-- **Don't** use red for hover, emphasis, categories or decoration.
+- **Don't** put an eyebrow, kicker or label above a heading.
 - **Don't** use glass, backdrop blur or translucent panels.
-- **Don't** add drop shadows to widgets, buttons or images.
-- **Don't** colour-code project categories; every category reads in black ink.
-- **Don't** set prose, headings or button labels in Space Mono.
-- **Don't** place an eyebrow or kicker label above a heading.
-- **Don't** add ornament that is not a dot or a hairline, and don't make anything float, glide in or spring.
+- **Don't** add shadows; the dock's lift is the only one.
+- **Don't** introduce interface colour, gradients or a second accent.
+- **Don't** crop project screenshots with `object-fit: cover` or tight frames.
+- **Don't** set display text in a system face; the dots are Doto with ROND 100, statements are Newsreader.
+- **Don't** lay the work out as a card grid; it is a row of products.

@@ -107,5 +107,7 @@ export default function Glyph({ text, label }: { text: string; label: string }) 
     };
   }, [text]);
 
-  return <canvas ref={ref} className="glyph" role="img" aria-label={label} />;
+  return label
+    ? <canvas ref={ref} className="glyph" role="img" aria-label={label} />
+    : <canvas ref={ref} className="glyph" aria-hidden />;
 }

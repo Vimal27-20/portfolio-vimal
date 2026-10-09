@@ -1,15 +1,8 @@
 import { useEffect, useRef, useState } from "react";
-import { PiCopy, PiCheck, PiDownloadSimple, PiArrowUpRight } from "react-icons/pi";
+import { PiCaretRight, PiDownloadSimple } from "react-icons/pi";
+import { EMAIL, RESUME } from "./links";
 
-const EMAIL = "vimal.v27k@gmail.com";
-const RESUME = `${import.meta.env.BASE_URL}img/Vimal-kumar-Resume.pdf`;
-const SOCIALS = [
-  { label: "LinkedIn", href: "https://www.linkedin.com/in/vimal27k/" },
-  { label: "Behance",  href: "https://www.behance.net/vimalkveerara" },
-  { label: "Dribbble", href: "https://dribbble.com/vimalkumar" },
-];
-
-/** The black widget at the end: the one place to act. */
+/** The black block at the end: the address in a field, one press to copy it. */
 export default function Terminus() {
   const [copy, setCopy] = useState<"idle" | "done" | "failed">("idle");
   const timer = useRef<ReturnType<typeof setTimeout>>();
@@ -23,36 +16,25 @@ export default function Terminus() {
   };
 
   return (
-    <section id="contact" className="sec" aria-labelledby="contact-title">
-      <div className="w w--black terminus">
-        <h2 id="contact-title" className="terminus-title"><span className="dot">Say hello</span></h2>
+    <section id="contact" className="contact" aria-labelledby="contact-title">
+      <div className="wrap contact-in">
+        <h2 id="contact-title" className="contact-title">Say hello.</h2>
+        <p className="contact-sub live">Available for UX Engineer roles in Ireland</p>
 
-        <a href={`mailto:${EMAIL}`} className="terminus-email">{EMAIL}</a>
-        <p className="terminus-status live">Available for UX Engineer roles in Ireland</p>
-
-        <div className="terminus-actions">
-          <button className="btn btn--white" onClick={copyEmail}>
-            {copy === "done" ? <PiCheck size={18} aria-hidden /> : <PiCopy size={18} aria-hidden />}
-            {copy === "done" ? "Copied" : "Copy email"}
+        <div className="field">
+          <a href={`mailto:${EMAIL}`} className="field-value">{EMAIL}</a>
+          <button className="btn btn--white field-btn" onClick={copyEmail}>
+            {copy === "done" ? "Copied" : "Copy"} <PiCaretRight size={14} aria-hidden />
           </button>
-          <a href={RESUME} download="Vimal-kumar-Resume.pdf" className="btn btn--ghost-dark">
-            <PiDownloadSimple size={18} aria-hidden /> Download résumé
-          </a>
-          <span className="sr-only" aria-live="polite">
-            {copy === "done" ? "Email address copied" : copy === "failed" ? "Copy failed. Select the address instead." : ""}
-          </span>
         </div>
-        {copy === "failed" && <p className="terminus-hint">Copy was blocked. Select the address above.</p>}
+        <span className="sr-only" aria-live="polite">
+          {copy === "done" ? "Email address copied" : copy === "failed" ? "Copy failed. Select the address instead." : ""}
+        </span>
+        {copy === "failed" && <p className="contact-hint">Copy was blocked. Select the address above.</p>}
 
-        <ul className="terminus-links">
-          {SOCIALS.map(s => (
-            <li key={s.label}>
-              <a href={s.href} target="_blank" rel="noopener noreferrer">
-                {s.label} <PiArrowUpRight size={15} aria-hidden /><span className="sr-only">(opens in a new tab)</span>
-              </a>
-            </li>
-          ))}
-        </ul>
+        <a href={RESUME} download="Vimal-kumar-Resume.pdf" className="btn btn--line-dark contact-cv">
+          Download résumé <PiDownloadSimple size={15} aria-hidden />
+        </a>
       </div>
     </section>
   );

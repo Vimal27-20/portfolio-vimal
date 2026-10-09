@@ -128,6 +128,7 @@ export default function CaseStudyLayout({
   const [active, setActive]     = useState(sections[0]?.id);
   const [progress, setProgress] = useState(0);
   const [lightbox, setLightbox] = useState<LightboxImg>(null);
+  const [docked, setDocked]     = useState(false);
 
   /* reading-progress bar */
   useEffect(() => {
@@ -138,6 +139,15 @@ export default function CaseStudyLayout({
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  /* the dock shows once the chapters are on screen */
+  useEffect(() => {
+    const art = document.querySelector(".cs-article");
+    if (!art) return;
+    const io = new IntersectionObserver(([e]) => setDocked(e.isIntersecting), { rootMargin: "0px 0px -40% 0px" });
+    io.observe(art);
+    return () => io.disconnect();
   }, []);
 
   /* scroll-spy: highlight the section currently in view */
@@ -155,15 +165,6 @@ export default function CaseStudyLayout({
     return () => io.disconnect();
   }, [sections]);
 
-  /* keep the active chip visible in the mobile nav */
-  // (scrolls only the chip strip sideways: scrollIntoView would also move the page)
-  useEffect(() => {
-    const toc = document.querySelector<HTMLElement>(".cs-toc");
-    const chip = toc?.querySelector<HTMLElement>(`a[data-id="${active}"]`);
-    if (!toc || !chip || toc.scrollWidth <= toc.clientWidth) return;
-    toc.scrollTo({ left: chip.offsetLeft - (toc.clientWidth - chip.offsetWidth) / 2, behavior: "smooth" });
-  }, [active]);
-
   /* close lightbox with Esc */
   useEffect(() => {
     if (!lightbox) return;
@@ -177,6 +178,24 @@ export default function CaseStudyLayout({
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
     navigate(`${pathname}#${id}`, { replace: true });
   }, [navigate, pathname]);
+
+  /* chapter by chapter: ← → step through the sections */
+  const at = Math.max(0, sections.findIndex(s => s.id === active));
+  const stepChapter = useCallback((dir: 1 | -1) => {
+    const t = sections[at + dir];
+    if (t) { setActive(t.id); goTo(t.id); }
+  }, [sections, at, goTo]);
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (lightbox || e.altKey || e.ctrlKey || e.metaKey) return;
+      const el = e.target as HTMLElement;
+      if (el.closest("input, textarea, [contenteditable], .cs-scrollframe-view, .cs-phones")) return;
+      if (e.key === "ArrowRight") { e.preventDefault(); stepChapter(1); }
+      if (e.key === "ArrowLeft") { e.preventDefault(); stepChapter(-1); }
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [stepChapter, lightbox]);
 
   const idx  = projects.findIndex(p => p.slug === project.slug);
   const next = projects[(idx + 1) % projects.length];
@@ -200,27 +219,28 @@ export default function CaseStudyLayout({
 
           {header}
 
-          <div className="cs-body">
-            <aside className="cs-aside">
-              <nav className="cs-toc" aria-label="Case study sections">
-                <p className="cs-toc-title">On this page</p>
-                {sections.map((s, i) => (
-                  <a
-                    key={s.id}
-                    href={`#${s.id}`}
-                    data-id={s.id}
-                    className={active === s.id ? "is-active" : ""}
-                    onClick={e => { e.preventDefault(); goTo(s.id); }}
-                  >
-                    <span className="cs-toc-num">{String(i + 1).padStart(2, "0")}</span>
-                    {s.label}
-                  </a>
-                ))}
-              </nav>
-            </aside>
+          <article className="cs-article">{children}</article>
 
-            <article className="cs-article">{children}</article>
-          </div>
+          {/* the chapter dock: where you are, one press to the next chapter */}
+          <nav className={`cs-dock${docked ? " is-on" : ""}`} aria-label="Chapters">
+            <button className="cs-dock-btn" onClick={() => stepChapter(-1)} disabled={at === 0} aria-label="Previous chapter">
+              <PiArrowLeft size={16} aria-hidden />
+            </button>
+            <ol className="cs-dock-dots">
+              {sections.map((s, i) => (
+                <li key={s.id}>
+                  <a href={`#${s.id}`} className={i === at ? "is-on" : ""} aria-current={i === at ? "location" : undefined}
+                     onClick={e => { e.preventDefault(); setActive(s.id); goTo(s.id); }}>
+                    <span className="sr-only">{i + 1}. {s.label}</span>
+                  </a>
+                </li>
+              ))}
+            </ol>
+            <p className="cs-dock-label" aria-hidden><span>{String(at + 1).padStart(2, "0")}</span> {sections[at]?.label}</p>
+            <button className="cs-dock-btn" onClick={() => stepChapter(1)} disabled={at === sections.length - 1} aria-label="Next chapter">
+              <PiArrowRight size={16} aria-hidden />
+            </button>
+          </nav>
 
           {/* prev / next */}
           <nav className="cs-pager" aria-label="More projects">
@@ -247,10 +267,11 @@ export default function CaseStudyLayout({
 function ProjectLink({ p, dir }: { p: Project; dir: "prev" | "next" }) {
   const inner = (
     <>
-      <span className="cs-pager-label">
-        {dir === "prev" ? <><PiArrowLeft size={14} aria-hidden /> Previous</> : <>Next project <PiArrowRight size={14} aria-hidden /></>}
+      <span className="cs-pager-title">
+        {dir === "prev" && <PiArrowLeft size={20} aria-hidden />}
+        <span className="sr-only">{dir === "prev" ? "Previous project: " : "Next project: "}</span>{p.title}
+        {dir === "next" && <PiArrowRight size={20} aria-hidden />}
       </span>
-      <span className="cs-pager-title">{p.title}</span>
       <span className="cs-pager-tag">
         {p.status === "in-progress" ? "In progress · " : ""}{p.tag}
         {!p.caseStudy && p.link && <> · Behance <PiArrowUpRight size={12} aria-hidden /></>}

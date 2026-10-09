@@ -1,36 +1,44 @@
-import { Routes, Route, Link, Navigate, useLocation } from "react-router-dom";
-import ScrollManager, { scrollIfSamePage } from "./components/scrollmanager";
+import { Routes, Route, Navigate } from "react-router-dom";
+import ScrollManager from "./components/scrollmanager";
 import TopSign from "./components/topsign";
 import Hero from "./components/hero";
 import Work from "./components/work";
+import Widgets from "./components/widgets";
 import Journey from "./components/journey";
-import Notices from "./components/notices";
-import Toolkit from "./components/toolkit";
 import Terminus from "./components/terminus";
+import { QuickViewProvider } from "./components/quickview";
+import { BigLinks } from "./components/links";
+import { useDublinTime } from "./components/clock";
 import CaseStudyRoute from "./pages/casestudy";
 import "./styles/nothing.css";
 
-const FOOT_LINKS = [
-  { label: "Work",    to: "/#work" },
-  { label: "Journey", to: "/#journey" },
-  { label: "Contact", to: "/#contact" },
-];
-
 function Home() {
   return (
-    <div className="wrap home">
+    <QuickViewProvider>
       <Hero />
       <Work />
+      <Widgets />
       <Journey />
-      <Notices />
-      <Toolkit />
       <Terminus />
-    </div>
+    </QuickViewProvider>
+  );
+}
+
+/** Nothing's footer: the whole site as one big dot-matrix menu. */
+function Footer() {
+  const time = useDublinTime();
+  return (
+    <footer className="foot">
+      <nav aria-label="Footer" className="wrap"><BigLinks /></nav>
+      <div className="wrap foot-in mono">
+        <span>© 2026 Vimal Kumar</span>
+        <span>Dublin {time}</span>
+      </div>
+    </footer>
   );
 }
 
 export default function App() {
-  const { pathname } = useLocation();
   return (
     <>
       <ScrollManager />
@@ -44,16 +52,7 @@ export default function App() {
         </Routes>
       </main>
 
-      <footer className="foot">
-        <div className="wrap foot-in">
-          <span>© 2026 Vimal Kumar</span>
-          <nav aria-label="Footer">
-            {FOOT_LINKS.map(l => (
-              <Link key={l.label} to={l.to} onClick={() => scrollIfSamePage(l.to, pathname)}>{l.label}</Link>
-            ))}
-          </nav>
-        </div>
-      </footer>
+      <Footer />
     </>
   );
 }
