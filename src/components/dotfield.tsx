@@ -1,18 +1,17 @@
 import { useEffect, useRef } from "react";
 
-/* The hero stage: a sparse grid of dots across black, with a portrait
-   drawn in dots like a dot-matrix display. Brighter parts of the photo
-   become bigger dots (a halftone), the edges fade into the stage, and on
-   load the portrait scans in from the top. Dots swell under the pointer
-   like a lens passing over the grid. With reduced motion it is simply on.
-   If the photo can't load, the word is lit instead. */
+/* The hero stage: a sparse grid of dots across black that swell under the
+   pointer like a lens passing over the grid. Given a photo it can also draw
+   it as a halftone dot-matrix portrait (brighter parts become bigger dots,
+   scanning in from the top), or light a word; this branch uses the plain
+   grid behind a photographic portrait. With reduced motion it is simply on. */
 
 const smooth = (a: number, b: number, x: number) => {
   const t = Math.min(1, Math.max(0, (x - a) / (b - a)));
   return t * t * (3 - 2 * t);
 };
 
-export default function DotField({ src, word, label }: { src: string; word: string; label: string }) {
+export default function DotField({ src = "", word = "", label }: { src?: string; word?: string; label?: string }) {
   const ref = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
@@ -144,9 +143,11 @@ export default function DotField({ src, word, label }: { src: string; word: stri
       // the headline can change height (fonts load, text wraps): re-fit the portrait
       const text = host.querySelector(".hero-in"); if (text) ro.observe(text);
     };
-    const photo = new Image();
-    photo.src = src;
-    photo.decode().then(() => { img = photo; start(); }, () => document.fonts.ready.then(start));
+    if (src) {
+      const photo = new Image();
+      photo.src = src;
+      photo.decode().then(() => { img = photo; start(); }, () => document.fonts.ready.then(start));
+    } else start();                                     // grid only: nothing lit, just the stage dots and the lens
     raf = requestAnimationFrame(tick);
 
     return () => {
@@ -157,5 +158,7 @@ export default function DotField({ src, word, label }: { src: string; word: stri
     };
   }, [src, word]);
 
-  return <canvas ref={ref} className="dotfield" role="img" aria-label={label} />;
+  return label
+    ? <canvas ref={ref} className="dotfield" role="img" aria-label={label} />
+    : <canvas ref={ref} className="dotfield" aria-hidden />;
 }

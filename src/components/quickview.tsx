@@ -17,6 +17,27 @@ export function QuickViewProvider({ children }: { children: ReactNode }) {
   const open = useCallback((s: string) => { setSlug(s); dialog.current?.showModal(); }, []);
   const close = () => dialog.current?.close();
 
+  // phones: pull the sheet down by its top bar to dismiss it, like an iOS sheet
+  const pull = useRef({ y: 0, on: false });
+  const grab = (e: React.PointerEvent) => {
+    const t = e.target as Element;
+    if (e.pointerType !== "touch" || !t.closest(".qv-bar") || t.closest("button")) return;
+    pull.current = { y: e.clientY, on: true };
+  };
+  const drag = (e: React.PointerEvent) => {
+    if (!pull.current.on) return;
+    dialog.current!.style.transform = `translateY(${Math.max(0, e.clientY - pull.current.y)}px)`;
+  };
+  const drop = (e: React.PointerEvent) => {
+    if (!pull.current.on) return;
+    pull.current.on = false;
+    const d = dialog.current!;
+    const far = e.clientY - pull.current.y > 110;
+    d.style.transition = "transform .3s cubic-bezier(.2,.7,0,1)";
+    d.style.transform = far ? "translateY(100%)" : "";
+    setTimeout(() => { d.style.transition = ""; if (far) { close(); d.style.transform = ""; } }, 300);
+  };
+
   const i = projects.findIndex(p => p.slug === slug);
   const p = projects[i];
   const step = useCallback((dir: 1 | -1) => {
@@ -39,7 +60,8 @@ export function QuickViewProvider({ children }: { children: ReactNode }) {
   return (
     <Ctx.Provider value={open}>
       {children}
-      <dialog ref={dialog} className="qv" aria-labelledby="qv-title" onClick={e => e.target === e.currentTarget && close()} onClose={() => setSlug(null)}>
+      <dialog ref={dialog} className="qv" aria-labelledby="qv-title" onClick={e => e.target === e.currentTarget && close()} onClose={() => setSlug(null)}
+              onPointerDown={grab} onPointerMove={drag} onPointerUp={drop} onPointerCancel={drop}>
         {p && <Sheet p={p} n={i + 1} onStep={step} onClose={close} />}
       </dialog>
     </Ctx.Provider>
@@ -51,6 +73,7 @@ function Sheet({ p, n, onStep, onClose }: { p: Project; n: number; onStep: (d: 1
   return (
     <div className="qv-in">
       <header className="qv-bar">
+        <span className="qv-grab" aria-hidden />
         <p className="mono qv-count">{String(n).padStart(2, "0")} / {String(projects.length).padStart(2, "0")}</p>
         <span className="sr-only" aria-live="polite">Project {n} of {projects.length}: {p.title}</span>
         <div className="qv-steps">

@@ -26,3 +26,9 @@ FIRST VIEWPORT: Floating grey pill nav (menu, VIMAL KUMAR in dots, résumé). Bl
 FORM: Nothing product site, user-pinned (reference ie.nothing.tech), no roll.
 
 FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, DESIGN.md, and every shipping raster carrying its provenance
+
+## Glass OS layer (branch design/glass-os)
+
+Pinned by the user on top of the Nothing.tech build: "some swift OS touch", "glassmorphism feel", profile photo in normal visibility in black and white, a different pointer animation inside the page, no visible scrollbar. Read as Apple iOS / iPadOS / visionOS touches (Swift is Apple's language).
+Additions: frosted glass on everything that floats (pill nav, menu, quick view sheet, chapter dock, the Right now widgets on a blurred-portrait lock-screen wallpaper); the pill settles into a Dynamic-Island-style black capsule naming the current section after the hero; spring overshoot on press; an iPadOS-style pointer that morphs into an outline hugging controls while the control lifts (mouse only; the system cursor is kept for touch, reduced motion, open dialogs and running text); the pill takes a dark tone over dark sections and keeps menu and résumé tappable in the island on touch screens; the portrait is matted along a traced outline, not masked by a shape; no visible scrollbar at all (the user asked not to see one; no substitute indicator); the hero portrait is the black-and-white photo, masked into the stage, leaning toward the pointer with a moving soft light; iOS sheet grabber and pull-to-dismiss on the phone quick view.
+Kept: the Nothing structure, type voices, achromatic palette with one red live light, dot-matrix menu and footer.

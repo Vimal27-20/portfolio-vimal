@@ -10,7 +10,9 @@ import { QuickViewProvider } from "./components/quickview";
 import { BigLinks } from "./components/links";
 import { useDublinTime } from "./components/clock";
 import CaseStudyRoute from "./pages/casestudy";
+import Pointer from "./components/pointer";
 import "./styles/nothing.css";
+import "./styles/glass.css";
 
 function Home() {
   return (
@@ -35,7 +37,8 @@ function Footer() {
       <div className="wrap credits">
         <p className="credits-lead">
           Inspired by <a href="https://nothing.tech" target="_blank" rel="noopener noreferrer">Nothing OS and nothing.tech<span className="sr-only"> (opens in a new tab)</span></a>.
-          An independent portfolio, not affiliated with or endorsed by Nothing Technology Limited.
+          Glass and motion touches after Apple's iOS and visionOS.
+          An independent portfolio, not affiliated with or endorsed by Nothing Technology Limited or Apple Inc.
         </p>
         <dl className="credits-list">
           <div><dt className="mono">Design &amp; code</dt><dd>Vimal Kumar</dd></div>
@@ -59,6 +62,7 @@ export default function App() {
   return (
     <>
       <ScrollManager />
+      <Pointer />
       <TopSign />
 
       <main id="main" tabIndex={-1} style={{ outline: "none" }}>

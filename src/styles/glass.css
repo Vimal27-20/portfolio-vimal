@@ -1,0 +1,198 @@
+/* ═══════════ Glass OS: Apple-style touches over the Nothing build ═══════════
+   Frosted materials where something floats (the pill, the menu, the quick
+   view sheet, the chapter dock, the widgets on their wallpaper), spring
+   motion on things you press, and a soft pointer. No visible scrollbar,
+   and no stand-in for one. Loaded after nothing.css. */
+:root {
+  --spring: cubic-bezier(.34, 1.36, .64, 1);          /* a small overshoot, like an iOS spring */
+  --glass-light: rgba(255, 255, 255, .72);
+  --glass-dark: rgba(18, 18, 18, .55);
+  --glass-blur: blur(28px) saturate(170%);
+  --glass-edge: inset 0 0 0 .5px rgba(255, 255, 255, .45), inset 0 1px 0 rgba(255, 255, 255, .35);
+  --glass-edge-dark: inset 0 0 0 .5px rgba(255, 255, 255, .18), inset 0 1px 0 rgba(255, 255, 255, .14);
+  --r-btn: 10px;
+}
+
+/* no scrollbar: the page still scrolls, nothing shows a bar */
+html { scrollbar-width: none; }
+html::-webkit-scrollbar, body::-webkit-scrollbar { display: none; }
+
+/* things you press give a little, then spring back */
+.btn, .filter, .qv-icon, .pill-btn, .cs-dock-btn, .field-btn, .card-btn { transition: transform .45s var(--spring), background .2s var(--ease), color .2s var(--ease), opacity .2s var(--ease); }
+.btn:active, .filter:active, .qv-icon:active, .pill-btn:active, .cs-dock-btn:active { transform: scale(.94); }
+.card-btn:hover { transform: translateY(-4px); }
+.card-btn:active { transform: scale(.98); }
+
+/* ── the pill: glass, and an island once the hero is behind you ── */
+.top { top: 10px; }
+.pill {
+  position: relative; overflow: hidden; border-radius: 18px;
+  background: rgba(228, 228, 228, .8); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur);
+  box-shadow: var(--glass-edge), 0 10px 30px -14px rgba(0, 0, 0, .45);
+  transition: width .6s var(--spring), height .6s var(--spring), border-radius .6s var(--spring), background .35s var(--ease), color .35s var(--ease);
+}
+/* over the black stages the glass goes dark, so the name stays crisp */
+.pill[data-tone="dark"] { background: rgba(30, 30, 30, .55); color: #fff; box-shadow: var(--glass-edge-dark), 0 10px 30px -14px rgba(0, 0, 0, .6); }
+.pill[data-tone="dark"] .pill-btn:hover { background: rgba(255, 255, 255, .12); }
+.pill-btn { border-radius: 12px; }
+.pill > :not(.pill-where) { transition: opacity .25s var(--ease); }
+.pill-where {
+  position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; gap: 8px;
+  font-size: 12px; color: #fff; opacity: 0; pointer-events: none; white-space: nowrap; transition: opacity .25s var(--ease);
+}
+.pill-where::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: #fff; opacity: .7; }
+.pill.is-island:not(:hover):not(:focus-within) {
+  width: 210px; height: 38px; border-radius: 19px; cursor: pointer;
+  background: rgba(0, 0, 0, .86); color: #fff; box-shadow: var(--glass-edge-dark), 0 10px 30px -12px rgba(0, 0, 0, .55);
+}
+.pill.is-island:not(:hover):not(:focus-within) > :not(.pill-where) { opacity: 0; pointer-events: none; }
+.pill.is-island:not(:hover):not(:focus-within) .pill-where { opacity: 1; transition-delay: .12s; }
+/* touch screens can't hover the island open: the menu and résumé stay in it, either side of the section name */
+@media (hover: none) {
+  .pill.is-island:not(:hover):not(:focus-within) { width: 270px; height: 40px; border-radius: 20px; }
+  .pill.is-island:not(:hover):not(:focus-within) > .pill-btn { opacity: 1; pointer-events: auto; color: #fff; height: 32px; }
+}
+
+/* ── menu: frosted over the page instead of a black wall ── */
+.menu { background: rgba(0, 0, 0, .66); backdrop-filter: blur(36px) saturate(150%); -webkit-backdrop-filter: blur(36px) saturate(150%); }
+.menu::backdrop { background: rgba(0, 0, 0, .2); }
+.menu[open] { animation: glassIn .45s var(--ease); }
+@keyframes glassIn { from { opacity: 0; backdrop-filter: blur(0); -webkit-backdrop-filter: blur(0); } }
+.menu .big-links li { animation: rise .55s var(--spring) both; }
+.menu .big-links li:nth-child(2) { animation-delay: .03s; } .menu .big-links li:nth-child(3) { animation-delay: .06s; }
+.menu .big-links li:nth-child(4) { animation-delay: .09s; } .menu .big-links li:nth-child(5) { animation-delay: .12s; }
+.menu .big-links li:nth-child(6) { animation-delay: .15s; } .menu .big-links li:nth-child(7) { animation-delay: .18s; }
+.menu .big-links li:nth-child(8) { animation-delay: .21s; }
+@keyframes rise { from { opacity: 0; transform: translateY(14px) scale(.97); } }
+.menu-close { border-radius: 14px; background: rgba(255, 255, 255, .12); }
+
+/* ── hero: the black-and-white portrait between the pill and the headline ── */
+.hero { display: flex; flex-direction: column; align-items: stretch; padding-top: 70px; }
+.hero-photo {
+  position: relative; flex: 1 1 auto; min-height: 240px; margin: 22px 0 18px;
+  transform: perspective(1100px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
+  transition: transform .9s var(--spring);
+}
+.hero-frame {
+  /* as tall as the space allows, but never wider than the screen, so the matted shoulders are never cropped */
+  position: absolute; top: 50%; left: 50%; height: min(100%, calc((100vw - 16px) * 671 / 708)); aspect-ratio: 708 / 671; transform: translate(-50%, -50%);
+  /* the photo is matted in the image itself (the room burned to black around a traced
+     outline, the shoulders falling away along the arms); here the shirt only fades out
+     at the bottom, before the headline */
+  -webkit-mask-image: linear-gradient(#000 70%, transparent 98%);
+  mask-image: linear-gradient(#000 70%, transparent 98%);
+  animation: photoIn 1.1s var(--ease) both;
+}
+.hero-frame img { width: 100%; height: 100%; object-fit: cover; object-position: 47% 40%; }
+/* a soft light that follows the pointer across the photo */
+.hero-frame::after {
+  content: ""; position: absolute; inset: 0; pointer-events: none; opacity: 0; transition: opacity .5s var(--ease);
+  background: radial-gradient(circle at var(--lx, 50%) var(--ly, 35%), rgba(255, 255, 255, .22), transparent 42%);
+  mix-blend-mode: soft-light;
+}
+.hero-photo.is-lit .hero-frame::after { opacity: 1; }
+@keyframes photoIn { from { opacity: 0; filter: blur(18px); transform: translate(-50%, -50%) scale(.96); } }
+.hero-in { padding-bottom: clamp(36px, 6vh, 72px); }
+
+/* ── right now: widgets on a lock-screen wallpaper ── */
+#now { position: relative; isolation: isolate; margin-top: 128px; padding: 112px 0 120px; overflow: hidden; background: #0d0d0d; color: #fff; }
+#now::before {
+  content: ""; position: absolute; inset: -12%; z-index: -1;
+  background: url("/img/vimal-bw.webp") 60% 35% / cover no-repeat;
+  filter: blur(64px) brightness(.62) contrast(1.15); transform: scale(1.1);
+  /* the wallpaper opens and closes on the section's black instead of clipping */
+  -webkit-mask-image: linear-gradient(transparent, #000 18%, #000 82%, transparent);
+  mask-image: linear-gradient(transparent, #000 18%, #000 82%, transparent);
+}
+/* the section's own black closes over the wallpaper at the top and bottom edges */
+#now::after { content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none; background: linear-gradient(#0d0d0d, transparent 20%, transparent 80%, #0d0d0d); }
+#now .sec-head p { color: rgba(255, 255, 255, .74); }
+#now .wg {
+  background: rgba(255, 255, 255, .11); color: #fff;
+  backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur);
+  box-shadow: var(--glass-edge-dark), 0 20px 40px -24px rgba(0, 0, 0, .6);
+  transition: transform .5s var(--spring), background .25s var(--ease);
+}
+#now .wg:hover { transform: translateY(-3px); }
+#now .wg--black, #now .wg--quote { background: rgba(0, 0, 0, .38); }
+#now .wg-note, #now .wg-by { color: rgba(255, 255, 255, .74); }
+#now .wg .btn { background: #fff; color: var(--ink); }
+#now .wg .btn:hover { background: #e2e2e2; }
+#now .wg-pager .qv-icon { background: rgba(255, 255, 255, .14); border-radius: 12px; }
+#now .wg-pager .qv-icon:hover { background: rgba(255, 255, 255, .24); }
+#now :focus-visible { outline-color: #fff; }
+
+/* ── the work row: soft radii ── */
+.filter { border-radius: 12px; }
+.qv-icon { border-radius: 12px; }
+
+/* ── quick view: a glass sheet ── */
+.qv {
+  background: var(--glass-light); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur);
+  border-radius: 26px; box-shadow: var(--glass-edge), 0 40px 80px -30px rgba(0, 0, 0, .55);
+}
+.qv::backdrop { background: rgba(0, 0, 0, .32); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
+.qv[open] { animation: sheetIn .55s var(--spring); }
+.qv-bar { border-bottom-color: rgba(0, 0, 0, .08); }
+.qv-img { background: rgba(242, 242, 242, .55); }
+.qv-tags li { background: rgba(0, 0, 0, .05); border-radius: 8px; }
+.qv-steps .qv-icon { background: rgba(0, 0, 0, .06); }
+.qv-grab { display: none; }
+
+/* ── case-study dock: glass ── */
+.cs-dock {
+  border-radius: 20px; background: var(--glass-dark); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur);
+  box-shadow: var(--glass-edge-dark), 0 14px 34px -14px rgba(0, 0, 0, .5);
+}
+.cs-dock-btn { border-radius: 14px; background: rgba(255, 255, 255, .12); }
+.cs-dock-btn:hover { background: rgba(255, 255, 255, .22); }
+
+/* ── the pointer ── */
+.pointer { display: none; }
+html.has-pointer .pointer {
+  display: block; position: fixed; left: 0; top: 0; z-index: 9999; pointer-events: none; opacity: 0;
+  width: 18px; height: 18px; border-radius: 9px; background: #fff; mix-blend-mode: difference;
+  transition: opacity .2s var(--ease), background .25s var(--ease), box-shadow .25s var(--ease);
+}
+html.has-pointer .pointer.is-big { background: rgba(255, 255, 255, .9); }
+/* over a control: an outline that hugs it, without veiling it; the control itself lifts */
+html.has-pointer .pointer.is-on {
+  mix-blend-mode: normal; background: transparent;
+  box-shadow: inset 0 0 0 1px rgba(160, 160, 160, .75), 0 10px 24px -12px rgba(0, 0, 0, .45);
+}
+html.has-pointer .btn:hover, html.has-pointer .filter:hover, html.has-pointer .qv-icon:hover:not(:disabled) { transform: translateY(-1px) scale(1.03); }
+html.has-pointer:not(:has(dialog[open])), html.has-pointer:not(:has(dialog[open])) * { cursor: none !important; }
+/* running text keeps the normal text cursor, and the soft pointer steps aside */
+html.has-pointer :is(p, h1, h2, h3, h4, li, blockquote, dd, dt, figcaption, code):not(:is(a, button, summary, .card-btn) *) { cursor: text !important; }
+html.has-pointer .pointer.is-text { opacity: 0 !important; }
+/* dialogs sit in the top layer above the pointer: hand back the system cursor there */
+html:has(dialog[open]) .pointer { opacity: 0 !important; }
+
+@media (max-width: 760px) {
+  .pill { border-radius: 16px; }
+  .pill.is-island:not(:hover):not(:focus-within) { width: 190px; height: 36px; }
+  .hero { padding-top: 64px; }
+  .hero-photo { min-height: 220px; margin-bottom: 10px; }
+  #now { margin-top: 88px; padding: 80px 0 88px; }
+  .qv { border-radius: 22px 22px 0 0; }
+  .qv-bar { position: relative; padding-top: 22px; touch-action: none; }
+  .qv-grab { display: block; position: absolute; top: 8px; left: 50%; width: 38px; height: 5px; border-radius: 3px; background: rgba(0, 0, 0, .22); transform: translateX(-50%); }
+  .qv-go { background: linear-gradient(rgba(246, 246, 246, 0), rgba(246, 246, 246, .97) 20%); }   /* the pinned button sits on solid glass */
+}
+/* the contact field matches the softer controls around it */
+.field { border-radius: 14px; }
+.field-btn { border-radius: 10px; }
+
+@media (prefers-reduced-transparency: reduce) {
+  .pill, .menu, .qv, .cs-dock, #now .wg { backdrop-filter: none; -webkit-backdrop-filter: none; }
+  .pill { background: var(--pill); }
+  .pill[data-tone="dark"] { background: #1d1d1d; }
+  .pill.is-island:not(:hover):not(:focus-within) { background: #000; }
+  .menu { background: var(--stage); }
+  .qv { background: var(--white); }
+  .cs-dock { background: var(--stage); }
+  #now .wg { background: #1d1d1d; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-photo { transform: none; }
+}
