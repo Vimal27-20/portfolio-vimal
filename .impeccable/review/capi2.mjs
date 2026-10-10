@@ -1,0 +1,14 @@
+import { chromium } from "file:///C:/Users/VIMAL/AppData/Local/Temp/claude/c--Users-VIMAL-Desktop-VIMAL-PORTFOLIO-vvport/47177ecf-5b6b-43fb-9054-0d7e44a743d6/scratchpad/node_modules/playwright-core/index.mjs";
+const b = await chromium.launch({ executablePath: "C:/Program Files/Google/Chrome/Application/chrome.exe" });
+const m = await b.newPage({ viewport: { width: 390, height: 844 }, hasTouch: true, isMobile: true });
+await m.goto("http://localhost:4173/portfolio-vimal/", { waitUntil: "networkidle" });
+await m.evaluate(() => scrollTo(0, document.getElementById("work").offsetTop + 200)); await m.waitForTimeout(900);
+await m.screenshot({ path: ".impeccable/review/g-island-mobile.png", clip: { x: 0, y: 0, width: 390, height: 70 } });
+await m.evaluate(() => scrollTo(0, document.getElementById("now").offsetTop + 100)); await m.waitForTimeout(900);
+await m.screenshot({ path: ".impeccable/review/g-island-mobile-dark.png", clip: { x: 0, y: 0, width: 390, height: 70 } });
+const d = await b.newPage({ viewport: { width: 1440, height: 900 } });
+await d.goto("http://localhost:4173/portfolio-vimal/", { waitUntil: "networkidle" });
+await d.mouse.move(700, 870);
+await d.evaluate(() => scrollTo(0, document.getElementById("journey").offsetTop - 300)); await d.waitForTimeout(900);
+await d.screenshot({ path: ".impeccable/review/g-island-light.png", clip: { x: 300, y: 0, width: 840, height: 70 } });
+await b.close();

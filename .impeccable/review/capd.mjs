@@ -1,0 +1,17 @@
+import { chromium } from "file:///C:/Users/VIMAL/AppData/Local/Temp/claude/c--Users-VIMAL-Desktop-VIMAL-PORTFOLIO-vvport/47177ecf-5b6b-43fb-9054-0d7e44a743d6/scratchpad/node_modules/playwright-core/index.mjs";
+const b = await chromium.launch({ executablePath: "C:/Program Files/Google/Chrome/Application/chrome.exe" });
+const p = await b.newPage({ viewport: { width: 1440, height: 900 }, acceptDownloads: true });
+await p.goto("http://localhost:4173/portfolio-vimal/", { waitUntil: "networkidle" });
+await p.waitForTimeout(1500);
+await p.screenshot({ path: ".impeccable/review/desktop-first.png" });
+const w = p.locator(".wg--open .dl");
+await w.scrollIntoViewIfNeeded();
+const dl = p.waitForEvent("download");
+await w.click(); await p.waitForTimeout(500);
+await w.screenshot({ path: ".impeccable/review/dl-busy.png" });
+await p.waitForTimeout(800);
+await w.screenshot({ path: ".impeccable/review/dl-done.png" });
+console.log("download:", (await dl).suggestedFilename());
+await p.locator(".credits").scrollIntoViewIfNeeded();
+await p.locator(".foot").screenshot({ path: ".impeccable/review/foot.png" });
+await b.close();

@@ -1,0 +1,32 @@
+import { chromium } from "file:///C:/Users/VIMAL/AppData/Local/Temp/claude/c--Users-VIMAL-Desktop-VIMAL-PORTFOLIO-vvport/47177ecf-5b6b-43fb-9054-0d7e44a743d6/scratchpad/node_modules/playwright-core/index.mjs";
+const base = "http://localhost:4173/portfolio-vimal/";
+const b = await chromium.launch({ executablePath: "C:/Program Files/Google/Chrome/Application/chrome.exe" });
+const errs = [];
+const p = await b.newPage({ viewport: { width: 1440, height: 900 } });
+p.on("pageerror", e => errs.push(e.message));
+await p.goto(base, { waitUntil: "networkidle" }); await p.waitForTimeout(1300);
+await p.mouse.move(820, 300, { steps: 8 }); await p.waitForTimeout(700);
+await p.screenshot({ path: ".impeccable/review/g-hero-hover.png" });
+// pointer hugging a button
+const btn = await p.locator(".hero .btn").boundingBox();
+await p.mouse.move(btn.x + 40, btn.y + 20, { steps: 10 }); await p.waitForTimeout(700);
+await p.screenshot({ path: ".impeccable/review/g-pointer.png", clip: { x: btn.x - 80, y: btn.y - 60, width: btn.width + 160, height: btn.height + 120 } });
+// island after scrolling into the work
+await p.mouse.move(1300, 850);
+await p.evaluate(() => document.getElementById("work").scrollIntoView()); await p.waitForTimeout(900);
+await p.screenshot({ path: ".impeccable/review/g-island.png", clip: { x: 300, y: 0, width: 840, height: 120 } });
+await p.evaluate(() => document.getElementById("now").scrollIntoView()); await p.waitForTimeout(900);
+await p.screenshot({ path: ".impeccable/review/g-now.png" });
+await p.click('button[aria-label^="Quick view: VISE"]').catch(async () => { await p.evaluate(() => document.getElementById("work").scrollIntoView()); await p.click('button[aria-label^="Quick view: VISE"]'); });
+await p.waitForTimeout(800);
+await p.screenshot({ path: ".impeccable/review/g-qv.png" });
+await p.keyboard.press("Escape");
+await p.click('button[aria-label="Open menu"]', { force: true }); await p.waitForTimeout(700);
+await p.screenshot({ path: ".impeccable/review/g-menu.png" });
+const m = await b.newPage({ viewport: { width: 390, height: 844 }, hasTouch: true, isMobile: true });
+await m.goto(base, { waitUntil: "networkidle" });
+await m.evaluate(() => document.getElementById("work").scrollIntoView()); await m.waitForTimeout(600);
+await m.tap('button[aria-label^="Quick view: VISE"]'); await m.waitForTimeout(800);
+await m.screenshot({ path: ".impeccable/review/g-qv-mobile.png" });
+console.log(errs.length ? "ERRORS " + errs.join(" | ") : "no errors");
+await b.close();
