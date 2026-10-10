@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-10-10T09:45:20.349Z",
+  "generatedAt": "2026-10-10T12:00:00.000Z",
   "title": "Design System: Vimal Kumar Portfolio",
   "extensions": {
     "colorMeta": {
@@ -307,7 +307,7 @@
       "widget-glass": {
         "role": "neutral",
         "displayName": "Widget Glass",
-        "canonical": "rgba(255, 255, 255, 0.05)",
+        "canonical": "rgba(255, 255, 255, 0.11)",
         "tonalRamp": [
           "rgba(255,255,255,.03)",
           "rgba(255,255,255,.05)",
@@ -327,7 +327,7 @@
       },
       "dot-menu": {
         "displayName": "Dot Menu",
-        "purpose": "Menu and footer link list; the dot voice also sets the nav name, journey years, stat numerals, the colour game score and the contrast ratio."
+        "purpose": "Menu and footer link list; the dot voice also sets the nav name, journey years and stat numerals."
       },
       "headline": {
         "displayName": "Headline",
@@ -339,7 +339,7 @@
       },
       "title": {
         "displayName": "Title",
-        "purpose": "Card titles, widget statements, reader sub-heads and chapter headings, at 400; widget titles at 24px/1.15."
+        "purpose": "Card titles, widget statements, reader sub-heads and chapter headings, at 400; widget titles at 24px/1.15; #now quotes at clamp(22px, 2vw, 28px)."
       },
       "body": {
         "displayName": "Body",
@@ -387,7 +387,7 @@
       {
         "name": "widget-lift",
         "value": "0 20px 40px -24px rgba(0, 0, 0, .6)",
-        "purpose": "Under the #now widgets floating over the galaxy."
+        "purpose": "Under the #now glass widgets."
       },
       {
         "name": "pointer-outline",
@@ -413,13 +413,13 @@
       },
       {
         "name": "widget-glass-blur",
-        "value": "blur(4px) saturate(140%) over rgba(255,255,255,.05); rgba(0,0,0,.3) for the Glyph and quote widgets",
-        "purpose": "Thin glass on the #now widgets so the galaxy reads through."
+        "value": "var(--glass-blur) = blur(28px) saturate(170%) over rgba(255,255,255,.11); rgba(0,0,0,.38) for the Glyph and quote widgets",
+        "purpose": "Glass on the #now widgets over plain #000."
       },
       {
-        "name": "galaxy",
-        "value": "canvas on #000: two-armed tilted disc, ~1 star per 900px² (max 1100), white with ~14% #a8f83a, snapped to a 5px pitch; core at min(50% height, 210px / 150px narrow)",
-        "purpose": "The #now ground, after the Glyph Matrix playground."
+        "name": "principle-disc",
+        "value": "#000 circle, max 132px (120px mobile), inset 1px rgba(255,255,255,.16); ring text Geist Mono 500 9.5px .08em caps at 82% white; on an 18px dot grid of rgba(255,255,255,.14)",
+        "purpose": "How I look at a problem."
       },
       {
         "name": "reduced-transparency",
@@ -514,9 +514,14 @@
         "purpose": "Glyph-matrix scroll steps; the display steps, it does not glide."
       },
       {
-        "name": "galaxy",
-        "value": "differential orbit; pointer well 180px (mouse only) with spring return; click or tap ripple 260px; still under reduced motion, paused offscreen",
-        "purpose": "The #now star field."
+        "name": "disc-roll",
+        "value": "rotate 360deg linear infinite; 22s clockwise, 26s reversed on alternate discs; stopped under reduced motion",
+        "purpose": "The principle rings in How I look at a problem."
+      },
+      {
+        "name": "process-pulse",
+        "value": "6s linear walk along the line; each node lit in Logo Green for 12% of the cycle, 1s apart; line and pulse hidden under 760px; stopped under reduced motion",
+        "purpose": "How I design."
       }
     ],
     "breakpoints": [
@@ -607,12 +612,12 @@
       "css": ".ds-card { display: flex; flex-direction: column; width: 320px; padding: 0; border: 0; background: none; text-align: left; cursor: pointer; color: #000; transition: transform .45s cubic-bezier(.34,1.36,.64,1); } .ds-card:hover { transform: translateY(-4px); } .ds-card:active { transform: scale(.98); } .ds-card-img { display: block; aspect-ratio: 4/3; padding: 16px; border-radius: 16px; background: #fff; overflow: hidden; } .ds-card-shot { display: block; width: 100%; height: 100%; border-radius: 6px; background: #dcdcdc; transition: transform .7s cubic-bezier(.2,.7,0,1); } .ds-card:hover .ds-card-shot, .ds-card:focus-visible .ds-card-shot { transform: scale(1.04); } .ds-card:focus-visible { outline: 2px solid #000; outline-offset: 3px; border-radius: 4px; } .ds-card-title { margin-top: 16px; font: 400 24px/1.12 'Newsreader Variable', Georgia, serif; letter-spacing: -.015em; } .ds-live { display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: #a8f83a; box-shadow: 0 0 0 1.5px rgba(59,109,10,.55); vertical-align: .2em; animation: ds-blink 1.4s steps(2, jump-none) infinite; } @keyframes ds-blink { 50% { opacity: .2; } } .ds-card-title .ds-live { margin-left: 10px; vertical-align: middle; } .ds-card-role { margin-top: 4px; font: 400 15px/1.55 'Geist Variable', system-ui, sans-serif; color: #5c5c5c; } .ds-card-meta { margin-top: 8px; font: 500 12px/1.2 'Geist Mono Variable', ui-monospace, monospace; letter-spacing: .04em; text-transform: uppercase; color: #5c5c5c; } .ds-tlink { margin-top: 14px; font: 500 13px/1.2 'Geist Mono Variable', ui-monospace, monospace; letter-spacing: .04em; text-transform: uppercase; text-decoration: underline; text-underline-offset: .3em; } .ds-card:hover .ds-tlink { text-decoration-thickness: 2px; }"
     },
     {
-      "name": "Widgets over the Galaxy",
+      "name": "Right Now Widgets",
       "kind": "custom",
       "refersTo": "widget-glass",
-      "description": "The #now widgets in thin glass over plain black and a dot galaxy: the role matcher with white selected chips, and the live availability statement with the green résumé button.",
-      "html": "<div class=\"ds-sky\"><div class=\"ds-wg\"><p class=\"ds-wg-title\">Hiring for…</p><div class=\"ds-chips\" role=\"radiogroup\" aria-label=\"Role\"><button class=\"ds-chip\" role=\"radio\" aria-checked=\"true\">UX Engineer</button><button class=\"ds-chip\" role=\"radio\" aria-checked=\"false\">Product Designer</button></div><p class=\"ds-wg-note\">VISE, a mobile app built and tested end to end.</p></div><div class=\"ds-wg ds-wg--black\"><p class=\"ds-wg-big\"><span class=\"ds-live\"></span> Open to UX Engineer roles in Ireland.</p><a class=\"ds-wg-btn\" href=\"#\">Résumé</a></div></div>",
-      "css": ".ds-sky { position: relative; isolation: isolate; display: grid; grid-template-columns: repeat(2, 240px); gap: 22px; padding: 40px 24px; background: #000 radial-gradient(circle, rgba(255,255,255,.55) 1px, transparent 1.4px) 0 0 / 15px 15px; overflow: hidden; } .ds-wg { display: flex; flex-direction: column; gap: 14px; min-height: 220px; padding: 22px; border-radius: 24px; background: rgba(255,255,255,.05); color: #fff; backdrop-filter: blur(4px) saturate(140%); -webkit-backdrop-filter: blur(4px) saturate(140%); box-shadow: inset 0 0 0 .5px rgba(255,255,255,.18), inset 0 1px 0 rgba(255,255,255,.14), 0 20px 40px -24px rgba(0,0,0,.6); transition: transform .5s cubic-bezier(.34,1.36,.64,1); } .ds-wg:hover { transform: translateY(-3px); } .ds-wg--black { background: rgba(0,0,0,.3); } .ds-wg-title { font: 400 24px/1.15 'Newsreader Variable', Georgia, serif; letter-spacing: -.015em; } .ds-chips { display: flex; flex-wrap: wrap; gap: 6px; } .ds-chip { height: 30px; padding: 0 10px; border: 0; border-radius: 9px; background: rgba(255,255,255,.08); color: rgba(255,255,255,.8); font: 500 13px/1 'Geist Variable', system-ui, sans-serif; cursor: pointer; } .ds-chip:hover { background: rgba(255,255,255,.16); color: #fff; } .ds-chip[aria-checked=true] { background: #fff; color: #000; } .ds-wg-note { margin-top: auto; font: 400 15px/1.55 'Geist Variable', system-ui, sans-serif; color: rgba(255,255,255,.78); } .ds-wg-big { font: 400 26px/1.15 'Newsreader Variable', Georgia, serif; letter-spacing: -.015em; } .ds-live { display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: #a8f83a; box-shadow: 0 0 0 1.5px rgba(59,109,10,.55); vertical-align: .2em; animation: ds-blink 1.4s steps(2, jump-none) infinite; } @keyframes ds-blink { 50% { opacity: .2; } } .ds-wg-big .ds-live { margin-right: 6px; } .ds-wg-btn { align-self: flex-start; margin-top: auto; display: inline-flex; align-items: center; height: 42px; padding: 0 16px; border-radius: 10px; background: #a8f83a; color: #000; font: 500 13px/1 'Geist Mono Variable', ui-monospace, monospace; letter-spacing: .04em; text-transform: uppercase; text-decoration: none; transition: transform .45s cubic-bezier(.34,1.36,.64,1), background .2s cubic-bezier(.2,.7,0,1); } .ds-wg-btn:hover { background: #bdff5c; } .ds-wg-btn:active { transform: scale(.94); } .ds-wg-btn:focus-visible, .ds-chip:focus-visible { outline: 2px solid #fff; outline-offset: 3px; } @media (prefers-reduced-motion: reduce) { .ds-live { animation: none; } }"
+      "description": "The #now widgets in glass on plain black: a principle disc whose ring of text keeps rolling around a Phosphor icon, its one-liner on hover, focus or tap; and the live availability statement with the green résumé button.",
+      "html": "<div class=\"ds-now\"><div class=\"ds-wg ds-wg--dots\"><p class=\"ds-wg-title\">How I look at a problem</p><div class=\"ds-disc-item\"><button class=\"ds-disc\" aria-describedby=\"ds-line\"><svg class=\"ds-ring\" viewBox=\"0 0 120 120\" aria-hidden=\"true\"><defs><path id=\"ds-ring-path\" d=\"M60,60 m-46,0 a46,46 0 1,1 92,0 a46,46 0 1,1 -92,0\"/></defs><text><textPath href=\"#ds-ring-path\" textLength=\"289\" lengthAdjust=\"spacingAndGlyphs\">HUMAN BEFORE AI • HUMAN BEFORE AI • </textPath></text></svg><span class=\"ds-disc-icon\" aria-hidden=\"true\"></span><span class=\"ds-sr\">Human before AI</span></button><p class=\"ds-disc-title\" aria-hidden=\"true\">Human before AI</p><p class=\"ds-disc-line\" id=\"ds-line\">Design for human needs, agency and context.</p></div></div><div class=\"ds-wg ds-wg--black\"><p class=\"ds-wg-big\"><span class=\"ds-live\"></span> Open to UX Engineer roles in Ireland.</p><a class=\"ds-wg-btn\" href=\"#\">Résumé</a></div></div>",
+      "css": ".ds-now { display: grid; grid-template-columns: repeat(2, 260px); gap: 16px; padding: 40px 24px; background: #000; } .ds-wg { display: flex; flex-direction: column; gap: 14px; min-height: 240px; padding: 22px; border-radius: 24px; background: rgba(255,255,255,.11); color: #fff; backdrop-filter: blur(28px) saturate(170%); -webkit-backdrop-filter: blur(28px) saturate(170%); box-shadow: inset 0 0 0 .5px rgba(255,255,255,.18), inset 0 1px 0 rgba(255,255,255,.14), 0 20px 40px -24px rgba(0,0,0,.6); transition: transform .5s cubic-bezier(.34,1.36,.64,1); } .ds-wg:hover { transform: translateY(-3px); } .ds-wg--black { background: rgba(0,0,0,.38); } .ds-wg--dots { background-image: radial-gradient(circle, rgba(255,255,255,.14) 1px, transparent 1.4px); background-size: 18px 18px; } .ds-wg-title { font: 400 24px/1.15 'Newsreader Variable', Georgia, serif; letter-spacing: -.015em; } .ds-disc-item { display: grid; justify-items: center; gap: 10px; text-align: center; } .ds-disc { position: relative; display: grid; place-items: center; width: 120px; aspect-ratio: 1; padding: 0; border: 0; border-radius: 50%; background: #000; color: #fff; cursor: pointer; box-shadow: inset 0 0 0 1px rgba(255,255,255,.16); transition: transform .5s cubic-bezier(.34,1.36,.64,1); } .ds-ring { position: absolute; inset: 0; width: 100%; height: 100%; animation: ds-roll 22s linear infinite; } .ds-ring text { fill: rgba(255,255,255,.82); font: 500 9.5px 'Geist Mono Variable', ui-monospace, monospace; letter-spacing: .08em; } @keyframes ds-roll { to { transform: rotate(360deg); } } .ds-disc-icon { width: 52px; height: 52px; border-radius: 50%; background: rgba(255,255,255,.06); transition: background .3s cubic-bezier(.2,.7,0,1); } .ds-disc:hover, .ds-disc:focus-visible { transform: scale(1.06); } .ds-disc:hover .ds-disc-icon, .ds-disc:focus-visible .ds-disc-icon { background: #a8f83a; } .ds-sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); } .ds-disc-title { font: 500 14px/1.25 'Geist Variable', system-ui, sans-serif; } .ds-disc-line { max-width: 18ch; font: 400 13px/1.3 'Geist Variable', system-ui, sans-serif; color: rgba(255,255,255,.72); opacity: 0; transform: translateY(-4px); transition: opacity .3s cubic-bezier(.2,.7,0,1), transform .4s cubic-bezier(.34,1.36,.64,1); } .ds-disc-item:hover .ds-disc-line, .ds-disc-item:focus-within .ds-disc-line { opacity: 1; transform: none; } .ds-wg-big { font: 400 26px/1.15 'Newsreader Variable', Georgia, serif; letter-spacing: -.015em; } .ds-live { display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: #a8f83a; box-shadow: 0 0 0 1.5px rgba(59,109,10,.55); vertical-align: .2em; margin-right: 6px; animation: ds-blink 1.4s steps(2, jump-none) infinite; } @keyframes ds-blink { 50% { opacity: .2; } } .ds-wg-btn { align-self: flex-start; margin-top: auto; display: inline-flex; align-items: center; height: 42px; padding: 0 16px; border-radius: 10px; background: #a8f83a; color: #000; font: 500 13px/1 'Geist Mono Variable', ui-monospace, monospace; letter-spacing: .04em; text-transform: uppercase; text-decoration: none; transition: transform .45s cubic-bezier(.34,1.36,.64,1), background .2s cubic-bezier(.2,.7,0,1); } .ds-wg-btn:hover { background: #bdff5c; } .ds-wg-btn:active { transform: scale(.94); } .ds-wg-btn:focus-visible, .ds-disc:focus-visible { outline: 2px solid #fff; outline-offset: 3px; } @media (prefers-reduced-motion: reduce) { .ds-ring, .ds-live { animation: none; } }"
     },
     {
       "name": "Glass Quick-View Bar",
@@ -643,9 +648,9 @@
     "northStar": "The Product Stage, Under Glass",
     "overview": "The work is shown the way Nothing shows a phone: lit on a black stage, set down on light grey shop floors, held on white product surfaces you can pick up and inspect. Projects are products, not tiles in a portfolio grid. Each one is an image shown whole on a white field, opened into a quick-view sheet, then read chapter by chapter as a product page. Over that structure sits a layer taken from Apple's iOS, iPadOS and visionOS: frosted glass on everything that floats, a nav pill that settles into a Dynamic-Island capsule, spring motion on whatever you press, and an iPadOS pointer that outlines the control under it.\n\nThe voice has three registers that never trade places. A warm editorial serif (Newsreader, standing in for NType82) makes the statements. Geist Mono in small uppercase names, labels and buttons (\"SEE THE WORK >\"). Round dot-matrix type (Doto with ROND 100, standing in for Ndot) lights names, numerals and the big menu. Geist carries the reading. The palette is black, white and grey, glass tinted by what lies beneath it, and one green sampled from the VK logo. The green marks what you can act on first and what is live; everything else stays neutral. The hero is a black-and-white portrait of Vimal over the sparse stage grid. It leans toward the pointer the way a visionOS window does, and a soft light follows the pointer across it.\n\nMotion is quick and exact, with a small overshoot. Controls give under a press and spring back. The pill morphs into the island along the same spring, sheets rise with a slight bounce, and the quick-view image morphs into the case-study cover. Displays and the live lamp step rather than glide. Under reduced motion every animation collapses to its end state, the portrait stops leaning and the system cursor stays. Under reduced transparency every glass surface turns opaque.",
     "keyCharacteristics": [
-      "Black stage (hero, contact, footer, case-study header) alternating with light grey floor sections; #now is plain black under a slow galaxy of dots.",
+      "Black stage (hero, contact, footer, case-study header) alternating with light grey floor sections; #now is plain black, its widgets pictures more than words.",
       "White product surfaces with soft radii: 16px cards, 24px widgets. Glass sheets at 26px, glass pill at 18px, controls at 10 to 14px.",
-      "Frosted glass only on what floats: the pill and island, the menu, the quick-view sheet, the chapter dock, and the thin-glass widgets over the galaxy.",
+      "Frosted glass only on what floats: the pill and island, the menu, the quick-view sheet, the chapter dock, and the #now widgets on plain black.",
       "Serif statements, mono uppercase labels, dot-matrix names and numerals.",
       "A black-and-white portrait over a sparse stage dot grid, with a lens that reveals the fine grid under the pointer.",
       "One logo green, for primary actions and live states only.",
@@ -654,12 +659,12 @@
     "rules": [
       {
         "name": "The Logo Green Rule",
-        "body": "The site is black, white and grey plus one green, the VK logo's. Green is for primary actions and live states (and the current-position marks and success ticks listed above), never for body links, borders, focus rings, glass tints or decoration. Text on light grounds uses Accent Ink, never Logo Green. Colour otherwise enters only as content: project screenshots, the logo itself, and the colour game's tile hues, which are the puzzle and not the palette.",
+        "body": "The site is black, white and grey plus one green, the VK logo's. Green is for primary actions and live states (and the current-position marks listed above), never for body links, borders, focus rings, glass tints or decoration. Text on light grounds uses Accent Ink, never Logo Green. Colour otherwise enters only as content: project screenshots and the logo itself.",
         "section": "colors"
       },
       {
         "name": "The White Selection Rule",
-        "body": "A chosen option is white, not green: the selected step in How I design with AI and the checked role chip in Hiring for… are white with black text. Green means act or live, never chosen.",
+        "body": "A chosen option is white or ink, never green: the pressed filter chip is solid ink with white text. Green means act or live, never chosen.",
         "section": "colors"
       },
       {
@@ -684,7 +689,7 @@
       },
       {
         "name": "The Float Rule",
-        "body": "Glass is reserved for things that float: the pill and island, the menu, the quick-view sheet, the chapter dock, and the #now widgets over the galaxy. Product cards, floor widgets, reader panels, figures and buttons are opaque and flat on their ground.",
+        "body": "Glass is reserved for things that float: the pill and island, the menu, the quick-view sheet, the chapter dock, and the #now widgets. Product cards, floor widgets, reader panels, figures and buttons are opaque and flat on their ground.",
         "section": "elevation"
       },
       {
@@ -706,7 +711,7 @@
       "Do keep the menu and résumé tappable in the island on touch screens.",
       "Do build dialogs (menu, quick view) on native <dialog> with a scrim and Escape to dismiss.",
       "Do turn the focus ring white on black grounds and inside Right now, and keep it ink everywhere else.",
-      "Do honour reduced motion (end states only, no portrait lean, system cursor, glyph display and galaxy holding still) and reduced transparency (opaque glass, no blur)."
+      "Do honour reduced motion (end states only, no portrait lean, system cursor, glyph display, principle rings and process pulse holding still) and reduced transparency (opaque glass, no blur)."
     ],
     "donts": [
       "Don't put an eyebrow, kicker or label above a heading.",
