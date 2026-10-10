@@ -569,3 +569,7 @@
   .cs-dock-label span { display: none; }
   .cs-dock-dots a { width: 12px; }
 }
+/* WCAG AA contrast: the fake browser address and the struck "before" list */
+.cs-browserbar-url { color: #555; }
+.cs-strike li { color: #4a4a4a; }
+.cs-type-spec { color: var(--ink-3); }

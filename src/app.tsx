@@ -10,7 +10,9 @@ import { QuickViewProvider } from "./components/quickview";
 import { BigLinks } from "./components/links";
 import { useDublinTime } from "./components/clock";
 import CaseStudyRoute from "./pages/casestudy";
+import Pointer from "./components/pointer";
 import "./styles/nothing.css";
+import "./styles/glass.css";
 
 function Home() {
   return (
@@ -30,6 +32,24 @@ function Footer() {
   return (
     <footer className="foot">
       <nav aria-label="Footer" className="wrap"><BigLinks /></nav>
+
+      {/* where the look comes from, said plainly */}
+      <div className="wrap credits">
+        <p className="credits-lead">
+          Inspired by <a href="https://nothing.tech" target="_blank" rel="noopener noreferrer">Nothing OS and nothing.tech<span className="sr-only"> (opens in a new tab)</span></a>.
+          Glass and motion touches after Apple's iOS and visionOS.
+          An independent portfolio, not affiliated with or endorsed by Nothing Technology Limited or Apple Inc.
+        </p>
+        <dl className="credits-list">
+          <div><dt className="mono">Design &amp; code</dt><dd>Vimal Kumar</dd></div>
+          <div><dt className="mono">Dot-matrix type</dt><dd>Doto by Óliver Lalan</dd></div>
+          <div><dt className="mono">Serif</dt><dd>Newsreader by Production Type</dd></div>
+          <div><dt className="mono">Sans &amp; mono</dt><dd>Geist by Vercel</dd></div>
+          <div><dt className="mono">Icons</dt><dd>Phosphor</dd></div>
+          <div><dt className="mono">Built with</dt><dd>React, Vite, Claude Code</dd></div>
+        </dl>
+      </div>
+
       <div className="wrap foot-in mono">
         <span>© 2026 Vimal Kumar</span>
         <span>Dublin {time}</span>
@@ -42,6 +62,7 @@ export default function App() {
   return (
     <>
       <ScrollManager />
+      <Pointer />
       <TopSign />
 
       <main id="main" tabIndex={-1} style={{ outline: "none" }}>

@@ -49,7 +49,7 @@ export function ScrollFrame({
         <div className="cs-phone-notch" aria-hidden />
       )}
       <div className="cs-scrollframe-view" style={height ? { height } : undefined} tabIndex={0}
-           aria-label={`${alt} — scroll to explore`}>
+           aria-label={`${alt}, scroll to explore`}>
         <img src={src} alt={alt} decoding="async" />
       </div>
       <div className="cs-scrollframe-hint" aria-hidden><PiArrowsDownUp size={13} /> Scroll inside</div>

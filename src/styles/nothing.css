@@ -27,11 +27,11 @@
 .big-links a:hover, .big-links a:focus-visible { opacity: 1; }
 
 /* ── hero: the black stage ── */
-.hero { position: relative; min-height: max(640px, calc(100svh - 64px)); background: var(--stage); color: var(--on-stage); overflow: hidden; display: grid; align-items: end; }
+.hero { position: relative; min-height: max(700px, calc(100svh - 64px)); background: var(--stage); color: var(--on-stage); overflow: hidden; display: grid; align-items: end; }
 .dotfield { position: absolute; inset: 0; width: 100%; height: 100%; }
-.hero-in { position: relative; display: grid; justify-items: center; gap: 18px; padding: 0 24px 11vh; text-align: center; pointer-events: none; }
+.hero-in { position: relative; display: grid; justify-items: center; gap: 16px; padding: 0 24px clamp(40px, 7vh, 80px); text-align: center; pointer-events: none; }
 .hero-in > * { pointer-events: auto; }
-.hero h1 { max-width: 15ch; font-size: clamp(40px, 5.2vw, 76px); line-height: 1.02; }
+.hero h1 { max-width: 15ch; font-size: clamp(38px, min(4.6vw, 8vh), 68px); line-height: 1.02; }
 .hero-lede { color: var(--on-stage-2); max-width: 44ch; }
 .hero .btn { margin-top: 8px; }
 
@@ -198,7 +198,7 @@
 @media (max-width: 760px) {
   .pill { height: 44px; }
   .pill-id { font-size: 16px; }
-  .hero { min-height: max(560px, 92svh); }
+  .hero { min-height: max(600px, 92svh); }
   .hero-in { padding-bottom: 9vh; }
   .track { grid-auto-columns: 74vw; gap: 12px; padding-inline: 16px; scroll-padding-inline: 16px; }
   .work-arrows { display: none; }
@@ -231,4 +231,42 @@
   .field-value { text-align: center; }
   .field-btn { justify-content: center; }
   .foot-in { flex-direction: column; }
+}
+
+/* ── résumé download: arrow drops into its tray, dots fill, a tick ── */
+.dl { position: relative; overflow: hidden; }
+.dl-icon { display: inline-grid; place-items: center; }
+.dl.is-busy .dl-icon svg { animation: dlDrop .55s steps(4, end) infinite; }
+@keyframes dlDrop { 0% { transform: translateY(-55%); opacity: 0; } 30% { opacity: 1; } 100% { transform: translateY(25%); opacity: 1; } }
+.dl.is-done .dl-icon svg { animation: dlTick .3s var(--ease); }
+@keyframes dlTick { from { transform: scale(.4); opacity: 0; } }
+/* a row of dots that fills left to right while it "downloads" */
+.dl-bar {
+  position: absolute; left: 8px; right: 8px; bottom: 4px; height: 3px; pointer-events: none;
+  background: radial-gradient(circle, currentColor 1.1px, transparent 1.5px) 0 50% / 6px 3px repeat-x;
+  clip-path: inset(0 100% 0 0); opacity: 0;
+}
+.dl.is-busy .dl-bar { opacity: .9; animation: dlFill 1.1s steps(12, end) forwards; }
+.dl.is-done .dl-bar { opacity: .9; clip-path: inset(0 0 0 0); animation: dlFade .6s .9s forwards; }
+@keyframes dlFill { to { clip-path: inset(0 0 0 0); } }
+@keyframes dlFade { to { opacity: 0; } }
+.pill-btn.dl .dl-bar { left: 6px; right: 6px; bottom: 3px; }
+.big-links .dl { display: block; }
+.big-links .dl .dl-bar { bottom: 0; height: 6px; background-size: 12px 6px; background-image: radial-gradient(circle, currentColor 2px, transparent 2.6px); }
+
+/* ── credits ── */
+.credits { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr); gap: 24px 48px; padding-top: 32px; padding-bottom: 32px; border-top: 1px solid #222; }
+.credits-lead { color: var(--on-stage-2); font-size: 15px; max-width: 46ch; }
+.credits-lead a { color: #fff; text-decoration: underline; text-underline-offset: .22em; }
+.credits-lead a:hover { text-decoration-thickness: 2px; }
+.credits-list { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px 24px; }
+.credits-list dt { color: var(--on-stage-2); font-size: 12px; margin-bottom: 4px; }
+.credits-list dd { font-size: 14px; color: #fff; }
+
+@media (max-width: 760px) {
+  .credits { grid-template-columns: minmax(0, 1fr); }
+  .credits-list { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .dl.is-busy .dl-bar, .dl.is-done .dl-bar { clip-path: inset(0 0 0 0); }
 }

@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
-import { PiCaretRight, PiDownloadSimple } from "react-icons/pi";
-import { EMAIL, RESUME } from "./links";
+import { PiCaretRight } from "react-icons/pi";
+import { EMAIL } from "./links";
+import ResumeLink from "./resume";
 
 /** The black block at the end: the address in a field, one press to copy it. */
 export default function Terminus() {
@@ -32,9 +33,7 @@ export default function Terminus() {
         </span>
         {copy === "failed" && <p className="contact-hint">Copy was blocked. Select the address above.</p>}
 
-        <a href={RESUME} download="Vimal-kumar-Resume.pdf" className="btn btn--line-dark contact-cv">
-          Download résumé <PiDownloadSimple size={15} aria-hidden />
-        </a>
+        <ResumeLink className="btn btn--line-dark contact-cv" label="Download résumé" />
       </div>
     </section>
   );

@@ -18,7 +18,7 @@ The personal portfolio of Vimal Kumar. It presents his case studies, experience 
 
 Vimal is a **UX Engineer**: a designer who also builds. He takes work from research and design systems through to production code. The proof is VISE, an offline-first budgeting app he works on as UX Engineer (React Native + Expo UI on a Rust + SQLite core, CI and end-to-end tests, V1 in Android testing with real users), backed by a Master's in Interaction Design (University of Limerick), a computer science degree and enterprise experience at Aspira and Infosys.
 
-Open decision: the homepage hero still introduces him as a "UX Strategist". It should move to the UX Engineer positioning; the exact wording is not yet decided.
+Decided: the homepage hero introduces him as "UX Engineer who designs and builds." (shipped October 2026).
 
 ## Operating Context
 

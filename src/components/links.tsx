@@ -1,7 +1,8 @@
 import { Link, useLocation } from "react-router-dom";
 import { scrollIfSamePage } from "./scrollmanager";
+import ResumeLink from "./resume";
 
-export const RESUME = `${import.meta.env.BASE_URL}img/Vimal-kumar-Resume.pdf`;
+export { RESUME } from "./resume";
 export const EMAIL = "vimal.v27k@gmail.com";
 export const SOCIALS = [
   { label: "LinkedIn", href: "https://www.linkedin.com/in/vimal27k/" },
@@ -25,7 +26,7 @@ export function BigLinks({ onGo }: { onGo?: () => void }) {
           <Link className="dot" to={l.to} onClick={() => { onGo?.(); scrollIfSamePage(l.to, pathname); }}>{l.label}</Link>
         </li>
       ))}
-      <li><a className="dot" href={RESUME} download="Vimal-kumar-Resume.pdf">Résumé</a></li>
+      <li><ResumeLink className="dot" icon={false} /></li>
       {SOCIALS.map(s => (
         <li key={s.label}>
           <a className="dot" href={s.href} target="_blank" rel="noopener noreferrer">

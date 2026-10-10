@@ -1,0 +1,291 @@
+/* ═══════════ Glass OS: Apple-style touches over the Nothing build ═══════════
+   Frosted materials where something floats (the pill, the menu, the quick
+   view sheet, the chapter dock, the widgets on their wallpaper), spring
+   motion on things you press, and a soft pointer. No visible scrollbar,
+   and no stand-in for one. Loaded after nothing.css. */
+:root {
+  --spring: cubic-bezier(.34, 1.36, .64, 1);          /* a small overshoot, like an iOS spring */
+  --glass-light: rgba(255, 255, 255, .72);
+  --glass-dark: rgba(18, 18, 18, .55);
+  --glass-blur: blur(28px) saturate(170%);
+  --glass-edge: inset 0 0 0 .5px rgba(255, 255, 255, .45), inset 0 1px 0 rgba(255, 255, 255, .35);
+  --glass-edge-dark: inset 0 0 0 .5px rgba(255, 255, 255, .18), inset 0 1px 0 rgba(255, 255, 255, .14);
+  --r-btn: 10px;
+}
+
+/* no scrollbar: the page still scrolls, nothing shows a bar */
+html { scrollbar-width: none; }
+html::-webkit-scrollbar, body::-webkit-scrollbar { display: none; }
+
+/* things you press give a little, then spring back */
+.btn, .filter, .qv-icon, .pill-btn, .cs-dock-btn, .field-btn, .card-btn { transition: transform .45s var(--spring), background .2s var(--ease), color .2s var(--ease), opacity .2s var(--ease); }
+.btn:active, .filter:active, .qv-icon:active, .pill-btn:active, .cs-dock-btn:active { transform: scale(.94); }
+.card-btn:hover { transform: translateY(-4px); }
+.card-btn:active { transform: scale(.98); }
+
+/* ── the pill: glass, and an island once the hero is behind you ── */
+.top { top: 10px; }
+.pill {
+  position: relative; overflow: hidden; border-radius: 18px;
+  background: rgba(228, 228, 228, .8); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur);
+  box-shadow: var(--glass-edge), 0 10px 30px -14px rgba(0, 0, 0, .45);
+  transition: width .6s var(--spring), height .6s var(--spring), border-radius .6s var(--spring), background .35s var(--ease), color .35s var(--ease);
+}
+/* over the black stages the glass goes dark, so the name stays crisp */
+.pill[data-tone="dark"] { background: rgba(30, 30, 30, .55); color: #fff; box-shadow: var(--glass-edge-dark), 0 10px 30px -14px rgba(0, 0, 0, .6); }
+.pill[data-tone="dark"] .pill-btn:hover { background: rgba(255, 255, 255, .12); }
+.pill-btn { border-radius: 12px; }
+.pill > :not(.pill-where) { transition: opacity .25s var(--ease); }
+.pill-where {
+  position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; gap: 8px;
+  font-size: 12px; color: #fff; opacity: 0; pointer-events: none; white-space: nowrap; transition: opacity .25s var(--ease);
+}
+.pill-where::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: #fff; opacity: .7; }
+.pill.is-island:not(:hover):not(:focus-within) {
+  width: 210px; height: 38px; border-radius: 19px; cursor: pointer;
+  background: rgba(0, 0, 0, .86); color: #fff; box-shadow: var(--glass-edge-dark), 0 10px 30px -12px rgba(0, 0, 0, .55);
+}
+.pill.is-island:not(:hover):not(:focus-within) > :not(.pill-where) { opacity: 0; pointer-events: none; }
+.pill.is-island:not(:hover):not(:focus-within) .pill-where { opacity: 1; transition-delay: .12s; }
+/* touch screens can't hover the island open: the menu and résumé stay in it, either side of the section name */
+@media (hover: none) {
+  .pill.is-island:not(:hover):not(:focus-within) { width: 270px; height: 40px; border-radius: 20px; }
+  .pill.is-island:not(:hover):not(:focus-within) > .pill-btn { opacity: 1; pointer-events: auto; color: #fff; height: 32px; }
+}
+
+/* ── menu: frosted over the page instead of a black wall ── */
+.menu { background: rgba(0, 0, 0, .66); backdrop-filter: blur(36px) saturate(150%); -webkit-backdrop-filter: blur(36px) saturate(150%); }
+.menu::backdrop { background: rgba(0, 0, 0, .2); }
+.menu[open] { animation: glassIn .45s var(--ease); }
+@keyframes glassIn { from { opacity: 0; backdrop-filter: blur(0); -webkit-backdrop-filter: blur(0); } }
+.menu .big-links li { animation: rise .55s var(--spring) both; }
+.menu .big-links li:nth-child(2) { animation-delay: .03s; } .menu .big-links li:nth-child(3) { animation-delay: .06s; }
+.menu .big-links li:nth-child(4) { animation-delay: .09s; } .menu .big-links li:nth-child(5) { animation-delay: .12s; }
+.menu .big-links li:nth-child(6) { animation-delay: .15s; } .menu .big-links li:nth-child(7) { animation-delay: .18s; }
+.menu .big-links li:nth-child(8) { animation-delay: .21s; }
+@keyframes rise { from { opacity: 0; transform: translateY(14px) scale(.97); } }
+.menu-close { border-radius: 14px; background: rgba(255, 255, 255, .12); }
+
+.hero-in { padding-bottom: clamp(36px, 6vh, 72px); }
+
+/* ── right now: glass widgets on plain black ── */
+#now { position: relative; isolation: isolate; margin-top: 128px; padding: 112px 0 120px; overflow: hidden; background: #000; color: #fff; }
+#now .sec-head p { color: rgba(255, 255, 255, .74); }
+#now .wg {
+  background: rgba(255, 255, 255, .11); color: #fff;
+  backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur);
+  box-shadow: var(--glass-edge-dark), 0 20px 40px -24px rgba(0, 0, 0, .6);
+  transition: transform .5s var(--spring), background .25s var(--ease);
+}
+#now .wg:hover { transform: translateY(-3px); }
+#now .wg--black, #now .wg--quote { background: rgba(0, 0, 0, .38); }
+#now .wg-note, #now .wg-by { color: rgba(255, 255, 255, .74); }
+#now .wg .btn:not(.btn--accent) { background: #fff; color: var(--ink); }
+#now .wg .btn:not(.btn--accent):hover { background: #e2e2e2; }
+#now .wg-pager .qv-icon { background: rgba(255, 255, 255, .14); border-radius: 12px; }
+#now .wg-pager .qv-icon:hover { background: rgba(255, 255, 255, .24); }
+#now :focus-visible { outline-color: #fff; }
+
+/* ── the work row: soft radii ── */
+.filter { border-radius: 12px; }
+.qv-icon { border-radius: 12px; }
+
+/* ── quick view: a glass sheet ── */
+.qv {
+  background: var(--glass-light); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur);
+  border-radius: 26px; box-shadow: var(--glass-edge), 0 40px 80px -30px rgba(0, 0, 0, .55);
+}
+.qv::backdrop { background: rgba(0, 0, 0, .32); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
+.qv[open] { animation: sheetIn .55s var(--spring); }
+.qv-bar { border-bottom-color: rgba(0, 0, 0, .08); }
+.qv-img { background: rgba(242, 242, 242, .55); }
+.qv-tags li { background: rgba(0, 0, 0, .05); border-radius: 8px; }
+.qv-steps .qv-icon { background: rgba(0, 0, 0, .06); }
+.qv-grab { display: none; }
+
+/* ── case-study dock: glass ── */
+.cs-dock {
+  border-radius: 20px; background: var(--glass-dark); backdrop-filter: var(--glass-blur); -webkit-backdrop-filter: var(--glass-blur);
+  box-shadow: var(--glass-edge-dark), 0 14px 34px -14px rgba(0, 0, 0, .5);
+}
+.cs-dock-btn { border-radius: 14px; background: rgba(255, 255, 255, .12); }
+.cs-dock-btn:hover { background: rgba(255, 255, 255, .22); }
+
+/* ── the pointer ── */
+.pointer { display: none; }
+html.has-pointer .pointer {
+  display: block; position: fixed; left: 0; top: 0; z-index: 9999; pointer-events: none; opacity: 0;
+  width: 18px; height: 18px; border-radius: 9px; background: #fff; mix-blend-mode: difference;
+  transition: opacity .2s var(--ease), background .25s var(--ease), box-shadow .25s var(--ease);
+}
+html.has-pointer .pointer.is-big { background: rgba(255, 255, 255, .9); }
+/* over a control: an outline that hugs it, without veiling it; the control itself lifts */
+html.has-pointer .pointer.is-on {
+  mix-blend-mode: normal; background: transparent;
+  box-shadow: inset 0 0 0 1px rgba(160, 160, 160, .75), 0 10px 24px -12px rgba(0, 0, 0, .45);
+}
+html.has-pointer .btn:hover, html.has-pointer .filter:hover, html.has-pointer .qv-icon:hover:not(:disabled) { transform: translateY(-1px) scale(1.03); }
+html.has-pointer:not(:has(dialog[open])), html.has-pointer:not(:has(dialog[open])) * { cursor: none !important; }
+/* running text keeps the normal text cursor, and the soft pointer steps aside */
+html.has-pointer :is(p, h1, h2, h3, h4, li, blockquote, dd, dt, figcaption, code):not(:is(a, button, summary, .card-btn) *) { cursor: text !important; }
+html.has-pointer .pointer.is-text { opacity: 0 !important; }
+/* dialogs sit in the top layer above the pointer: hand back the system cursor there */
+html:has(dialog[open]) .pointer { opacity: 0 !important; }
+
+@media (max-width: 760px) {
+  .pill { border-radius: 16px; }
+  .pill.is-island:not(:hover):not(:focus-within) { width: 190px; height: 36px; }
+  #now { margin-top: 88px; padding: 80px 0 88px; }
+  .qv { border-radius: 22px 22px 0 0; }
+  .qv-bar { position: relative; padding-top: 22px; touch-action: none; }
+  .qv-grab { display: block; position: absolute; top: 8px; left: 50%; width: 38px; height: 5px; border-radius: 3px; background: rgba(0, 0, 0, .22); transform: translateX(-50%); }
+  .qv-go { background: linear-gradient(rgba(246, 246, 246, 0), rgba(246, 246, 246, .97) 20%); }   /* the pinned button sits on solid glass */
+}
+/* the contact field matches the softer controls around it */
+.field { border-radius: 14px; }
+.field-btn { border-radius: 10px; }
+
+@media (prefers-reduced-transparency: reduce) {
+  .pill, .menu, .qv, .cs-dock { backdrop-filter: none; -webkit-backdrop-filter: none; }
+  .pill { background: var(--pill); }
+  .pill[data-tone="dark"] { background: #1d1d1d; }
+  .pill.is-island:not(:hover):not(:focus-within) { background: #000; }
+  .menu { background: var(--stage); }
+  .qv { background: var(--white); }
+  .cs-dock { background: var(--stage); }
+}
+
+/* ═════════ Logo theme: the VK green ═════════
+   The accent is the green of the VK logo (#a8f83a, sampled from the PNG).
+   It takes over the single live light and the few places that act or are
+   active; everything else stays black, white and grey. On light grounds
+   text uses the deep ink green, which holds AA on white and #f2f2f2. */
+:root {
+  --accent: #a8f83a;
+  --accent-hover: #bdff5c;
+  --accent-ink: #3b6d0a;
+  --red: var(--accent);          /* the live light becomes the logo green */
+  --red-ink: var(--accent-ink);
+}
+::selection { background: var(--accent); color: #000; }
+/* a hairline keeps the green dot visible on white and grey too */
+.live::before { box-shadow: 0 0 0 1.5px rgba(59, 109, 10, .55); }
+
+.btn--accent { background: var(--accent); color: #000; }
+.btn--accent:hover { background: var(--accent-hover); color: #000; }
+.hero .btn--white, .field-btn { background: var(--accent); color: #000; }
+.hero .btn--white:hover, .field-btn:hover { background: var(--accent-hover); }
+
+.pill-where::before { background: var(--accent); opacity: 1; }
+.pill-where-t { max-width: 150px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.big-links a:hover, .big-links a:focus-visible { color: var(--accent); }
+.cs-progress { background: var(--accent); }
+.cs-dock-dots a.is-on::before { background: var(--accent); }
+#now .wg-dots i.is-on { background: var(--accent); }
+.rail i { background: var(--ink); }
+.credits-lead a:hover { color: var(--accent); }
+
+
+/* ── Right now: few words, more to look at ── */
+.widgets {
+  grid-template-columns: repeat(4, minmax(0, 1fr)); grid-auto-rows: auto;
+  grid-template-areas:
+    "glyph principles principles open"
+    "process process quote quote";
+}
+.wg--glyph { grid-area: glyph; min-height: 280px; }
+.wg--principles { grid-area: principles; }
+.wg--open { grid-area: open; }
+.wg--quote { grid-area: quote; }   /* grid-area alone also overrides the old 2×2 span */
+.wg-title { font: 400 24px/1.15 var(--serif); letter-spacing: -.015em; }
+
+/* four discs that keep rolling, on a dot grid */
+.wg--principles { background-image: radial-gradient(circle, rgba(255, 255, 255, .14) 1px, transparent 1.4px); background-size: 18px 18px; }
+.discs { list-style: none; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 18px; margin-top: 22px; }
+.disc-item { display: grid; justify-items: center; align-content: start; gap: 10px; text-align: center; }
+.disc {
+  position: relative; display: grid; place-items: center; width: 100%; max-width: 132px; aspect-ratio: 1; padding: 0; border: 0; border-radius: 50%; cursor: pointer;
+  background: #000; color: #fff; box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .16), 0 14px 30px -16px rgba(0, 0, 0, .8);
+  transition: transform .5s var(--spring), box-shadow .3s var(--ease);
+}
+.disc-ring { position: absolute; inset: 0; width: 100%; height: 100%; animation: roll 22s linear infinite; }
+.disc-ring--ccw { animation-direction: reverse; animation-duration: 26s; }
+.disc-ring text { fill: rgba(255, 255, 255, .82); font: 500 9.5px var(--mono); letter-spacing: .08em; }
+@keyframes roll { to { transform: rotate(360deg); } }
+.disc-icon { display: grid; place-items: center; width: 52px; height: 52px; border-radius: 50%; background: rgba(255, 255, 255, .06); transition: background .3s var(--ease), color .3s var(--ease); }
+.disc:hover, .disc-item.is-open .disc, .disc:focus-visible { transform: scale(1.06); box-shadow: inset 0 0 0 1px rgba(168, 248, 58, .5), 0 18px 34px -16px rgba(0, 0, 0, .8); }
+.disc:hover .disc-icon, .disc-item.is-open .disc-icon, .disc:focus-visible .disc-icon { background: var(--accent); color: #000; }
+.disc-title { font: 500 14px/1.25 var(--sans); color: #fff; max-width: 15ch; }
+.disc-line {
+  max-width: 18ch; min-height: 3.9em; font-size: 13px; line-height: 1.3; color: rgba(255, 255, 255, .72);
+  opacity: 0; transform: translateY(-4px); transition: opacity .3s var(--ease), transform .4s var(--spring);
+}
+.disc-item:hover .disc-line, .disc-item.is-open .disc-line, .disc-item:focus-within .disc-line { opacity: 1; transform: none; }
+
+@media (max-width: 1080px) {
+  .widgets { grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-areas: "glyph open" "principles principles" "process process" "quote quote"; }
+}
+@media (max-width: 760px) {
+  .wg--glyph, .wg--open { min-height: 200px; }
+  .wg--open { grid-column: auto; }
+  .wg--open .wg-big { font-size: 19px; }
+  .discs { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px 14px; }
+  .disc { max-width: 120px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .disc-ring { animation: none; }
+}
+#now .wg-q p { font-size: clamp(22px, 2vw, 28px); }
+/* touch screens: no hover to reveal it, so the one-liner takes no room until its disc is tapped */
+@media (hover: none) {
+  .disc-line { display: none; min-height: 0; }
+  .disc-item.is-open .disc-line { display: block; }
+}
+/* discs sit on the card, they don't float: no drop shadow; a tapped (selected) disc goes white, hover stays green */
+.disc, .disc:hover, .disc:focus-visible { box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .16); }
+.disc-item.is-open .disc { box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .6); }
+.disc-item.is-open .disc-icon { background: #fff; color: #000; }
+
+/* ── Right now, tightened ──
+   Solid dark cards with a visible edge (the thin glass vanished on black),
+   no reserved space for hidden text, and the portrait in dots filling the
+   availability card. */
+#now .wg {
+  background: #141414; backdrop-filter: none; -webkit-backdrop-filter: none;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .13);
+}
+#now .wg--black, #now .wg--quote { background: #141414; }
+#now .wg:hover { transform: none; }
+.widgets { grid-template-areas: "glyph principles principles open" "quote quote quote quote"; }
+.wg--glyph { min-height: 0; }
+#now .wg-q p { max-width: 52ch; }
+
+/* principles: the one-liner is a small caption that pops up, it takes no room */
+.discs { margin-top: 18px; gap: 14px; }
+.disc-item { position: relative; gap: 8px; }
+.disc-line {
+  position: absolute; z-index: 3; top: calc(100% + 6px); left: 50%; width: max-content; max-width: 210px; min-height: 0;
+  padding: 8px 11px; border-radius: 10px; background: #fff; color: #000; font-size: 13px; line-height: 1.35; text-align: left;
+  pointer-events: none; transform: translate(-50%, -4px);
+}
+.disc-item:hover .disc-line, .disc-item.is-open .disc-line, .disc-item:focus-within .disc-line { transform: translate(-50%, 0); }
+@media (hover: none) { .disc-line { display: block; } .disc-item:not(.is-open) .disc-line { opacity: 0; } }
+
+/* availability with the portrait in dots */
+.wg--open { gap: 14px; }
+.portrait-dots { display: block; width: 100%; flex: 1 1 auto; min-height: 150px; }
+.wg--open .btn { margin-top: 0; }
+
+@media (max-width: 1080px) {
+  .widgets { grid-template-areas: "glyph open" "principles principles" "quote quote"; }
+}
+@media (max-width: 760px) {
+  /* the hero sizes to the name and the text, no empty band */
+  .hero { min-height: 0; padding-top: calc(84px + 22vw); }
+  .hero-in { padding-bottom: 48px; }
+  .portrait-dots { min-height: 130px; }
+}
+.portrait-dots { min-height: 200px; }
+#now .wg-q p { max-width: 62ch; font-size: clamp(22px, 2.3vw, 32px); }
+@media (max-width: 760px) { .portrait-dots { min-height: 150px; } }
+.wg--principles .discs { margin-block: auto; }

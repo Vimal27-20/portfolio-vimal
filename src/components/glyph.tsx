@@ -67,7 +67,8 @@ export default function Glyph({ text, label }: { text: string; label: string }) 
         // dots near the pointer warm up
         const near = pointer.x < 0 ? 0 : Math.max(0, 1 - Math.hypot(x - pointer.x, y - pointer.y) / 4.5);
         const a = on ? 1 : 0.16 + near * 0.6;
-        ctx.fillStyle = `rgba(255,255,255,${a})`;
+        // lit dots glow in the logo green; the resting matrix stays white
+        ctx.fillStyle = on ? "#a8f83a" : `rgba(255,255,255,${a})`;
         ctx.beginPath();
         ctx.arc((x + 0.5) * cell, (y + 0.5) * cell, on ? r * 1.08 : r, 0, Math.PI * 2);
         ctx.fill();
