@@ -95,17 +95,9 @@ html::-webkit-scrollbar, body::-webkit-scrollbar { display: none; }
 .hero-in { padding-bottom: clamp(36px, 6vh, 72px); }
 
 /* ── right now: widgets on a lock-screen wallpaper ── */
-#now { position: relative; isolation: isolate; margin-top: 128px; padding: 112px 0 120px; overflow: hidden; background: #0d0d0d; color: #fff; }
-#now::before {
-  content: ""; position: absolute; inset: -12%; z-index: -1;
-  background: url("/img/vimal-bw.webp") 60% 35% / cover no-repeat;
-  filter: blur(64px) brightness(.62) contrast(1.15); transform: scale(1.1);
-  /* the wallpaper opens and closes on the section's black instead of clipping */
-  -webkit-mask-image: linear-gradient(transparent, #000 18%, #000 82%, transparent);
-  mask-image: linear-gradient(transparent, #000 18%, #000 82%, transparent);
-}
-/* the section's own black closes over the wallpaper at the top and bottom edges */
-#now::after { content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none; background: linear-gradient(#0d0d0d, transparent 20%, transparent 80%, #0d0d0d); }
+#now { position: relative; isolation: isolate; margin-top: 128px; padding: 112px 0 120px; overflow: hidden; background: #000; color: #fff; }
+/* plain black with a galaxy of dots behind the widgets */
+.galaxy { position: absolute; inset: 0; z-index: -1; width: 100%; height: 100%; }
 #now .sec-head p { color: rgba(255, 255, 255, .74); }
 #now .wg {
   background: rgba(255, 255, 255, .11); color: #fff;
@@ -116,8 +108,8 @@ html::-webkit-scrollbar, body::-webkit-scrollbar { display: none; }
 #now .wg:hover { transform: translateY(-3px); }
 #now .wg--black, #now .wg--quote { background: rgba(0, 0, 0, .38); }
 #now .wg-note, #now .wg-by { color: rgba(255, 255, 255, .74); }
-#now .wg .btn { background: #fff; color: var(--ink); }
-#now .wg .btn:hover { background: #e2e2e2; }
+#now .wg .btn:not(.btn--accent) { background: #fff; color: var(--ink); }
+#now .wg .btn:not(.btn--accent):hover { background: #e2e2e2; }
 #now .wg-pager .qv-icon { background: rgba(255, 255, 255, .14); border-radius: 12px; }
 #now .wg-pager .qv-icon:hover { background: rgba(255, 255, 255, .24); }
 #now :focus-visible { outline-color: #fff; }
@@ -195,4 +187,158 @@ html:has(dialog[open]) .pointer { opacity: 0 !important; }
 }
 @media (prefers-reduced-motion: reduce) {
   .hero-photo { transform: none; }
+}
+
+/* ═════════ Logo theme: the VK green ═════════
+   The accent is the green of the VK logo (#a8f83a, sampled from the PNG).
+   It takes over the single live light and the few places that act or are
+   active; everything else stays black, white and grey. On light grounds
+   text uses the deep ink green, which holds AA on white and #f2f2f2. */
+:root {
+  --accent: #a8f83a;
+  --accent-hover: #bdff5c;
+  --accent-ink: #3b6d0a;
+  --red: var(--accent);          /* the live light becomes the logo green */
+  --red-ink: var(--accent-ink);
+}
+::selection { background: var(--accent); color: #000; }
+/* a hairline keeps the green dot visible on white and grey too */
+.live::before { box-shadow: 0 0 0 1.5px rgba(59, 109, 10, .55); }
+
+.btn--accent { background: var(--accent); color: #000; }
+.btn--accent:hover { background: var(--accent-hover); color: #000; }
+.hero .btn--white, .field-btn { background: var(--accent); color: #000; }
+.hero .btn--white:hover, .field-btn:hover { background: var(--accent-hover); }
+
+.pill-where::before { background: var(--accent); opacity: 1; }
+.pill-where-t { max-width: 150px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.big-links a:hover, .big-links a:focus-visible { color: var(--accent); }
+.cs-progress { background: var(--accent); }
+.cs-dock-dots a.is-on::before { background: var(--accent); }
+#now .wg-dots i.is-on { background: var(--accent); }
+.rail i { background: var(--ink); }
+.credits-lead a:hover { color: var(--accent); }
+
+/* ── Right now: the widget layout ── */
+.widgets {
+  grid-template-columns: repeat(4, minmax(0, 1fr)); grid-auto-rows: auto;
+  grid-template-areas:
+    "glyph game game open"
+    "match game game contrast"
+    "process process quote quote";
+}
+.wg--glyph { grid-area: glyph; min-height: 260px; }
+.wg--game { grid-area: game; }
+.wg--open { grid-area: open; }
+.wg--match { grid-area: match; }
+.wg--contrast { grid-area: contrast; }
+.wg--process { grid-area: process; }
+.wg--quote { grid-area: quote; }   /* grid-area alone: it also overrides the old 2×2 span */
+
+.wg-head { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+.wg-title { font: 400 24px/1.15 var(--serif); letter-spacing: -.015em; }
+.wg-meta { font-size: 12px; color: rgba(255, 255, 255, .7); }
+.wg-text { font-size: 15px; line-height: 1.55; color: rgba(255, 255, 255, .78); }
+
+/* the colour game */
+.game-grid { display: grid; gap: 6px; margin-top: 18px; aspect-ratio: 1; max-height: 440px; width: min(100%, 440px); align-self: center; }
+.game-tile {
+  display: grid; place-items: center; border: 0; border-radius: 10px; cursor: pointer; color: #000;
+  transition: transform .35s var(--spring), box-shadow .2s var(--ease);
+}
+.game-tile:hover { transform: scale(1.05); }
+.game-tile.is-right { box-shadow: 0 0 0 3px var(--accent); }
+.game-tile.is-wrong { box-shadow: 0 0 0 3px #fff; }
+.game-end { display: grid; justify-items: start; gap: 14px; margin-top: 18px; }
+.game-score { font-size: 96px; line-height: .9; color: var(--accent); }
+
+/* the design process */
+.wg--process { gap: 16px; }
+.steps { display: flex; flex-wrap: wrap; gap: 6px; }
+.step {
+  display: inline-flex; align-items: center; gap: 8px; height: 34px; padding: 0 12px; border: 0; border-radius: 10px; cursor: pointer;
+  background: rgba(255, 255, 255, .08); color: rgba(255, 255, 255, .78); font: 500 14px/1 var(--sans);
+  transition: background .2s var(--ease), color .2s var(--ease), transform .4s var(--spring);
+}
+.step .mono { font-size: 12px; color: rgba(255, 255, 255, .5); letter-spacing: .04em; }
+.step:hover { background: rgba(255, 255, 255, .16); color: #fff; }
+.step[aria-selected="true"] { background: var(--accent); color: #000; }
+.step[aria-selected="true"] .mono { color: rgba(0, 0, 0, .6); }
+.step-rail { height: 2px; border-radius: 2px; background: rgba(255, 255, 255, .12); overflow: hidden; }
+.step-rail i { display: block; height: 100%; background: var(--accent); transition: width .5s var(--spring); }
+.step-text { max-width: 46ch; font: 400 clamp(20px, 1.8vw, 26px)/1.35 var(--serif); letter-spacing: -.01em; color: #fff; animation: qvStep .35s var(--ease); }
+
+/* hiring for… */
+.wg--match { gap: 14px; }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.chip {
+  height: 30px; padding: 0 10px; border: 0; border-radius: 9px; cursor: pointer;
+  background: rgba(255, 255, 255, .08); color: rgba(255, 255, 255, .8); font: 500 13px/1 var(--sans);
+  transition: background .2s var(--ease), color .2s var(--ease), transform .4s var(--spring);
+}
+.chip:hover { background: rgba(255, 255, 255, .16); color: #fff; }
+.chip[aria-checked="true"] { background: #fff; color: #000; }
+.match { display: grid; gap: 6px; animation: qvStep .35s var(--ease); }
+.match-title { font: 400 21px/1.2 var(--serif); letter-spacing: -.01em; }
+.match-go { margin-top: auto; align-self: flex-start; color: var(--accent); }
+
+/* contrast checker */
+.wg--contrast { gap: 14px; }
+.contrast-sample { display: flex; align-items: baseline; gap: 10px; padding: 14px 16px; border-radius: 14px; font: 400 34px/1 var(--serif); box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .12); }
+.contrast-sample span { font: 500 14px/1 var(--sans); }
+.contrast-row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.swatch { display: inline-flex; align-items: center; gap: 6px; cursor: pointer; }
+.swatch input { width: 28px; height: 28px; padding: 0; border: 0; border-radius: 8px; background: none; cursor: pointer; }
+.swatch input::-webkit-color-swatch-wrapper { padding: 0; }
+.swatch input::-webkit-color-swatch { border: 1px solid rgba(255, 255, 255, .3); border-radius: 8px; }
+.swatch .mono { font-size: 12px; color: rgba(255, 255, 255, .7); }
+.contrast-ratio { margin-left: auto; font-size: 34px; line-height: 1; }
+.checks { list-style: none; display: flex; flex-wrap: wrap; gap: 6px; }
+.checks li { display: inline-flex; align-items: center; gap: 5px; height: 26px; padding: 0 9px; border-radius: 8px; font-size: 12px; }
+.checks li .mono { font-size: 12px; }
+.checks .is-ok { background: var(--accent); color: #000; }
+.checks .is-no { background: rgba(255, 255, 255, .1); color: rgba(255, 255, 255, .7); }
+
+@media (max-width: 1080px) {
+  .widgets {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-areas: "glyph open" "game game" "match contrast" "process process" "quote quote";
+  }
+}
+@media (max-width: 760px) {
+  .widgets { grid-template-areas: "glyph open" "game game" "match match" "contrast contrast" "process process" "quote quote"; }
+  .wg--glyph { min-height: 200px; }
+  .wg--open { grid-column: auto; min-height: 200px; }
+  .wg--open .wg-big { font-size: 19px; }
+  .game-score { font-size: 72px; }
+}
+
+/* ── Right now, round two: let the galaxy show ──
+   The core sits in the head band behind the title; the cards are thin glass
+   so the stars read through them; green is kept for actions and live states. */
+#now { padding-top: 200px; }
+#now .sec-head { margin-bottom: 56px; }
+#now .widgets { gap: 22px; }
+#now .wg { background: rgba(255, 255, 255, .05); backdrop-filter: blur(4px) saturate(140%); -webkit-backdrop-filter: blur(4px) saturate(140%); }
+#now .wg--black, #now .wg--quote { background: rgba(0, 0, 0, .3); }
+.hint-touch { display: none; }
+@media (hover: none) { .hint-mouse { display: none; } .hint-touch { display: inline; } }
+
+/* selected states agree: white, like the role chips */
+.step[aria-selected="true"] { background: #fff; color: #000; }
+.steps { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.step { justify-content: flex-start; }
+.match-go { color: #fff; }
+.checks .is-ok { background: rgba(255, 255, 255, .14); color: #fff; }
+.checks .is-ok svg { color: var(--accent); }
+/* game marks on a solid disc so they hold on light tiles too */
+.tile-mark { display: grid; place-items: center; width: 30px; height: 30px; border-radius: 50%; background: #000; color: #fff; }
+.game-tile.is-right .tile-mark { color: var(--accent); }
+.game-tile:disabled { cursor: default; }
+
+@media (max-width: 760px) {
+  #now { padding-top: 150px; }
+  #now .sec-head { margin-bottom: 36px; }
+  #now .widgets { gap: 12px; }
+  .steps { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }

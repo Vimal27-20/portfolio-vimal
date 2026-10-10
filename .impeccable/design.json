@@ -1,37 +1,52 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-10-10T08:47:46.848Z",
+  "generatedAt": "2026-10-10T09:45:20.349Z",
   "title": "Design System: Vimal Kumar Portfolio",
   "extensions": {
     "colorMeta": {
-      "live-red": {
+      "logo-green": {
         "role": "primary",
-        "displayName": "Live Red",
-        "canonical": "#d71921",
+        "displayName": "Logo Green",
+        "canonical": "#a8f83a",
         "tonalRamp": [
-          "#3d0709",
-          "#640b0f",
-          "#8c1015",
-          "#b3121a",
-          "#d71921",
-          "#e5555b",
-          "#f0999c",
-          "#fadcdd"
+          "#1f3306",
+          "#3b6d0a",
+          "#5a9a14",
+          "#7fcb22",
+          "#a8f83a",
+          "#bdff5c",
+          "#d6ff9a",
+          "#eeffd6"
         ]
       },
-      "red-ink": {
+      "accent-hover": {
         "role": "primary",
-        "displayName": "Red Ink",
-        "canonical": "#b3121a",
+        "displayName": "Accent Hover",
+        "canonical": "#bdff5c",
         "tonalRamp": [
-          "#33050a",
-          "#560a0f",
-          "#7a0d13",
-          "#b3121a",
-          "#cf3a41",
-          "#e07a7f",
-          "#eeb3b6",
-          "#f9e3e4"
+          "#26400a",
+          "#47800f",
+          "#6bb81c",
+          "#93e52e",
+          "#bdff5c",
+          "#ccff80",
+          "#ddffa8",
+          "#f0ffd9"
+        ]
+      },
+      "accent-ink": {
+        "role": "primary",
+        "displayName": "Accent Ink",
+        "canonical": "#3b6d0a",
+        "tonalRamp": [
+          "#122103",
+          "#1f3806",
+          "#2d5208",
+          "#3b6d0a",
+          "#5a9a14",
+          "#86c247",
+          "#b8e08a",
+          "#e6f5d3"
         ]
       },
       "stage": {
@@ -46,21 +61,6 @@
           "#8a8a8a",
           "#a8a8a8",
           "#dcdcdc",
-          "#f2f2f2"
-        ]
-      },
-      "wallpaper-black": {
-        "role": "neutral",
-        "displayName": "Wallpaper Black",
-        "canonical": "#0d0d0d",
-        "tonalRamp": [
-          "#000000",
-          "#0d0d0d",
-          "#1d1d1d",
-          "#333333",
-          "#555555",
-          "#8a8a8a",
-          "#c8c8c8",
           "#f2f2f2"
         ]
       },
@@ -307,16 +307,16 @@
       "widget-glass": {
         "role": "neutral",
         "displayName": "Widget Glass",
-        "canonical": "rgba(255, 255, 255, 0.11)",
+        "canonical": "rgba(255, 255, 255, 0.05)",
         "tonalRamp": [
-          "rgba(255,255,255,.04)",
+          "rgba(255,255,255,.03)",
+          "rgba(255,255,255,.05)",
           "rgba(255,255,255,.08)",
           "rgba(255,255,255,.11)",
           "rgba(255,255,255,.16)",
           "rgba(255,255,255,.22)",
           "rgba(255,255,255,.3)",
-          "rgba(255,255,255,.4)",
-          "rgba(255,255,255,.52)"
+          "rgba(255,255,255,.4)"
         ]
       }
     },
@@ -327,7 +327,7 @@
       },
       "dot-menu": {
         "displayName": "Dot Menu",
-        "purpose": "Menu and footer link list; the dot voice also sets the nav name, journey years, the clock and stat numerals."
+        "purpose": "Menu and footer link list; the dot voice also sets the nav name, journey years, stat numerals, the colour game score and the contrast ratio."
       },
       "headline": {
         "displayName": "Headline",
@@ -339,7 +339,7 @@
       },
       "title": {
         "displayName": "Title",
-        "purpose": "Card titles, widget statements, reader sub-heads and chapter headings, at 400."
+        "purpose": "Card titles, widget statements, reader sub-heads and chapter headings, at 400; widget titles at 24px/1.15."
       },
       "body": {
         "displayName": "Body",
@@ -385,9 +385,9 @@
         "purpose": "Under the chapter dock."
       },
       {
-        "name": "wallpaper-widget-lift",
+        "name": "widget-lift",
         "value": "0 20px 40px -24px rgba(0, 0, 0, .6)",
-        "purpose": "Under widgets lying on the #now wallpaper."
+        "purpose": "Under the #now widgets floating over the galaxy."
       },
       {
         "name": "pointer-outline",
@@ -399,7 +399,7 @@
       {
         "name": "glass-blur",
         "value": "blur(28px) saturate(170%)",
-        "purpose": "Backdrop filter for the pill, island, quick view, dock and #now widgets."
+        "purpose": "Backdrop filter for the pill, island, quick view and dock."
       },
       {
         "name": "menu-frost",
@@ -412,9 +412,14 @@
         "purpose": "Behind the quick view."
       },
       {
-        "name": "wallpaper",
-        "value": "vimal-bw.webp, blur(64px) brightness(.62) contrast(1.15), scale(1.1), masked to #0d0d0d top and bottom",
-        "purpose": "The #now lock-screen wallpaper."
+        "name": "widget-glass-blur",
+        "value": "blur(4px) saturate(140%) over rgba(255,255,255,.05); rgba(0,0,0,.3) for the Glyph and quote widgets",
+        "purpose": "Thin glass on the #now widgets so the galaxy reads through."
+      },
+      {
+        "name": "galaxy",
+        "value": "canvas on #000: two-armed tilted disc, ~1 star per 900px² (max 1100), white with ~14% #a8f83a, snapped to a 5px pitch; core at min(50% height, 210px / 150px narrow)",
+        "purpose": "The #now ground, after the Glyph Matrix playground."
       },
       {
         "name": "reduced-transparency",
@@ -496,7 +501,7 @@
       {
         "name": "live-blink",
         "value": "1.4s steps(2, jump-none) infinite",
-        "purpose": "The live red dot; stepped, never smooth."
+        "purpose": "The live green dot; stepped, never smooth."
       },
       {
         "name": "download",
@@ -507,6 +512,11 @@
         "name": "display-step",
         "value": "90ms",
         "purpose": "Glyph-matrix scroll steps; the display steps, it does not glide."
+      },
+      {
+        "name": "galaxy",
+        "value": "differential orbit; pointer well 180px (mouse only) with spring return; click or tap ripple 260px; still under reduced motion, paused offscreen",
+        "purpose": "The #now star field."
       }
     ],
     "breakpoints": [
@@ -539,7 +549,7 @@
       {
         "path": "public/img/vimal-bw.webp",
         "size": "708x671",
-        "use": "Hero portrait and #now wallpaper",
+        "use": "Hero portrait",
         "provenance": "User-supplied portrait photo (708x671). Grayscale, contrast 1.12, brightness 1.04. Background burned to #000 outside a hand-traced head-and-shoulders outline, feathered with a blur and eroded inward; the shoulders fall away along an oval below the face. Rendered in a headless-Chrome canvas."
       },
       {
@@ -547,6 +557,11 @@
         "size": "240px",
         "use": "None on this branch",
         "provenance": "Earlier dot-portrait source; not used by design/glass-os."
+      },
+      {
+        "path": "public/img/LOGO-VK.png",
+        "use": "Nav logo; Logo Green #a8f83a is sampled from it",
+        "provenance": "Existing identity asset."
       }
     ]
   },
@@ -560,12 +575,12 @@
       "css": ".ds-btn { display: inline-flex; align-items: center; gap: 10px; height: 42px; padding: 0 16px; border: 0; border-radius: 10px; background: #000; color: #fff; font: 500 13px/1 'Geist Mono Variable', ui-monospace, monospace; letter-spacing: .04em; text-transform: uppercase; text-decoration: none; cursor: pointer; transition: transform .45s cubic-bezier(.34,1.36,.64,1), background .2s cubic-bezier(.2,.7,0,1); } .ds-btn svg { transition: transform .25s cubic-bezier(.2,.7,0,1); } .ds-btn:hover { background: #2b2b2b; transform: translateY(-1px) scale(1.03); } .ds-btn:hover svg { transform: translateX(3px); } .ds-btn:active { transform: scale(.94); } .ds-btn:focus-visible { outline: 2px solid #000; outline-offset: 3px; }"
     },
     {
-      "name": "White Button on Stage",
+      "name": "Accent Button on Stage",
       "kind": "button",
-      "refersTo": "button-white",
-      "description": "The button on black grounds: hero call to action, #now widgets, contact Copy.",
+      "refersTo": "button-accent",
+      "description": "The primary action on black grounds, in Logo Green with a black label: hero call to action, contact Copy, the résumé in Open to roles.",
       "html": "<div class=\"ds-stage\"><a class=\"ds-btn-white\" href=\"#\">See the work <svg width=\"14\" height=\"14\" viewBox=\"0 0 256 256\" fill=\"currentColor\" aria-hidden=\"true\"><path d=\"M181.66 133.66l-80 80a8 8 0 0 1-11.32-11.32L164.69 128 90.34 53.66a8 8 0 0 1 11.32-11.32l80 80a8 8 0 0 1 0 11.32z\"/></svg></a></div>",
-      "css": ".ds-stage { background: #000; padding: 32px; } .ds-btn-white { display: inline-flex; align-items: center; gap: 10px; height: 42px; padding: 0 16px; border-radius: 10px; background: #fff; color: #000; font: 500 13px/1 'Geist Mono Variable', ui-monospace, monospace; letter-spacing: .04em; text-transform: uppercase; text-decoration: none; transition: transform .45s cubic-bezier(.34,1.36,.64,1), background .2s cubic-bezier(.2,.7,0,1); } .ds-btn-white:hover { background: #e2e2e2; transform: translateY(-1px) scale(1.03); } .ds-btn-white:active { transform: scale(.94); } .ds-btn-white:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }"
+      "css": ".ds-stage { background: #000; padding: 32px; } .ds-btn-white { display: inline-flex; align-items: center; gap: 10px; height: 42px; padding: 0 16px; border-radius: 10px; background: #a8f83a; color: #000; font: 500 13px/1 'Geist Mono Variable', ui-monospace, monospace; letter-spacing: .04em; text-transform: uppercase; text-decoration: none; transition: transform .45s cubic-bezier(.34,1.36,.64,1), background .2s cubic-bezier(.2,.7,0,1); } .ds-btn-white:hover { background: #bdff5c; transform: translateY(-1px) scale(1.03); } .ds-btn-white:active { transform: scale(.94); } .ds-btn-white:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }"
     },
     {
       "name": "Filter Chips",
@@ -579,9 +594,9 @@
       "name": "Glass Nav Pill and Island",
       "kind": "nav",
       "refersTo": "nav-pill-light",
-      "description": "The floating glass pill in its two tones (frost over the floor, smoke over the stage) and collapsed into the Dynamic-Island capsule naming the section; hover opens the island back out.",
+      "description": "The floating glass pill in its two tones (frost over the floor, smoke over the stage) and collapsed into the Dynamic-Island capsule naming the section (or only the project name in a case study) beside a Logo Green dot; hover opens the island back out.",
       "html": "<div class=\"ds-grounds\"><div class=\"ds-ground ds-ground--floor\"><nav class=\"ds-pill\"><button class=\"ds-pill-btn\" aria-label=\"Open menu\"><svg width=\"20\" height=\"20\" viewBox=\"0 0 256 256\" fill=\"currentColor\" aria-hidden=\"true\"><path d=\"M224 128a8 8 0 0 1-8 8H40a8 8 0 0 1 0-16h176a8 8 0 0 1 8 8zM40 72h176a8 8 0 0 0 0-16H40a8 8 0 0 0 0 16zm176 112H40a8 8 0 0 0 0 16h176a8 8 0 0 0 0-16z\"/></svg></button><a class=\"ds-pill-id\" href=\"#\">Vimal Kumar</a><a class=\"ds-pill-btn\" href=\"#\" aria-label=\"Download résumé (PDF)\"><svg width=\"20\" height=\"20\" viewBox=\"0 0 256 256\" fill=\"currentColor\" aria-hidden=\"true\"><path d=\"M224 144v64a8 8 0 0 1-8 8H40a8 8 0 0 1-8-8v-64a8 8 0 0 1 16 0v56h160v-56a8 8 0 0 1 16 0zm-101.66 5.66a8 8 0 0 0 11.32 0l40-40a8 8 0 0 0-11.32-11.32L136 124.69V32a8 8 0 0 0-16 0v92.69L93.66 98.34a8 8 0 0 0-11.32 11.32z\"/></svg></a></nav></div><div class=\"ds-ground ds-ground--stage\"><nav class=\"ds-pill ds-pill--dark\"><button class=\"ds-pill-btn\" aria-label=\"Open menu\"><svg width=\"20\" height=\"20\" viewBox=\"0 0 256 256\" fill=\"currentColor\" aria-hidden=\"true\"><path d=\"M224 128a8 8 0 0 1-8 8H40a8 8 0 0 1 0-16h176a8 8 0 0 1 8 8zM40 72h176a8 8 0 0 0 0-16H40a8 8 0 0 0 0 16zm176 112H40a8 8 0 0 0 0 16h176a8 8 0 0 0 0-16z\"/></svg></button><a class=\"ds-pill-id\" href=\"#\">Vimal Kumar</a><a class=\"ds-pill-btn\" href=\"#\" aria-label=\"Download résumé (PDF)\"><svg width=\"20\" height=\"20\" viewBox=\"0 0 256 256\" fill=\"currentColor\" aria-hidden=\"true\"><path d=\"M224 144v64a8 8 0 0 1-8 8H40a8 8 0 0 1-8-8v-64a8 8 0 0 1 16 0v56h160v-56a8 8 0 0 1 16 0zm-101.66 5.66a8 8 0 0 0 11.32 0l40-40a8 8 0 0 0-11.32-11.32L136 124.69V32a8 8 0 0 0-16 0v92.69L93.66 98.34a8 8 0 0 0-11.32 11.32z\"/></svg></a></nav></div><div class=\"ds-ground ds-ground--floor\"><div class=\"ds-pill ds-pill--island\" tabindex=\"-1\"><button class=\"ds-pill-btn\" aria-label=\"Open menu\"><svg width=\"20\" height=\"20\" viewBox=\"0 0 256 256\" fill=\"currentColor\" aria-hidden=\"true\"><path d=\"M224 128a8 8 0 0 1-8 8H40a8 8 0 0 1 0-16h176a8 8 0 0 1 8 8zM40 72h176a8 8 0 0 0 0-16H40a8 8 0 0 0 0 16zm176 112H40a8 8 0 0 0 0 16h176a8 8 0 0 0 0-16z\"/></svg></button><a class=\"ds-pill-id\" href=\"#\">Vimal Kumar</a><span class=\"ds-where\" aria-hidden=\"true\">The work</span><a class=\"ds-pill-btn\" href=\"#\" aria-label=\"Download résumé (PDF)\"><svg width=\"20\" height=\"20\" viewBox=\"0 0 256 256\" fill=\"currentColor\" aria-hidden=\"true\"><path d=\"M224 144v64a8 8 0 0 1-8 8H40a8 8 0 0 1-8-8v-64a8 8 0 0 1 16 0v56h160v-56a8 8 0 0 1 16 0zm-101.66 5.66a8 8 0 0 0 11.32 0l40-40a8 8 0 0 0-11.32-11.32L136 124.69V32a8 8 0 0 0-16 0v92.69L93.66 98.34a8 8 0 0 0-11.32 11.32z\"/></svg></a></div></div></div>",
-      "css": ".ds-grounds { display: grid; gap: 0; } .ds-ground { display: flex; justify-content: center; padding: 24px 12px; } .ds-ground--floor { background: repeating-linear-gradient(90deg, #f2f2f2 0 40px, #fff 40px 80px); } .ds-ground--stage { background: radial-gradient(circle at 30% 50%, #444, #000 60%); } .ds-pill { position: relative; overflow: hidden; display: flex; align-items: center; justify-content: space-between; width: min(576px, 100%); height: 48px; padding: 0 6px; border-radius: 18px; background: rgba(228,228,228,.8); color: #000; backdrop-filter: blur(28px) saturate(170%); -webkit-backdrop-filter: blur(28px) saturate(170%); box-shadow: inset 0 0 0 .5px rgba(255,255,255,.45), inset 0 1px 0 rgba(255,255,255,.35), 0 10px 30px -14px rgba(0,0,0,.45); transition: width .6s cubic-bezier(.34,1.36,.64,1), height .6s cubic-bezier(.34,1.36,.64,1), border-radius .6s cubic-bezier(.34,1.36,.64,1), background .35s cubic-bezier(.2,.7,0,1), color .35s cubic-bezier(.2,.7,0,1); } .ds-pill--dark { background: rgba(30,30,30,.55); color: #fff; box-shadow: inset 0 0 0 .5px rgba(255,255,255,.18), inset 0 1px 0 rgba(255,255,255,.14), 0 10px 30px -14px rgba(0,0,0,.6); } .ds-pill-btn { display: grid; place-items: center; width: 40px; height: 36px; border: 0; border-radius: 12px; background: none; color: inherit; cursor: pointer; transition: transform .45s cubic-bezier(.34,1.36,.64,1), background .2s cubic-bezier(.2,.7,0,1), opacity .25s cubic-bezier(.2,.7,0,1); } .ds-pill-btn:hover { background: rgba(0,0,0,.08); } .ds-pill--dark .ds-pill-btn:hover { background: rgba(255,255,255,.12); } .ds-pill-btn:active { transform: scale(.94); } .ds-pill-btn:focus-visible, .ds-pill-id:focus-visible { outline: 2px solid currentColor; outline-offset: 3px; } .ds-pill-id { font: 900 21px/.95 'Doto Variable', 'Geist Mono Variable', monospace; font-variation-settings: 'ROND' 100; text-transform: uppercase; letter-spacing: .02em; color: inherit; text-decoration: none; transition: opacity .25s cubic-bezier(.2,.7,0,1); } .ds-where { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; gap: 8px; font: 500 12px/1 'Geist Mono Variable', ui-monospace, monospace; letter-spacing: .04em; text-transform: uppercase; color: #fff; opacity: 0; pointer-events: none; white-space: nowrap; transition: opacity .25s cubic-bezier(.2,.7,0,1); } .ds-where::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: #fff; opacity: .7; } .ds-pill--island:not(:hover):not(:focus-within) { width: 210px; height: 38px; border-radius: 19px; background: rgba(0,0,0,.86); color: #fff; box-shadow: inset 0 0 0 .5px rgba(255,255,255,.18), inset 0 1px 0 rgba(255,255,255,.14), 0 10px 30px -12px rgba(0,0,0,.55); } .ds-pill--island:not(:hover):not(:focus-within) > :not(.ds-where) { opacity: 0; pointer-events: none; } .ds-pill--island:not(:hover):not(:focus-within) .ds-where { opacity: 1; transition-delay: .12s; }"
+      "css": ".ds-grounds { display: grid; gap: 0; } .ds-ground { display: flex; justify-content: center; padding: 24px 12px; } .ds-ground--floor { background: repeating-linear-gradient(90deg, #f2f2f2 0 40px, #fff 40px 80px); } .ds-ground--stage { background: radial-gradient(circle at 30% 50%, #444, #000 60%); } .ds-pill { position: relative; overflow: hidden; display: flex; align-items: center; justify-content: space-between; width: min(576px, 100%); height: 48px; padding: 0 6px; border-radius: 18px; background: rgba(228,228,228,.8); color: #000; backdrop-filter: blur(28px) saturate(170%); -webkit-backdrop-filter: blur(28px) saturate(170%); box-shadow: inset 0 0 0 .5px rgba(255,255,255,.45), inset 0 1px 0 rgba(255,255,255,.35), 0 10px 30px -14px rgba(0,0,0,.45); transition: width .6s cubic-bezier(.34,1.36,.64,1), height .6s cubic-bezier(.34,1.36,.64,1), border-radius .6s cubic-bezier(.34,1.36,.64,1), background .35s cubic-bezier(.2,.7,0,1), color .35s cubic-bezier(.2,.7,0,1); } .ds-pill--dark { background: rgba(30,30,30,.55); color: #fff; box-shadow: inset 0 0 0 .5px rgba(255,255,255,.18), inset 0 1px 0 rgba(255,255,255,.14), 0 10px 30px -14px rgba(0,0,0,.6); } .ds-pill-btn { display: grid; place-items: center; width: 40px; height: 36px; border: 0; border-radius: 12px; background: none; color: inherit; cursor: pointer; transition: transform .45s cubic-bezier(.34,1.36,.64,1), background .2s cubic-bezier(.2,.7,0,1), opacity .25s cubic-bezier(.2,.7,0,1); } .ds-pill-btn:hover { background: rgba(0,0,0,.08); } .ds-pill--dark .ds-pill-btn:hover { background: rgba(255,255,255,.12); } .ds-pill-btn:active { transform: scale(.94); } .ds-pill-btn:focus-visible, .ds-pill-id:focus-visible { outline: 2px solid currentColor; outline-offset: 3px; } .ds-pill-id { font: 900 21px/.95 'Doto Variable', 'Geist Mono Variable', monospace; font-variation-settings: 'ROND' 100; text-transform: uppercase; letter-spacing: .02em; color: inherit; text-decoration: none; transition: opacity .25s cubic-bezier(.2,.7,0,1); } .ds-where { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; gap: 8px; font: 500 12px/1 'Geist Mono Variable', ui-monospace, monospace; letter-spacing: .04em; text-transform: uppercase; color: #fff; opacity: 0; pointer-events: none; white-space: nowrap; transition: opacity .25s cubic-bezier(.2,.7,0,1); } .ds-where::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: #a8f83a; } .ds-pill--island:not(:hover):not(:focus-within) { width: 210px; height: 38px; border-radius: 19px; background: rgba(0,0,0,.86); color: #fff; box-shadow: inset 0 0 0 .5px rgba(255,255,255,.18), inset 0 1px 0 rgba(255,255,255,.14), 0 10px 30px -12px rgba(0,0,0,.55); } .ds-pill--island:not(:hover):not(:focus-within) > :not(.ds-where) { opacity: 0; pointer-events: none; } .ds-pill--island:not(:hover):not(:focus-within) .ds-where { opacity: 1; transition-delay: .12s; }"
     },
     {
       "name": "Product Card",
@@ -589,15 +604,15 @@
       "refersTo": "product-card-image",
       "description": "A project as a product: whole image on a white field, serif title, role, mono meta, quick-view link. Opaque and flat; rises 4px on hover, gives on press.",
       "html": "<button class=\"ds-card\"><span class=\"ds-card-img\"><span class=\"ds-card-shot\"></span></span><span class=\"ds-card-title\">VISE <span class=\"ds-live\"></span></span><span class=\"ds-card-role\">UX Engineer</span><span class=\"ds-card-meta\">Mobile · 2026</span><span class=\"ds-tlink\">Quick view +</span></button>",
-      "css": ".ds-card { display: flex; flex-direction: column; width: 320px; padding: 0; border: 0; background: none; text-align: left; cursor: pointer; color: #000; transition: transform .45s cubic-bezier(.34,1.36,.64,1); } .ds-card:hover { transform: translateY(-4px); } .ds-card:active { transform: scale(.98); } .ds-card-img { display: block; aspect-ratio: 4/3; padding: 16px; border-radius: 16px; background: #fff; overflow: hidden; } .ds-card-shot { display: block; width: 100%; height: 100%; border-radius: 6px; background: #dcdcdc; transition: transform .7s cubic-bezier(.2,.7,0,1); } .ds-card:hover .ds-card-shot, .ds-card:focus-visible .ds-card-shot { transform: scale(1.04); } .ds-card:focus-visible { outline: 2px solid #000; outline-offset: 3px; border-radius: 4px; } .ds-card-title { margin-top: 16px; font: 400 24px/1.12 'Newsreader Variable', Georgia, serif; letter-spacing: -.015em; } .ds-live { display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: #d71921; vertical-align: .2em; animation: ds-blink 1.4s steps(2, jump-none) infinite; } @keyframes ds-blink { 50% { opacity: .2; } } .ds-card-title .ds-live { margin-left: 10px; vertical-align: middle; } .ds-card-role { margin-top: 4px; font: 400 15px/1.55 'Geist Variable', system-ui, sans-serif; color: #5c5c5c; } .ds-card-meta { margin-top: 8px; font: 500 12px/1.2 'Geist Mono Variable', ui-monospace, monospace; letter-spacing: .04em; text-transform: uppercase; color: #5c5c5c; } .ds-tlink { margin-top: 14px; font: 500 13px/1.2 'Geist Mono Variable', ui-monospace, monospace; letter-spacing: .04em; text-transform: uppercase; text-decoration: underline; text-underline-offset: .3em; } .ds-card:hover .ds-tlink { text-decoration-thickness: 2px; }"
+      "css": ".ds-card { display: flex; flex-direction: column; width: 320px; padding: 0; border: 0; background: none; text-align: left; cursor: pointer; color: #000; transition: transform .45s cubic-bezier(.34,1.36,.64,1); } .ds-card:hover { transform: translateY(-4px); } .ds-card:active { transform: scale(.98); } .ds-card-img { display: block; aspect-ratio: 4/3; padding: 16px; border-radius: 16px; background: #fff; overflow: hidden; } .ds-card-shot { display: block; width: 100%; height: 100%; border-radius: 6px; background: #dcdcdc; transition: transform .7s cubic-bezier(.2,.7,0,1); } .ds-card:hover .ds-card-shot, .ds-card:focus-visible .ds-card-shot { transform: scale(1.04); } .ds-card:focus-visible { outline: 2px solid #000; outline-offset: 3px; border-radius: 4px; } .ds-card-title { margin-top: 16px; font: 400 24px/1.12 'Newsreader Variable', Georgia, serif; letter-spacing: -.015em; } .ds-live { display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: #a8f83a; box-shadow: 0 0 0 1.5px rgba(59,109,10,.55); vertical-align: .2em; animation: ds-blink 1.4s steps(2, jump-none) infinite; } @keyframes ds-blink { 50% { opacity: .2; } } .ds-card-title .ds-live { margin-left: 10px; vertical-align: middle; } .ds-card-role { margin-top: 4px; font: 400 15px/1.55 'Geist Variable', system-ui, sans-serif; color: #5c5c5c; } .ds-card-meta { margin-top: 8px; font: 500 12px/1.2 'Geist Mono Variable', ui-monospace, monospace; letter-spacing: .04em; text-transform: uppercase; color: #5c5c5c; } .ds-tlink { margin-top: 14px; font: 500 13px/1.2 'Geist Mono Variable', ui-monospace, monospace; letter-spacing: .04em; text-transform: uppercase; text-decoration: underline; text-underline-offset: .3em; } .ds-card:hover .ds-tlink { text-decoration-thickness: 2px; }"
     },
     {
-      "name": "Widgets on the Lock-Screen Wallpaper",
+      "name": "Widgets over the Galaxy",
       "kind": "custom",
       "refersTo": "widget-glass",
-      "description": "The #now widgets in glass over a blurred, darkened wallpaper: a dot-matrix clock and the live availability statement.",
-      "html": "<div class=\"ds-wall\"><div class=\"ds-wg\"><p class=\"ds-wg-time\">14:32</p><p class=\"ds-wg-note\">Local time in Dublin, where I work.</p></div><div class=\"ds-wg ds-wg--black\"><p class=\"ds-wg-big\"><span class=\"ds-live\"></span> Open to UX Engineer roles in Ireland.</p><a class=\"ds-wg-btn\" href=\"#\">Résumé</a></div></div>",
-      "css": ".ds-wall { position: relative; isolation: isolate; display: grid; grid-template-columns: repeat(2, 240px); gap: 16px; padding: 40px 24px; background: #0d0d0d; overflow: hidden; } .ds-wall::before { content: ''; position: absolute; inset: -12%; z-index: -1; background: radial-gradient(circle at 35% 40%, #9a9a9a, #2a2a2a 45%, #0d0d0d 75%); filter: blur(40px) brightness(.62) contrast(1.15); } .ds-wg { display: flex; flex-direction: column; min-height: 220px; padding: 22px; border-radius: 24px; background: rgba(255,255,255,.11); color: #fff; backdrop-filter: blur(28px) saturate(170%); -webkit-backdrop-filter: blur(28px) saturate(170%); box-shadow: inset 0 0 0 .5px rgba(255,255,255,.18), inset 0 1px 0 rgba(255,255,255,.14), 0 20px 40px -24px rgba(0,0,0,.6); transition: transform .5s cubic-bezier(.34,1.36,.64,1); } .ds-wg:hover { transform: translateY(-3px); } .ds-wg--black { background: rgba(0,0,0,.38); } .ds-wg-time { font: 700 72px/.9 'Doto Variable', 'Geist Mono Variable', monospace; font-variation-settings: 'ROND' 100; } .ds-wg-note { margin-top: auto; font: 400 15px/1.55 'Geist Variable', system-ui, sans-serif; color: rgba(255,255,255,.74); } .ds-wg-big { font: 400 26px/1.15 'Newsreader Variable', Georgia, serif; letter-spacing: -.015em; } .ds-live { display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: #d71921; vertical-align: .2em; animation: ds-blink 1.4s steps(2, jump-none) infinite; } @keyframes ds-blink { 50% { opacity: .2; } } .ds-wg-big .ds-live { margin-right: 6px; } .ds-wg-btn { align-self: flex-start; margin-top: auto; display: inline-flex; align-items: center; height: 42px; padding: 0 16px; border-radius: 10px; background: #fff; color: #000; font: 500 13px/1 'Geist Mono Variable', ui-monospace, monospace; letter-spacing: .04em; text-transform: uppercase; text-decoration: none; transition: transform .45s cubic-bezier(.34,1.36,.64,1), background .2s cubic-bezier(.2,.7,0,1); } .ds-wg-btn:hover { background: #e2e2e2; } .ds-wg-btn:active { transform: scale(.94); } .ds-wg-btn:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }"
+      "description": "The #now widgets in thin glass over plain black and a dot galaxy: the role matcher with white selected chips, and the live availability statement with the green résumé button.",
+      "html": "<div class=\"ds-sky\"><div class=\"ds-wg\"><p class=\"ds-wg-title\">Hiring for…</p><div class=\"ds-chips\" role=\"radiogroup\" aria-label=\"Role\"><button class=\"ds-chip\" role=\"radio\" aria-checked=\"true\">UX Engineer</button><button class=\"ds-chip\" role=\"radio\" aria-checked=\"false\">Product Designer</button></div><p class=\"ds-wg-note\">VISE, a mobile app built and tested end to end.</p></div><div class=\"ds-wg ds-wg--black\"><p class=\"ds-wg-big\"><span class=\"ds-live\"></span> Open to UX Engineer roles in Ireland.</p><a class=\"ds-wg-btn\" href=\"#\">Résumé</a></div></div>",
+      "css": ".ds-sky { position: relative; isolation: isolate; display: grid; grid-template-columns: repeat(2, 240px); gap: 22px; padding: 40px 24px; background: #000 radial-gradient(circle, rgba(255,255,255,.55) 1px, transparent 1.4px) 0 0 / 15px 15px; overflow: hidden; } .ds-wg { display: flex; flex-direction: column; gap: 14px; min-height: 220px; padding: 22px; border-radius: 24px; background: rgba(255,255,255,.05); color: #fff; backdrop-filter: blur(4px) saturate(140%); -webkit-backdrop-filter: blur(4px) saturate(140%); box-shadow: inset 0 0 0 .5px rgba(255,255,255,.18), inset 0 1px 0 rgba(255,255,255,.14), 0 20px 40px -24px rgba(0,0,0,.6); transition: transform .5s cubic-bezier(.34,1.36,.64,1); } .ds-wg:hover { transform: translateY(-3px); } .ds-wg--black { background: rgba(0,0,0,.3); } .ds-wg-title { font: 400 24px/1.15 'Newsreader Variable', Georgia, serif; letter-spacing: -.015em; } .ds-chips { display: flex; flex-wrap: wrap; gap: 6px; } .ds-chip { height: 30px; padding: 0 10px; border: 0; border-radius: 9px; background: rgba(255,255,255,.08); color: rgba(255,255,255,.8); font: 500 13px/1 'Geist Variable', system-ui, sans-serif; cursor: pointer; } .ds-chip:hover { background: rgba(255,255,255,.16); color: #fff; } .ds-chip[aria-checked=true] { background: #fff; color: #000; } .ds-wg-note { margin-top: auto; font: 400 15px/1.55 'Geist Variable', system-ui, sans-serif; color: rgba(255,255,255,.78); } .ds-wg-big { font: 400 26px/1.15 'Newsreader Variable', Georgia, serif; letter-spacing: -.015em; } .ds-live { display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: #a8f83a; box-shadow: 0 0 0 1.5px rgba(59,109,10,.55); vertical-align: .2em; animation: ds-blink 1.4s steps(2, jump-none) infinite; } @keyframes ds-blink { 50% { opacity: .2; } } .ds-wg-big .ds-live { margin-right: 6px; } .ds-wg-btn { align-self: flex-start; margin-top: auto; display: inline-flex; align-items: center; height: 42px; padding: 0 16px; border-radius: 10px; background: #a8f83a; color: #000; font: 500 13px/1 'Geist Mono Variable', ui-monospace, monospace; letter-spacing: .04em; text-transform: uppercase; text-decoration: none; transition: transform .45s cubic-bezier(.34,1.36,.64,1), background .2s cubic-bezier(.2,.7,0,1); } .ds-wg-btn:hover { background: #bdff5c; } .ds-wg-btn:active { transform: scale(.94); } .ds-wg-btn:focus-visible, .ds-chip:focus-visible { outline: 2px solid #fff; outline-offset: 3px; } @media (prefers-reduced-motion: reduce) { .ds-live { animation: none; } }"
     },
     {
       "name": "Glass Quick-View Bar",
@@ -626,30 +641,30 @@
   ],
   "narrative": {
     "northStar": "The Product Stage, Under Glass",
-    "overview": "The work is shown the way Nothing shows a phone: lit on a black stage, set down on light grey shop floors, held on white product surfaces you can pick up and inspect. Projects are products, not tiles in a portfolio grid. Each one is an image shown whole on a white field, opened into a quick-view sheet, then read chapter by chapter as a product page. Over that structure sits a layer taken from Apple's iOS, iPadOS and visionOS: frosted glass on everything that floats, a nav pill that settles into a Dynamic-Island capsule, spring motion on whatever you press, and an iPadOS pointer that outlines the control under it.\n\nThe voice has three registers that never trade places. A warm editorial serif (Newsreader, standing in for NType82) makes the statements. Geist Mono in small uppercase names, labels and buttons (\"SEE THE WORK >\"). Round dot-matrix type (Doto with ROND 100, standing in for Ndot) lights names, numerals and the big menu. Geist carries the reading. Colour is still refused. Everything is black, white, grey or glass tinted by what lies beneath it, and one red dot blinks only where something is live. The hero is a black-and-white portrait of Vimal over the sparse stage grid. It leans toward the pointer the way a visionOS window does, and a soft light follows the pointer across it.\n\nMotion is quick and exact, with a small overshoot. Controls give under a press and spring back. The pill morphs into the island along the same spring, sheets rise with a slight bounce, and the quick-view image morphs into the case-study cover. Displays and the live lamp step rather than glide. Under reduced motion every animation collapses to its end state, the portrait stops leaning and the system cursor stays. Under reduced transparency every glass surface turns opaque.",
+    "overview": "The work is shown the way Nothing shows a phone: lit on a black stage, set down on light grey shop floors, held on white product surfaces you can pick up and inspect. Projects are products, not tiles in a portfolio grid. Each one is an image shown whole on a white field, opened into a quick-view sheet, then read chapter by chapter as a product page. Over that structure sits a layer taken from Apple's iOS, iPadOS and visionOS: frosted glass on everything that floats, a nav pill that settles into a Dynamic-Island capsule, spring motion on whatever you press, and an iPadOS pointer that outlines the control under it.\n\nThe voice has three registers that never trade places. A warm editorial serif (Newsreader, standing in for NType82) makes the statements. Geist Mono in small uppercase names, labels and buttons (\"SEE THE WORK >\"). Round dot-matrix type (Doto with ROND 100, standing in for Ndot) lights names, numerals and the big menu. Geist carries the reading. The palette is black, white and grey, glass tinted by what lies beneath it, and one green sampled from the VK logo. The green marks what you can act on first and what is live; everything else stays neutral. The hero is a black-and-white portrait of Vimal over the sparse stage grid. It leans toward the pointer the way a visionOS window does, and a soft light follows the pointer across it.\n\nMotion is quick and exact, with a small overshoot. Controls give under a press and spring back. The pill morphs into the island along the same spring, sheets rise with a slight bounce, and the quick-view image morphs into the case-study cover. Displays and the live lamp step rather than glide. Under reduced motion every animation collapses to its end state, the portrait stops leaning and the system cursor stays. Under reduced transparency every glass surface turns opaque.",
     "keyCharacteristics": [
-      "Black stage (hero, contact, footer, case-study header) alternating with light grey floor sections; #now is a blurred-portrait lock-screen wallpaper.",
+      "Black stage (hero, contact, footer, case-study header) alternating with light grey floor sections; #now is plain black under a slow galaxy of dots.",
       "White product surfaces with soft radii: 16px cards, 24px widgets. Glass sheets at 26px, glass pill at 18px, controls at 10 to 14px.",
-      "Frosted glass only on what floats: the pill and island, the menu, the quick-view sheet, the chapter dock, and the widgets lying on their wallpaper.",
+      "Frosted glass only on what floats: the pill and island, the menu, the quick-view sheet, the chapter dock, and the thin-glass widgets over the galaxy.",
       "Serif statements, mono uppercase labels, dot-matrix names and numerals.",
       "A black-and-white portrait over a sparse stage dot grid, with a lens that reveals the fine grid under the pointer.",
-      "One red light, for live things only.",
+      "One logo green, for primary actions and live states only.",
       "No visible scrollbar anywhere, and no substitute indicator."
     ],
     "rules": [
       {
-        "name": "The One Red Light Rule",
-        "body": "Red appears only as the live indicator and its ink. Never as an accent, link, hover, border, focus ring, glass tint or decoration. If nothing is live, the screen has no red.",
+        "name": "The Logo Green Rule",
+        "body": "The site is black, white and grey plus one green, the VK logo's. Green is for primary actions and live states (and the current-position marks and success ticks listed above), never for body links, borders, focus rings, glass tints or decoration. Text on light grounds uses Accent Ink, never Logo Green. Colour otherwise enters only as content: project screenshots, the logo itself, and the colour game's tile hues, which are the puzzle and not the palette.",
         "section": "colors"
       },
       {
-        "name": "The Achromatic Rule",
-        "body": "Interface colour is black, white and grey. Colour enters only through project screenshots and the VK logo, which is an existing identity asset and is exempt.",
+        "name": "The White Selection Rule",
+        "body": "A chosen option is white, not green: the selected step in How I design with AI and the checked role chip in Hiring for… are white with black text. Green means act or live, never chosen.",
         "section": "colors"
       },
       {
         "name": "The Borrowed Tone Rule",
-        "body": "Glass takes the tone of what is beneath it: dark glass over the black stages and the wallpaper, light frost over the #f2f2f2 floors. The pill checks the ground under its centre line as the page scrolls and switches tone to match.",
+        "body": "Glass takes the tone of what is beneath it: dark glass over the black stages and Right now, light frost over the #f2f2f2 floors. The pill checks the ground under its centre line as the page scrolls and switches tone to match.",
         "section": "colors"
       },
       {
@@ -669,7 +684,7 @@
       },
       {
         "name": "The Float Rule",
-        "body": "Glass is reserved for things that float: the pill and island, the menu, the quick-view sheet, the chapter dock, and the widgets on the #now wallpaper. Product cards, floor widgets, reader panels, figures and buttons are opaque and flat on their ground.",
+        "body": "Glass is reserved for things that float: the pill and island, the menu, the quick-view sheet, the chapter dock, and the #now widgets over the galaxy. Product cards, floor widgets, reader panels, figures and buttons are opaque and flat on their ground.",
         "section": "elevation"
       },
       {
@@ -679,18 +694,19 @@
       }
     ],
     "dos": [
-      "Do keep red to the live indicator and its ink (#d71921 dot, #b3121a text).",
+      "Do keep Logo Green (#a8f83a) to primary actions and live states, with Accent Ink (#3b6d0a) for green text on light grounds and a dark-green hairline on the live dot.",
+      "Do make selected options white, not green.",
       "Do set every label, button, chip, count and data point in Geist Mono uppercase at 12 to 13px with 0.04em tracking.",
       "Do put meta (category, year, role, status) below the title it describes.",
       "Do show project images whole, contained on white fields with padding.",
-      "Do give glass the tone of its ground: dark over the black stages and the wallpaper, light frost over the floors.",
+      "Do give glass the tone of its ground: dark over the black stages and Right now, light frost over the floors.",
       "Do reserve glass, its edge and its lift for things that float.",
       "Do let a pressed control give to 0.94 and spring back on cubic-bezier(.34, 1.36, .64, 1).",
       "Do have the pointer outline a control and let the control lift; keep the system text cursor over running text.",
       "Do keep the menu and résumé tappable in the island on touch screens.",
       "Do build dialogs (menu, quick view) on native <dialog> with a scrim and Escape to dismiss.",
-      "Do turn the focus ring white on black grounds and on the wallpaper, and keep it ink everywhere else.",
-      "Do honour reduced motion (end states only, no portrait lean, system cursor, glyph display holding still) and reduced transparency (opaque glass, no blur)."
+      "Do turn the focus ring white on black grounds and inside Right now, and keep it ink everywhere else.",
+      "Do honour reduced motion (end states only, no portrait lean, system cursor, glyph display and galaxy holding still) and reduced transparency (opaque glass, no blur)."
     ],
     "donts": [
       "Don't put an eyebrow, kicker or label above a heading.",
@@ -698,7 +714,7 @@
       "Don't put glass on things that sit on the page: product cards, floor widgets, reader panels, figures, buttons.",
       "Don't let the pointer fill or veil a control, or replace the cursor for touch, reduced motion, open dialogs or running text.",
       "Don't add drop shadows to anything that does not float.",
-      "Don't introduce interface colour, tinted glass or a second accent. The only gradients are fades into black or into glass.",
+      "Don't introduce a second accent, tinted glass, or green on selected states, borders or focus rings. The only gradients are fades into black or into glass.",
       "Don't crop project screenshots with object-fit: cover or tight frames.",
       "Don't set display text in a system face; the dots are Doto with ROND 100, statements are Newsreader.",
       "Don't lay the work out as a card grid; it is a row of products."

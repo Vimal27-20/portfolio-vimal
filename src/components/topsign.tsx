@@ -51,7 +51,11 @@ export default function TopSign() {
   // which section is under the island
   useEffect(() => {
     if (pathname !== "/") {
-      setWhere(document.querySelector(".cs-title")?.textContent?.trim() || "Case study");
+      // only the project name: the h1 also holds the subtitle, which overflowed the island
+      const h = document.querySelector(".cs-title");
+      const name = [...(h?.childNodes ?? [])]
+        .find(n => n.nodeType === Node.TEXT_NODE && n.textContent?.trim())?.textContent?.trim();
+      setWhere(name || "Case study");
       return;
     }
     const io = new IntersectionObserver(entries => {
@@ -75,7 +79,7 @@ export default function TopSign() {
             <img src={`${import.meta.env.BASE_URL}img/LOGO-VK.png`} alt="" className="pill-logo" />
             <span className="dot">Vimal Kumar</span>
           </Link>
-          <span className="pill-where mono" aria-hidden>{where}</span>
+          <span className="pill-where mono" aria-hidden><span className="pill-where-t">{where}</span></span>
           <ResumeLink className="pill-btn" iconOnly />
         </div>
       </header>
