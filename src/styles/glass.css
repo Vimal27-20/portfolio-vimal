@@ -66,32 +66,6 @@ html::-webkit-scrollbar, body::-webkit-scrollbar { display: none; }
 @keyframes rise { from { opacity: 0; transform: translateY(14px) scale(.97); } }
 .menu-close { border-radius: 14px; background: rgba(255, 255, 255, .12); }
 
-/* ── hero: the black-and-white portrait between the pill and the headline ── */
-.hero { display: flex; flex-direction: column; align-items: stretch; padding-top: 70px; }
-.hero-photo {
-  position: relative; flex: 1 1 auto; min-height: 240px; margin: 22px 0 18px;
-  transform: perspective(1100px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
-  transition: transform .9s var(--spring);
-}
-.hero-frame {
-  /* as tall as the space allows, but never wider than the screen, so the matted shoulders are never cropped */
-  position: absolute; top: 50%; left: 50%; height: min(100%, calc((100vw - 16px) * 671 / 708)); aspect-ratio: 708 / 671; transform: translate(-50%, -50%);
-  /* the photo is matted in the image itself (the room burned to black around a traced
-     outline, the shoulders falling away along the arms); here the shirt only fades out
-     at the bottom, before the headline */
-  -webkit-mask-image: linear-gradient(#000 70%, transparent 98%);
-  mask-image: linear-gradient(#000 70%, transparent 98%);
-  animation: photoIn 1.1s var(--ease) both;
-}
-.hero-frame img { width: 100%; height: 100%; object-fit: cover; object-position: 47% 40%; }
-/* a soft light that follows the pointer across the photo */
-.hero-frame::after {
-  content: ""; position: absolute; inset: 0; pointer-events: none; opacity: 0; transition: opacity .5s var(--ease);
-  background: radial-gradient(circle at var(--lx, 50%) var(--ly, 35%), rgba(255, 255, 255, .22), transparent 42%);
-  mix-blend-mode: soft-light;
-}
-.hero-photo.is-lit .hero-frame::after { opacity: 1; }
-@keyframes photoIn { from { opacity: 0; filter: blur(18px); transform: translate(-50%, -50%) scale(.96); } }
 .hero-in { padding-bottom: clamp(36px, 6vh, 72px); }
 
 /* ── right now: glass widgets on plain black ── */
@@ -161,8 +135,6 @@ html:has(dialog[open]) .pointer { opacity: 0 !important; }
 @media (max-width: 760px) {
   .pill { border-radius: 16px; }
   .pill.is-island:not(:hover):not(:focus-within) { width: 190px; height: 36px; }
-  .hero { padding-top: 64px; }
-  .hero-photo { min-height: 220px; margin-bottom: 10px; }
   #now { margin-top: 88px; padding: 80px 0 88px; }
   .qv { border-radius: 22px 22px 0 0; }
   .qv-bar { position: relative; padding-top: 22px; touch-action: none; }
@@ -182,9 +154,6 @@ html:has(dialog[open]) .pointer { opacity: 0 !important; }
   .qv { background: var(--white); }
   .cs-dock { background: var(--stage); }
   #now .wg { background: #1d1d1d; }
-}
-@media (prefers-reduced-motion: reduce) {
-  .hero-photo { transform: none; }
 }
 
 /* ═════════ Logo theme: the VK green ═════════

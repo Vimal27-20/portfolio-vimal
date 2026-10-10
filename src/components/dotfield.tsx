@@ -3,8 +3,8 @@ import { useEffect, useRef } from "react";
 /* The hero stage: a sparse grid of dots across black that swell under the
    pointer like a lens passing over the grid. Given a photo it can also draw
    it as a halftone dot-matrix portrait (brighter parts become bigger dots,
-   scanning in from the top), or light a word; this branch uses the plain
-   grid behind a photographic portrait. With reduced motion it is simply on. */
+   scanning in from the top), or light a word; the hero lights the word
+   VIMAL in bold dots. With reduced motion it is simply on. */
 
 const smooth = (a: number, b: number, x: number) => {
   const t = Math.min(1, Math.max(0, (x - a) / (b - a)));
@@ -32,7 +32,10 @@ export default function DotField({ src = "", word = "", label }: { src?: string;
       canvas.width = Math.round(w * dpr); canvas.height = Math.round(h * dpr);
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
       const small = w < 700;
-      gap = small ? Math.max(4.5, w / 80) : Math.max(5, Math.min(6.5, w / 230));
+      // a portrait needs fine dots to read; a word reads best in bold dots, like the Nothing wordmark
+      gap = img
+        ? (small ? Math.max(4.5, w / 80) : Math.max(5, Math.min(6.5, w / 230)))
+        : Math.max(8, Math.min(16, w / 96));
       cols = Math.ceil(w / gap); rows = Math.ceil(h / gap);
       pitch = Math.max(6, Math.round(88 / gap));        // the sparse stage grid, ~90px apart
 
@@ -73,11 +76,17 @@ export default function DotField({ src = "", word = "", label }: { src?: string;
           delay[i] = ((y - py0) / ph) * 700 + Math.random() * 220;
         }
       } else {
-        const textRows = Math.round(rows * (small ? 0.2 : 0.3));
+        // the word fills the space between the nav pill and the headline, measured,
+        // so it never runs under the text on short screens
+        const text = canvas.parentElement?.querySelector(".hero-in")?.getBoundingClientRect();
+        const top = (small ? 64 : 76) / gap;
+        const bottom = text ? (text.top - r.top - (small ? 20 : 32)) / gap : rows * 0.6;
+        const room = Math.max(6, bottom - top);
+        const textRows = Math.round(Math.min(room * 0.8, rows * 0.32));
         o.font = `800 ${textRows}px "Geist Variable", system-ui, sans-serif`;
         o.textAlign = "center"; o.textBaseline = "middle";
         const scale = Math.min(1, (cols * 0.86) / o.measureText(word).width);
-        o.setTransform(scale, 0, 0, 1, cols / 2, rows * (small ? 0.3 : 0.34));
+        o.setTransform(scale, 0, 0, 1, cols / 2, top + room / 2);
         o.fillStyle = "#fff";
         o.fillText(word, 0, 0);
         const d = o.getImageData(0, 0, cols, rows).data;
@@ -140,7 +149,7 @@ export default function DotField({ src = "", word = "", label }: { src?: string;
       if (!alive) return;
       layout(); born = performance.now();
       ro.observe(canvas);
-      // the headline can change height (fonts load, text wraps): re-fit the portrait
+      // the headline can change height (fonts load, text wraps): re-fit the word
       const text = host.querySelector(".hero-in"); if (text) ro.observe(text);
     };
     if (src) {

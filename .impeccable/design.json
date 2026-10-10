@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-10-10T12:00:00.000Z",
+  "generatedAt": "2026-10-10T11:16:57.414Z",
   "title": "Design System: Vimal Kumar Portfolio",
   "extensions": {
     "colorMeta": {
@@ -331,7 +331,7 @@
       },
       "headline": {
         "displayName": "Headline",
-        "purpose": "The hero statement, held to 15ch under the portrait, and the larger contact title. Newsreader at 450 (NType82 stand-in)."
+        "purpose": "The hero statement, held to 15ch, and the larger contact title. Newsreader at 450 (NType82 stand-in)."
       },
       "section-title": {
         "displayName": "Section Title",
@@ -474,14 +474,9 @@
         "purpose": "Pulling the phone sheet down by its bar."
       },
       {
-        "name": "photo-in",
-        "value": "1.1s ease from blur(18px) scale(.96)",
-        "purpose": "Hero portrait arriving."
-      },
-      {
-        "name": "portrait-lean",
-        "value": ".9s spring, rotateY up to ±4.5deg, rotateX up to ±3.5deg, perspective 1100px",
-        "purpose": "Hero portrait leaning toward a mouse pointer."
+        "name": "word-in",
+        "value": "lit dots switch on at random delays up to 900ms; stepped, no fade; simply on under reduced motion",
+        "purpose": "The name VIMAL lighting in the hero dot field."
       },
       {
         "name": "pointer-follow",
@@ -551,12 +546,6 @@
       }
     ],
     "rasters": [
-      {
-        "path": "public/img/vimal-bw.webp",
-        "size": "708x671",
-        "use": "Hero portrait",
-        "provenance": "User-supplied portrait photo (708x671). Grayscale, contrast 1.12, brightness 1.04. Background burned to #000 outside a hand-traced head-and-shoulders outline, feathered with a blur and eroded inward; the shoulders fall away along an oval below the face. Rendered in a headless-Chrome canvas."
-      },
       {
         "path": "public/img/vimal-portrait.webp",
         "size": "240px",
@@ -646,13 +635,13 @@
   ],
   "narrative": {
     "northStar": "The Product Stage, Under Glass",
-    "overview": "The work is shown the way Nothing shows a phone: lit on a black stage, set down on light grey shop floors, held on white product surfaces you can pick up and inspect. Projects are products, not tiles in a portfolio grid. Each one is an image shown whole on a white field, opened into a quick-view sheet, then read chapter by chapter as a product page. Over that structure sits a layer taken from Apple's iOS, iPadOS and visionOS: frosted glass on everything that floats, a nav pill that settles into a Dynamic-Island capsule, spring motion on whatever you press, and an iPadOS pointer that outlines the control under it.\n\nThe voice has three registers that never trade places. A warm editorial serif (Newsreader, standing in for NType82) makes the statements. Geist Mono in small uppercase names, labels and buttons (\"SEE THE WORK >\"). Round dot-matrix type (Doto with ROND 100, standing in for Ndot) lights names, numerals and the big menu. Geist carries the reading. The palette is black, white and grey, glass tinted by what lies beneath it, and one green sampled from the VK logo. The green marks what you can act on first and what is live; everything else stays neutral. The hero is a black-and-white portrait of Vimal over the sparse stage grid. It leans toward the pointer the way a visionOS window does, and a soft light follows the pointer across it.\n\nMotion is quick and exact, with a small overshoot. Controls give under a press and spring back. The pill morphs into the island along the same spring, sheets rise with a slight bounce, and the quick-view image morphs into the case-study cover. Displays and the live lamp step rather than glide. Under reduced motion every animation collapses to its end state, the portrait stops leaning and the system cursor stays. Under reduced transparency every glass surface turns opaque.",
+    "overview": "The work is shown the way Nothing shows a phone: lit on a black stage, set down on light grey shop floors, held on white product surfaces you can pick up and inspect. Projects are products, not tiles in a portfolio grid. Each one is an image shown whole on a white field, opened into a quick-view sheet, then read chapter by chapter as a product page. Over that structure sits a layer taken from Apple's iOS, iPadOS and visionOS: frosted glass on everything that floats, a nav pill that settles into a Dynamic-Island capsule, spring motion on whatever you press, and an iPadOS pointer that outlines the control under it.\n\nThe voice has three registers that never trade places. A warm editorial serif (Newsreader, standing in for NType82) makes the statements. Geist Mono in small uppercase names, labels and buttons (\"SEE THE WORK >\"). Round dot-matrix type (Doto with ROND 100, standing in for Ndot) lights names, numerals and the big menu. Geist carries the reading. The palette is black, white and grey, glass tinted by what lies beneath it, and one green sampled from the VK logo. The green marks what you can act on first and what is live; everything else stays neutral. The hero lights the name VIMAL in bold dots over the sparse stage grid, and a lens swells the dots under the pointer.\n\nMotion is quick and exact, with a small overshoot. Controls give under a press and spring back. The pill morphs into the island along the same spring, sheets rise with a slight bounce, and the quick-view image morphs into the case-study cover. Displays and the live lamp step rather than glide. Under reduced motion every animation collapses to its end state, the lit name is simply on and the system cursor stays. Under reduced transparency every glass surface turns opaque.",
     "keyCharacteristics": [
       "Black stage (hero, contact, footer, case-study header) alternating with light grey floor sections; #now is plain black, its widgets pictures more than words.",
       "White product surfaces with soft radii: 16px cards, 24px widgets. Glass sheets at 26px, glass pill at 18px, controls at 10 to 14px.",
       "Frosted glass only on what floats: the pill and island, the menu, the quick-view sheet, the chapter dock, and the #now widgets on plain black.",
       "Serif statements, mono uppercase labels, dot-matrix names and numerals.",
-      "A black-and-white portrait over a sparse stage dot grid, with a lens that reveals the fine grid under the pointer.",
+      "The name VIMAL lit in bold dots over a sparse stage dot grid, with a lens that swells the dots and reveals the fine grid under the pointer.",
       "One logo green, for primary actions and live states only.",
       "No visible scrollbar anywhere, and no substitute indicator."
     ],
@@ -711,7 +700,7 @@
       "Do keep the menu and résumé tappable in the island on touch screens.",
       "Do build dialogs (menu, quick view) on native <dialog> with a scrim and Escape to dismiss.",
       "Do turn the focus ring white on black grounds and inside Right now, and keep it ink everywhere else.",
-      "Do honour reduced motion (end states only, no portrait lean, system cursor, glyph display, principle rings and process pulse holding still) and reduced transparency (opaque glass, no blur)."
+      "Do honour reduced motion (end states only, the lit name simply on, system cursor, glyph display, principle rings and process pulse holding still) and reduced transparency (opaque glass, no blur)."
     ],
     "donts": [
       "Don't put an eyebrow, kicker or label above a heading.",

@@ -1,6 +1,6 @@
 ---
 name: Vimal Kumar Portfolio
-description: The work presented the way Nothing presents a product, under an Apple glass layer. A black stage with a dot grid and a black-and-white portrait, grey shop floors, white product surfaces, frosted glass on whatever floats, a serif voice, mono labels, and one green taken from the VK logo for what acts or is live. Right now is plain black, with glass widgets that show more than they say.
+description: The work presented the way Nothing presents a product, under an Apple glass layer. A black stage with the name lit in a dot grid, grey shop floors, white product surfaces, frosted glass on whatever floats, a serif voice, mono labels, and one green taken from the VK logo for what acts or is live. Right now is plain black, with glass widgets that show more than they say.
 colors:
   logo-green: "#a8f83a"
   accent-hover: "#bdff5c"
@@ -208,16 +208,16 @@ components:
 
 The work is shown the way Nothing shows a phone: lit on a black stage, set down on light grey shop floors, held on white product surfaces you can pick up and inspect. Projects are products, not tiles in a portfolio grid. Each one is an image shown whole on a white field, opened into a quick-view sheet, then read chapter by chapter as a product page. Over that structure sits a layer taken from Apple's iOS, iPadOS and visionOS: frosted glass on everything that floats, a nav pill that settles into a Dynamic-Island capsule, spring motion on whatever you press, and an iPadOS pointer that outlines the control under it.
 
-The voice has three registers that never trade places. A warm editorial serif (Newsreader, standing in for NType82) makes the statements. Geist Mono in small uppercase names, labels and buttons ("SEE THE WORK >"). Round dot-matrix type (Doto with ROND 100, standing in for Ndot) lights names, numerals and the big menu. Geist carries the reading. The palette is black, white and grey, glass tinted by what lies beneath it, and one green sampled from the VK logo. The green marks what you can act on first and what is live; everything else stays neutral. The hero is a black-and-white portrait of Vimal over the sparse stage grid. It leans toward the pointer the way a visionOS window does, and a soft light follows the pointer across it.
+The voice has three registers that never trade places. A warm editorial serif (Newsreader, standing in for NType82) makes the statements. Geist Mono in small uppercase names, labels and buttons ("SEE THE WORK >"). Round dot-matrix type (Doto with ROND 100, standing in for Ndot) lights names, numerals and the big menu. Geist carries the reading. The palette is black, white and grey, glass tinted by what lies beneath it, and one green sampled from the VK logo. The green marks what you can act on first and what is live; everything else stays neutral. The hero lights the name VIMAL in bold dots over the sparse stage grid, and a lens swells the dots under the pointer.
 
-Motion is quick and exact, with a small overshoot. Controls give under a press and spring back. The pill morphs into the island along the same spring, sheets rise with a slight bounce, and the quick-view image morphs into the case-study cover. Displays and the live lamp step rather than glide. Under reduced motion every animation collapses to its end state, the portrait stops leaning and the system cursor stays. Under reduced transparency every glass surface turns opaque.
+Motion is quick and exact, with a small overshoot. Controls give under a press and spring back. The pill morphs into the island along the same spring, sheets rise with a slight bounce, and the quick-view image morphs into the case-study cover. Displays and the live lamp step rather than glide. Under reduced motion every animation collapses to its end state, the lit name is simply on and the system cursor stays. Under reduced transparency every glass surface turns opaque.
 
 **Key Characteristics:**
 - Black stage (hero, contact, footer, case-study header) alternating with light grey floor sections; #now is plain black, its widgets pictures more than words.
 - White product surfaces with soft radii: 16px cards, 24px widgets. Glass sheets at 26px, glass pill at 18px, controls at 10 to 14px.
 - Frosted glass only on what floats: the pill and island, the menu, the quick-view sheet, the chapter dock, and the #now widgets on plain black.
 - Serif statements, mono uppercase labels, dot-matrix names and numerals.
-- A black-and-white portrait over a sparse stage dot grid, with a lens that reveals the fine grid under the pointer.
+- The name VIMAL lit in bold dots over a sparse stage dot grid, with a lens that swells the dots and reveals the fine grid under the pointer.
 - One logo green, for primary actions and live states only.
 - No visible scrollbar anywhere, and no substitute indicator.
 
@@ -267,7 +267,7 @@ A neutral product palette, black stage to white surface, with translucent glass 
 ### Hierarchy
 - **Display** (dots, 700, clamp(64px, 11vw, 168px), 0.9): the project name on the case-study stage.
 - **Dot Menu** (dots, 700, clamp(30px, 4.4vw, 56px), 0.95): the menu and footer link list. Dots also set the nav name (21px, 16px on mobile, weight 900), journey years (30px), and reader stat numerals (44px).
-- **Headline** (serif, 450, clamp(38px, min(4.6vw, 8vh), 68px), 1.02): the hero statement, held to 15ch so the portrait keeps its room. The contact title runs larger (clamp(48px, 7vw, 104px)).
+- **Headline** (serif, 450, clamp(38px, min(4.6vw, 8vh), 68px), 1.02): the hero statement, held to 15ch. The contact title runs larger (clamp(48px, 7vw, 104px)).
 - **Section Title** (serif, 450, clamp(36px, 4.4vw, 60px), 1.05): home section heads, centred, with a muted line of copy below.
 - **Title** (serif, 400, 24px, 1.12): card titles, widget titles (24px at 1.15), widget statements (26px), reader sub-heads. Chapter headings run clamp(30px, 3vw, 44px) at 1.08 and quotes clamp(24px, 2.4vw, 34px) at 1.25 (clamp(22px, 2vw, 28px) in #now).
 - **Body** (Geist, 400, 17px / 16px under 760px, 1.55): all interface copy; ledes cap at 44 to 48ch.
@@ -283,7 +283,7 @@ A neutral product palette, black stage to white surface, with translucent glass 
 
 A centred container of 1320px with 32px side padding (16px under 760px). Home sections stack at 128px intervals (88px on mobile) with centred heads 44px above their content.
 
-The hero is a full-bleed black stage at least `max(700px, calc(100svh - 64px))` tall (`max(600px, 92svh)` on mobile), set as a column. The portrait takes all the room between the pill (70px top padding, 64px on mobile) and the headline. Its frame is as tall as that space allows but never wider than the screen, so the matted shoulders are never cropped. The headline, lede and button sit at the foot.
+The hero is a full-bleed black stage at least `max(700px, calc(100svh - 64px))` tall (`max(600px, 92svh)` on mobile), set as a grid with the headline block (headline, lede and button) aligned to its foot. The lit name takes the measured room between the pill and the headline.
 
 The work is a horizontal product row, not a grid: snap-scrolling columns of clamp(280px, 26vw, 380px) (74vw on mobile) at 16px gaps, aligned to the container's edge, draggable, with a 2px progress rail below. Widgets sit in a four-column bento at 16px gaps (10px on mobile): Glyph, How I look at a problem across two columns, and Open to roles on the top row, then How I design and the quotes sharing the second row at two columns each. Under 1080px it falls to two columns: Glyph and Open to roles side by side, then principles, process and quotes full width. #now pads 112px above and 120px below (80px and 88px on mobile), with 44px (28px) under the section head. The journey is a two-column split with a sticky head, collapsing under 1080px.
 
@@ -314,7 +314,7 @@ The page is flat. Floating things are lifted. Grounds still carry the structure 
 
 Corners are soft and continuous, as in Apple's system UI. Controls sit at 10 to 14px: buttons at 10px, filter chips, icon buttons and pill buttons at 12px, dock buttons and the menu close at 14px, quick-view tags at 8px. Floating glass rounds further: the pill at 18px (16px on mobile), the island a full capsule (19px, or 20px on touch), the dock at 20px, and the quick-view sheet at 26px (22px top corners as a bottom sheet on mobile). Product surfaces keep their Nothing radii: cards and reader panels at 16px, widgets at 24px (20px on mobile). Dots are true circles everywhere: the live lamp, pager dots, list bullets, the dot field, the principle discs and process nodes, the round glyph display and the free pointer. Active pager and dock dots stretch into a 3px-radius bar. The phone sheet's grabber is a 38 by 5px bar at 3px.
 
-Project images are never cropped: `object-fit: contain` inside a padded white field. The portrait is the exception. It is matted in the image itself, then faded out at the foot by a mask (solid to 70%, clear by 98%), so it is never cut by a geometric shape.
+Project images are never cropped: `object-fit: contain` inside a padded white field.
 
 ## Components
 
@@ -366,12 +366,12 @@ The #now section is plain #000, its head line reading "What I'm building, and ho
 ### Chapter Dock
 The reader's floating dark-glass control, hidden until chapters are on screen: previous and next buttons in white at 12% (22% on hover), a row of chapter dots (the current one a 16px Logo Green bar) and a mono chapter label. The arrow keys step chapters too.
 
-### Hero Portrait
-A black-and-white photograph of Vimal (`public/img/vimal-bw.webp`, 708 by 671), drawn between the pill and the headline over the Dot Field. It fades in from a 18px blur at 0.96 scale (1.1s). With a mouse it leans toward the pointer in perspective (up to about 4.5 degrees on each axis, on the spring), and a soft white light at 22% follows the pointer across it in soft-light blend.
-- **Provenance:** a user-supplied portrait photo (708 by 671). It was converted to grayscale with contrast 1.12 and brightness 1.04. The background was burned to #000 outside a hand-traced head-and-shoulders outline, which was feathered with a blur and eroded inward. The shoulders fall away along an oval below the face. It was rendered in a headless-Chrome canvas. `public/img/vimal-portrait.webp` (the earlier 240px dot-portrait source) is not used on this branch.
-
 ### Dot Field
-The hero canvas, grid only: a sparse grid of faint dots (about 90px apart) across the black stage. A lens follows a mouse pointer, swelling the dots and revealing the fine grid beneath. Touch input does not move the lens. The canvas can still light a word or a photo, but the hero passes neither.
+The hero canvas, labelled "Vimal, written in lit dots": a sparse grid of faint dots (about 90px apart) across the black stage, with the word VIMAL lit in it.
+- **Bold dots:** in word mode the pitch is `max(8, min(16, w / 96))`px, much coarser than the canvas's fine halftone pitch, so the name reads like the Nothing wordmark.
+- **Fit:** the word is rasterised in Geist 800 and fitted to the measured room between the nav pill (76px down, 64px on phones) and the top of the headline (less 32px, or 20px on phones). Its height is the smaller of 80% of that room and 32% of the rows, and its width is capped at 86% of the columns, so it never runs under the text.
+- **Arrival:** lit dots switch on in a stepped scatter over about 0.9s, each at its own random moment, with no fade.
+- **Lens:** a lens follows a mouse pointer, swelling the lit dots and revealing the fine grid beneath. Touch input does not move the lens. Under reduced motion the word is simply on.
 
 ## Do's and Don'ts
 
@@ -388,7 +388,7 @@ The hero canvas, grid only: a sparse grid of faint dots (about 90px apart) acros
 - **Do** keep the menu and résumé tappable in the island on touch screens.
 - **Do** build dialogs (menu, quick view) on native `<dialog>` with a scrim and Escape to dismiss.
 - **Do** turn the focus ring white on black grounds and inside Right now, and keep it ink everywhere else.
-- **Do** honour reduced motion (end states only, no portrait lean, system cursor, glyph display, principle rings and process pulse holding still) and reduced transparency (opaque glass, no blur).
+- **Do** honour reduced motion (end states only, the lit name simply on, system cursor, glyph display, principle rings and process pulse holding still) and reduced transparency (opaque glass, no blur).
 
 ### Don't:
 - **Don't** put an eyebrow, kicker or label above a heading.
