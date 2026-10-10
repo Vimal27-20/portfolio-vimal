@@ -208,7 +208,7 @@ components:
 
 The work is shown the way Nothing shows a phone: lit on a black stage, set down on light grey shop floors, held on white product surfaces you can pick up and inspect. Projects are products, not tiles in a portfolio grid. Each one is an image shown whole on a white field, opened into a quick-view sheet, then read chapter by chapter as a product page. Over that structure sits a layer taken from Apple's iOS, iPadOS and visionOS: frosted glass on everything that floats, a nav pill that settles into a Dynamic-Island capsule, spring motion on whatever you press, and an iPadOS pointer that outlines the control under it.
 
-The voice has three registers that never trade places. A warm editorial serif (Newsreader, standing in for NType82) makes the statements. Geist Mono in small uppercase names, labels and buttons ("SEE THE WORK >"). Round dot-matrix type (Doto with ROND 100, standing in for Ndot) lights names, numerals and the big menu. Geist carries the reading. The palette is black, white and grey, glass tinted by what lies beneath it, and one green sampled from the VK logo. The green marks what you can act on first and what is live; everything else stays neutral. The hero lights the name VIMAL in bold dots over the sparse stage grid, and a lens swells the dots under the pointer.
+The voice has three registers that never trade places. A warm editorial serif (Newsreader, standing in for NType82) makes the statements. Geist Mono in small uppercase names, labels and buttons ("SEE THE WORK >"). Round dot-matrix type (Doto with ROND 100, standing in for Ndot) lights names, numerals and the big menu. Geist carries the reading. The palette is black, white and grey, glass tinted by what lies beneath it, and one green sampled from the VK logo. The green marks what you can act on first and what is live; everything else stays neutral. The hero lights the name VIMAL in spaced dots over the sparse stage grid, and a lens swells the dots under the pointer.
 
 Motion is quick and exact, with a small overshoot. Controls give under a press and spring back. The pill morphs into the island along the same spring, sheets rise with a slight bounce, and the quick-view image morphs into the case-study cover. Displays and the live lamp step rather than glide. Under reduced motion every animation collapses to its end state, the lit name is simply on and the system cursor stays. Under reduced transparency every glass surface turns opaque.
 
@@ -217,7 +217,7 @@ Motion is quick and exact, with a small overshoot. Controls give under a press a
 - White product surfaces with soft radii: 16px cards, 24px widgets. Glass sheets at 26px, glass pill at 18px, controls at 10 to 14px.
 - Frosted glass only on what floats: the pill and island, the menu, the quick-view sheet, the chapter dock, and the #now widgets on plain black.
 - Serif statements, mono uppercase labels, dot-matrix names and numerals.
-- The name VIMAL lit in bold dots over a sparse stage dot grid, with a lens that swells the dots and reveals the fine grid under the pointer.
+- The name VIMAL lit in spaced dots over a sparse stage dot grid, with a lens that swells the dots and reveals the fine grid under the pointer.
 - One logo green, for primary actions and live states only.
 - No visible scrollbar anywhere, and no substitute indicator.
 
@@ -368,8 +368,8 @@ The reader's floating dark-glass control, hidden until chapters are on screen: p
 
 ### Dot Field
 The hero canvas, labelled "Vimal, written in lit dots": a sparse grid of faint dots (about 90px apart) across the black stage, with the word VIMAL lit in it.
-- **Bold dots:** in word mode the pitch is `max(8, min(16, w / 96))`px, much coarser than the canvas's fine halftone pitch, so the name reads like the Nothing wordmark.
-- **Fit:** the word is rasterised in Geist 800 and fitted to the measured room between the nav pill (76px down, 64px on phones) and the top of the headline (less 32px, or 20px on phones). Its height is the smaller of 80% of that room and 32% of the rows, and its width is capped at 86% of the columns, so it never runs under the text.
+- **Dots:** in word mode the pitch is `max(8, min(13, w / 110))`px on desktop and `max(5, w / 72)`px on phones, and lit dots are drawn at 48% strength, so each dot has air around it and the letters keep their shape on small screens.
+- **Fit:** the word is rasterised in Geist 600 and fitted to the measured room between the nav pill (76px down, 64px on phones) and the top of the headline (less 32px, or 20px on phones). Its height is the smaller of 80% of that room and 32% of the rows, and if it is too wide the whole word is scaled down evenly (to 84% of the columns, 92% on phones), never squeezed sideways, so it never runs under the text.
 - **Arrival:** lit dots switch on in a stepped scatter over about 0.9s, each at its own random moment, with no fade.
 - **Lens:** a lens follows a mouse pointer, swelling the lit dots and revealing the fine grid beneath. Touch input does not move the lens. Under reduced motion the word is simply on.
 

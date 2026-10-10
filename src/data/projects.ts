@@ -90,7 +90,7 @@ export const projects: Project[] = [
     alt:      "IoT Smart Pot",
     tag:      "IoT · Physical UX",
     title:    "Enhancing Gardening with Smart Tech",
-    desc:     "IoT-embedded prototype enhancing human–nature interaction through smart technology and user-centred design principles.",
+    desc:     "IoT-embedded prototype enhancing interaction between people and nature through smart technology and user-centred design principles.",
     tags:     ["IoT", "Prototype", "UCD"],
     slug:     "iot-smart-pot",
     year:     "2025",

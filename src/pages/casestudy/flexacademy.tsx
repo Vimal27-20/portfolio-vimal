@@ -101,7 +101,7 @@ export default function FlexAcademyCaseStudy() {
     <CaseStudyLayout project={project} name="Flex Academy" sections={SECTIONS} header={header}>
 
       {/* 01 ─────────────────────────────── */}
-      <Section id="overview" index={1} label="Overview" title={<>One page, one job: <em>book the call.</em></>}>
+      <Section id="overview" index={1} label="Overview" title="The page has one goal: a booked call">
         <p className="cs-p">
           Flex Academy teaches short-term rental operators the playbook behind <strong>The Flex</strong> and{" "}
           <strong>Base360</strong>. I designed the landing page end to end: story, structure, components and layouts.
@@ -115,12 +115,12 @@ export default function FlexAcademyCaseStudy() {
       </Section>
 
       {/* 02 ─────────────────────────────── */}
-      <Section id="challenge" index={2} label="The challenge" title="Selling a system to people who've seen every course.">
+      <Section id="challenge" index={2} label="The challenge" title="These operators have seen every course">
         <div className="cs-cards">
           <div className="cs-card">
             <span className="cs-card-num">A</span>
             <h3>Scepticism</h3>
-            <p>Operators have seen every “Airbnb course”. It has to sound like an operator, not a guru.</p>
+            <p>Operators have seen every “Airbnb course”. The copy had to sound like it came from someone who runs rentals.</p>
           </div>
           <div className="cs-card">
             <span className="cs-card-num">B</span>
@@ -161,7 +161,7 @@ export default function FlexAcademyCaseStudy() {
       </Section>
 
       {/* 04 ─────────────────────────────── */}
-      <Section id="structure" index={4} label="Page structure" title={<>A page built as a <em>conversation.</em></>}>
+      <Section id="structure" index={4} label="Page structure" title="Each section answers the next question">
         <p className="cs-p">
           I wrote the questions a sceptical operator asks, in order. Each section answers one.
         </p>
@@ -187,7 +187,7 @@ export default function FlexAcademyCaseStudy() {
             <ul>
               <li>The eyebrow names the audience before the headline sells.</li>
               <li>One italic word, <em className="cs-accent">chaos</em>, carries the emotion.</li>
-              <li>The CTA has reassurance underneath: <code>20–30 MIN · NO OBLIGATION</code>.</li>
+              <li>The CTA has reassurance underneath: <code>20-30 MIN · NO OBLIGATION</code>.</li>
             </ul>
           </div>
         </div>
@@ -269,7 +269,7 @@ export default function FlexAcademyCaseStudy() {
       </Section>
 
       {/* 06 ─────────────────────────────── */}
-      <Section id="system" index={6} label="Visual language" title={<>Calm, editorial, <em>operator-grade.</em></>}>
+      <Section id="system" index={6} label="Visual language" title="Visual language">
         <p className="cs-p">Warm paper, near-black type, one orange accent. All set up as Figma variables.</p>
 
         <h3 className="cs-h3">Colour</h3>

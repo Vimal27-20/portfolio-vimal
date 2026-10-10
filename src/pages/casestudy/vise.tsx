@@ -83,7 +83,7 @@ export default function ViseCaseStudy() {
   return (
     <CaseStudyLayout project={project} name="VISE" sections={SECTIONS} header={header}>
 
-      <Section id="overview" index={1} label="Overview" title={<>Your money, <em>on your phone only.</em></>}>
+      <Section id="overview" index={1} label="Overview" title="Everything stays on the phone">
         <p className="cs-p">
           Track income and spending, set monthly and per-category limits, import transactions from CSV and see
           where the month is heading. There is no server, no account and no bank login: everything lives in
@@ -97,7 +97,7 @@ export default function ViseCaseStudy() {
         </div>
       </Section>
 
-      <Section id="architecture" index={2} label="Architecture" title={<>Thin UI, <em>all logic in Rust.</em></>}>
+      <Section id="architecture" index={2} label="Architecture" title="How the app is layered">
         <p className="cs-p">
           Each layer only calls the one below it. The UI never does budget maths or touches the database,
           so the same tested core runs on both platforms.
@@ -116,7 +116,7 @@ export default function ViseCaseStudy() {
         </ol>
       </Section>
 
-      <Section id="stack" index={3} label="Tech stack" title="What it's built with.">
+      <Section id="stack" index={3} label="Tech stack" title="What it's built with">
         <div className="cs-cards">
           <div className="cs-card"><h3>App</h3><p>React Native, Expo, Expo Router, TypeScript, react-native-svg for charts.</p></div>
           <div className="cs-card"><h3>Core</h3><p>Rust (2024 edition), Diesel ORM, bundled SQLite, exact money maths in cents.</p></div>
@@ -124,7 +124,7 @@ export default function ViseCaseStudy() {
         </div>
       </Section>
 
-      <Section id="quality" index={4} label="Testing & CI" title="Tested from the maths to the tap.">
+      <Section id="quality" index={4} label="Testing & CI" title="How it's tested">
         <ul className="cs-list">
           <li><strong>Rust tests:</strong> unit tests for the calculations, a persistence test that reopens a real SQLite file, and a contract test against the JSON API shapes.</li>
           <li><strong>App tests (Vitest):</strong> the bridge client, the onboarding payload, the API contract, and guards against demo data or silent fallbacks.</li>
@@ -144,7 +144,7 @@ export default function ViseCaseStudy() {
         </ul>
       </Section>
 
-      <Section id="design" index={6} label="Design system" title="One token file, from Figma to code.">
+      <Section id="design" index={6} label="Design system" title="Design tokens from Figma to code">
         <p className="cs-p">
           Colours, spacing, radii and type are defined in Figma and mirrored in a single <code>tokens.ts</code>,
           so the components in the app match the design system one-to-one, in light and dark.

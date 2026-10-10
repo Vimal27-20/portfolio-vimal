@@ -11,7 +11,7 @@ export default function Hero() {
         <h1 id="hero-title">
           <span className="sr-only">Vimal Kumar, </span>UX Engineer who designs and builds.
         </h1>
-        <p className="hero-lede">From research to the shipped screen, in React and React Native. Based in Ireland.</p>
+        <p className="hero-lede">I design interfaces and build them in React and React Native. Based in Ireland.</p>
         <a href="#work" className="btn btn--white">See the work <PiCaretRight size={14} aria-hidden /></a>
       </div>
     </section>

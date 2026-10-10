@@ -70,7 +70,7 @@ export default function MindfulMomentsCaseStudy() {
   return (
     <CaseStudyLayout project={project} name="Remembering what matters" sections={SECTIONS} header={header}>
 
-      <Section id="moment" index={1} label="The moment" title={<>A few taps to get there. <em>One second</em> to forget.</>}>
+      <Section id="moment" index={1} label="The moment" title="Leaving something in the car is easy">
         <ol className="cs-beats">
           <li><span>1</span>The car stops.</li>
           <li><span>2</span>You're already thinking about what's next.</li>
@@ -82,16 +82,16 @@ export default function MindfulMomentsCaseStudy() {
         </p>
       </Section>
 
-      <Section id="insight" index={2} label="Insight" title={<>Rides end with a payment, <em>not a pause.</em></>}>
+      <Section id="insight" index={2} label="Insight" title="The end of a ride is rushed">
         <p className="cs-p">
           Competitor benchmarking and social listening (Reddit, Facebook groups, rider forums)
-          pointed the same way: <strong>people don't forget because of bad design. They forget because
-          the exit is rushed.</strong>
+          pointed the same way: <strong>people forget things because the last moments of a ride
+          are rushed.</strong>
         </p>
         <Figure src={`${IMG}/iceberg.webp`} alt="Iceberg of hidden causes: cognitive overload, time pressure, unfamiliar places, communication gap, no exit protocol" />
       </Section>
 
-      <Section id="idea" index={3} label="The idea" title={<>One shared check, <em>before the trip closes.</em></>}>
+      <Section id="idea" index={3} label="The idea" title="One check for passenger and driver">
         <div className="cs-duo">
           <div className="cs-card">
             <span className="cs-card-num">P</span>
@@ -106,7 +106,7 @@ export default function MindfulMomentsCaseStudy() {
         </div>
       </Section>
 
-      <Section id="passenger" index={4} label="Passenger flow" title="Remind early, check once, then let go.">
+      <Section id="passenger" index={4} label="Passenger flow" title="The passenger flow">
         <PhoneFlow steps={PASSENGER} />
         <ul className="cs-list cs-list--tight">
           <li><strong>Nudge before the stop</strong>, while there's still time to gather things.</li>
@@ -115,7 +115,7 @@ export default function MindfulMomentsCaseStudy() {
         </ul>
       </Section>
 
-      <Section id="driver" index={5} label="Driver flow" title="A two-second habit for drivers.">
+      <Section id="driver" index={5} label="Driver flow" title="The driver flow">
         <PhoneFlow steps={DRIVER} start={6} />
         <ul className="cs-list cs-list--tight">
           <li><strong>Dark sheets</strong> keep the driver app calm at night and distinct from the passenger app.</li>
@@ -123,7 +123,7 @@ export default function MindfulMomentsCaseStudy() {
         </ul>
       </Section>
 
-      <Section id="system" index={6} label="Design system" title={<>Dark map, light sheets, <em>one green.</em></>}>
+      <Section id="system" index={6} label="Design system" title="Visual language">
         <p className="cs-p">
           16 colour tokens, 7 text styles, 15 icons and 7 components, all built as Figma variables and
           components so every screen stays consistent.
@@ -131,7 +131,7 @@ export default function MindfulMomentsCaseStudy() {
         <Figure src={`${IMG}/design-system.webp`} alt="Mindful Ride design system: colours, type, icons, components" />
       </Section>
 
-      <Section id="ending" index={7} label="The ending" title="Peace of mind, not just belongings.">
+      <Section id="ending" index={7} label="The ending" title="Why it matters">
         <div className="cs-ending">
           <Figure src={`${IMG}/ending.webp`} alt="A relaxed passenger walking away with his bag" />
           <div>

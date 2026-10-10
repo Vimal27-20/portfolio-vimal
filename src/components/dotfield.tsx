@@ -35,7 +35,7 @@ export default function DotField({ src = "", word = "", label }: { src?: string;
       // a portrait needs fine dots to read; a word reads best in bold dots, like the Nothing wordmark
       gap = img
         ? (small ? Math.max(4.5, w / 80) : Math.max(5, Math.min(6.5, w / 230)))
-        : Math.max(8, Math.min(16, w / 96));
+        : small ? Math.max(5, w / 72) : Math.max(8, Math.min(13, w / 110));   // finer on phones, so letters keep their shape
       cols = Math.ceil(w / gap); rows = Math.ceil(h / gap);
       pitch = Math.max(6, Math.round(88 / gap));        // the sparse stage grid, ~90px apart
 
@@ -82,15 +82,18 @@ export default function DotField({ src = "", word = "", label }: { src?: string;
         const top = (small ? 64 : 76) / gap;
         const bottom = text ? (text.top - r.top - (small ? 20 : 32)) / gap : rows * 0.6;
         const room = Math.max(6, bottom - top);
-        const textRows = Math.round(Math.min(room * 0.8, rows * 0.32));
-        o.font = `800 ${textRows}px "Geist Variable", system-ui, sans-serif`;
+        // a medium weight, scaled evenly: on a narrow screen the whole word gets smaller,
+        // it is never squeezed sideways
+        let size = Math.min(room * 0.8, rows * 0.32);
+        o.font = `600 ${size}px "Geist Variable", system-ui, sans-serif`;
+        const fit = (cols * (small ? 0.92 : 0.84)) / o.measureText(word).width;
+        if (fit < 1) { size *= fit; o.font = `600 ${size}px "Geist Variable", system-ui, sans-serif`; }
         o.textAlign = "center"; o.textBaseline = "middle";
-        const scale = Math.min(1, (cols * 0.86) / o.measureText(word).width);
-        o.setTransform(scale, 0, 0, 1, cols / 2, top + room / 2);
+        o.setTransform(1, 0, 0, 1, cols / 2, top + room / 2);
         o.fillStyle = "#fff";
         o.fillText(word, 0, 0);
         const d = o.getImageData(0, 0, cols, rows).data;
-        for (let i = 0; i < cols * rows; i++) { lit[i] = d[i * 4 + 3] > 110 ? 0.75 : 0; delay[i] = Math.random() * 900; }
+        for (let i = 0; i < cols * rows; i++) { lit[i] = d[i * 4 + 3] > 110 ? 0.48 : 0;   /* smaller dots with air between them */ delay[i] = Math.random() * 900; }
       }
       dirty = true;
     };
