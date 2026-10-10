@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-10-10T11:16:57.414Z",
+  "generatedAt": "2026-10-10T11:45:37.537Z",
   "title": "Design System: Vimal Kumar Portfolio",
   "extensions": {
     "colorMeta": {
@@ -304,19 +304,19 @@
           "rgba(0,0,0,.12)"
         ]
       },
-      "widget-glass": {
+      "now-card": {
         "role": "neutral",
-        "displayName": "Widget Glass",
-        "canonical": "rgba(255, 255, 255, 0.11)",
+        "displayName": "Now Card",
+        "canonical": "#141414",
         "tonalRamp": [
-          "rgba(255,255,255,.03)",
-          "rgba(255,255,255,.05)",
-          "rgba(255,255,255,.08)",
-          "rgba(255,255,255,.11)",
-          "rgba(255,255,255,.16)",
-          "rgba(255,255,255,.22)",
-          "rgba(255,255,255,.3)",
-          "rgba(255,255,255,.4)"
+          "#000000",
+          "#0a0a0a",
+          "#141414",
+          "#1d1d1d",
+          "#2b2b2b",
+          "#3d3d3d",
+          "#5c5c5c",
+          "#8a8a8a"
         ]
       }
     },
@@ -339,7 +339,7 @@
       },
       "title": {
         "displayName": "Title",
-        "purpose": "Card titles, widget statements, reader sub-heads and chapter headings, at 400; widget titles at 24px/1.15; #now quotes at clamp(22px, 2vw, 28px)."
+        "purpose": "Card titles, widget statements, reader sub-heads and chapter headings, at 400; widget titles at 24px/1.15; #now quotes at clamp(22px, 2.3vw, 32px), held to 62ch, across the full width."
       },
       "body": {
         "displayName": "Body",
@@ -367,7 +367,7 @@
       {
         "name": "glass-edge-dark",
         "value": "inset 0 0 0 .5px rgba(255,255,255,.18), inset 0 1px 0 rgba(255,255,255,.14)",
-        "purpose": "Rim of dark glass: the pill in smoke, the island, the dock, the #now widgets."
+        "purpose": "Rim of dark glass: the pill in smoke, the island, the dock."
       },
       {
         "name": "pill-lift",
@@ -385,9 +385,9 @@
         "purpose": "Under the chapter dock."
       },
       {
-        "name": "widget-lift",
-        "value": "0 20px 40px -24px rgba(0, 0, 0, .6)",
-        "purpose": "Under the #now glass widgets."
+        "name": "now-card-edge",
+        "value": "inset 0 0 0 1px rgba(255,255,255,.13)",
+        "purpose": "The one edge on the Right now cards; no drop shadow."
       },
       {
         "name": "pointer-outline",
@@ -412,14 +412,19 @@
         "purpose": "Behind the quick view."
       },
       {
-        "name": "widget-glass-blur",
-        "value": "var(--glass-blur) = blur(28px) saturate(170%) over rgba(255,255,255,.11); rgba(0,0,0,.38) for the Glyph and quote widgets",
-        "purpose": "Glass on the #now widgets over plain #000."
+        "name": "now-card",
+        "value": "#141414, inset 0 0 0 1px rgba(255,255,255,.13), backdrop-filter: none, no hover lift",
+        "purpose": "The Right now cards on plain #000; replaced a thin white glass that vanished on black."
       },
       {
         "name": "principle-disc",
-        "value": "#000 circle, max 132px (120px mobile), inset 1px rgba(255,255,255,.16); ring text Geist Mono 500 9.5px .08em caps at 82% white; on an 18px dot grid of rgba(255,255,255,.14)",
+        "value": "#000 circle, max 132px (120px mobile), inset 1px rgba(255,255,255,.16); ring text Geist Mono 500 9.5px .08em caps at 82% white; on an 18px dot grid of rgba(255,255,255,.14); one-liner as a pop-up caption below the disc on hover, focus or tap: #fff ground, #000 13px/1.35 text, max 210px, 10px radius, 8px 11px padding, no layout space",
         "purpose": "How I look at a problem."
+      },
+      {
+        "name": "portrait-dots",
+        "value": "vimal-bw.webp sampled onto a 3.4 to 5px dot grid (w/64), dot radius gap*.48*sqrt(b) at 90% white; luminance lifted pow(clamp((L-.1)/.55),.7); dots under .14 and the top 7% of rows skipped; bottom-aligned in a canvas min 200px (150px under 760px); dots within 60px of a mouse pointer turn #a8f83a",
+        "purpose": "Open to roles. Canvas role=\"img\", label \"Vimal Kumar, a portrait drawn in dots\"."
       },
       {
         "name": "reduced-transparency",
@@ -512,11 +517,6 @@
         "name": "disc-roll",
         "value": "rotate 360deg linear infinite; 22s clockwise, 26s reversed on alternate discs; stopped under reduced motion",
         "purpose": "The principle rings in How I look at a problem."
-      },
-      {
-        "name": "process-pulse",
-        "value": "6s linear walk along the line; each node lit in Logo Green for 12% of the cycle, 1s apart; line and pulse hidden under 760px; stopped under reduced motion",
-        "purpose": "How I design."
       }
     ],
     "breakpoints": [
@@ -547,6 +547,12 @@
     ],
     "rasters": [
       {
+        "path": "public/img/vimal-bw.webp",
+        "size": "708x671",
+        "use": "Dotted portrait in the Open to roles card",
+        "provenance": "User-supplied portrait photo (708x671). Grayscale, contrast 1.12, brightness 1.04. Background burned to #000 outside a hand-traced head-and-shoulders outline, feathered with a blur and eroded inward; the shoulders fall away along an oval below the face. Rendered in a headless-Chrome canvas."
+      },
+      {
         "path": "public/img/vimal-portrait.webp",
         "size": "240px",
         "use": "None on this branch",
@@ -557,7 +563,15 @@
         "use": "Nav logo; Logo Green #a8f83a is sampled from it",
         "provenance": "Existing identity asset."
       }
-    ]
+    ],
+    "security": {
+      "audit": "axe-core WCAG 2.2 AA clean on home (1440 and 390) and the three case studies; contrast fixed for .cs-browserbar-url (#555), .cs-strike li (#4a4a4a), .cs-type-spec (ink-3).",
+      "csp": "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' data: https://fonts.gstatic.com; img-src 'self' data: blob:; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'; upgrade-insecure-requests",
+      "referrer": "strict-origin-when-cross-origin",
+      "delivery": "Meta tags injected by the securityMeta plugin in vite.config.ts, build only (the dev server needs inline scripts).",
+      "externalLinks": "rel=\"noopener noreferrer\"",
+      "themeColor": "#000000"
+    }
   },
   "components": [
     {
@@ -603,10 +617,10 @@
     {
       "name": "Right Now Widgets",
       "kind": "custom",
-      "refersTo": "widget-glass",
-      "description": "The #now widgets in glass on plain black: a principle disc whose ring of text keeps rolling around a Phosphor icon, its one-liner on hover, focus or tap; and the live availability statement with the green résumé button.",
+      "refersTo": "widget-now",
+      "description": "The #now cards, solid #141414 with a 1px inset edge on plain black: a principle disc whose ring of text keeps rolling around a Phosphor icon, its one-liner popping up as a small white caption on hover, focus or tap; and the live availability statement with the green résumé button.",
       "html": "<div class=\"ds-now\"><div class=\"ds-wg ds-wg--dots\"><p class=\"ds-wg-title\">How I look at a problem</p><div class=\"ds-disc-item\"><button class=\"ds-disc\" aria-describedby=\"ds-line\"><svg class=\"ds-ring\" viewBox=\"0 0 120 120\" aria-hidden=\"true\"><defs><path id=\"ds-ring-path\" d=\"M60,60 m-46,0 a46,46 0 1,1 92,0 a46,46 0 1,1 -92,0\"/></defs><text><textPath href=\"#ds-ring-path\" textLength=\"289\" lengthAdjust=\"spacingAndGlyphs\">HUMAN BEFORE AI • HUMAN BEFORE AI • </textPath></text></svg><span class=\"ds-disc-icon\" aria-hidden=\"true\"></span><span class=\"ds-sr\">Human before AI</span></button><p class=\"ds-disc-title\" aria-hidden=\"true\">Human before AI</p><p class=\"ds-disc-line\" id=\"ds-line\">Design for human needs, agency and context.</p></div></div><div class=\"ds-wg ds-wg--black\"><p class=\"ds-wg-big\"><span class=\"ds-live\"></span> Open to UX Engineer roles in Ireland.</p><a class=\"ds-wg-btn\" href=\"#\">Résumé</a></div></div>",
-      "css": ".ds-now { display: grid; grid-template-columns: repeat(2, 260px); gap: 16px; padding: 40px 24px; background: #000; } .ds-wg { display: flex; flex-direction: column; gap: 14px; min-height: 240px; padding: 22px; border-radius: 24px; background: rgba(255,255,255,.11); color: #fff; backdrop-filter: blur(28px) saturate(170%); -webkit-backdrop-filter: blur(28px) saturate(170%); box-shadow: inset 0 0 0 .5px rgba(255,255,255,.18), inset 0 1px 0 rgba(255,255,255,.14), 0 20px 40px -24px rgba(0,0,0,.6); transition: transform .5s cubic-bezier(.34,1.36,.64,1); } .ds-wg:hover { transform: translateY(-3px); } .ds-wg--black { background: rgba(0,0,0,.38); } .ds-wg--dots { background-image: radial-gradient(circle, rgba(255,255,255,.14) 1px, transparent 1.4px); background-size: 18px 18px; } .ds-wg-title { font: 400 24px/1.15 'Newsreader Variable', Georgia, serif; letter-spacing: -.015em; } .ds-disc-item { display: grid; justify-items: center; gap: 10px; text-align: center; } .ds-disc { position: relative; display: grid; place-items: center; width: 120px; aspect-ratio: 1; padding: 0; border: 0; border-radius: 50%; background: #000; color: #fff; cursor: pointer; box-shadow: inset 0 0 0 1px rgba(255,255,255,.16); transition: transform .5s cubic-bezier(.34,1.36,.64,1); } .ds-ring { position: absolute; inset: 0; width: 100%; height: 100%; animation: ds-roll 22s linear infinite; } .ds-ring text { fill: rgba(255,255,255,.82); font: 500 9.5px 'Geist Mono Variable', ui-monospace, monospace; letter-spacing: .08em; } @keyframes ds-roll { to { transform: rotate(360deg); } } .ds-disc-icon { width: 52px; height: 52px; border-radius: 50%; background: rgba(255,255,255,.06); transition: background .3s cubic-bezier(.2,.7,0,1); } .ds-disc:hover, .ds-disc:focus-visible { transform: scale(1.06); } .ds-disc:hover .ds-disc-icon, .ds-disc:focus-visible .ds-disc-icon { background: #a8f83a; } .ds-sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); } .ds-disc-title { font: 500 14px/1.25 'Geist Variable', system-ui, sans-serif; } .ds-disc-line { max-width: 18ch; font: 400 13px/1.3 'Geist Variable', system-ui, sans-serif; color: rgba(255,255,255,.72); opacity: 0; transform: translateY(-4px); transition: opacity .3s cubic-bezier(.2,.7,0,1), transform .4s cubic-bezier(.34,1.36,.64,1); } .ds-disc-item:hover .ds-disc-line, .ds-disc-item:focus-within .ds-disc-line { opacity: 1; transform: none; } .ds-wg-big { font: 400 26px/1.15 'Newsreader Variable', Georgia, serif; letter-spacing: -.015em; } .ds-live { display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: #a8f83a; box-shadow: 0 0 0 1.5px rgba(59,109,10,.55); vertical-align: .2em; margin-right: 6px; animation: ds-blink 1.4s steps(2, jump-none) infinite; } @keyframes ds-blink { 50% { opacity: .2; } } .ds-wg-btn { align-self: flex-start; margin-top: auto; display: inline-flex; align-items: center; height: 42px; padding: 0 16px; border-radius: 10px; background: #a8f83a; color: #000; font: 500 13px/1 'Geist Mono Variable', ui-monospace, monospace; letter-spacing: .04em; text-transform: uppercase; text-decoration: none; transition: transform .45s cubic-bezier(.34,1.36,.64,1), background .2s cubic-bezier(.2,.7,0,1); } .ds-wg-btn:hover { background: #bdff5c; } .ds-wg-btn:active { transform: scale(.94); } .ds-wg-btn:focus-visible, .ds-disc:focus-visible { outline: 2px solid #fff; outline-offset: 3px; } @media (prefers-reduced-motion: reduce) { .ds-ring, .ds-live { animation: none; } }"
+      "css": ".ds-now { display: grid; grid-template-columns: repeat(2, 260px); gap: 16px; padding: 40px 24px; background: #000; } .ds-wg { display: flex; flex-direction: column; gap: 14px; min-height: 240px; padding: 22px; border-radius: 24px; background: #141414; color: #fff; box-shadow: inset 0 0 0 1px rgba(255,255,255,.13); } .ds-wg--dots { background-image: radial-gradient(circle, rgba(255,255,255,.14) 1px, transparent 1.4px); background-size: 18px 18px; } .ds-wg-title { font: 400 24px/1.15 'Newsreader Variable', Georgia, serif; letter-spacing: -.015em; } .ds-disc-item { position: relative; display: grid; justify-items: center; gap: 8px; text-align: center; } .ds-disc { position: relative; display: grid; place-items: center; width: 120px; aspect-ratio: 1; padding: 0; border: 0; border-radius: 50%; background: #000; color: #fff; cursor: pointer; box-shadow: inset 0 0 0 1px rgba(255,255,255,.16); transition: transform .5s cubic-bezier(.34,1.36,.64,1); } .ds-ring { position: absolute; inset: 0; width: 100%; height: 100%; animation: ds-roll 22s linear infinite; } .ds-ring text { fill: rgba(255,255,255,.82); font: 500 9.5px 'Geist Mono Variable', ui-monospace, monospace; letter-spacing: .08em; } @keyframes ds-roll { to { transform: rotate(360deg); } } .ds-disc-icon { width: 52px; height: 52px; border-radius: 50%; background: rgba(255,255,255,.06); transition: background .3s cubic-bezier(.2,.7,0,1); } .ds-disc:hover, .ds-disc:focus-visible { transform: scale(1.06); } .ds-disc:hover .ds-disc-icon, .ds-disc:focus-visible .ds-disc-icon { background: #a8f83a; } .ds-sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); } .ds-disc-title { font: 500 14px/1.25 'Geist Variable', system-ui, sans-serif; } .ds-disc-line { position: absolute; z-index: 3; top: calc(100% + 6px); left: 50%; width: max-content; max-width: 210px; padding: 8px 11px; border-radius: 10px; background: #fff; color: #000; font: 400 13px/1.35 'Geist Variable', system-ui, sans-serif; text-align: left; pointer-events: none; opacity: 0; transform: translate(-50%, -4px); transition: opacity .3s cubic-bezier(.2,.7,0,1), transform .4s cubic-bezier(.34,1.36,.64,1); } .ds-disc-item:hover .ds-disc-line, .ds-disc-item:focus-within .ds-disc-line { opacity: 1; transform: translate(-50%, 0); } .ds-wg-big { font: 400 26px/1.15 'Newsreader Variable', Georgia, serif; letter-spacing: -.015em; } .ds-live { display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: #a8f83a; box-shadow: 0 0 0 1.5px rgba(59,109,10,.55); vertical-align: .2em; margin-right: 6px; animation: ds-blink 1.4s steps(2, jump-none) infinite; } @keyframes ds-blink { 50% { opacity: .2; } } .ds-wg-btn { align-self: flex-start; margin-top: auto; display: inline-flex; align-items: center; height: 42px; padding: 0 16px; border-radius: 10px; background: #a8f83a; color: #000; font: 500 13px/1 'Geist Mono Variable', ui-monospace, monospace; letter-spacing: .04em; text-transform: uppercase; text-decoration: none; transition: transform .45s cubic-bezier(.34,1.36,.64,1), background .2s cubic-bezier(.2,.7,0,1); } .ds-wg-btn:hover { background: #bdff5c; } .ds-wg-btn:active { transform: scale(.94); } .ds-wg-btn:focus-visible, .ds-disc:focus-visible { outline: 2px solid #fff; outline-offset: 3px; } @media (prefers-reduced-motion: reduce) { .ds-ring, .ds-live { animation: none; } }"
     },
     {
       "name": "Glass Quick-View Bar",
@@ -639,7 +653,7 @@
     "keyCharacteristics": [
       "Black stage (hero, contact, footer, case-study header) alternating with light grey floor sections; #now is plain black, its widgets pictures more than words.",
       "White product surfaces with soft radii: 16px cards, 24px widgets. Glass sheets at 26px, glass pill at 18px, controls at 10 to 14px.",
-      "Frosted glass only on what floats: the pill and island, the menu, the quick-view sheet, the chapter dock, and the #now widgets on plain black.",
+      "Frosted glass only on what floats: the pill and island, the menu, the quick-view sheet, and the chapter dock.",
       "Serif statements, mono uppercase labels, dot-matrix names and numerals.",
       "The name VIMAL lit in spaced dots over a sparse stage dot grid, with a lens that swells the dots and reveals the fine grid under the pointer.",
       "One logo green, for primary actions and live states only.",
@@ -678,12 +692,12 @@
       },
       {
         "name": "The Float Rule",
-        "body": "Glass is reserved for things that float: the pill and island, the menu, the quick-view sheet, the chapter dock, and the #now widgets. Product cards, floor widgets, reader panels, figures and buttons are opaque and flat on their ground.",
+        "body": "Glass is reserved for things that float: the pill and island, the menu, the quick-view sheet and the chapter dock. Product cards, floor widgets, the Right now cards, reader panels, figures and buttons are opaque and flat on their ground.",
         "section": "elevation"
       },
       {
         "name": "The Glass Fallback Rule",
-        "body": "Under prefers-reduced-transparency: reduce every backdrop blur is removed and each glass surface turns opaque: the pill to Pill Grey, the menu and dock to Stage Black, the quick view to Product White, the #now widgets to Graphite.",
+        "body": "Under prefers-reduced-transparency: reduce every backdrop blur is removed and each glass surface turns opaque: the pill to Pill Grey, the menu and dock to Stage Black, the quick view to Product White. The Right now cards are already opaque.",
         "section": "elevation"
       }
     ],
@@ -700,7 +714,7 @@
       "Do keep the menu and résumé tappable in the island on touch screens.",
       "Do build dialogs (menu, quick view) on native <dialog> with a scrim and Escape to dismiss.",
       "Do turn the focus ring white on black grounds and inside Right now, and keep it ink everywhere else.",
-      "Do honour reduced motion (end states only, the lit name simply on, system cursor, glyph display, principle rings and process pulse holding still) and reduced transparency (opaque glass, no blur)."
+      "Do honour reduced motion (end states only, the lit name simply on, system cursor, glyph display and principle rings holding still, the portrait staying white) and reduced transparency (opaque glass, no blur)."
     ],
     "donts": [
       "Don't put an eyebrow, kicker or label above a heading.",

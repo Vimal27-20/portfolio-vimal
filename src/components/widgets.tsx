@@ -2,15 +2,15 @@ import { useState } from "react";
 import {
   PiArrowLeft, PiArrowRight, PiCaretRight,
   PiMagnifyingGlass, PiHandHeart, PiSparkle, PiCheckCircle,
-  PiBinoculars, PiTarget, PiLightbulb, PiCode, PiUsersThree, PiRocketLaunch,
 } from "react-icons/pi";
 import Glyph from "./glyph";
 import { useQuickView } from "./quickview";
 import ResumeLink from "./resume";
+import PortraitDots from "./portraitdots";
 
-/* Right now: few words, more to look at. What's being built, how Vimal
-   approaches a problem (four rolling discs), the design process as a
-   picture, availability, and client notes. */
+/* Right now: few words, more to look at. What is being built, how Vimal
+   approaches a problem (four rolling discs), availability with his portrait
+   in dots, and client notes. */
 
 /* ── How I approach a problem: four discs that keep rolling ──
    Vimal's own principles, word for word. Each disc carries its principle
@@ -50,33 +50,6 @@ function Principles() {
           <Disc key={p.title} {...p} k={k} open={open === k} onToggle={() => setOpen(open === k ? null : k)} />
         ))}
       </ul>
-    </div>
-  );
-}
-
-/* ── The design process, as a picture: six steps, a pulse walking the line ── */
-const STEPS = [
-  { name: "Discover", Icon: PiBinoculars },
-  { name: "Define", Icon: PiTarget },
-  { name: "Ideate", Icon: PiLightbulb },
-  { name: "Prototype", Icon: PiCode },
-  { name: "Test", Icon: PiUsersThree },
-  { name: "Ship", Icon: PiRocketLaunch },
-];
-
-function Process() {
-  return (
-    <div className="wg wg--process">
-      <h3 className="wg-title">How I design</h3>
-      <ol className="flow">
-        {STEPS.map(({ name, Icon }, k) => (
-          <li key={name} className="flow-step" style={{ "--k": k } as React.CSSProperties}>
-            <span className="flow-node"><Icon size={22} aria-hidden /></span>
-            <span className="flow-name">{name}</span>
-          </li>
-        ))}
-      </ol>
-      <p className="wg-note flow-note">Each step follows the four principles.</p>
     </div>
   );
 }
@@ -124,10 +97,10 @@ export default function Widgets() {
           </button>
           <Principles />
           <div className="wg wg--open">
+            <PortraitDots src={`${import.meta.env.BASE_URL}img/vimal-bw.webp`} label="Vimal Kumar, a portrait drawn in dots" />
             <p className="wg-big"><span className="live" aria-hidden /> Open to UX Engineer roles in Ireland.</p>
             <ResumeLink className="btn btn--accent" />
           </div>
-          <Process />
           <Quotes />
         </div>
       </div>

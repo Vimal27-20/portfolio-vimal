@@ -1,6 +1,6 @@
 ---
 name: Vimal Kumar Portfolio
-description: The work presented the way Nothing presents a product, under an Apple glass layer. A black stage with the name lit in a dot grid, grey shop floors, white product surfaces, frosted glass on whatever floats, a serif voice, mono labels, and one green taken from the VK logo for what acts or is live. Right now is plain black, with glass widgets that show more than they say.
+description: The work presented the way Nothing presents a product, under an Apple glass layer. A black stage with the name lit in a dot grid, grey shop floors, white product surfaces, frosted glass on whatever floats, a serif voice, mono labels, and one green taken from the VK logo for what acts or is live. Right now is plain black, with solid dark cards that show more than they say.
 colors:
   logo-green: "#a8f83a"
   accent-hover: "#bdff5c"
@@ -22,7 +22,7 @@ colors:
   pill-frost: "rgba(228, 228, 228, 0.8)"
   pill-smoke: "rgba(30, 30, 30, 0.55)"
   island-black: "rgba(0, 0, 0, 0.86)"
-  widget-glass: "rgba(255, 255, 255, 0.11)"
+  now-card: "#141414"
 typography:
   display:
     fontFamily: "Doto Variable, Geist Mono Variable, monospace"
@@ -170,8 +170,8 @@ components:
     textColor: "{colors.ink}"
     rounded: "{rounded.widget}"
     padding: "22px"
-  widget-glass:
-    backgroundColor: "{colors.widget-glass}"
+  widget-now:
+    backgroundColor: "{colors.now-card}"
     textColor: "{colors.on-stage}"
     rounded: "{rounded.widget}"
     padding: "22px"
@@ -215,7 +215,7 @@ Motion is quick and exact, with a small overshoot. Controls give under a press a
 **Key Characteristics:**
 - Black stage (hero, contact, footer, case-study header) alternating with light grey floor sections; #now is plain black, its widgets pictures more than words.
 - White product surfaces with soft radii: 16px cards, 24px widgets. Glass sheets at 26px, glass pill at 18px, controls at 10 to 14px.
-- Frosted glass only on what floats: the pill and island, the menu, the quick-view sheet, the chapter dock, and the #now widgets on plain black.
+- Frosted glass only on what floats: the pill and island, the menu, the quick-view sheet, and the chapter dock.
 - Serif statements, mono uppercase labels, dot-matrix names and numerals.
 - The name VIMAL lit in spaced dots over a sparse stage dot grid, with a lens that swells the dots and reveals the fine grid under the pointer.
 - One logo green, for primary actions and live states only.
@@ -226,7 +226,7 @@ Motion is quick and exact, with a small overshoot. Controls give under a press a
 A neutral product palette, black stage to white surface, with translucent glass that borrows its tone from the ground beneath, plus one accent: the green of the VK logo.
 
 ### Primary
-- **Logo Green** (logo-green): sampled from `public/img/LOGO-VK.png`. The blinking 8px live dot (project cards, the journey's current row, the Open to roles widget, the Glyph widget, case-study status, the open item of a progress list), carrying a 1.5px dark-green hairline (`rgba(59,109,10,.55)`) so it reads on white and floor. Also the fill of primary actions (hero call to action, the contact Copy button, the résumé in Open to roles), the island's dot, the case-study reading bar, the current chapter-dock and quote-pager dot, the pulse walking How I design and the one node it lights, the footer link hover, the hovered or focused principle disc's icon and ring, and text selection.
+- **Logo Green** (logo-green): sampled from `public/img/LOGO-VK.png`. The blinking 8px live dot (project cards, the journey's current row, the Open to roles widget, the Glyph widget, case-study status, the open item of a progress list), carrying a 1.5px dark-green hairline (`rgba(59,109,10,.55)`) so it reads on white and floor. Also the fill of primary actions (hero call to action, the contact Copy button, the résumé in Open to roles), the island's dot, the case-study reading bar, the current chapter-dock and quote-pager dot, the portrait dots nearest a mouse pointer in Open to roles, the footer link hover, the hovered or focused principle disc's icon and ring, and text selection.
 - **Accent Hover** (accent-hover): the hover fill of a green button.
 - **Accent Ink** (accent-ink): the text form of the green on white or floor ("NOW" in the journey, a status chip's label), where Logo Green is too light for small type; it holds AA on #fff and #f2f2f2.
 
@@ -235,18 +235,18 @@ A neutral product palette, black stage to white surface, with translucent glass 
 - **Shop Floor** (floor): the page ground for every light section.
 - **Product White** (white): cards, light widgets, filter chips, icon buttons, reader panels, figures, and the quick view's opaque fallback.
 - **Pill Grey** (pill-grey): the nav pill's opaque fallback under reduced transparency.
-- **Graphite** (graphite): raised controls on black: the contact field, the reader's back button, the in-progress note, and the #now widgets' opaque fallback.
+- **Graphite** (graphite): raised controls on black: the contact field, the reader's back button and the in-progress note.
 - **Ink / Ink 2 / Ink 3** (ink, ink-2, ink-3): primary text and solid buttons; reading text and the button hover; secondary text, meta and counts (at least 5.6:1 on white and floor).
 - **Hairline** (hair): 1px dividers in spec lists and the work rail track.
 - **Hover Grey** (hover-grey): hover fill for white chips, icon buttons and white buttons.
 - **On Stage / On Stage 2** (on-stage, on-stage-2): text on black; secondary text on black (at least 8:1).
+- **Now Card** (now-card): the Right now cards, solid #141414 with a 1px inset edge of white at 13% and no blur. It replaced a thin white glass that vanished on black.
 
 ### Glass
 - **Light Glass** (glass-light): the quick-view sheet, frosted over the floor and the page beneath.
 - **Dark Glass** (glass-dark): the chapter dock, floating over the reader.
 - **Pill Frost / Pill Smoke** (pill-frost, pill-smoke): the nav pill's two tones: frost over the floors, smoke over the black stages and Right now.
 - **Island Black** (island-black): the collapsed Dynamic-Island capsule.
-- **Widget Glass** (widget-glass): the #now widgets, white at 11% under the standard 28px glass blur at 170% saturation. The Glyph and quote widgets drop to black at 38%.
 
 ### Named Rules
 **The Logo Green Rule.** The site is black, white and grey plus one green, the VK logo's. Green is for primary actions and live states (and the current-position marks listed above), never for body links, borders, focus rings, glass tints or decoration. Text on light grounds uses Accent Ink, never Logo Green. Colour otherwise enters only as content: project screenshots, and the logo itself.
@@ -269,7 +269,7 @@ A neutral product palette, black stage to white surface, with translucent glass 
 - **Dot Menu** (dots, 700, clamp(30px, 4.4vw, 56px), 0.95): the menu and footer link list. Dots also set the nav name (21px, 16px on mobile, weight 900), journey years (30px), and reader stat numerals (44px).
 - **Headline** (serif, 450, clamp(38px, min(4.6vw, 8vh), 68px), 1.02): the hero statement, held to 15ch. The contact title runs larger (clamp(48px, 7vw, 104px)).
 - **Section Title** (serif, 450, clamp(36px, 4.4vw, 60px), 1.05): home section heads, centred, with a muted line of copy below.
-- **Title** (serif, 400, 24px, 1.12): card titles, widget titles (24px at 1.15), widget statements (26px), reader sub-heads. Chapter headings run clamp(30px, 3vw, 44px) at 1.08 and quotes clamp(24px, 2.4vw, 34px) at 1.25 (clamp(22px, 2vw, 28px) in #now).
+- **Title** (serif, 400, 24px, 1.12): card titles, widget titles (24px at 1.15), widget statements (26px), reader sub-heads. Chapter headings run clamp(30px, 3vw, 44px) at 1.08 and quotes clamp(24px, 2.4vw, 34px) at 1.25 (clamp(22px, 2.3vw, 32px) in #now, held to 62ch).
 - **Body** (Geist, 400, 17px / 16px under 760px, 1.55): all interface copy; ledes cap at 44 to 48ch.
 - **Body Reading** (Geist, 400, 18px / 17px mobile, 1.7): case-study paragraphs, capped at 66ch.
 - **Label** (Geist Mono, 500, 13px, 0.04em, uppercase): buttons, chips, text links, meta. **Label Small** (12px) for card meta, fact terms, crumbs, the dock, credits terms and the island's section name.
@@ -283,9 +283,9 @@ A neutral product palette, black stage to white surface, with translucent glass 
 
 A centred container of 1320px with 32px side padding (16px under 760px). Home sections stack at 128px intervals (88px on mobile) with centred heads 44px above their content.
 
-The hero is a full-bleed black stage at least `max(700px, calc(100svh - 64px))` tall (`max(600px, 92svh)` on mobile), set as a grid with the headline block (headline, lede and button) aligned to its foot. The lit name takes the measured room between the pill and the headline.
+The hero is a full-bleed black stage at least `max(700px, calc(100svh - 64px))` tall (`max(600px, 92svh)` on mobile), set as a grid with the headline block (headline, lede and button) aligned to its foot. The lit name takes the measured room between the pill and the headline. On phones (760px and below) the hero drops its minimum height and sizes to the name and the text: `min-height: 0`, `padding-top: calc(84px + 22vw)`, and 48px below the headline block.
 
-The work is a horizontal product row, not a grid: snap-scrolling columns of clamp(280px, 26vw, 380px) (74vw on mobile) at 16px gaps, aligned to the container's edge, draggable, with a 2px progress rail below. Widgets sit in a four-column bento at 16px gaps (10px on mobile): Glyph, How I look at a problem across two columns, and Open to roles on the top row, then How I design and the quotes sharing the second row at two columns each. Under 1080px it falls to two columns: Glyph and Open to roles side by side, then principles, process and quotes full width. #now pads 112px above and 120px below (80px and 88px on mobile), with 44px (28px) under the section head. The journey is a two-column split with a sticky head, collapsing under 1080px.
+The work is a horizontal product row, not a grid: snap-scrolling columns of clamp(280px, 26vw, 380px) (74vw on mobile) at 16px gaps, aligned to the container's edge, draggable, with a 2px progress rail below. Widgets sit in a four-column bento at 16px gaps (10px on mobile), areas `"glyph principles principles open" "quote quote quote quote"`: Glyph, How I look at a problem across two columns, and Open to roles on the top row, then the quotes across the full width. At 1080px and below it falls to two columns, `"glyph open" "principles principles" "quote quote"`. #now pads 112px above and 120px below (80px and 88px on mobile), with 44px (28px) under the section head. The journey is a two-column split with a sticky head, collapsing under 1080px.
 
 The case-study reader bleeds a black stage across the top, with the cover standing on the line where black meets floor. Chapters run as a 300px sticky heading column beside a reading column, collapsing to one column under 980px. Breakpoints: 760px, 980px (reader), 1080px. Input breakpoints also count. `(hover: none)` keeps the island's controls exposed, and `(pointer: fine)` is the only case that gets the custom pointer.
 
@@ -298,21 +298,21 @@ The page is flat. Floating things are lifted. Grounds still carry the structure 
 
 ### Shadow Vocabulary
 - **Glass edge** (`box-shadow: inset 0 0 0 .5px rgba(255,255,255,.45), inset 0 1px 0 rgba(255,255,255,.35)`): the rim of light glass (pill in frost, quick-view sheet).
-- **Glass edge dark** (`box-shadow: inset 0 0 0 .5px rgba(255,255,255,.18), inset 0 1px 0 rgba(255,255,255,.14)`): the rim of dark glass (pill in smoke, island, dock, #now widgets).
+- **Glass edge dark** (`box-shadow: inset 0 0 0 .5px rgba(255,255,255,.18), inset 0 1px 0 rgba(255,255,255,.14)`): the rim of dark glass (pill in smoke, island, dock).
 - **Pill lift** (`0 10px 30px -14px rgba(0,0,0,.45)`, `.6` in smoke, `0 10px 30px -12px rgba(0,0,0,.55)` as the island): under the nav.
 - **Sheet lift** (`0 40px 80px -30px rgba(0,0,0,.55)`): under the quick-view sheet.
 - **Dock lift** (`0 14px 34px -14px rgba(0,0,0,.5)`): under the chapter dock.
-- **Widget lift** (`0 20px 40px -24px rgba(0,0,0,.6)`): under the #now glass widgets.
+- **Now card edge** (`inset 0 0 0 1px rgba(255,255,255,.13)`): the one edge on the Right now cards; they carry no drop shadow.
 - **Pointer outline** (`inset 0 0 0 1px rgba(160,160,160,.75), 0 10px 24px -12px rgba(0,0,0,.45)`): the pointer hugging a control.
 
 ### Named Rules
-**The Float Rule.** Glass is reserved for things that float: the pill and island, the menu, the quick-view sheet, the chapter dock, and the #now widgets. Product cards, floor widgets, reader panels, figures and buttons are opaque and flat on their ground.
+**The Float Rule.** Glass is reserved for things that float: the pill and island, the menu, the quick-view sheet and the chapter dock. Product cards, floor widgets, the Right now cards, reader panels, figures and buttons are opaque and flat on their ground.
 
-**The Glass Fallback Rule.** Under `prefers-reduced-transparency: reduce` every backdrop blur is removed and each glass surface turns opaque: the pill to Pill Grey, the menu and dock to Stage Black, the quick view to Product White, the #now widgets to Graphite.
+**The Glass Fallback Rule.** Under `prefers-reduced-transparency: reduce` every backdrop blur is removed and each glass surface turns opaque: the pill to Pill Grey, the menu and dock to Stage Black, the quick view to Product White. The Right now cards are already opaque.
 
 ## Shapes
 
-Corners are soft and continuous, as in Apple's system UI. Controls sit at 10 to 14px: buttons at 10px, filter chips, icon buttons and pill buttons at 12px, dock buttons and the menu close at 14px, quick-view tags at 8px. Floating glass rounds further: the pill at 18px (16px on mobile), the island a full capsule (19px, or 20px on touch), the dock at 20px, and the quick-view sheet at 26px (22px top corners as a bottom sheet on mobile). Product surfaces keep their Nothing radii: cards and reader panels at 16px, widgets at 24px (20px on mobile). Dots are true circles everywhere: the live lamp, pager dots, list bullets, the dot field, the principle discs and process nodes, the round glyph display and the free pointer. Active pager and dock dots stretch into a 3px-radius bar. The phone sheet's grabber is a 38 by 5px bar at 3px.
+Corners are soft and continuous, as in Apple's system UI. Controls sit at 10 to 14px: buttons at 10px, filter chips, icon buttons and pill buttons at 12px, dock buttons and the menu close at 14px, quick-view tags at 8px. Floating glass rounds further: the pill at 18px (16px on mobile), the island a full capsule (19px, or 20px on touch), the dock at 20px, and the quick-view sheet at 26px (22px top corners as a bottom sheet on mobile). Product surfaces keep their Nothing radii: cards and reader panels at 16px, widgets at 24px (20px on mobile). Dots are true circles everywhere: the live lamp, pager dots, list bullets, the dot field, the principle discs, the portrait dots, the round glyph display and the free pointer. Active pager and dock dots stretch into a 3px-radius bar. The phone sheet's grabber is a 38 by 5px bar at 3px.
 
 Project images are never cropped: `object-fit: contain` inside a padded white field.
 
@@ -336,12 +336,11 @@ Mono caps with a trailing chevron or arrow that nudges 3px on hover, softened by
 
 ### Cards / Containers
 - **Product card:** an unboxed column: a 4:3 white image field (16px radius, 16px padding, image contained, 1.04 scale on hover over 0.7s), then serif title, muted role, mono meta and a text link. The whole column is one button that opens the quick view. It rises 4px on hover and gives to 0.98 on press.
-- **Widget:** white or black, 24px radius, 22px padding, content pushed to the foot. On Right now they are glass, each live or interactive, and they show more than they say:
+- **Widget:** white or black, 24px radius, 22px padding, content pushed to the foot. On Right now they are solid Now Card (#141414) with the 1px Now card edge, no blur and no hover lift, each live or interactive, and they show more than they say:
   - **Glyph:** a round 25 by 25 glyph-matrix display scrolling a 5 by 7 font in 90ms steps, lit dots in Logo Green; the whole widget opens the VISE quick view.
-  - **How I look at a problem:** four black discs on an 18px dot grid (four across, 2 by 2 on mobile). Each disc carries its principle in mono caps on a ring of text that rolls without stopping, alternate discs in opposite directions at 22s and 26s, around a Phosphor icon on a 52px well. The principle's name sits under the disc; its one-liner shows on hover, focus or tap. The copy is Vimal's, word for word: Problem before technology (Find the gap before selecting the solution.), Human before AI (Design for human needs, agency and context.), Purpose over novelty (Introduce AI only when it adds value.), Evidence over assumptions (Test outcomes and improve continuously.).
-  - **Open to roles:** the live dot and statement with the résumé as the green button.
-  - **How I design:** six 56px icon nodes (Discover, Define, Ideate, Prototype, Test, Ship) on a 2px line with mono names. A Logo Green pulse walks the line and lights one node at a time on a 6s cycle. On phones the nodes wrap 3 by 2 and the line and pulse are hidden; the nodes still light in turn. One note below: "Each step follows the four principles."
-  - **Quotes:** a client quote carousel with pager dots, the current one a green bar.
+  - **How I look at a problem:** four black discs on an 18px dot grid (four across, 2 by 2 on mobile). Each disc carries its principle in mono caps on a ring of text that rolls without stopping, alternate discs in opposite directions at 22s and 26s, around a Phosphor icon on a 52px well. The principle's name sits under the disc. Its one-liner pops up below the disc on hover, focus or tap as a small white caption (white ground, black 13px text, at most 210px wide, 10px radius) and takes no layout space. The copy is Vimal's, word for word: Problem before technology (Find the gap before selecting the solution.), Human before AI (Design for human needs, agency and context.), Purpose over novelty (Introduce AI only when it adds value.), Evidence over assumptions (Test outcomes and improve continuously.).
+  - **Open to roles:** Vimal's portrait drawn in dots, then the live dot and statement, with the résumé as the green button. The portrait (`public/img/vimal-bw.webp`) is sampled onto a dot grid of 3.4 to 5px pitch, each dot sized by brightness, with mid-tones lifted so the face reads. Dots under 14% brightness and the top 7% of rows are skipped. It sits on the foot of a canvas at least 200px tall (150px on phones). Under a mouse, the dots near the pointer turn Logo Green. The canvas has `role="img"` and the label "Vimal Kumar, a portrait drawn in dots".
+  - **Quotes:** a client quote carousel across the full width, with pager dots, the current one a green bar.
 - **Spec list:** facts as rows between a top ink rule and hairline dividers (quick-view facts, journey stops, reader stats with dot numerals).
 
 ### Inputs / Fields
@@ -361,7 +360,7 @@ After iPadOS, for a real mouse only. A soft 18px white dot (difference blend) gl
 A native `<dialog>` sheet in light glass (1080px max, 26px radius) that springs up 24px on open over a dimmed, blurred page. On mobile it becomes a bottom sheet with an iOS grabber, and pulling down on its top bar dismisses it once the drag passes 110px. Its call to action stays pinned on a near-solid fade. A bar carries a mono "01 / 07" count and previous, next and close icon buttons. The image sits contained in a translucent floor well and carries the shared `cover` view-transition name, so opening the case study morphs it into the cover (0.5s).
 
 ### Right Now
-The #now section is plain #000, its head line reading "What I'm building, and how I think." The widgets say little and show more: a glyph display, four rolling principle discs, a process drawn as a line of nodes, availability, and client notes. They are Widget Glass with dark glass edges and the widget lift, rise 3px on hover, and use white secondary buttons and translucent white pager buttons. Under reduced motion the rings stop rolling, the pulse and node lighting stop, and the glyph display holds still.
+The #now section is plain #000, its head line reading "What I'm building, and how I think." The widgets say little and show more: a glyph display, four rolling principle discs, availability with a dotted portrait, and client notes. They are solid Now Card (#141414) with the 1px Now card edge, no blur and no hover lift, and use white secondary buttons and translucent white pager buttons. Under reduced motion the rings stop rolling, the glyph display holds still, and the portrait stays white.
 
 ### Chapter Dock
 The reader's floating dark-glass control, hidden until chapters are on screen: previous and next buttons in white at 12% (22% on hover), a row of chapter dots (the current one a 16px Logo Green bar) and a mono chapter label. The arrow keys step chapters too.
@@ -372,6 +371,13 @@ The hero canvas, labelled "Vimal, written in lit dots": a sparse grid of faint d
 - **Fit:** the word is rasterised in Geist 600 and fitted to the measured room between the nav pill (76px down, 64px on phones) and the top of the headline (less 32px, or 20px on phones). Its height is the smaller of 80% of that room and 32% of the rows, and if it is too wide the whole word is scaled down evenly (to 84% of the columns, 92% on phones), never squeezed sideways, so it never runs under the text.
 - **Arrival:** lit dots switch on in a stepped scatter over about 0.9s, each at its own random moment, with no fade.
 - **Lens:** a lens follows a mouse pointer, swelling the lit dots and revealing the fine grid beneath. Touch input does not move the lens. Under reduced motion the word is simply on.
+
+## Accessibility & Security
+
+- **Audit:** axe-core at WCAG 2.2 AA runs clean on home (1440 and 390 wide) and on the three case studies. Contrast fixes: `.cs-browserbar-url` at #555, `.cs-strike li` at #4a4a4a, `.cs-type-spec` at Ink 3.
+- **Content Security Policy:** the production build injects a CSP meta and a referrer meta (`vite.config.ts`, the `securityMeta` plugin): `default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' data: https://fonts.gstatic.com; img-src 'self' data: blob:; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'; upgrade-insecure-requests`, with referrer policy `strict-origin-when-cross-origin`. It applies to builds only, because the dev server needs inline scripts.
+- **Links:** every external link opens with `rel="noopener noreferrer"`.
+- **Theme colour:** `theme-color` is #000000.
 
 ## Do's and Don'ts
 
@@ -388,7 +394,7 @@ The hero canvas, labelled "Vimal, written in lit dots": a sparse grid of faint d
 - **Do** keep the menu and résumé tappable in the island on touch screens.
 - **Do** build dialogs (menu, quick view) on native `<dialog>` with a scrim and Escape to dismiss.
 - **Do** turn the focus ring white on black grounds and inside Right now, and keep it ink everywhere else.
-- **Do** honour reduced motion (end states only, the lit name simply on, system cursor, glyph display, principle rings and process pulse holding still) and reduced transparency (opaque glass, no blur).
+- **Do** honour reduced motion (end states only, the lit name simply on, system cursor, glyph display and principle rings holding still, the portrait staying white) and reduced transparency (opaque glass, no blur).
 
 ### Don't:
 - **Don't** put an eyebrow, kicker or label above a heading.
