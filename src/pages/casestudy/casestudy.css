@@ -574,159 +574,49 @@
 .cs-strike li { color: #4a4a4a; }
 .cs-type-spec { color: var(--ink-3); }
 
-/* ───────── evidence-tagged case study (VISE) ─────────
-   Every claim carries a status chip, so a reader can tell built work
-   from hypotheses and planned research at a glance. */
-.cs-ev {
-  display: inline-flex; align-items: center; gap: 6px; height: 22px; padding: 0 8px; border-radius: var(--r-btn);
-  font: 500 11px/1 var(--mono); letter-spacing: .05em; text-transform: uppercase; white-space: nowrap; vertical-align: middle;
-}
-.cs-ev--built      { background: var(--ink); color: #fff; }
-.cs-ev--hypothesis { background: var(--white); color: var(--ink); outline: 1px dashed var(--ink); outline-offset: -1px; }
-.cs-ev--planned    { background: #e2e2e2; color: var(--ink-2); }
-.cs-ev--open       { background: var(--white); color: var(--ink); box-shadow: inset 0 0 0 1px var(--ink); }
-.cs-ev--open::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--red-ink); }
-
-/* the legend sits on the black stage, so its chips invert */
-.cs-legend { list-style: none; display: flex; flex-wrap: wrap; justify-content: center; gap: 10px 22px; max-width: 920px; margin: 18px auto 0; color: var(--on-stage-2); font-size: 14px; }
-.cs-legend li { display: inline-flex; align-items: center; gap: 8px; }
-.cs-legend .cs-ev--built { background: #fff; color: var(--ink); }
-.cs-legend .cs-ev--hypothesis, .cs-statement .cs-ev--hypothesis { background: transparent; color: #fff; outline-color: #fff; }
-.cs-legend .cs-ev--planned { background: #333; color: #fff; }
-.cs-legend .cs-ev--open { background: transparent; color: #fff; box-shadow: inset 0 0 0 1px #fff; }
-.cs-legend .cs-ev--open::before { background: var(--red); }
-
-.cs-btn--on-stage { color: #fff; box-shadow: inset 0 0 0 1px #fff; }
-.cs-btn--on-stage:hover { background: #fff; color: var(--ink); }
+/* ───────── short, story-led case study (VISE) ───────── */
+.cs-p--lead { font: 400 clamp(22px, 2.2vw, 28px)/1.35 var(--serif); letter-spacing: -.015em; color: var(--ink); }
+.cs-p--lead strong { font-weight: 400; }
 .cs-actions--left { justify-content: flex-start; }
 
-/* hypotheses */
-.cs-hyp { list-style: none; display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; }
-.cs-hyp-card { display: flex; flex-direction: column; gap: 10px; padding: 22px; border-radius: var(--r-card); background: var(--white); }
-.cs-hyp-top { display: flex; align-items: center; justify-content: space-between; }
-.cs-hyp-num { font: 500 13px/1 var(--mono); color: var(--ink-3); }
-.cs-hyp-card h3 { font: 400 22px/1.2 var(--serif); letter-spacing: -.015em; }
-.cs-hyp-card p { font-size: 15px; line-height: 1.6; color: var(--ink-2); }
-.cs-hyp-test { margin-top: auto; padding-top: 12px; border-top: 1px solid var(--hair); }
-.cs-hyp-test span, .cs-row-where, .cs-empty-k, .cs-jobs span, .cs-task dt, .cs-issue dt {
-  font: 500 11px/1.4 var(--mono); letter-spacing: .05em; text-transform: uppercase; color: var(--ink-3);
+/* the gap, said once and big */
+.cs-statement { margin-top: 28px; padding: 28px; border-radius: var(--r-card); background: var(--stage); color: #fff; }
+.cs-statement-k { font: 500 12px/1 var(--mono); letter-spacing: .05em; text-transform: uppercase; color: #a8f83a; }
+.cs-statement-q { margin-top: 12px; font: 400 clamp(22px, 2.4vw, 30px)/1.3 var(--serif); letter-spacing: -.015em; }
+.cs-sources { margin-top: 14px; font: 500 12px/1.6 var(--mono); color: var(--ink-3); }
+.cs-sources a { color: var(--ink); text-decoration: underline; text-underline-offset: 3px; }
+
+/* problem → product, with "now" marking where the project really is */
+.cs-route { list-style: none; display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 6px; margin-bottom: 24px; }
+.cs-route li { display: flex; flex-direction: column; gap: 6px; padding: 16px 14px; border-radius: var(--r-card); background: var(--white); }
+.cs-route li.is-now { background: var(--stage); color: #fff; }
+.cs-route-num { font: 500 12px/1 var(--mono); color: var(--ink-3); }
+.cs-route li.is-now .cs-route-num, .cs-route li.is-now .cs-route-note { color: var(--on-stage-2); }
+.cs-route-name { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; font: 400 20px/1.1 var(--serif); }
+.cs-route-name em { padding: 3px 6px; border-radius: var(--r-btn); background: #a8f83a; color: #000; font: 500 10px/1 var(--mono); font-style: normal; letter-spacing: .05em; text-transform: uppercase; }
+.cs-route-note { font-size: 13.5px; line-height: 1.45; color: var(--ink-3); }
+
+/* key features: phone on the left, accordion on the right */
+.cs-feature { display: grid; grid-template-columns: minmax(0, 260px) minmax(0, 1fr); gap: 48px; align-items: center; }
+.cs-acc { list-style: none; border-top: 1px solid var(--hair); }
+.cs-acc li { border-bottom: 1px solid var(--hair); }
+.cs-acc button {
+  display: flex; align-items: center; gap: 14px; width: 100%; padding: 22px 0; border: 0; background: none; cursor: pointer;
+  color: var(--ink-3); font: 400 clamp(22px, 2.2vw, 28px)/1.2 var(--serif); letter-spacing: -.015em; text-align: left;
+  transition: color .2s var(--ease);
 }
-.cs-hyp-test span { display: block; margin-bottom: 4px; }
+.cs-acc button:hover, .cs-acc .is-open button { color: var(--ink); }
+.cs-acc button:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+.cs-acc p { max-width: 52ch; padding: 0 0 24px 32px; font-size: 17px; line-height: 1.65; color: var(--ink-2); }
 
-/* label / value rows: methods, privacy answers, metrics */
-.cs-rows { margin-top: 24px; border-top: 1px solid var(--ink); }
-.cs-row { display: grid; grid-template-columns: minmax(0, 220px) minmax(0, 1fr) auto; gap: 8px 20px; align-items: baseline; padding: 16px 0; border-bottom: 1px solid var(--hair); }
-.cs-row-k { font-size: 16px; font-weight: 600; color: var(--ink); }
-.cs-row-v { font-size: 16px; line-height: 1.6; color: var(--ink-2); }
-.cs-row--stack { grid-template-columns: minmax(0, 1fr); gap: 4px; }
-.cs-row--stack .cs-row-k { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px; }
-.cs-row-where { text-transform: none; letter-spacing: .01em; font-size: 12px; }
-
-/* a designed empty state for findings that don't exist yet */
-.cs-empty { max-width: 760px; margin-top: 28px; padding: 28px; border-radius: var(--r-card); outline: 1.5px dashed var(--ink-3); outline-offset: -1.5px; color: var(--ink-2); }
-.cs-empty-h { margin: 8px 0; font: 400 26px/1.15 var(--serif); letter-spacing: -.015em; color: var(--ink); }
-.cs-empty p:last-child { font-size: 16px; line-height: 1.6; }
-
-/* phone beside text */
-.cs-split { display: grid; grid-template-columns: minmax(0, 240px) minmax(0, 1fr); gap: 32px; align-items: start; margin-top: 8px; }
-.cs-split .cs-rows { margin-top: 0; }
-.cs-decision.cs-decision--split { grid-template-columns: minmax(0, 240px) minmax(0, 1fr); align-items: start; }
-.cs-split .cs-fig--phone, .cs-decision--split .cs-fig--phone { position: sticky; top: 96px; }
-
-/* problem statement + jobs */
-.cs-statement { padding: 28px; border-radius: var(--r-card); background: var(--stage); color: #fff; }
-.cs-statement-k { display: flex; align-items: center; gap: 10px; font: 500 12px/1 var(--mono); letter-spacing: .05em; text-transform: uppercase; color: var(--on-stage-2); }
-.cs-statement-q { margin-top: 14px; font: 400 clamp(22px, 2.4vw, 30px)/1.3 var(--serif); letter-spacing: -.015em; }
-.cs-jobs { list-style: none; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; }
-.cs-jobs li { padding: 20px 22px; border-radius: var(--r-card); background: var(--white); font: 400 19px/1.4 var(--serif); color: var(--ink); }
-.cs-jobs span { margin-right: 4px; }
-.cs-jobs p + p { margin-top: 4px; }
-
-/* MoSCoW */
-.cs-prio { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
-.cs-prio-col { padding: 20px; border-radius: var(--r-card); background: var(--white); }
-.cs-prio-col:last-child { background: transparent; outline: 1px solid var(--hair); outline-offset: -1px; }
-.cs-prio-h { margin-bottom: 4px; padding-bottom: 12px; border-bottom: 1px solid var(--ink); font: 400 22px/1.1 var(--serif); }
-.cs-prio ul { list-style: none; }
-.cs-prio li { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 10px 0; border-bottom: 1px solid var(--hair); font-size: 15px; color: var(--ink-2); }
-.cs-prio li:last-child { border-bottom: 0; }
-
-/* the five tabs */
-.cs-tabs { list-style: none; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 8px; margin: 8px 0 28px; }
-.cs-tabs li { display: flex; flex-direction: column; gap: 6px; padding: 18px 16px; border-radius: var(--r-card); background: var(--stage); color: #fff; }
-.cs-tabs span { font: 500 12px/1 var(--mono); color: var(--on-stage-2); }
-.cs-tabs strong { font: 400 20px/1.1 var(--serif); }
-.cs-tabs em { font-style: normal; font-size: 14px; line-height: 1.45; color: var(--on-stage-2); }
-
-/* usability tasks + issue log */
-.cs-tasks { list-style: none; display: grid; gap: 12px; }
-.cs-task, .cs-issue { padding: 22px; border-radius: var(--r-card); background: var(--white); }
-.cs-task-h { display: flex; align-items: baseline; gap: 12px; font: 400 22px/1.2 var(--serif); letter-spacing: -.015em; }
-.cs-task-h span { font: 500 13px/1 var(--mono); color: var(--ink-3); }
-.cs-task dl, .cs-issue dl { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px 24px; margin-top: 16px; }
-.cs-task dt, .cs-issue dt { margin-bottom: 4px; }
-.cs-task dd, .cs-issue dd { font-size: 15px; line-height: 1.55; color: var(--ink-2); }
-.cs-steps { list-style: none; display: flex; flex-wrap: wrap; gap: 6px; margin: 4px 0 32px; }
-.cs-steps li { display: inline-flex; align-items: center; gap: 8px; height: 36px; padding: 0 14px 0 6px; border-radius: var(--r-btn); background: var(--white); font-size: 15px; color: var(--ink); }
-.cs-steps span { display: grid; place-items: center; width: 24px; height: 24px; border-radius: var(--r-btn); background: var(--ink); color: #fff; font: 500 12px/1 var(--mono); }
-.cs-issues { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 12px; margin: 20px 0 24px; }
-.cs-issue-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
-.cs-issue h4 { font: 400 20px/1.2 var(--serif); letter-spacing: -.01em; }
-.cs-issue dl { grid-template-columns: 1fr; }
-
-@media (max-width: 980px) {
-  .cs-tabs { grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); }
+@media (max-width: 1180px) {
+  .cs-route { grid-template-columns: repeat(4, minmax(0, 1fr)); }
 }
 @media (max-width: 760px) {
-  .cs-row { grid-template-columns: minmax(0, 1fr); }
-  .cs-row > .cs-ev { justify-self: start; }
-  .cs-split, .cs-decision.cs-decision--split { grid-template-columns: minmax(0, 1fr); }
-  .cs-split .cs-fig--phone, .cs-decision--split .cs-fig--phone { position: static; max-width: 240px; }
-  .cs-task dl { grid-template-columns: 1fr; }
-  .cs-legend { justify-content: flex-start; gap: 10px 16px; }
-  .cs-statement, .cs-empty { padding: 22px; }
-  .cs-prio { grid-template-columns: minmax(0, 1fr); }
-}
-/* "Reviewed": desk research done, in the logo green */
-.cs-ev--reviewed { background: #a8f83a; color: #000; }
-
-/* market review: one card per app, VISE first and inverted */
-.cs-apps { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 12px; margin-top: 24px; }
-.cs-app { display: flex; flex-direction: column; padding: 22px; border-radius: var(--r-card); background: var(--white); }
-.cs-app h3 { padding-bottom: 12px; border-bottom: 1px solid var(--ink); font: 400 22px/1.1 var(--serif); letter-spacing: -.015em; }
-.cs-app dl { display: grid; gap: 12px; margin-top: 14px; }
-.cs-app dt { margin-bottom: 3px; font: 500 11px/1.4 var(--mono); letter-spacing: .05em; text-transform: uppercase; color: var(--ink-3); }
-.cs-app dd { font-size: 14.5px; line-height: 1.55; color: var(--ink-2); }
-.cs-app--self { background: var(--stage); color: #fff; }
-.cs-app--self h3 { border-bottom-color: #a8f83a; }
-.cs-app--self dt { color: var(--on-stage-2); }
-.cs-app--self dd { color: #fff; }
-.cs-app-src { display: flex; flex-direction: column; gap: 6px; margin-top: auto; padding-top: 16px; }
-.cs-app-src a { display: inline-flex; align-items: center; gap: 4px; font: 500 12px/1.4 var(--mono); color: var(--ink); text-decoration: underline; text-underline-offset: 3px; }
-.cs-app-src a:hover { color: var(--ink-3); }
-
-/* expert review findings */
-.cs-findings { list-style: none; display: grid; gap: 12px; }
-.cs-finding { padding: 22px; border-radius: var(--r-card); background: var(--white); }
-.cs-finding-top { display: flex; align-items: center; gap: 12px; }
-.cs-finding h3 { font: 400 22px/1.2 var(--serif); letter-spacing: -.015em; }
-.cs-finding-where { margin-top: 6px; font: 500 12px/1.4 var(--mono); letter-spacing: .02em; color: var(--ink-3); }
-.cs-finding dl { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px 24px; margin-top: 14px; }
-.cs-finding dt { margin-bottom: 4px; font: 500 11px/1.4 var(--mono); letter-spacing: .05em; text-transform: uppercase; color: var(--ink-3); }
-.cs-finding dd { font-size: 15px; line-height: 1.55; color: var(--ink-2); }
-.cs-sev { flex-shrink: 0; display: inline-grid; place-items: center; height: 24px; padding: 0 8px; border-radius: var(--r-btn); font: 500 11px/1 var(--mono); letter-spacing: .05em; text-transform: uppercase; white-space: nowrap; }
-.cs-sev--3 { background: var(--ink); color: #fff; }
-.cs-sev--2 { background: #555; color: #fff; }
-.cs-sev--1 { background: #e2e2e2; color: var(--ink); }
-.cs-sev--q { background: var(--white); color: var(--ink); outline: 1px dashed var(--ink); outline-offset: -1px; }
-@media (max-width: 760px) {
-  .cs-finding dl { grid-template-columns: 1fr; }
-  .cs-finding-top { align-items: flex-start; flex-direction: column; gap: 8px; }
+  .cs-route { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .cs-feature { grid-template-columns: minmax(0, 1fr); gap: 24px; }
+  .cs-feature .cs-fig--phone { max-width: 220px; justify-self: center; }
+  .cs-statement { padding: 22px; }
+  .cs-acc p { padding-left: 0; }
 }
 
-/* the older ✓ / ○ glyphs outrank the dot markers above; keep only the dots */
-.cs-progress-list .is-done::before, .cs-progress-list .is-open::before { content: ""; }
-
-@media (max-width: 420px) {
-  .cs-dock-dots a { width: 9px; }   /* fourteen chapters still fit a 360px screen */
-}
