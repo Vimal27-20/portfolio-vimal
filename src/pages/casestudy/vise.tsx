@@ -1,4 +1,5 @@
-import { PiTrafficCone, PiArrowUpRight } from "react-icons/pi";
+import { useState } from "react";
+import { PiArrowUpRight, PiPlus, PiMinus } from "react-icons/pi";
 import { projects } from "../../data/projects";
 import CaseStudyLayout, { Figure, Section, type CsSection } from "./layout";
 
@@ -6,23 +7,47 @@ const IMG = `${import.meta.env.BASE_URL}img/vise`;
 const REPO = "https://github.com/PassionChips/Vise";
 
 const SECTIONS: CsSection[] = [
-  { id: "overview",     label: "Overview" },
-  { id: "architecture", label: "Architecture" },
-  { id: "stack",        label: "Tech stack" },
-  { id: "quality",      label: "Testing & CI" },
-  { id: "release",      label: "Release · V1" },
-  { id: "design",       label: "Design system" },
-  { id: "screens",      label: "App screens" },
+  { id: "problem",  label: "The problem" },
+  { id: "research", label: "Research & gap" },
+  { id: "process",  label: "The process" },
+  { id: "features", label: "Key features" },
+  { id: "design",   label: "Design system" },
+  { id: "build",    label: "How it works" },
+  { id: "next",     label: "Where it stands" },
 ];
 
-/* how one tap travels through the app, top to bottom (from the repo README) */
-const LAYERS = [
-  { name: "Screens",           tech: "React Native + Expo Router",  note: "Onboarding and 5 tabs: Dashboard, Transactions, Budgets, Reports, Settings." },
-  { name: "viseCore.ts",       tech: "TypeScript client",           note: "The only file in the app that talks to Rust. Typed mirrors of the Rust JSON types." },
-  { name: "Native bridge",     tech: "Expo module · Kotlin / Swift", note: "Passes JSON between JavaScript and the compiled Rust library." },
-  { name: "api → service",     tech: "Rust",                         note: "JSON in, JSON out. Every write is validated in Rust before it is saved." },
-  { name: "calculations",      tech: "Pure Rust",                    note: "Budget maths, analytics and a next-month spending prediction, with no database." },
-  { name: "repository → SQLite", tech: "Diesel + bundled SQLite",   note: "One query file per table; migrations run on connect. Data never leaves the device." },
+/* read from each company's own privacy policy and help pages, 20 Oct 2026 */
+const GAP_STATS = [
+  { num: "5/5", text: "budgeting apps reviewed keep your data on their own servers" },
+  { num: "5/5", text: "offer bank linking, often through a third party such as Plaid" },
+  { num: "30",  text: "days is a typical wait to delete your data, with backups kept longer" },
+];
+const SOURCES: [string, string][] = [
+  ["YNAB",       "https://www.ynab.com/privacy-policy"],
+  ["Monarch",    "https://www.monarch.com/privacy"],
+  ["Emma",       "https://emma-app.com/privacy"],
+  ["Goodbudget", "https://goodbudget.com/privacy/"],
+  ["Wallet",     "https://budgetbakers.com/en/privacy/"],
+];
+
+/* the route from problem to product; "now" marks where the project actually is */
+const STEPS = [
+  { name: "Problem",  note: "How much can I still spend this month?" },
+  { name: "Research", note: "Five apps and their privacy policies" },
+  { name: "Gap",      note: "No budget that stays on your phone" },
+  { name: "Define",   note: "Principles and priorities, being refined", now: true },
+  { name: "Design",   note: "13 flows and a token-based system" },
+  { name: "Build",    note: "A working Android app" },
+  { name: "Test",     note: "Expert review done, users next", now: true },
+];
+
+const FEATURES = [
+  { title: "What's left, first", img: "budgets", alt: "Budgets screen showing €573.10 left to spend",
+    text: "The biggest number on screen answers the real question: what can I still spend? Every budget says On track, Near limit or Over budget in words, not only colour." },
+  { title: "Add in seconds", img: "tx", alt: "Transactions screen grouped by day",
+    text: "Add a purchase from any tab. Spending is grouped by day, the way people remember it, and a slip is one tap from undo." },
+  { title: "Private by design", img: "welcome", alt: "Welcome screen: No bank login needed. Your data stays on this device.",
+    text: "No bank login, no account, no server. Everything stays on the phone, and you can export or delete all of it in one step." },
 ];
 
 const PHONES = [
@@ -34,48 +59,26 @@ const PHONES = [
   { src: "dash-dark", cap: "Dark mode" },
 ];
 
-const DONE = [
-  "Rust core: schema, migrations, budget maths, analytics, predictions",
-  "JSON API + typed TypeScript client",
-  "Onboarding saved atomically through the core",
-  "Every screen reads and writes real SQLite data (no demo data)",
-  "Android build + launch checked in CI on every PR",
-];
-const OPEN = [
-  "V1 Android testing with real users",
-  "iOS bridge testing (needs macOS)",
-];
-
 export default function ViseCaseStudy() {
   const project = projects.find(p => p.slug === "vise")!;
+  const [open, setOpen] = useState(0);
+  const feature = FEATURES[open];
 
   const header = (
     <header className="cs-header">
       <h1 className="cs-title">
         VISE
-        <span className="cs-title-sub">A budgeting app with <em>a Rust core.</em></span>
+        <span className="cs-title-sub">Budgeting that stays <em>on your phone.</em></span>
       </h1>
       <p className="cs-lede">
-        An offline-first budgeting app for iOS and Android. React Native on the outside, all the logic
-        and storage in Rust underneath. I work on it as a UX Engineer, from the design system through
-        to the code.
+        A simple budgeting app that tells you what you can still spend, without asking for your bank login.
       </p>
       <dl className="cs-meta">
         <div><dt>Role</dt><dd>{project.role}</dd></div>
         <div><dt>Team</dt><dd>Me + a friend</dd></div>
-        <div><dt>Stack</dt><dd>React Native · Expo · Rust</dd></div>
-        <div><dt>Status</dt><dd className="live">V1 · Android testing</dd></div>
+        <div><dt>Timeline</dt><dd>2026 · ongoing</dd></div>
+        <div><dt>Status</dt><dd className="live">Defining · V1 testing</dd></div>
       </dl>
-      <div className="cs-actions">
-        <a href={REPO} target="_blank" rel="noopener noreferrer" className="cs-btn">View the code on GitHub <PiArrowUpRight size={17} aria-hidden /></a>
-      </div>
-      <div className="cs-wip-note" role="note">
-        <span className="cs-wip-note-icon" aria-hidden><PiTrafficCone size={22} /></span>
-        <p>
-          <strong>V1 is in Android testing.</strong> We're running testing and production builds with real
-          users. Screens and details below may still change before release.
-        </p>
-      </div>
       <Figure src={`${IMG}/cover.webp`} alt="VISE budgets and dashboard screens in light and dark mode" className="cs-cover" />
     </header>
   );
@@ -83,75 +86,84 @@ export default function ViseCaseStudy() {
   return (
     <CaseStudyLayout project={project} name="VISE" sections={SECTIONS} header={header}>
 
-      <Section id="overview" index={1} label="Overview" title="Everything stays on the phone">
-        <p className="cs-p">
-          Track income and spending, set monthly and per-category limits, import transactions from CSV and see
-          where the month is heading. There is no server, no account and no bank login: everything lives in
-          SQLite on the device.
+      <Section id="problem" index={1} label="The problem" title="It started with one question">
+        <p className="cs-p cs-p--lead">
+          <strong>“How much can I still spend this month?”</strong> Small daily spends add up unnoticed, and by
+          mid-month the answer is a guess.
         </p>
-        <div className="cs-stats">
-          <div><strong>0</strong><span>servers: offline-first by design</span></div>
-          <div><strong>1</strong><span>TypeScript file calls Rust</span></div>
-          <div><strong>6</strong><span>CI workflows on every PR</span></div>
-          <div><strong>13</strong><span>end-to-end test flows</span></div>
-        </div>
+        <p className="cs-p">
+          Budgeting apps promise that answer, but most start by asking for your bank login, and it's rarely clear
+          where your money data goes after that.
+        </p>
       </Section>
 
-      <Section id="architecture" index={2} label="Architecture" title="How the app is layered">
-        <p className="cs-p">
-          Each layer only calls the one below it. The UI never does budget maths or touches the database,
-          so the same tested core runs on both platforms.
+      <Section id="research" index={2} label="Research & gap" title={<>What the research <em>found.</em></>}>
+        <p className="cs-p">I reviewed five popular budgeting apps through their own privacy policies and help pages.</p>
+        <div className="cs-stats">
+          {GAP_STATS.map(s => <div key={s.text}><strong>{s.num}</strong><span>{s.text}</span></div>)}
+        </div>
+        <div className="cs-statement">
+          <p className="cs-statement-k">The gap</p>
+          <p className="cs-statement-q">None of them keeps your money data only on your phone. That's the space VISE is built for.</p>
+        </div>
+        <p className="cs-sources">
+          Sources, read Oct 2026:{" "}
+          {SOURCES.map(([name, url], i) => (
+            <span key={name}>{i > 0 && " · "}<a href={url} target="_blank" rel="noopener noreferrer">{name}</a></span>
+          ))}
         </p>
-        <ol className="cs-spine">
-          {LAYERS.map((l, i) => (
-            <li key={l.name}>
-              <span className="cs-spine-num">{String(i + 1).padStart(2, "0")}</span>
-              <div className="cs-spine-body">
-                <p className="cs-spine-q">{l.name}</p>
-                <p className="cs-spine-name">{l.tech}</p>
-                <p className="cs-spine-a">{l.note}</p>
-              </div>
+      </Section>
+
+      <Section id="process" index={3} label="The process" title={<>From problem <em>to product.</em></>}>
+        <ol className="cs-route">
+          {STEPS.map((s, i) => (
+            <li key={s.name} className={s.now ? "is-now" : undefined}>
+              <span className="cs-route-num">{String(i + 1).padStart(2, "0")}</span>
+              <p className="cs-route-name">{s.name}{s.now && <em>Now</em>}</p>
+              <p className="cs-route-note">{s.note}</p>
             </li>
           ))}
         </ol>
+        <p className="cs-p">
+          The app was built fast to make the idea real. Now the expert review has sent it back to Define,
+          to sharpen the problem before testing with users.
+        </p>
       </Section>
 
-      <Section id="stack" index={3} label="Tech stack" title="What it's built with">
-        <div className="cs-cards">
-          <div className="cs-card"><h3>App</h3><p>React Native, Expo, Expo Router, TypeScript, react-native-svg for charts.</p></div>
-          <div className="cs-card"><h3>Core</h3><p>Rust (2024 edition), Diesel ORM, bundled SQLite, exact money maths in cents.</p></div>
-          <div className="cs-card"><h3>Bridge & tooling</h3><p>Expo native module in Kotlin and Swift, shell scripts that cross-compile Rust for Android and iOS.</p></div>
+      <Section id="features" index={4} label="Key features" title="Three key features">
+        <div className="cs-feature">
+          <Figure key={feature.img} src={`${IMG}/${feature.img}.webp`} alt={feature.alt} frame="phone" />
+          <ul className="cs-acc">
+            {FEATURES.map((f, i) => (
+              <li key={f.title} className={i === open ? "is-open" : undefined}>
+                <button type="button" aria-expanded={i === open} aria-controls={`feat-${i}`} onClick={() => setOpen(i)}>
+                  {i === open ? <PiMinus size={18} aria-hidden /> : <PiPlus size={18} aria-hidden />}
+                  {f.title}
+                </button>
+                <p id={`feat-${i}`} hidden={i !== open}>{f.text}</p>
+              </li>
+            ))}
+          </ul>
         </div>
       </Section>
 
-      <Section id="quality" index={4} label="Testing & CI" title="How it's tested">
-        <ul className="cs-list">
-          <li><strong>Rust tests:</strong> unit tests for the calculations, a persistence test that reopens a real SQLite file, and a contract test against the JSON API shapes.</li>
-          <li><strong>App tests (Vitest):</strong> the bridge client, the onboarding payload, the API contract, and guards against demo data or silent fallbacks.</li>
-          <li><strong>End-to-end (Maestro):</strong> 13 flows drive the real app on an emulator, from onboarding and transactions to budgets, settings, CSV export and data surviving a restart.</li>
-          <li><strong>CI on every PR:</strong> Rust tests, clippy with zero warnings, rustfmt, TypeScript type-check, app tests, and a full Android build that launches on an emulator.</li>
-        </ul>
-      </Section>
-
-      <Section id="release" index={5} label="Release · V1" title={<>V1 in <em>Android testing.</em></>}>
+      <Section id="design" index={5} label="Design system" title="A design system for money">
         <p className="cs-p">
-          V1 is being tested on Android with real users, across testing and production builds. iOS follows once
-          the native bridge is verified on a Mac.
+          Manrope for the interface, IBM Plex Mono for every amount so figures line up. Colours are named by
+          meaning, and spending stays neutral: red is kept for going over budget.
         </p>
-        <ul className="cs-progress-list">
-          {DONE.map(d => <li key={d} className="is-done">{d}</li>)}
-          {OPEN.map(d => <li key={d} className="is-open">{d}</li>)}
-        </ul>
+        <div className="cs-duo">
+          <Figure src={`${IMG}/flows.webp`} alt="Thirteen VISE user flows with decision points and error paths" caption="13 user flows" />
+          <Figure src={`${IMG}/colour.webp`} alt="VISE semantic colour tokens" caption="Semantic colour, light and dark" />
+        </div>
       </Section>
 
-      <Section id="design" index={6} label="Design system" title="Design tokens from Figma to code">
+      <Section id="build" index={6} label="How it works" title="How it works">
         <p className="cs-p">
-          Colours, spacing, radii and type are defined in Figma and mirrored in a single <code>tokens.ts</code>,
-          so the components in the app match the design system one-to-one, in light and dark.
+          <strong>VISE is more than a prototype: it's a working Android app.</strong> As UX Engineer I take it from
+          Figma to code. The screens run on a Rust core with the database on the phone, so the privacy promise is
+          built in, not just written down.
         </p>
-      </Section>
-
-      <Section id="screens" index={7} label="App screens" title="The app today.">
         <div className="cs-stage">
           <span className="cs-wip-tag">UI not final</span>
           <ol className="cs-phones">
@@ -162,6 +174,20 @@ export default function ViseCaseStudy() {
               </li>
             ))}
           </ol>
+        </div>
+      </Section>
+
+      <Section id="next" index={7} label="Where it stands" title={<>Not finished, <em>on purpose.</em></>}>
+        <p className="cs-p">
+          An expert review of the designs found nine things to fix. The biggest: the dashboard and the budgets
+          screen show two different “left” numbers that are easy to confuse.
+        </p>
+        <p className="cs-p">
+          Next come user interviews and a beta with Android testers, to check the core bet: <strong>will people
+          log spending by hand if it only takes seconds?</strong>
+        </p>
+        <div className="cs-actions cs-actions--left">
+          <a href={REPO} target="_blank" rel="noopener noreferrer" className="cs-btn cs-btn--ghost">View the code <PiArrowUpRight size={17} aria-hidden /></a>
         </div>
       </Section>
 
