@@ -46,6 +46,19 @@ export const projects: Project[] = [
     caseStudy: "/work/flex-academy",
   },
   {
+    img:      `${import.meta.env.BASE_URL}img/assist.png`,
+    alt:      "Assist Now",
+    tag:      "UX Redesign",
+    title:    "Assist Now",
+    desc:     "Redesign of an on-demand assistance platform improving clarity, accessibility, and real-time interaction flow.",
+    tags:     ["Dashboard", "Accessibility"],
+    slug:     "assist-now",
+    year:     "2023",
+    role:     "UX/UI Designer",
+    duration: "5 weeks",
+    link:     "https://www.behance.net/gallery/217274669/ASSIST-NOW",
+  },
+  {
     img: `${import.meta.env.BASE_URL}img/hybrid.png`,
     alt:      "Hybrid Work Planner",
     tag:      "Enterprise UX",
@@ -98,20 +111,7 @@ export const projects: Project[] = [
     duration: "10 weeks",
     link:     "https://www.behance.net/gallery/236589417/Enhancing-Gardening-with-Smart-Tech-and-Design",
   },
-  {
-    img:      `${import.meta.env.BASE_URL}img/assist.png`,
-    alt:      "Assist Now",
-    tag:      "UI Concept · Enterprise",
-    title:    "Assist Now",
-    desc:     "A concept that gives the ServiceNow service desk a new skin: clearer numbers, a visual analytics dashboard, and light and dark modes.",
-    tags:     ["ServiceNow", "Dashboard", "Data Visualisation", "Dark Mode"],
-    slug:     "assist-now",
-    year:     "2023",
-    role:     "UX/UI Designer",
-    duration: "5 weeks",
-    link:     "https://www.behance.net/gallery/217274669/ASSIST-NOW",
-    caseStudy: "/work/assist-now",
-  },
+ 
 ];
 
 /* ── categories for the project filters ── */
@@ -124,7 +124,7 @@ const CATEGORY_BY_SLUG: Record<string, Category> = {
   "balanci":             "Mobile",
   "mindful-moments":     "Mobile",
   "iot-smart-pot":       "IoT",
-  "assist-now":          "Enterprise",
+  "assist-now":          "Web",
   "vise":                "Mobile",
 };
 export const categoryOf = (p: Project): Category => CATEGORY_BY_SLUG[p.slug] ?? "Web";
