@@ -101,15 +101,16 @@ export const projects: Project[] = [
   {
     img:      `${import.meta.env.BASE_URL}img/assist.png`,
     alt:      "Assist Now",
-    tag:      "UX Redesign",
+    tag:      "Redesign Concept · Enterprise",
     title:    "Assist Now",
-    desc:     "Redesign of an on-demand assistance platform improving clarity, accessibility, and real-time interaction flow.",
-    tags:     ["Dashboard", "Accessibility"],
+    desc:     "An IT service desk dashboard, redesigned around the work: an SLA-first queue plus two new feature concepts, with ServiceNow as the reference.",
+    tags:     ["Redesign", "Dashboard", "Accessibility", "Feature Concepts"],
     slug:     "assist-now",
     year:     "2023",
     role:     "UX/UI Designer",
     duration: "5 weeks",
     link:     "https://www.behance.net/gallery/217274669/ASSIST-NOW",
+    caseStudy: "/work/assist-now",
   },
 ];
 
@@ -123,7 +124,7 @@ const CATEGORY_BY_SLUG: Record<string, Category> = {
   "balanci":             "Mobile",
   "mindful-moments":     "Mobile",
   "iot-smart-pot":       "IoT",
-  "assist-now":          "Web",
+  "assist-now":          "Enterprise",
   "vise":                "Mobile",
 };
 export const categoryOf = (p: Project): Category => CATEGORY_BY_SLUG[p.slug] ?? "Web";
