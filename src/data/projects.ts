@@ -101,10 +101,10 @@ export const projects: Project[] = [
   {
     img:      `${import.meta.env.BASE_URL}img/assist.png`,
     alt:      "Assist Now",
-    tag:      "Redesign Concept · Enterprise",
+    tag:      "UI Concept · Enterprise",
     title:    "Assist Now",
-    desc:     "An IT service desk dashboard, redesigned around the work: an SLA-first queue plus two new feature concepts, with ServiceNow as the reference.",
-    tags:     ["Redesign", "Dashboard", "Accessibility", "Feature Concepts"],
+    desc:     "A concept that gives the ServiceNow service desk a new skin: clearer numbers, a visual analytics dashboard, and light and dark modes.",
+    tags:     ["ServiceNow", "Dashboard", "Data Visualisation", "Dark Mode"],
     slug:     "assist-now",
     year:     "2023",
     role:     "UX/UI Designer",

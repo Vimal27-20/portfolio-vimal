@@ -6,52 +6,46 @@ const IMG = `${import.meta.env.BASE_URL}img/assist`;
 const BEHANCE = "https://www.behance.net/gallery/217274669/ASSIST-NOW";
 
 const SECTIONS: CsSection[] = [
-  { id: "original",  label: "The original" },
-  { id: "problem",   label: "Looking back" },
-  { id: "reference", label: "Reference" },
-  { id: "process",   label: "The process" },
-  { id: "redesign",  label: "The redesign" },
-  { id: "features",  label: "New features" },
-  { id: "next",      label: "Where it stands" },
+  { id: "idea",     label: "The idea" },
+  { id: "insights", label: "My insights" },
+  { id: "flow",     label: "UX flow" },
+  { id: "ui",       label: "UI design" },
+  { id: "system",   label: "Design system" },
+  { id: "next",     label: "Reflection" },
 ];
 
-/* audit of the original boards; the contrast figure is measured from its palette */
-const ISSUES = [
-  "Two menu items look selected at once: Dashboard and CAD.",
-  "Rising breaches show as “+24%”, styled like good news. All three cards repeat “+14% inc”.",
-  "Stacked percentage bars without totals: 60% of what?",
-  "Status relies on colour alone, in cards and charts.",
-  "A large profile card takes a fifth of the screen, while tickets about to breach aren't shown at all.",
-  "White on the brand blue #397EFD measures 3.77:1, under the 4.5:1 WCAG AA minimum.",
+/* what I noticed in ServiceNow, and the answer in Assist Now */
+const INSIGHTS = [
+  { saw: "Key numbers sit inside long lists and reports.",       did: "Three cards up top: total requests, incidents and breached SLAs." },
+  { saw: "SLA breaches are easy to notice too late.",            did: "A breached count on the home screen, and an activity feed that flags requests about to breach." },
+  { saw: "Tickets, meetings and messages live in separate places.", did: "Events and messages sit beside the work, on the same screen." },
+  { saw: "Seeing trends means building a report first.",         did: "A ready-made Customer Analytical Dashboard (CAD) with charts by type, source and priority." },
+  { saw: "Agents look at the screen all day.",                    did: "Full light and dark modes." },
 ];
 
-const PATTERNS = [
-  { title: "Work first",
-    text: "Agent workspaces open on lists and records, with a side panel for context.",
-    src: "https://www.servicenow.com/docs/bundle/zurich-it-service-management/page/product/service-operations-workspace/concept/view-inc-record-info-contextual-sidepanel.html" },
-  { title: "SLA time is always visible",
-    text: "Timers turn yellow when a ticket is in danger of breaching, and red once it has.",
-    src: "https://www.servicenow.com/docs/r/Recj91eIo1YnsOabQjgskg/MYx4Qo6hkU_sr430_rV3uQ" },
-  { title: "Help in context",
-    text: "Now Assist summarises an incident. Predictive Intelligence suggests the assignment group and similar incidents.",
-    src: "https://www.servicenow.com/docs/r/it-service-management/predictive-intelligence-for-incident.html" },
+/* the menu, grouped the way the design groups it */
+const IA = [
+  { group: "Menu",         items: ["Dashboard", "CAD", "Calendar"] },
+  { group: "Requirement",  items: ["Request", "Incidents", "Status"] },
+  { group: "Organization", items: ["SLA reports", "Keep", "Settings"] },
 ];
 
-const STEPS = [
-  { name: "Audit",     note: "Six issues in the original" },
-  { name: "Benchmark", note: "How ServiceNow handles the same jobs" },
-  { name: "Reframe",   note: "Counts → the next ticket to work on" },
-  { name: "Redesign",  note: "A work-first home" },
-  { name: "Concepts",  note: "Two new features" },
-  { name: "Test",      note: "With service desk agents", now: true },
+/* a service desk agent's main path through the app */
+const FLOW = [
+  { name: "Dashboard", note: "See requests, incidents and breaches at a glance" },
+  { name: "Spot",      note: "The activity feed flags a request about to breach" },
+  { name: "Open",      note: "Go to Request or Incidents to work on it" },
+  { name: "Update",    note: "Change its status as it moves along" },
+  { name: "Review",    note: "Check SLA reports for breaches" },
+  { name: "Analyse",   note: "Use CAD for trends by type, source and priority" },
 ];
 
-const CHANGES = [
-  { k: "One home",        v: "“My work” is the only selected item, and the menu is grouped by job: Work, Insights, Help." },
-  { k: "SLA first",       v: "The queue is sorted by time left, with a timer on every row." },
-  { k: "Honest numbers",  v: "Four counts an agent acts on, each saying which direction is good." },
-  { k: "Never colour alone", v: "Every status has a word and an icon. The original pastels stay, as status backgrounds." },
-  { k: "Accessible blue", v: "#1D5BD8 gives white text 5.93:1. Inter replaces Poppins for denser tables of numbers." },
+/* ServiceNow area → where it lives in Assist Now */
+const MAP = [
+  { sn: "Incident Management", an: "Incidents, plus the incident count on the dashboard" },
+  { sn: "Request Management",  an: "Request, plus the request count and activity feed" },
+  { sn: "Service Level Management", an: "Breached state card and SLA reports" },
+  { sn: "Reporting and analytics",  an: "Customer Analytical Dashboard (CAD)" },
 ];
 
 export default function AssistNowCaseStudy() {
@@ -61,118 +55,124 @@ export default function AssistNowCaseStudy() {
     <header className="cs-header">
       <h1 className="cs-title">
         Assist Now
-        <span className="cs-title-sub">An IT service desk, redesigned <em>around the work.</em></span>
+        <span className="cs-title-sub">A new skin for <em>ServiceNow.</em></span>
       </h1>
       <p className="cs-lede">
-        I first designed Assist Now as a one-week UI project. Looking back, it showed the numbers but not the work.
-        This is a redesign concept, using ServiceNow as the reference.
+        A concept: the ServiceNow service desk, redesigned with a cleaner, more visual interface shaped by my own insights.
       </p>
       <dl className="cs-meta">
         <div><dt>Role</dt><dd>{project.role}</dd></div>
-        <div><dt>Original</dt><dd>1-week UI project</dd></div>
-        <div><dt>Redesign</dt><dd>Concept · 2026</dd></div>
-        <div><dt>Reference</dt><dd>ServiceNow</dd></div>
+        <div><dt>Timeline</dt><dd>1 week</dd></div>
+        <div><dt>Type</dt><dd>UI concept</dd></div>
+        <div><dt>Tools</dt><dd>Figma · Photoshop</dd></div>
       </dl>
       <div className="cs-actions">
-        <a href={BEHANCE} target="_blank" rel="noopener noreferrer" className="cs-btn">See the original on Behance <PiArrowUpRight size={17} aria-hidden /></a>
+        <a href={BEHANCE} target="_blank" rel="noopener noreferrer" className="cs-btn">View on Behance <PiArrowUpRight size={17} aria-hidden /></a>
       </div>
-      <Figure src={`${IMG}/n-home.webp`} alt="Redesigned Assist Now home: a queue sorted by SLA time left" className="cs-cover" />
+      <Figure src={`${IMG}/cover.webp`} alt="Assist Now dashboard in light and dark mode on a tablet" className="cs-cover" />
     </header>
   );
 
   return (
     <CaseStudyLayout project={project} name="Assist Now" sections={SECTIONS} header={header}>
 
-      <Section id="original" index={1} label="The original" title="Where it started">
-        <p className="cs-p">
-          A dashboard for service desk teams: totals for requests, incidents and breaches, plus a Customer Analytical
-          Dashboard of charts. Light and dark mode, designed in a week.
+      <Section id="idea" index={1} label="The idea" title="Same jobs, a new skin">
+        <p className="cs-p cs-p--lead">
+          The simplest way to manage timelines, monitor deadlines, and track assigned tasks and meetings.
         </p>
-        <div className="cs-duo">
-          <Figure src={`${IMG}/o-dash.webp`} alt="Original Assist Now dashboard, light mode" caption="Dashboard" />
-          <Figure src={`${IMG}/o-cad.webp`} alt="Original Customer Analytical Dashboard" caption="Customer Analytical Dashboard" />
-        </div>
+        <p className="cs-p">
+          Assist Now keeps what a ServiceNow service desk does: requests, incidents and SLAs. It changes how that
+          work looks and feels, with graphs, clear numbers and everything an agent needs on one screen.
+        </p>
+        <p className="cs-sources">A concept for a portfolio. Not affiliated with or built for ServiceNow.</p>
       </Section>
 
-      <Section id="problem" index={2} label="Looking back" title={<>It showed the numbers, <em>not the work.</em></>}>
-        <p className="cs-p cs-p--lead">An agent opens this screen to find out what to do next. The original couldn't tell them.</p>
-        <ul className="cs-list">{ISSUES.map(i => <li key={i}>{i}</li>)}</ul>
+      <Section id="insights" index={2} label="My insights" title={<>What I noticed, <em>and what I changed.</em></>}>
+        <dl className="cs-changes">
+          {INSIGHTS.map(i => <div key={i.saw}><dt>{i.saw}</dt><dd>{i.did}</dd></div>)}
+        </dl>
       </Section>
 
-      <Section id="reference" index={3} label="Reference" title="What ServiceNow does well">
-        <p className="cs-p">ServiceNow is the standard for IT service management. I studied its documentation for three patterns:</p>
+      <Section id="flow" index={3} label="UX flow" title="The UX flow">
+        <h3 className="cs-h3">Information architecture</h3>
+        <p className="cs-p">The menu is grouped into three areas: everyday views, the tickets themselves, and team tools.</p>
         <div className="cs-cards">
-          {PATTERNS.map(p => (
-            <div key={p.title} className="cs-card">
-              <h3>{p.title}</h3>
-              <p>{p.text}</p>
-              <a className="cs-card-src" href={p.src} target="_blank" rel="noopener noreferrer">ServiceNow docs <PiArrowUpRight size={12} aria-hidden /></a>
+          {IA.map(g => (
+            <div key={g.group} className="cs-card">
+              <h3>{g.group}</h3>
+              <ul className="cs-ia">{g.items.map(i => <li key={i}>{i}</li>)}</ul>
             </div>
           ))}
         </div>
-      </Section>
 
-      <Section id="process" index={4} label="The process" title={<>From audit <em>to concept.</em></>}>
+        <h3 className="cs-h3">An agent's main path</h3>
         <ol className="cs-route">
-          {STEPS.map((s, i) => (
-            <li key={s.name} className={s.now ? "is-now" : undefined}>
+          {FLOW.map((s, i) => (
+            <li key={s.name}>
               <span className="cs-route-num">{String(i + 1).padStart(2, "0")}</span>
-              <p className="cs-route-name">{s.name}{s.now && <em>Next</em>}</p>
+              <p className="cs-route-name">{s.name}</p>
               <p className="cs-route-note">{s.note}</p>
             </li>
           ))}
         </ol>
-        <div className="cs-statement">
-          <p className="cs-statement-k">The reframe</p>
-          <p className="cs-statement-q">From “how many tickets are there?” to “which ticket needs me next?”</p>
-        </div>
-      </Section>
 
-      <Section id="redesign" index={5} label="The redesign" title="A home built around the queue">
-        <div className="cs-duo">
-          <Figure src={`${IMG}/o-dash.webp`} alt="Before: original dashboard" caption="Before" />
-          <Figure src={`${IMG}/n-home.webp`} alt="After: redesigned home with an SLA-sorted queue" caption="After" />
-        </div>
+        <h3 className="cs-h3">From ServiceNow to Assist Now</h3>
         <dl className="cs-changes">
-          {CHANGES.map(c => <div key={c.k}><dt>{c.k}</dt><dd>{c.v}</dd></div>)}
+          {MAP.map(m => <div key={m.sn}><dt>{m.sn}</dt><dd>{m.an}</dd></div>)}
         </dl>
       </Section>
 
-      <Section id="features" index={6} label="New features" title={<>Two new <em>feature concepts.</em></>}>
+      <Section id="ui" index={4} label="UI design" title="The screens">
         <div className="cs-decision">
-          <Figure src={`${IMG}/n-radar.webp`} alt="Breach radar: tickets likely to breach in the next four hours on a timeline, with reasons and a suggested next step" />
+          <Figure src={`${IMG}/o-dash.webp`} alt="Assist Now dashboard, light mode" />
           <div>
-            <h3>Breach radar: see a breach coming</h3>
+            <h3>Dashboard</h3>
             <ul>
-              <li>Tickets due to breach in the next 4 hours, on one timeline built from SLA timers.</li>
-              <li>Each one says why it's at risk and suggests a next step, such as reassigning.</li>
-              <li>The agent decides. Suggestions are labelled as estimates.</li>
+              <li>Three summary cards: requests, incidents and breached state, each with its change.</li>
+              <li>Ticket statistics across the year, filterable by type.</li>
+              <li>Activity feed, events, messages and recent request activity on one screen.</li>
             </ul>
           </div>
         </div>
         <div className="cs-decision">
-          <Figure src={`${IMG}/n-brief.webp`} alt="Ticket record with a brief in the side panel: issue, work done, suggested step, possible duplicate and similar fixed tickets" />
+          <Figure src={`${IMG}/o-cad.webp`} alt="Customer Analytical Dashboard with charts by type, source and priority" />
           <div>
-            <h3>Ticket brief: catch up without reading every note</h3>
+            <h3>Customer Analytical Dashboard</h3>
             <ul>
-              <li>The side panel sums up the issue, what's been done and a suggested next step.</li>
-              <li>It flags possible duplicates. The original only counted them afterwards.</li>
-              <li>Tickets fixed before, with their fix, sit one tab away.</li>
+              <li>Tickets by type, source and priority, as charts instead of tables.</li>
+              <li>Seven-day counts: created, closed, pending, open, duplicate, and satisfaction rate.</li>
+              <li>Quick actions: new file, share, import and support.</li>
+            </ul>
+          </div>
+        </div>
+        <div className="cs-decision">
+          <Figure src={`${IMG}/o-dark.webp`} alt="Assist Now dashboard, dark mode" />
+          <div>
+            <h3>Dark mode</h3>
+            <ul>
+              <li>Every screen in both themes, for long days at the screen.</li>
             </ul>
           </div>
         </div>
       </Section>
 
-      <Section id="next" index={7} label="Where it stands" title={<>A concept, <em>not a shipped product.</em></>}>
+      <Section id="system" index={5} label="Design system" title="Design system">
         <p className="cs-p">
-          Next is testing with service desk agents: can they find the ticket that needs them next, and do they trust
-          the radar's suggestions? Dark mode for the redesign comes after that.
+          Poppins throughout. Soft green, yellow and red tints separate requests, incidents and breaches, with one
+          blue for actions.
         </p>
+        <div className="cs-duo">
+          <Figure src={`${IMG}/o-style.webp`} alt="Assist Now iconography and UI elements" caption="Icons and UI elements" />
+          <Figure src={`${IMG}/o-palette.webp`} alt="Assist Now colour palette and Poppins typography" caption="Colour and type" />
+        </div>
+      </Section>
+
+      <Section id="next" index={6} label="Reflection" title={<>A concept, <em>a week long.</em></>}>
         <p className="cs-p">
-          <strong>What changed for me:</strong> the first version was about how a dashboard looks. This one starts
-          from what the person using it has to do next.
+          Assist Now was a quick exploration of how a familiar enterprise tool could feel lighter. If I took it
+          further, I'd test it with service desk agents, put the tickets closest to breaching on the home screen,
+          and darken the action blue so white text passes WCAG AA contrast.
         </p>
-        <p className="cs-sources">Redesign screens use sample data. Original screens are from my Behance project.</p>
       </Section>
 
     </CaseStudyLayout>
