@@ -7,9 +7,9 @@ import Widgets from "./components/widgets";
 import Journey from "./components/journey";
 import Terminus from "./components/terminus";
 import { QuickViewProvider } from "./components/quickview";
-import { BigLinks } from "./components/links";
-import { useDublinTime } from "./components/clock";
-import CaseStudyRoute from "./pages/casestudy";
+import { BigLinks, QuickLinks } from "./components/links";
+import { useEffect } from "react";
+import CaseStudyRoute, { preloadCaseStudies } from "./pages/casestudy";
 import Pointer from "./components/pointer";
 import "./styles/nothing.css";
 import "./styles/glass.css";
@@ -28,7 +28,6 @@ function Home() {
 
 /** Nothing's footer: the whole site as one big dot-matrix menu. */
 function Footer() {
-  const time = useDublinTime();
   return (
     <footer className="foot">
       <nav aria-label="Footer" className="wrap"><BigLinks /></nav>
@@ -52,13 +51,19 @@ function Footer() {
 
       <div className="wrap foot-in mono">
         <span>© 2026 Vimal Kumar</span>
-        <span>Dublin {time}</span>
+        <QuickLinks />
       </div>
     </footer>
   );
 }
 
 export default function App() {
+  /* fetch the case-study chunks once the first screen has settled */
+  useEffect(() => {
+    const idle = window.requestIdleCallback ?? ((cb: () => void) => window.setTimeout(cb, 1500));
+    idle(preloadCaseStudies);
+  }, []);
+
   return (
     <>
       <ScrollManager />

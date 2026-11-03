@@ -25,6 +25,7 @@ export default function PortraitDots({ src, label }: { src: string; label: strin
       // fit the photo inside the box, keeping its shape
       const scale = Math.min(w / img.width, h / img.height);
       cols = Math.floor((img.width * scale) / gap); rows = Math.floor((img.height * scale) / gap);
+      if (!cols || !rows) return;   // box too small to sample yet
       ox = (w - cols * gap) / 2; oy = h - rows * gap;   // sits on the foot of the box
       const off = document.createElement("canvas");
       off.width = cols; off.height = rows;

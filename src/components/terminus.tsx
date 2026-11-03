@@ -20,7 +20,7 @@ export default function Terminus() {
     <section id="contact" className="contact" aria-labelledby="contact-title">
       <div className="wrap contact-in">
         <h2 id="contact-title" className="contact-title">Say hello.</h2>
-        <p className="contact-sub live">Available for UX Engineer roles in Ireland</p>
+        <p className="contact-sub live">Open to product design roles: UX, UI and UX engineering</p>
 
         <div className="field">
           <a href={`mailto:${EMAIL}`} className="field-value">{EMAIL}</a>
@@ -33,7 +33,7 @@ export default function Terminus() {
         </span>
         {copy === "failed" && <p className="contact-hint">Copy was blocked. Select the address above.</p>}
 
-        <ResumeLink className="btn btn--line-dark contact-cv" label="Download résumé" />
+        <ResumeLink className="btn btn--line-dark contact-cv" label="Download resume" />
       </div>
     </section>
   );

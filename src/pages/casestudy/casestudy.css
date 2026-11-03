@@ -435,6 +435,9 @@
 .cs-btn:hover { background: #e2e2e2; color: var(--ink); transform: none; }
 .cs-btn--ghost { background: transparent; color: var(--ink); box-shadow: inset 0 0 0 1px var(--ink); }
 .cs-btn--ghost:hover { background: var(--ink); color: #fff; }
+/* on the black header stage an ink outline disappears, so it turns white there */
+.cs-header .cs-btn--ghost { color: #fff; box-shadow: inset 0 0 0 1px #fff; }
+.cs-header .cs-btn--ghost:hover { background: #fff; color: var(--ink); }
 .cs-btn svg { flex-shrink: 0; }
 
 .cs-wip-note { max-width: 640px; margin: 24px auto 0; padding: 12px 16px; border: 0; border-radius: 6px; background: #1d1d1d; color: var(--on-stage-2); text-align: left; font-size: 15px; }

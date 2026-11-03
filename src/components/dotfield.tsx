@@ -37,6 +37,7 @@ export default function DotField({ src = "", word = "", label }: { src?: string;
         ? (small ? Math.max(4.5, w / 80) : Math.max(5, Math.min(6.5, w / 230)))
         : small ? Math.max(5, w / 72) : Math.max(8, Math.min(13, w / 110));   // finer on phones, so letters keep their shape
       cols = Math.ceil(w / gap); rows = Math.ceil(h / gap);
+      if (!cols || !rows) return;   // no size yet: nothing to sample
       pitch = Math.max(6, Math.round(88 / gap));        // the sparse stage grid, ~90px apart
 
       const off = document.createElement("canvas");

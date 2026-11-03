@@ -7,7 +7,6 @@ export const EMAIL = "vimal.v27k@gmail.com";
 export const SOCIALS = [
   { label: "LinkedIn", href: "https://www.linkedin.com/in/vimal27k/" },
   { label: "Behance",  href: "https://www.behance.net/vimalkveerara" },
-  { label: "Dribbble", href: "https://dribbble.com/vimalkumar" },
 ];
 const PAGES = [
   { label: "Work",    to: "/#work" },
@@ -15,6 +14,26 @@ const PAGES = [
   { label: "Journey", to: "/#journey" },
   { label: "Contact", to: "/#contact" },
 ];
+
+/** The footer's bottom bar: every section one tap away, plus back to the top. */
+export function QuickLinks() {
+  const { pathname } = useLocation();
+  return (
+    <nav aria-label="Quick links">
+      <ul className="quick-links">
+        {PAGES.map(l => (
+          <li key={l.label}>
+            <Link to={l.to} onClick={() => scrollIfSamePage(l.to, pathname)}>{l.label}</Link>
+          </li>
+        ))}
+        <li><ResumeLink icon={false} /></li>
+        <li>
+          <a href="#main" onClick={e => { e.preventDefault(); window.scrollTo({ top: 0, behavior: "smooth" }); }}>Top ↑</a>
+        </li>
+      </ul>
+    </nav>
+  );
+}
 
 /** The big dot-matrix menu, shared by the nav overlay and the footer. */
 export function BigLinks({ onGo }: { onGo?: () => void }) {

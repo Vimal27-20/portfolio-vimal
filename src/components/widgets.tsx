@@ -98,7 +98,7 @@ export default function Widgets() {
           <Principles />
           <div className="wg wg--open">
             <PortraitDots src={`${import.meta.env.BASE_URL}img/vimal-bw.webp`} label="Vimal Kumar, a portrait drawn in dots" />
-            <p className="wg-big"><span className="live" aria-hidden /> Open to UX Engineer roles in Ireland.</p>
+            <p className="wg-big"><span className="live" aria-hidden /> Open to product design roles: UX, UI and UX engineering.</p>
             <ResumeLink className="btn btn--accent" />
           </div>
           <Quotes />

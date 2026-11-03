@@ -8,7 +8,7 @@ web
 
 ## Users
 
-Recruiters and hiring managers filling UX/UI and product design roles in Ireland. They arrive from a CV, LinkedIn or a job application, usually short on time, and are judging whether Vimal is worth an interview. Success is that they download the resume or get in touch.
+Recruiters and hiring managers filling product design roles (UX, UI and UX engineering). They arrive from a CV, LinkedIn or a job application, usually short on time, and are judging whether Vimal is worth an interview. Success is that they download the resume or get in touch.
 
 ## Product Purpose
 
@@ -24,7 +24,7 @@ Decided: the homepage hero introduces him as "UX Engineer who designs and builds
 
 - Visitors skim first: they look for name, role, availability, the projects and a resume within seconds, on desktop and phone.
 - Case studies are read in two places: in-site pages (`/work/flex-academy`, `/work/mindful-moments`, `/work/vise`) and external Behance pages for the other projects.
-- Contact happens off-site: email (`vimal.v27k@gmail.com`), LinkedIn, Behance and Dribbble. There is no form or backend.
+- Contact happens off-site: email (`vimal.v27k@gmail.com`), LinkedIn and Behance. There is no form or backend.
 
 ## Capabilities and Constraints
 
@@ -37,7 +37,7 @@ Decided: the homepage hero introduces him as "UX Engineer who designs and builds
 
 - Name: Vimal Kumar. Handle: vimal27k.
 - The VK logo (`public/img/LOGO-VK.png`) is an existing identity asset.
-- Links that must stay correct: LinkedIn `https://www.linkedin.com/in/vimal27k/`, Behance `https://www.behance.net/vimalkveerara`, Dribbble `https://dribbble.com/vimalkumar`, VISE code `https://github.com/PassionChips/Vise`.
+- Links that must stay correct: LinkedIn `https://www.linkedin.com/in/vimal27k/`, Behance `https://www.behance.net/vimalkveerara`, VISE code `https://github.com/PassionChips/Vise`.
 
 ## Evidence on Hand
 

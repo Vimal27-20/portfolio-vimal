@@ -11,7 +11,7 @@ const SECTIONS = [
   { id: "contact", label: "Say hello" },
 ];
 
-/** The floating glass pill: menu, the name in dots, the résumé. Once the
+/** The floating glass pill: menu, the name in dots, the resume. Once the
     hero is behind you it settles into a small black island that names the
     section you're in, the way the Dynamic Island does; hover or focus
     opens it back out. */

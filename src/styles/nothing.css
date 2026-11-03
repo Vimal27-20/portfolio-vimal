@@ -183,7 +183,19 @@
 /* ── footer: the big dot-matrix menu ── */
 .foot { background: var(--stage); color: #fff; padding: 72px 0 28px; }
 .foot nav { padding: 24px 0 72px; border-top: 1px solid #222; }
-.foot-in { display: flex; justify-content: space-between; gap: 12px; color: var(--on-stage-2); font-size: 12px; }
+.foot-in { display: flex; justify-content: space-between; align-items: center; gap: 12px; color: var(--on-stage-2); font-size: 12px; }
+
+/* bottom bar shortcuts: every section one tap away */
+.foot .foot-in nav { padding: 0; border: 0; }
+.quick-links { list-style: none; display: flex; flex-wrap: wrap; gap: 4px; }
+.quick-links a {
+  display: inline-flex; align-items: center; min-height: 40px; padding: 0 12px; border-radius: var(--r-btn);
+  color: #fff; text-decoration: none; letter-spacing: .04em; text-transform: uppercase;
+  transition: background .2s var(--ease);
+}
+.quick-links a:hover { background: #1d1d1d; }
+.quick-links a:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
+.quick-links .dl-bar { display: none; }
 
 /* the case-study cover takes the quick-view image's place in the morph */
 ::view-transition-group(cover) { animation-duration: .5s; animation-timing-function: cubic-bezier(.2, .7, 0, 1); }
@@ -230,10 +242,11 @@
   .field { flex-direction: column; align-items: stretch; padding: 14px; }
   .field-value { text-align: center; }
   .field-btn { justify-content: center; }
-  .foot-in { flex-direction: column; }
+  .foot-in { flex-direction: column-reverse; align-items: flex-start; gap: 16px; }
+  .quick-links { margin-left: -12px; }
 }
 
-/* ── résumé download: arrow drops into its tray, dots fill, a tick ── */
+/* ── resume download: arrow drops into its tray, dots fill, a tick ── */
 .dl { position: relative; overflow: hidden; }
 .dl-icon { display: inline-grid; place-items: center; }
 .dl.is-busy .dl-icon svg { animation: dlDrop .55s steps(4, end) infinite; }

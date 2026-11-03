@@ -46,7 +46,7 @@ export const projects: Project[] = [
     caseStudy: "/work/flex-academy",
   },
   {
-    img:      `${import.meta.env.BASE_URL}img/assist.png`,
+    img:      `${import.meta.env.BASE_URL}img/assist.webp`,
     alt:      "Assist Now",
     tag:      "UI Concept · Enterprise",
     title:    "Assist Now",
@@ -60,7 +60,7 @@ export const projects: Project[] = [
     caseStudy: "/work/assist-now",
   },
   {
-    img: `${import.meta.env.BASE_URL}img/hybrid.png`,
+    img: `${import.meta.env.BASE_URL}img/hybrid.webp`,
     alt:      "Hybrid Work Planner",
     tag:      "Enterprise UX",
     title:    "Hybrid Work Experience Planner",
@@ -73,7 +73,7 @@ export const projects: Project[] = [
     link:     "https://www.behance.net/gallery/245077007/Hybrid-Work-Experience-Planner",
   },
   {
-    img:      `${import.meta.env.BASE_URL}img/balanci.png`,
+    img:      `${import.meta.env.BASE_URL}img/balanci.webp`,
     alt:      "Balanci",
     tag:      "Student Wellbeing · Mobile",
     title:    "Balanci",
@@ -100,7 +100,7 @@ export const projects: Project[] = [
     caseStudy: "/work/mindful-moments",
   },
   {
-    img:      `${import.meta.env.BASE_URL}img/gardern.png`,
+    img:      `${import.meta.env.BASE_URL}img/gardern.webp`,
     alt:      "IoT Smart Pot",
     tag:      "IoT · Physical UX",
     title:    "Enhancing Gardening with Smart Tech",
