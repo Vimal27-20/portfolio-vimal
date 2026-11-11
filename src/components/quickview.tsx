@@ -17,6 +17,17 @@ export function QuickViewProvider({ children }: { children: ReactNode }) {
   const open = useCallback((s: string) => { setSlug(s); dialog.current?.showModal(); }, []);
   const close = () => dialog.current?.close();
 
+  // deep link: ?project=<slug> (e.g. from a CV) opens that project's quick view on arrival
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const wanted = params.get("project");
+    if (!wanted || !projects.some(x => x.slug === wanted)) return;
+    open(wanted);
+    params.delete("project");
+    const rest = params.toString();
+    window.history.replaceState(window.history.state, "", window.location.pathname + (rest ? `?${rest}` : "") + window.location.hash);
+  }, [open]);
+
   // phones: pull the sheet down by its top bar to dismiss it, like an iOS sheet
   const pull = useRef({ y: 0, on: false });
   const grab = (e: React.PointerEvent) => {
